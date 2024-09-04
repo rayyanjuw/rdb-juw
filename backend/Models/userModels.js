@@ -3,7 +3,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/mysqlConnection'); // Import the sequelize instance
 
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const Department = require('./departmentmodel');
 
 // Define the User model
@@ -14,8 +14,10 @@ const User = sequelize.define('User', {
     },
     username: {
         type: DataTypes.STRING,
-        unique: 'compositeIndex',
+        unique: true,
         allowNull: false,
+        require
+       
     },
     email: {
         type: DataTypes.STRING,

@@ -4,7 +4,7 @@ const Publication = require("../Models/Publication");
 // const User = require("../Models/userModels");
 const { User, Department} = require('../Models/association')
 const {allowedRoles, roleHierarchy} = require("./../config/roles");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 
 const createUser = async (req, res) => {
     console.log('Received request to create user:', req.body);
