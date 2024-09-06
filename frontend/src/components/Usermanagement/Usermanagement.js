@@ -991,16 +991,283 @@
 
 // export default UserManagement;
 
+// edit api integrated : previous
+// import React, { useState, useEffect } from "react";
+// import Sidebar from "../Sidebar/Sidebar";
+// import Modal from "react-modal";
+// import axios from "axios";
+// import "./usermanagement.css";
+// import NavBar from "../shared-components/navbar/NavBar";
+// import { FaEye, FaEyeSlash } from "react-icons/fa";
 
+// const UserManagement = () => {
+//   const [error, setError] = useState("");
+//   const [data, setData] = useState({
+//     name: "",
+//     username: "",
+//     email: "",
+//     password: "",
+//     role: "",
+//     departmentName: "",
+//   });
+//   const [users, setUsers] = useState([]); // State to store users
+//   const [modalIsOpen, setModalIsOpen] = useState(false);
+//   const [editMode, setEditMode] = useState(false); // To distinguish between Add and Edit modes
+//   const [selectedUserId, setSelectedUserId] = useState(null); // Store the ID of the user being edited
+//   const [showPassword, setShowPassword] = useState(false);
 
-// edit api integrated
+//   // const url = "http://localhost:5000/api/user/create";
+//   // const editUrl = `http://localhost:5000/api/user/update/${selectedUserId}`;
+//   // const editUrl = `http://localhost:5000/api/user/update/:id`;
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     try {
+//       if (editMode) {
+//         await axios.put(editUrl, data, {
+//           headers: {
+//             Authorization: `Bearer ${localStorage.getItem("token")}`,
+//           },
+//         });
+//       } else {
+//         await axios.post(url, data, {
+//           headers: {
+//             Authorization: `Bearer ${localStorage.getItem("token")}`,
+//           },
+//         });
+//       }
+//       await fetchUsers(); // Fetch the updated list of users
+//       resetForm();
+//       closeModal();
+//     } catch (error) {
+//       if (error.response) {
+//         switch (error.response.status) {
+//           case 400:
+//             setError("User already exists");
+//             break;
+//           case 403:
+//             setError("You do not have permission to create this role");
+//             break;
+//           default:
+//             setError("Server Error, Please try again later");
+//             break;
+//         }
+//       } else {
+//         setError("Server Error, Please try again later");
+//       }
+//     }
+//   };
+
+//   const togglePasswordVisibility = () => {
+//     setShowPassword(!showPassword);
+//   };
+
+//   const openModal = () => {
+//     setModalIsOpen(true);
+//     setEditMode(false);
+//   };
+
+//   const openEditModal = (user) => {
+//     setData({
+//       name: user.name,
+//       username: user.username,
+//       email: user.email,
+//       password: "",
+//       role: user.role,
+//       departmentName: user.departmentName,
+//     });
+//     setSelectedUserId(user._id);
+//     setModalIsOpen(true);
+//     setEditMode(true);
+//   };
+
+//   const closeModal = () => {
+//     resetForm();
+//     setModalIsOpen(false);
+//   };
+
+//   const resetForm = () => {
+//     setData({
+//       name: "",
+//       email: "",
+//       username: "",
+//       password: "",
+//       role: "",
+//       departmentName: "",
+//     });
+//     setSelectedUserId(null);
+//   };
+
+//   const handleInputChange = (e) => {
+//     const { name, value } = e.target;
+//     setData((prevData) => ({ ...prevData, [name]: value }));
+//   };
+
+//   // const fetchUsers = async () => {
+//   //   try {
+//   //     const response = await axios.get(fetchUsersUrl, {
+//   //       headers: {
+//   //         Authorization: `Bearer ${localStorage.getItem("token")}`,
+//   //       },
+//   //     });
+//   //     setUsers(response.data);
+//   //   } catch (error) {
+//   //     console.error("Error fetching users:", error);
+//   //   }
+//   // };
+
+//   useEffect(() => {
+//     fetchUsers();
+//   }, []);
+
+//   return (
+//     <>
+//       <div className="whole-page-container">
+//         <Sidebar />
+//         <div className="user-management">
+//           <div className="navbar-div">
+//             <NavBar />
+//           </div>
+//           <div className="user-management-card">
+//             <h4>Users and Roles</h4>
+//             <button
+//               type="button"
+//               className="create-user-btn"
+//               onClick={openModal}
+//             >
+//               ADD NEW USER
+//             </button>
+//             <Modal
+//               isOpen={modalIsOpen}
+//               onRequestClose={closeModal}
+//               contentLabel={editMode ? "Edit User Modal" : "Create User Modal"}
+//               className="Modal"
+//               overlayClassName="Overlay"
+//             >
+//               <h2>{editMode ? "Edit User" : "Create User"}</h2>
+//               <form className="create-user" onSubmit={handleSubmit}>
+//                 <div className="create-user-left">
+//                   <p className="title">User Information</p>
+//                   <div className="multi-fields">
+//                     <input
+//                       required
+//                       name="name"
+//                       onChange={handleInputChange}
+//                       value={data.name}
+//                       type="text"
+//                       placeholder="Name"
+//                     />
+//                     <input
+//                       required
+//                       name="username"
+//                       onChange={handleInputChange}
+//                       value={data.username}
+//                       type="text"
+//                       placeholder="Username"
+//                     />
+//                     <input
+//                       required
+//                       name="role"
+//                       onChange={handleInputChange}
+//                       value={data.role}
+//                       type="text"
+//                       placeholder="Role"
+//                     />
+//                     <input
+//                       required
+//                       name="departmentName"
+//                       onChange={handleInputChange}
+//                       value={data.departmentName}
+//                       type="text"
+//                       placeholder="Department"
+//                     />
+//                     <input
+//                       required
+//                       name="email"
+//                       onChange={handleInputChange}
+//                       value={data.email}
+//                       type="email"
+//                       placeholder="Email Address"
+//                     />
+//                     <div className="password-container">
+//                       <input
+//                         required
+//                         name="password"
+//                         onChange={handleInputChange}
+//                         value={data.password}
+//                         type={showPassword ? "text" : "password"}
+//                         placeholder="Password"
+//                       />
+//                       <span
+//                         className="eye-icon"
+//                         onClick={togglePasswordVisibility}
+//                       >
+//                         {showPassword ? <FaEyeSlash /> : <FaEye />}
+//                       </span>
+//                     </div>
+//                   </div>
+//                 </div>
+//                 <button className="submit-button" type="submit">
+//                   {editMode ? "UPDATE" : "Submit"}
+//                 </button>
+//                 {error && <p className="error">{error}</p>}
+//               </form>
+//             </Modal>
+//             <button>SEARCH</button>
+//             <h5>Current Users</h5>
+//             <div className="usermanagement-table-container">
+//               <div className="list add flex-col">
+//                 <div className="list-table">
+//                   <div className="list-table-format title">
+//                     <b>Name</b>
+//                     <b>Username</b>
+//                     <b>User Role</b>
+//                     <b>Department</b>
+//                     <b>Email</b>
+//                     <b>Actions</b>
+//                   </div>
+//                   {users.map((user, index) => (
+//                     <div key={index} className="list-table-format">
+//                       <p>{user.name}</p>
+//                       <p>{user.username}</p>
+//                       <p>{user.role}</p>
+//                       <p>{user.departmentName}</p>
+//                       <p>{user.email}</p>
+//                       <div className="Edit-Modal">
+//                         <button
+//                           type="button"
+//                           className="create-user-btn"
+//                           onClick={() => openEditModal(user)}
+//                         >
+//                           EDIT
+//                         </button>
+//                       </div>
+//                     </div>
+//                   ))}
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+//           <div className="juw-copyright">
+//             <p>© 2024, all rights reserved by Jinnah University for Women.</p>
+//           </div>
+//         </div>
+//       </div>
+//     </>
+//   );
+// };
+
+// export default UserManagement;
+
+// api integrated : latest
+
 import React, { useState, useEffect } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import Modal from "react-modal";
-import axios from "axios";
 import "./usermanagement.css";
 import NavBar from "../shared-components/navbar/NavBar";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { createUser, getAllUsers, updateUser } from "../../api/Api";
 
 const UserManagement = () => {
   const [error, setError] = useState("");
@@ -1010,55 +1277,91 @@ const UserManagement = () => {
     email: "",
     password: "",
     role: "",
-    department: "",
+    departmentName: "",
   });
+  const [emailError, setEmailError] = useState(""); // State for email validation
   const [users, setUsers] = useState([]); // State to store users
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [editMode, setEditMode] = useState(false); // To distinguish between Add and Edit modes
   const [selectedUserId, setSelectedUserId] = useState(null); // Store the ID of the user being edited
+  const [editMode, setEditMode] = useState(false); // To distinguish between Add and Edit modes
   const [showPassword, setShowPassword] = useState(false);
 
-  const url = "http://localhost:5000/api/user/create";
-  const fetchUsersUrl = "http://localhost:5000/api/user/allUsers";
-  const editUrl = `http://localhost:5000/api/user/update/${selectedUserId}`;
-  // const editUrl = `http://localhost:5000/api/user/update/:id`;
+  // Handle form submission for creating a user
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     await createUser(data); // Call createUser API
+  //     console.log("User Created", data);
+  //     closeModal();
+  //   } catch (error) {
+  //     handleError(error);
+  //   }
+  // };
+
+  // Fetch all users from the server
+  const fetchUsersFromServer = async () => {
+    try {
+      const fetchedUsers = await getAllUsers(); // Call the API to fetch users
+      setUsers(fetchedUsers); // Set the fetched users to the state
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    }
+  };
+
+  // Handle form submission for creating a user
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   if (!validateEmail(data.email)) {
+  //     setEmailError("Invalid email address.");
+  //     return; // Stop form submission if the email is invalid
+  //   }
+  //   try {
+  //     await createUser(data); // Call createUser API
+  //     closeModal();
+  //     fetchUsersFromServer(); // Refresh the user list after creation
+  //   } catch (error) {
+  //     handleError(error);
+  //   }
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      if (editMode) {
-        await axios.put(editUrl, data, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
-      } else {
-        await axios.post(url, data, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
-      }
-      await fetchUsers(); // Fetch the updated list of users
-      resetForm();
-      closeModal();
-    } catch (error) {
-      if (error.response) {
-        switch (error.response.status) {
-          case 400:
-            setError("User already exists");
-            break;
-          case 403:
-            setError("You do not have permission to create this role");
-            break;
-          default:
-            setError("Server Error, Please try again later");
-            break;
-        }
-      } else {
-        setError("Server Error, Please try again later");
-      }
+  
+    // Validate email
+    if (!validateEmail(data.email)) {
+      setEmailError("Invalid email address.");
+      return; // Stop form submission if the email is invalid
     }
+  
+    try {
+      if (editMode && selectedUserId) {
+        // If in edit mode, call updateUser API with selectedUserId
+        await updateUser(selectedUserId, data);
+        console.log("User updated", data);
+      } else {
+        // If not in edit mode, call createUser API
+        await createUser(data);
+        console.log("User created", data);
+      }
+  
+      // Close the modal and refresh user list
+      closeModal();
+      fetchUsersFromServer(); // Refresh the user list after creation or update
+    } catch (error) {
+      handleError(error); // Handle error during the API call
+    }
+  };
+
+  // Email validation function
+  const validateEmail = (email) => {
+    // Simple regex for validating email format
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+  };
+
+  // Handle errors from API
+  const handleError = (error) => {
+    setError(error.message || "Server Error, Please try again later");
   };
 
   const togglePasswordVisibility = () => {
@@ -1067,7 +1370,7 @@ const UserManagement = () => {
 
   const openModal = () => {
     setModalIsOpen(true);
-    setEditMode(false); 
+    setEditMode(false);
   };
 
   const openEditModal = (user) => {
@@ -1077,9 +1380,9 @@ const UserManagement = () => {
       email: user.email,
       password: "",
       role: user.role,
-      department: user.department,
+      departmentName: user.departmentName,
     });
-    setSelectedUserId(user._id);
+    setSelectedUserId(user.id);
     setModalIsOpen(true);
     setEditMode(true);
   };
@@ -1087,6 +1390,7 @@ const UserManagement = () => {
   const closeModal = () => {
     resetForm();
     setModalIsOpen(false);
+    setEmailError(""); // Reset email error on modal close
   };
 
   const resetForm = () => {
@@ -1096,7 +1400,7 @@ const UserManagement = () => {
       username: "",
       password: "",
       role: "",
-      department: "",
+      departmentName: "",
     });
     setSelectedUserId(null);
   };
@@ -1104,23 +1408,31 @@ const UserManagement = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setData((prevData) => ({ ...prevData, [name]: value }));
-  };
-
-  const fetchUsers = async () => {
-    try {
-      const response = await axios.get(fetchUsersUrl, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
-      setUsers(response.data);
-    } catch (error) {
-      console.error("Error fetching users:", error);
+    if (name === "email" && emailError) {
+      setEmailError(""); // Clear email error when the user starts typing again
     }
   };
 
+  // const fetchUsers = async () => {
+  //   try {
+  //     const response = await axios.get(fetchUsersUrl, {
+  //       headers: {
+  //         Authorization: `Bearer ${localStorage.getItem("token")}`,
+  //       },
+  //     });
+  //     setUsers(response.data);
+  //   } catch (error) {
+  //     console.error("Error fetching users:", error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fetchUsers();
+  // }, []);
+
+  // Fetch all users when the component mounts
   useEffect(() => {
-    fetchUsers();
+    fetchUsersFromServer();
   }, []);
 
   return (
@@ -1178,9 +1490,9 @@ const UserManagement = () => {
                     />
                     <input
                       required
-                      name="department"
+                      name="departmentName"
                       onChange={handleInputChange}
-                      value={data.department}
+                      value={data.departmentName}
                       type="text"
                       placeholder="Department"
                     />
@@ -1192,6 +1504,7 @@ const UserManagement = () => {
                       type="email"
                       placeholder="Email Address"
                     />
+                    {emailError && <p className="error">{emailError}</p>} {/* Display email error */}
                     <div className="password-container">
                       <input
                         required
@@ -1234,7 +1547,7 @@ const UserManagement = () => {
                       <p>{user.name}</p>
                       <p>{user.username}</p>
                       <p>{user.role}</p>
-                      <p>{user.department}</p>
+                      <p>{user.departmentName}</p>
                       <p>{user.email}</p>
                       <div className="Edit-Modal">
                         <button
