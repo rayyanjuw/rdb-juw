@@ -1,6 +1,7 @@
 const express = require('express')
 const authorize = require('../middlewares/authorize')
-const authenticate = require('../middlewares/auth')
+const authenticate = require('../middlewares/auth');
+const isAdminorManager = require('../middlewares/isAdminorManager')
 const {
     createUser,updateUser,deleteUser, getUser, getAllUsers,
     promoteOrDemoteUser} = require('../contollers/userControllers')
@@ -26,7 +27,8 @@ router.delete('/delete/:id',authenticate, authorize(['admin', 'manager']), delet
 // All roles can get their own data
 router.get('/me/:id',authenticate, authorize(['admin', 'manager', 'dean', 'chairperson', 'researcher']), getUser);
 
-router.get('/allUsers',authenticate, authorize(['admin', 'manager', 'dean', 'chairperson', 'researcher']), getAllUsers )
+router.get('/allUsers',authenticate,
+    isAdminorManager, authorize(['admin', 'manager', 'dean', 'chairperson', 'researcher']), getAllUsers )
 
 // Admin or Manager can get all users
 // router.get('/', authorize(['admin', 'manager']), userController.getAllUsers);

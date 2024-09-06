@@ -28,7 +28,7 @@ const Publication = sequelize.define('Publication', {
 },
 targetRole: {
   type: DataTypes.STRING, // Adjust the type if needed
-  allowNull: false,
+  allowNull: true,
 },
 departmentId: {
   type: DataTypes.INTEGER,

@@ -47,19 +47,32 @@ const login = async (req, res) => {
 };
 
 // Generate JWT Token for Impersonation
-const generateToken = (user) => {
-  return jwt.sign(
-    { 
-      id: user.id,
-      role: user.role,
-      name: user.name,
-      departmentId: user.departmentId,
-    },
-    process.env.JWT_SECRET,
-    {
-      expiresIn: "1h",
-    }
-  );
+// const generateToken = (user) => {
+//   return jwt.sign(
+//     { 
+//       id: user.id,
+//       role: user.role,
+//       name: user.name,
+//       departmentId: user.departmentId,
+//       impersonatorRole: user.impersonatorRole || null
+//     },
+//     process.env.JWT_SECRET,
+//     {
+//       expiresIn: "1h",
+//     }
+//   );
+// };
+
+const generateToken = (user, isImpersonating = false) => {
+  const payload = {
+    id: user.id,
+    name: user.name,
+    role: user.role,
+    departmentId: user.departmentId,
+    impersonatorRole: isImpersonating ? user.role : null, // Include role of the impersonator
+    impersonating: isImpersonating // Flag to indicate if the user is being impersonated
+  };
+  return jwt.sign(payload, '5abc4ae3268538e2964843c9bb1c1d5a699de2a113653e97602d44fa2b4769d0', { expiresIn: '1h' });
 };
 
 const impersonateUser = async (req, res) => {
@@ -78,7 +91,7 @@ const impersonateUser = async (req, res) => {
       return res.status(403).json({ message: 'Cannot impersonate user from a different department'});
     }
 
-    const token = generateToken(targetUser);
+    const token = generateToken(targetUser, true);
 
     return res.status(200).json({ token, message: `you are now logged in as ${targetUser.name}`})
   } catch (err) {
