@@ -11,35 +11,90 @@ const canCreatePublicationFor = (creatorRole, targetRole) => {
 
 
 
-const createPublication = async (req, res) => {
-    try {
-      const { user } = req;
-      const { role: userRole, departmentId: userDepartmentId } = user;
-      const { targetRole, departmentId, ...publicationData } = req.body;
+// const createPublication = async (req, res) => {
+//     try {
+//       const { user } = req;
+//       const { id: userId, departmentId, role: userRole, impersonatorRole, impersonating } = user;
+//       const {  ...publicationData } = req.body;
 
-      if (!targetRole || !departmentId) {
-        return res.status(400).json({ message: 'Target role is required'});
-      }
+//        // Handle impersonation logic
+//     const isImpersonating = req.headers['x-impersonating'] === 'true'; // Example header flag for impersonation
+//     const creatorRole = impersonating ? impersonatorRole : userRole;
 
-      if (userRole === 'admin') {
-        const publication = await Publication.create({ ...publicationData,     targetRole: targetRole, userId: user.id});
-        return res.status(201).json(publication);
-      }
 
-      if (!canCreatePublicationFor(userRole, targetRole)) {
-        return res.status(403).json({ message: 'Access denied to create publication for this role'});
-      }
+//       // if (!canCreatePublicationFor(userRole)) {
+//       //   return res.status(403).json({ message: 'Access denied to create publication for this role'});
+//       // }
 
-      //
-      const publication = await Publication.create({ ...publicationData,     targetRole: targetRole, userId: user.id });
-      res.status(201).json(publication);
-    } catch (err) {
-      res.status
-      (500).json({ message: err.message})
-    }
-};
+//       // Admin can create publications for any department
+//       if (userRole === 'admin' || userRole === 'manager') {
+//         const publication = await Publication.create({ 
+          
+//           ...publicationData, 
+//           targetRole: userRole, 
+//           createdBy: creatorRole, 
+//           userId: user.id,
+//           departmentId });
+//         return res.status(201).json(publication);
+//     }
+
+//     // Non-admin users can only create publications for their own department
+//     // if (departmentId !== userDepartmentId) {
+//     //     return res.status(403).json({ message: 'Access denied to create publication for this department' });
+//     // }
+
+//       //
+//       const publication = await Publication.create({ 
+//         ...publicationData,
+//         targetRole: userRole,
+//         createdBy: creatorRole, 
+//         departmentId,
+//         userId });
+//       res.status(201).json(publication);
+//     } catch (err) {
+//       res.status
+//       (500).json({ message: err.message})
+//     }
+// };
 
 // Helper function to get managed user IDs
+
+const createPublication = async (req, res) => {
+  try {
+    const { user } = req; // Current user (may be impersonating)
+    const { role: userRole, departmentId, impersonatorRole, impersonating } = user;
+    const { targetRole, ...publicationData } = req.body;
+
+    
+
+    // Determine the role of the user creating the publication
+    const creatorRole = impersonating ? impersonatorRole : userRole;
+
+    // Validate that the targetRole is accessible based on the creatorRole
+    // if (!canCreatePublicationFor(creatorRole, targetRole)) {
+    //   return res.status(403).json({ message: 'Access denied to create publication for this role' });
+    // }
+
+    // Create the publication
+    const publication = await Publication.create({ 
+      ...publicationData, 
+      createdBy: creatorRole, // Set the creator role
+      targetRole: userRole, 
+      departmentId,
+      userId: user.id 
+    });
+
+    console.log(creatorRole)
+
+    return res.status(201).json(publication);
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+};
+
+
+
+
 const getManagedUserIds = async (userId, targetRoles) => {
   const users = await User.findAll({
       where: {
@@ -64,25 +119,25 @@ const getAllPublications = async (req, res) => {
           // Admin can see all publications
           publications = await Publication.findAll();
       } else if (userRole === 'manager') {
-          // Manager can see all publications they manage (facultyHead, deptHead, researcher)
+          // Manager can see all publications they manage (dean, chairperson, researcher)
           publications = await Publication.findAll({
               where: {
                   userId: {
-                      [Op.in]: await getManagedUserIds(user.id, ['facultyHead', 'deptHead', 'researcher'])
+                      [Op.in]: await getManagedUserIds(user.id, ['dean', 'chairperson', 'researcher'])
                   }
               }
           });
-      } else if (userRole === 'facultyHead') {
-          // FacultyHead can see their own publications and those of deptHead and researcher
+      } else if (userRole === 'dean') {
+          // dean can see their own publications and those of chairperson and researcher
           publications = await Publication.findAll({
               where: {
                   userId: {
-                      [Op.in]: await getManagedUserIds(user.id, ['deptHead', 'researcher'])
+                      [Op.in]: await getManagedUserIds(user.id, ['chairperson', 'researcher'])
                   }
               }
           });
-      } else if (userRole === 'deptHead') {
-          // DeptHead can see their own publications and those of researcher
+      } else if (userRole === 'chairperson') {
+          // chairperson can see their own publications and those of researcher
           publications = await Publication.findAll({
               where: {
                   userId: {
@@ -127,8 +182,8 @@ const getAllPublications = async (req, res) => {
         return res.json(publication);
       }
   
-      // Manager, FacultyHead, DeptHead, and Researcher role checks
-      if (userRole === 'manager' || userRole === 'facultyHead' || userRole === 'deptHead' || userRole === 'researcher') {
+      // Manager, dean, chairperson, and Researcher role checks
+      if (userRole === 'manager' || userRole === 'dean' || userRole === 'chairperson' || userRole === 'researcher') {
         const isAllowed = userId === publicationOwner || (await isSupervised(userId, publicationOwner, userRole));
         if (isAllowed) return res.json(publication);
       }
@@ -139,26 +194,7 @@ const getAllPublications = async (req, res) => {
     }
   };
   
-  // Get current user's publications
-  //  const getUserPublications = async (req, res) => {
-  //   try {
-  //     const { user } = req;
-  //     const userId = user.id;
   
-  //     const publications = await Publication.findAll({
-  //       where: { userId },
-  //       include: [user]
-  //     });
-  
-  //     if (!publications.length) {
-  //       return res.status(404).json({ message: 'No publications found for this user' });
-  //     }
-  
-  //     res.json(publications);
-  //   } catch (err) {
-  //     res.status(500).json({ message: err.message });
-  //   }
-  // };
   
   const getUserPublications = async (req, res) => {
     try {
@@ -269,13 +305,11 @@ const getAllPublications = async (req, res) => {
   const updatePublication = async (req, res) => {
     try {
         const { user } = req;
-        const { role: userRole } = user;
+        const { role: userRole, departmentId: userDepartmentId } = user;
         const publicationId = req.params.id;
         const { targetRole, ...updateData } = req.body;
         
-                if (!targetRole) {
-                    return res.status(400).json({ message: 'Target role is required' });
-                }
+               
 
         if (!publicationId) {
             return res.status(400).json({ message: 'Publication ID is required' });
@@ -295,6 +329,9 @@ const getAllPublications = async (req, res) => {
             return res.status(200).json(publication);
         }
 
+        if (publication.creator.departmentId !== userDepartmentId) {
+          return res.status(403).json({ message: 'Cannot update publication from a different department' });
+        }
         if (!canCreatePublicationFor(userRole, targetRole)) {
             return res.status(403).json({ message: 'Access denied to update publication for this role' });
         }

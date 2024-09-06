@@ -16,7 +16,7 @@ require('../Models/association')
 // Import the sequelize instance to ensure the connection is established
 require('../config/mysqlConnection'); // Ensure this line is present
 
-// app.use(authenticate);
+
 // app.use(isAdminorManager);
 app.use('/api/auth', authRouter);
 app.use('/api/user', userRouter);
