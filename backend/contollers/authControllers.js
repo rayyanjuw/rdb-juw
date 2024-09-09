@@ -87,7 +87,7 @@ const impersonateUser = async (req, res) => {
       return res.status(404).json({ message: 'User not found'});
 
     }
-    if (user.departmentId !== targetUser.departmentId && user.role !== 'admin') {
+    if (user.departmentId !== targetUser.departmentId && user.role !== 'admin' && user.role !== 'manager') {
       return res.status(403).json({ message: 'Cannot impersonate user from a different department'});
     }
 

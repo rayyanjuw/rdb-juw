@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/mysqlConnection');
+const Department = require('../Models/departmentmodel')
 
 
 const IntellectualProperty = sequelize.define('IntellectualProperty', {
@@ -43,6 +44,18 @@ const IntellectualProperty = sequelize.define('IntellectualProperty', {
             key: 'id'
         },
     },
+    createdBy: {
+        type: DataTypes.STRING, // Adjust the type if needed
+        allowNull: true,
+      },
+      
+    departmentId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: Department,
+          key: 'id'
+        }
+      }
 
 }, {
     tableName: 'intellectual_properties',

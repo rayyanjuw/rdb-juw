@@ -3,7 +3,8 @@
 const User = require('./userModels');
 const Publication = require('./Publication');
 const IntellectualProperty = require('./IntellectualProperty');
-const Department = require('./departmentmodel')
+const Department = require('./departmentmodel');
+const UserProfile = require('./userProfile');
 
 
 // Define associations
@@ -26,6 +27,10 @@ IntellectualProperty.belongsTo(User, {
 // User-Department association
 Department.hasMany(User, { foreignKey: 'departmentId', as: 'users' });
 User.belongsTo(Department, { foreignKey: 'departmentId', as: 'department' });
+
+// Associate UserProfile with User
+UserProfile.belongsTo(User, { foreignKey: 'userId' });
+User.hasOne(UserProfile, { foreignKey: 'userId' });
 
 
 

@@ -305,7 +305,7 @@ const getAllPublications = async (req, res) => {
   const updatePublication = async (req, res) => {
     try {
         const { user } = req;
-        const { role: userRole, departmentId: userDepartmentId } = user;
+        const { role: userRole, departmentId: userDepartmentId, impersonating, impersonatorRole } = user;
         const publicationId = req.params.id;
         const { targetRole, ...updateData } = req.body;
         
@@ -316,25 +316,32 @@ const getAllPublications = async (req, res) => {
         }
 
         // Fetch the publication to be updated
-        const publication = await Publication.findByPk(publicationId);
+        const publication = await Publication.findByPk(publicationId, {
+          include: {association: 'creator'}
+        });
 
         if (!publication) {
             return res.status(404).json({ message: 'Publication not found' });
         }
 
+        const creatorRole = impersonating ? impersonatorRole : userRole;
+  const effectiveDepartmentId = impersonating ? publication.creator.departmentId : userDepartmentId;
+
+  const isOwner = publication.userId === user.id;
+
         // Check if user is authorized to update the publication
-        if (userRole === 'admin') {
-            // Admin can update publications for any role
-            await publication.update(updateData);
-            return res.status(200).json(publication);
+        if (!isOwner && creatorRole !== 'admin' || !isOwner && creatorRole ) {
+          if (publication.creator.departmentId !== effectiveDepartmentId) {
+            return res.status(403).json({ message: 'Cannot update intellectual property from a different department' });
         }
 
-        if (publication.creator.departmentId !== userDepartmentId) {
-          return res.status(403).json({ message: 'Cannot update publication from a different department' });
-        }
+        // if (publication.creator.departmentId !== userDepartmentId) {
+        //   return res.status(403).json({ message: 'Cannot update publication from a different department' });
+        // }
         if (!canCreatePublicationFor(userRole, targetRole)) {
             return res.status(403).json({ message: 'Access denied to update publication for this role' });
         }
+      }
 
         // Perform the update operation
         await publication.update(updateData);

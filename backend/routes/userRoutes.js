@@ -5,6 +5,8 @@ const isAdminorManager = require('../middlewares/isAdminorManager')
 const {
     createUser,updateUser,deleteUser, getUser, getAllUsers,
     promoteOrDemoteUser} = require('../contollers/userControllers')
+    const {createOrUpdateProfile, getProfile} = require('../contollers/userProfileController')
+
 
 const router = express.Router();
 
@@ -32,6 +34,11 @@ router.get('/allUsers',authenticate,
 
 // Admin or Manager can get all users
 // router.get('/', authorize(['admin', 'manager']), userController.getAllUsers);
+
+
+//profileRoutes 
+router.post('/profile', authenticate, createOrUpdateProfile);
+router.get('/profile', authenticate, getProfile);
 
 
 
