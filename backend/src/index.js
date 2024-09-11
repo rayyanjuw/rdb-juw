@@ -1,4 +1,5 @@
 const express = require('express');
+
 // const mysql = require('mysql2');
 const app = express();
 const port = process.env.PORT || 5000;
@@ -10,6 +11,12 @@ const intellectualproperty = require('../routes/intellectualPropRoutes');
 const Department = require('../Models/departmentmodel');
 const isAdminorManager = require('../middlewares/isAdminorManager');
 const authenticate = require('../middlewares/auth');
+const honorsReward = require('../routes/honorRoutes');
+const Membership = require('../routes/membershipRoutes');
+const FacultyPublication = require('../routes/facultypublicationRoutes')
+
+
+
 app.use(express.json()); // Middleware to parse JSON bodies
 app.use(cors())
 
@@ -26,6 +33,9 @@ app.use('/api/auth', authRouter);
 app.use('/api/user', userRouter);
 app.use('/api/publication', publicationRouter);
 app.use('/api/intellectualproperty', intellectualproperty);
+app.use('/api/honors', honorsReward );
+app.use('/api/membership', Membership);
+app.use('/api/facultypublication', FacultyPublication )
 
 
 // require('../routes')

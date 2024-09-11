@@ -1,5 +1,6 @@
 const IntellectualProperty = require("../Models/IntellectualProperty");
 const allowedRoles = require('../config/roles');
+const {Op} = require('sequelize')
 
 
 const canCreateIPFor = (creatorRole, createdBy) => {
@@ -68,7 +69,7 @@ const getallIp = async (req, res) => {
             {
               departmentId,
               createdBy: {
-                [Op.in]: allowedRoles(userRole), // Roles they are allowed to view
+                [Op.in]: allowedRoles[userRole] || [], // Roles they are allowed to view
               },
             },
           ],
@@ -180,20 +181,13 @@ const updateIP = async (req, res) =>{
   const effectiveDepartmentId = impersonating ? intellectualProperty.creator.departmentId : userDepartmentId;
   
   const isOwner = intellectualProperty.userId === user.id;
+  const isAdminOrManager = creatorRole !== 'admin' || creatorRole !== 'manager';
 
-  if (!isOwner && creatorRole !== 'admin') {
+  if (!isOwner && creatorRole === isAdminOrManager) {
     if (intellectualProperty.creator.departmentId !== effectiveDepartmentId) {
       return res.status(403).json({ message: 'Cannot update intellectual property from a different department' });
     }
 
-  // if (userRole === 'admin') {
-  //   await intellectualProperty.update(updateIPData);
-  //   return res.status(200).json(intellectualProperty)
-  // }
-
-  // if (intellectualProperty.creator.departmentId !== userDepartmentId) {
-  //   return res.status(403).json({ message: 'Cannot update intellectual property from different department'})
-  // }
 
   if(!canCreateIPFor(creatorRole, createdBy)) {
     return res.status(403).json({ message: 'Access denied to update intellectual property for this role'});

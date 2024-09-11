@@ -315,10 +315,10 @@ const getAllPublications = async (req, res) => {
             return res.status(400).json({ message: 'Publication ID is required' });
         }
 
-        // Fetch the publication to be updated
         const publication = await Publication.findByPk(publicationId, {
           include: {association: 'creator'}
         });
+        // Fetch the publication to be updated
 
         if (!publication) {
             return res.status(404).json({ message: 'Publication not found' });
@@ -328,12 +328,13 @@ const getAllPublications = async (req, res) => {
   const effectiveDepartmentId = impersonating ? publication.creator.departmentId : userDepartmentId;
 
   const isOwner = publication.userId === user.id;
-
+  const isAdminOrManager = creatorRole !== 'admin' || creatorRole !== 'manager';
         // Check if user is authorized to update the publication
-        if (!isOwner && creatorRole !== 'admin' || !isOwner && creatorRole ) {
+        if (!isOwner && creatorRole === isAdminOrManager  ) {
           if (publication.creator.departmentId !== effectiveDepartmentId) {
-            return res.status(403).json({ message: 'Cannot update intellectual property from a different department' });
+            return res.status(403).json({ message: 'Cannot update Publication from a different department' });
         }
+     
 
         // if (publication.creator.departmentId !== userDepartmentId) {
         //   return res.status(403).json({ message: 'Cannot update publication from a different department' });

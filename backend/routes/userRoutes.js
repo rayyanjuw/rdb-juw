@@ -38,6 +38,7 @@ router.get('/allUsers',authenticate,
 
 //profileRoutes 
 router.post('/profile', authenticate, createOrUpdateProfile);
+router.put('/profile', authenticate, createOrUpdateProfile);
 router.get('/profile', authenticate, getProfile);
 
 
