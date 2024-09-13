@@ -111,6 +111,10 @@ export const getAllPublications = async () => {
     // const response = await api.get("/publication/getAllPublications");
     return response.data;
   } catch (error) {
+    console.log(
+      "Error While Fetching Research Publications",
+      error.response ? error.response.data : error.message
+    );
     throw new Error(
       error.response?.data?.message || "Error fetching publications"
     );
@@ -152,28 +156,45 @@ export const deletePublication = async (id) => {
 // };
 
 // Update Publication api
-export const updatePublication = async (id, updateData) => {
-  console.log("Updating publication with ID:", id); // Debugging statement
-  console.log("Update data:", updateData); // Debugging statement
 
+// export const updatePublication = async (id, updateData) => {
+//   console.log("Update data:", updateData); // Debugging statement
+
+//   try {
+//     const response = await api.put(`/publication/update/${id}`, updateData, {
+//       headers: {
+//         Authorization: `Bearer ${localStorage.getItem("token")}`,
+//       },
+//     });
+//     console.log("Publication updated response:", response.data);
+//     return response.data;
+//   } catch (error) {
+//     console.error(
+//       "Error updating publication:",
+//       error.response ? error.response.data : error.message
+//     );
+//     throw error;
+//   }
+// };
+
+export const updatePublication = async (id, updateData) => {
   try {
     const response = await api.put(`/publication/update/${id}`, updateData, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
-    console.log("Publication updated response:", response.data);
+    console.log("Publication updated Successfully", response.data);
+    console.log("Publication id", id);
+    
     return response.data;
   } catch (error) {
-    console.error(
-      "Error updating publication:",
-      error.response ? error.response.data : error.message
-    );
+    console.error("Error updating publication:", error);
     throw error;
   }
 };
 
-// Intellectual Property
+// Create Intellectual Property
 export const createIntellectualProperty = async (intellectualPropertyData) => {
   try {
     const response = await api.post(
@@ -242,17 +263,24 @@ export const deleteIntellectualProperty = async (id) => {
 };
 
 // Update Intellectual Property
-
 export const updateIntellectualProperty = async (id, updateData) => {
   try {
-    const response = await api.put(`/intellectualproperty/update/${id}`, updateData, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    });
+    const response = await api.put(
+      `/intellectualproperty/update/${id}`,
+      updateData,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
     console.log("Intellectual Property Successfully Updated", response.data);
+    console.log("Intel Prop Id", id)
   } catch (error) {
-    console.error("Error updating Intellectual Property:", error.response ? error.response.data : error.message);
+    console.error(
+      "Error updating Intellectual Property:",
+      error.response ? error.response.data : error.message
+    );
     throw error;
   }
 };

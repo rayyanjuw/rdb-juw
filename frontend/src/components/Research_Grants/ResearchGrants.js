@@ -27,7 +27,6 @@ const ResearchGrants = () => {
     },
     {
       label: "Publications",
-      // path: "/researchpublication",
       path: "/viewallpublications",
     },
     {

@@ -2,8 +2,61 @@ import React, { useState } from "react";
 import "./addgrants.css";
 import Sidebar from "../../Sidebar/Sidebar";
 import NavBar from "../../shared-components/navbar/NavBar";
+import { useLocation } from "react-router-dom";
+import Breadcrumb from "../../shared-components/breadcrumps/BreadCrumps";
 
 const AddGrants = () => {
+  const location = useLocation();
+  const currentPath = location.pathname;
+
+  const breadCrumps = [
+    { label: "Proposal Cover", path: "/add-international/national-grants" },
+    {
+      label: "Executive Summary",
+      path: "/add-international/national-grants-executive-summary",
+    },
+    {
+      label: "Academic/Sectoral Collaborators",
+      path: "/international/national-grants-academic/Sectoral-collaborators",
+    },
+    {
+      label: "Project Description",
+      path: "/international/national-grants-project-description",
+    },
+    {
+      label: "Project Management",
+      path: "/international/national-grants-project-management",
+    },
+    {
+      label: "Implementation Timeline",
+      path: "/international/national-grants-implementation-timeline",
+    },
+    {
+      label: "Physical Resources and Facilities",
+      path: "/international/national-grants-physical-resources-and-facilities",
+    },
+    {
+      label: "Scientific Personnel",
+      path: "/international/national-grants-scientific-personnel",
+    },
+    {
+      label: "Principal Investigators availed research grant details",
+      path: "/international/national-grants-principal-investigators-availed-research-grant-details",
+    },
+    {
+      label: "Risk Management Strategy",
+      path: "/international/national-grants-risk-management-strategy",
+    },
+    {
+      label: "List of References",
+      path: "/international/national-grants-list-of-references",
+    },
+    {
+      label: "Proposed Project Budget",
+      path: "/international/national-grants-proposed-project-budget",
+    },
+  ];
+
   const [proposalCover, setProposalCover] = useState({
     ProposalReferenceNo: "",
     TitleofProject: "",
@@ -36,7 +89,6 @@ const AddGrants = () => {
     Email: "",
     CNIC_PassportNo: "",
   });
-
 
   console.log(proposalCover);
   console.log(principleInvestigator);
@@ -92,14 +144,11 @@ const AddGrants = () => {
         </div>
         <div className="addgrants-card">
           <h5>International/National Grants | Proposal Cover</h5>
-          <p>
-            Proposal Cover / Executive Summary / Academic/Sectoral
-            Collaborators/ Project Description/ Project Management/
-            Implementation Timeline / Physical Resources and Facilities /
-            Scientific Personnel / Principal Investigator's availed research
-            grant details / Risk Management Strategy / List of References /
-            Proposed Project Budget
-          </p>
+          <div className="addgrants_bredcrumb">
+          {/* <div className="addgrants_bred-crumb"> */}
+          {/* <div className="nav.bredcrumb"> */}
+            <Breadcrumb items={breadCrumps} activePath={currentPath} />
+          </div>
           <div className="addgrants_multiInputFields">
             <div className="title-input">
               <label>*Proposal Reference No:</label>

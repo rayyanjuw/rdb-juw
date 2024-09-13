@@ -346,7 +346,7 @@ const Add_ResearchGrants = () => {
   const location = useLocation();
   const currentPath = location.pathname;
 
-  // Define the initial state structure
+
   const initialState = {
     completed: [
       {

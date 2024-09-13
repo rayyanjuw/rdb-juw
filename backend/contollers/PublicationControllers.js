@@ -309,7 +309,7 @@ const getAllPublications = async (req, res) => {
         const publicationId = req.params.id;
         const { targetRole, ...updateData } = req.body;
         
-               
+    
 
         if (!publicationId) {
             return res.status(400).json({ message: 'Publication ID is required' });
@@ -328,9 +328,9 @@ const getAllPublications = async (req, res) => {
   const effectiveDepartmentId = impersonating ? publication.creator.departmentId : userDepartmentId;
 
   const isOwner = publication.userId === user.id;
-
+  const isAdminorManager = creatorRole !== 'admin' || creatorRole !== 'manager';
         // Check if user is authorized to update the publication
-        if (!isOwner && creatorRole !== 'admin' || !isOwner && creatorRole ) {
+        if (!isOwner && creatorRole === isAdminorManager ) {
           if (publication.creator.departmentId !== effectiveDepartmentId) {
             return res.status(403).json({ message: 'Cannot update intellectual property from a different department' });
         }

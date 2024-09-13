@@ -108,7 +108,7 @@ const ResearchPublication = () => {
           alert("Error while adding publication");
         }
       }
-      setPublications([data]); // Reset to initial state
+      setPublications([data]);
     } catch (error) {
       console.error("Error:", error);
       alert("Error while adding publications");

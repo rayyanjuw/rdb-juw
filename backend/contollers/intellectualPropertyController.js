@@ -1,5 +1,6 @@
 const IntellectualProperty = require("../Models/IntellectualProperty");
 const allowedRoles = require('../config/roles');
+const {Op} = require("sequelize")
 
 
 const canCreateIPFor = (creatorRole, createdBy) => {
@@ -67,9 +68,7 @@ const getallIp = async (req, res) => {
             { userId: user.id }, // Own IPs
             {
               departmentId,
-              createdBy: {
-                [Op.in]: allowedRoles(userRole), // Roles they are allowed to view
-              },
+              createdBy: userRole,
             },
           ],
         };

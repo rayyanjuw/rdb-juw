@@ -2,8 +2,15 @@ import React, { useState } from "react";
 import "./AddORICFundedProjects.css";
 import Sidebar from "../../Sidebar/Sidebar";
 import NavBar from "../../shared-components/navbar/NavBar";
+import { useLocation } from "react-router-dom";
+import Breadcrumb from "../../shared-components/breadcrumps/BreadCrumps";
+
+
+
 
 const AddORICFundedProjects = () => {
+  const location = useLocation();
+  const currentPath = location.pathname;
   const InitalFundedProject = {
     Title: "",
     NameofPI: "",
@@ -23,6 +30,30 @@ const AddORICFundedProjects = () => {
     }));
   };
 
+  const breadCrumps = [
+    {
+      label: "Proposal Cover",
+      path: "/add-oric-funded-projects",
+      // path: "/add-international/national-grants",
+    },
+    {
+      label: "Research Project",
+      path: "/oric-funded-project-research-project",
+    },
+    {
+      label: "Facilities and Funding",
+      path: "/oric-funded-project-facilities-and-funding",
+    },
+    {
+      label: "Justification for The Requested Budget Items",
+      path: "/oric-funded-project-justification-and-budget-items",
+    },
+    {
+      label: "Estimated Budget for Proposed Research Period",
+      path: "/oric-funded-project-estimated-budget-proposed-research-period",
+    },
+  ];
+
   return (
     <div className="addoricfundedproject_container">
       <Sidebar />
@@ -33,18 +64,21 @@ const AddORICFundedProjects = () => {
         </div>
         <div className="add-oricfundedproject-card">
           <h4>ORIC Funded Project | Proposal Cover</h4>
-          <p>
+          {/* <p>
             Proposal Cover / Research Project / Facilities and Funding /
             Justification for The Requested Budget Items / Estimated Budget for
             Proposed Research Period
-          </p>
+          </p> */}
+          <div className="researchproject-bredcrumb">
+            <Breadcrumb items={breadCrumps} activePath={currentPath} />
+          </div>
           <div className="add-oricfundedproject_multiInputFields">
             {/* <div className="addoric_title-input"> */}
             <div className="addoric_InputGroup">
               <label>Title:</label>
               <input
                 type="text"
-                placeholder="Title"
+                // placeholder="Title"
                 value={AddFundedProjects.Title}
                 name="Title"
                 onChange={handleChange}

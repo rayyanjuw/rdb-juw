@@ -29,6 +29,21 @@ import ORICFundedProject from './components/ProjectSubmission/ORICFundedProjects
 import Conference from './components/DepartmentalResearch/Conference&Workshop/Conference';
 import CollaborativeWork from './components/DepartmentalResearch/CollaborativeWork/CollaborativeWork';
 import ThesisProjectDetails from './components/DepartmentalResearch/ThesisProjectDetails/ThesisProjectDetails';
+import ResearchProject from './components/ProjectSubmission/ORICFundedProjects/Research Project/ResearchProject';
+import FacilitiesAndFunding from './components/ProjectSubmission/ORICFundedProjects/Facilities and Funding/FacilitiesAndFunding';
+import JustificationForBudget from './components/ProjectSubmission/ORICFundedProjects/Justification For Budget/JustificationForBudget';
+import EstimatedBudgetForPRP from './components/ProjectSubmission/ORICFundedProjects/EstimatedBudgetForPRP/EstimatedBudgetForPRP';
+import ExecutiveSummary from './components/ProjectSubmission/International_NationalGrants/Executive Summary/ExecutiveSummary';
+import ProjectDescription from './components/ProjectSubmission/International_NationalGrants/Project Description/ProjectDescription';
+import ProjectManagement from './components/ProjectSubmission/International_NationalGrants/Project Management/ProjectManagement';
+import ImplementationTimeline from './components/ProjectSubmission/International_NationalGrants/Implementation Timeline/ImplementationTimeline';
+import PhysicalResources from './components/ProjectSubmission/International_NationalGrants/Physical Resources and Facilities/PhysicalResources';
+import ScientificPersonnel from './components/ProjectSubmission/International_NationalGrants/Scientific Personnel/ScientificPersonnel';
+import RiskManagementStrategy from './components/ProjectSubmission/International_NationalGrants/Risk Management Strategy/RiskManagementStrategy';
+import ListofReferences from './components/ProjectSubmission/International_NationalGrants/List of References/ListofReferences';
+import ProposedProjectBudget from './components/ProjectSubmission/International_NationalGrants/Proposed Project Budget/ProposedProjectBudget';
+import AvailedResearchGrants from './components/ProjectSubmission/International_NationalGrants/Principal Investigator’s availed research grant details/AvailedResearchGrants';
+import AcademicSectoralCollaborators from './components/ProjectSubmission/International_NationalGrants/Academic_Sectoral Collaborators/AcademicSectoralCollaborators';
 
 function App() {
   return (
@@ -52,11 +67,34 @@ function App() {
       <Route path="/view-oric-funded-projects" element={<ViewORICFundedProjects/>}/>
       <Route path="/add-oric-funded-projects" element={<AddORICFundedProjects/>}/>
       <Route path="/oric-funded-project" element={<ORICFundedProject/>}/>
+      <Route path="/oric-funded-project-research-project" element={<ResearchProject/>}/>
+      <Route path="/oric-funded-project-facilities-and-funding" element={<FacilitiesAndFunding/>}/>
+      <Route path="/oric-funded-project-justification-and-budget-items" element={<JustificationForBudget/>}/>
+      <Route path="/oric-funded-project-estimated-budget-proposed-research-period" element={<EstimatedBudgetForPRP/>}/>
+
+
+
+
 
       {/* International/National Grants */}
       <Route path="/view-international/national-grants" element={<ViewGrants/>}/>
-      <Route path="/add-international/national-grants" element={<AddGrants/>}/>      
+      <Route path="/add-international/national-grants" element={<AddGrants/>}/>         
+      <Route path="/add-international/national-grants-executive-summary" element={<ExecutiveSummary/>}/>         
+      <Route path="/international/national-grants-project-description" element={<ProjectDescription/>}/>         
+      <Route path="/international/national-grants-project-management" element={<ProjectManagement/>}/>         
+      <Route path="/international/national-grants-implementation-timeline" element={<ImplementationTimeline/>}/>         
+      <Route path="/international/national-grants-physical-resources-and-facilities" element={<PhysicalResources/>}/>         
+      <Route path="/international/national-grants-scientific-personnel" element={<ScientificPersonnel/>}/>         
+      <Route path="/international/national-grants-risk-management-strategy" element={<RiskManagementStrategy/>}/>         
+      <Route path="/international/national-grants-list-of-references" element={<ListofReferences/>}/>         
+      <Route path="/international/national-grants-proposed-project-budget" element={<ProposedProjectBudget/>}/>         
+      <Route path="/international/national-grants-principal-investigators-availed-research-grant-details" element={<AvailedResearchGrants/>}/>         
+      <Route path="/international/national-grants-academic/Sectoral-collaborators" element={<AcademicSectoralCollaborators/>}/>         
       
+
+
+
+
 
       {/* Research Portfolio */}
       {/* Personal Information */}
@@ -76,6 +114,9 @@ function App() {
       {/* Research Grants And Contracts */}
       <Route path='/research-grants-and-contracts' element={<ResearchGrants/>}/>
       <Route path='/add-research-grants-and-contracts' element={<Add_ResearchGrants/>}/>
+
+
+
 
 
       {/* Departmental Research Data */}

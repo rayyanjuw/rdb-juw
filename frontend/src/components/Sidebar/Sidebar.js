@@ -1021,7 +1021,7 @@ const Sidebar = () => {
     setIsOpen(!isOpen);
   };
 
-  console.log(isMobile)
+  // console.log(isMobile)
 
   const handleSubMenuClick = (name) => {
     setOpenSubMenu((prev) => ({

@@ -31,7 +31,7 @@ const Edit_HonorAndAward = () => {
 
   const breadCrumps = [
     { label: "Personal Information", path: "/researchportfolio" },
-    { label: "Honor and Awards, Scholarship", path: "/honorandawards" },
+    { label: "Honor and Awards, Scholarship", path: "/honorandawards"},
     { label: "Membership", path: "/membership" },
     { label: "Publications", path: "/viewallpublications" },
     { label: "Research Grants and Contracts", path: "/research-grants-and-contracts" },
