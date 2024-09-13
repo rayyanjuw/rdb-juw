@@ -9,13 +9,17 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
-    gap: .5rem;
+    justify-content: start  ;
+    gap: 0.6rem;
     margin: 0;
 }
 
 .bred-label {
-    font-size: 12px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
 .active {
