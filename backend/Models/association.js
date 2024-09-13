@@ -5,6 +5,9 @@ const Publication = require('./Publication');
 const IntellectualProperty = require('./IntellectualProperty');
 const Department = require('./departmentmodel');
 const UserProfile = require('./userProfile');
+const Honor = require('./honorsAwardsModels');
+const Membership = require('./membershipModel');
+const PublicationofFaculty = require('./PublicationofFaculty');
 
 
 // Define associations
@@ -32,6 +35,48 @@ User.belongsTo(Department, { foreignKey: 'departmentId', as: 'department' });
 UserProfile.belongsTo(User, { foreignKey: 'userId' });
 User.hasOne(UserProfile, { foreignKey: 'userId' });
 
+User.hasMany(Honor, {
+    foreignKey: 'userId',
+    as: 'honors'
+});
 
+Honor.belongsTo(User, {
+    foreignKey: 'userId',
+    as: 'user'
+});
 
-module.exports = { User, Publication, IntellectualProperty, Department };
+// Department has many Honors
+Department.hasMany(Honor, {
+    foreignKey: 'departmentId',
+    as: 'honors'
+  });
+  
+  // Honor belongs to Department
+  Honor.belongsTo(Department, {
+    foreignKey: 'departmentId',
+    as: 'department'
+  });   
+
+  User.hasMany(Membership, {
+    foreignKey: 'userId',
+    as: 'memberships'
+  });
+
+  Membership.belongsTo(User, {
+    foreignKey: 'userId',
+    as: 'user'
+  })
+
+  User.hasMany(PublicationofFaculty, {
+    foreignKey: 'userId',
+    as: 'facultypublication'
+  });
+
+  PublicationofFaculty.belongsTo(User, {
+    foreignKey: 'userId',
+    as: 'user'
+  });
+
+  
+
+module.exports = { User, Publication, IntellectualProperty, Department, PublicationofFaculty };
