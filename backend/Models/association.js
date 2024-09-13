@@ -77,4 +77,6 @@ Department.hasMany(Honor, {
     as: 'user'
   });
 
+  
+
 module.exports = { User, Publication, IntellectualProperty, Department, PublicationofFaculty };

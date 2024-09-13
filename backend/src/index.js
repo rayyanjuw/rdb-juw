@@ -13,7 +13,8 @@ const isAdminorManager = require('../middlewares/isAdminorManager');
 const authenticate = require('../middlewares/auth');
 const honorsReward = require('../routes/honorRoutes');
 const Membership = require('../routes/membershipRoutes');
-const FacultyPublication = require('../routes/facultypublicationRoutes')
+const FacultyPublication = require('../routes/facultypublicationRoutes');
+const ORICFundedProject = require('../routes/oricfundedRoutes')
 
 
 
@@ -35,7 +36,8 @@ app.use('/api/publication', publicationRouter);
 app.use('/api/intellectualproperty', intellectualproperty);
 app.use('/api/honors', honorsReward );
 app.use('/api/membership', Membership);
-app.use('/api/facultypublication', FacultyPublication )
+app.use('/api/facultypublication', FacultyPublication );
+app.use('/api/oricfundedproject', ORICFundedProject);
 
 
 // require('../routes')
