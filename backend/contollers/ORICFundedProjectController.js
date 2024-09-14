@@ -50,7 +50,7 @@ const getAllOricFundedProjects = async (req, res) => {
             query = {};  // No restrictions for Admin or Manager
         } else if (['dean', 'chairperson'].includes(effectiveRole)) {
             query = { departmentId: effectiveDepartmentId }; 
-             // Dean and Chairperson see projects in their department
+             // dean and chairperson see projects in their department
         } else if (effectiveRole === 'researcher') {
             query = { userId: user.id };  // Researchers only see their own projects
         }
@@ -102,7 +102,7 @@ const updateOricFundedProject = async (req, res) => {
         // if (userRole === 'Researcher' && oricFundedProject.userId !== user.id) {
         //     return res.status(403).json({ error: 'Unauthorized' });
         // }
-        // if (['Dean', 'Chairperson'].includes(userRole) && oricFundedProject.departmentId !== departmentId) {
+        // if (['dean', 'chairperson'].includes(userRole) && oricFundedProject.departmentId !== departmentId) {
         //     return res.status(403).json({ error: 'Unauthorized' });
         // }
 
@@ -129,7 +129,7 @@ const deleteOricFundedProject = async (req, res) => {
         if (userRole === 'Researcher' && oricFundedProject.userId !== user.id) {
             return res.status(403).json({ error: 'Unauthorized' });
         }
-        if (['Dean', 'Chairperson'].includes(userRole) && oricFundedProject.departmentId !== departmentId) {
+        if (['dean', 'chairperson'].includes(userRole) && oricFundedProject.departmentId !== departmentId) {
             return res.status(403).json({ error: 'Unauthorized' });
         }
 
