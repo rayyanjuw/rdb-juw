@@ -28,6 +28,7 @@ const ResearchPublication = () => {
   };
 
   const [publications, setPublications] = useState([data]);
+  const [errors, setErrors] = useState({});
   // const [publications, setPublications] = useState([initialPublication]);
 
   // const handleInput = (e, index) => {
@@ -38,19 +39,40 @@ const ResearchPublication = () => {
   //   setPublications(updatedPublications);
   // };
 
+  // const handleInput = (e, index) => {
+  //   const { name, value } = e.target;
+  //   const updatedPublications = publications.map((publication, i) => {
+  //     if (i === index) {
+  //       // Convert "Yes" to true and "No" to false for boolean fields
+  //       const updatedValue = (name === "scopus" || name === "webofScience") ? (value === "Yes" || value === "No") : value;
+  //       // const updatedValue = (name === "Scopus" || name === "WebofScience") ? (value === "Yes") : value;
+  //       return { ...publication, [name]: updatedValue };
+  //     }
+  //     return publication;
+  //   });
+ 
+  //   setPublications(updatedPublications);
+  // };
+
   const handleInput = (e, index) => {
     const { name, value } = e.target;
-    const updatedPublications = publications.map((publication, i) => {
-      if (i === index) {
-        // Convert "Yes" to true and "No" to false for boolean fields
-        const updatedValue = (name === "scopus" || name === "webofScience") ? (value === "Yes") : value;
-        // const updatedValue = (name === "Scopus" || name === "WebofScience") ? (value === "Yes") : value;
-        return { ...publication, [name]: updatedValue };
-      }
-      return publication;
-    });
-    setPublications(updatedPublications);
+    setPublications((prev) => 
+      prev.map((pub, i) => i === index ? { ...pub, [name]: value } : pub)
+    );
   };
+
+  const validatePublications = () => {
+    const newErrors = {};
+    publications.forEach((publication, index) => {
+      if (!publication.titleofmanuscript) {
+        newErrors[`title_${index}`] = "Title is required";
+      }
+      // Add more validations as needed
+    });
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+  
 
   const addMorePublications = () => {
     // setPublications([...publications, initialPublication]);
@@ -102,12 +124,11 @@ const ResearchPublication = () => {
     try {
       for (const publication of publications) {
         const response = await createPublication(publication);
-        if (response.status === 201) {
-          alert("Publication added successfully");
-        } else {
-          alert("Error while adding publication");
-        }
+        if (response.status !== 201) {
+          throw new Error("Error while adding publication");
+        } 
       }
+      alert("Publication added successfully");
       setPublications([data]); // Reset to initial state
     } catch (error) {
       console.error("Error:", error);
@@ -163,6 +184,8 @@ const ResearchPublication = () => {
       path: "/research-grants-and-contracts",
     },
   ];
+
+
 
   return (
     <>
@@ -365,9 +388,10 @@ const ResearchPublication = () => {
                       // name="Scopus"
                       id="Scopus"
                       placeholder="Scopus"
+                      required
                       // value={publication.Scopus}
+                      // value={publication.scopus}
                       value={publication.scopus ? "Yes" : "No"}
-                      // value={publication.Scopus ? "Yes" : "No"}
                       onChange={(e) => handleInput(e, index)}
                     >
                       <option value="Yes">Yes</option>

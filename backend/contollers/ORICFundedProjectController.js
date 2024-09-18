@@ -8,30 +8,95 @@ const canCreatefundedFor = (creatorRole, createdBy) => {
 };
 
 
+// const createOricFunded = async (req, res) => {
+//     try {
+//         const { user } = req;
+//         const { role: userRole, departmentId, impersonatorRole, impersonating} = user;
+
+//         const { createdBy, ...oricfundedprojectData} = req.body;
+
+//         const effectiveRole = impersonating ? impersonatorRole : userRole;
+//         const effectiveDepartmentId = impersonating ? user.departmentId : departmentId;
+
+//          // Role-based check
+//          if (['admin', 'manager'].includes(effectiveRole)){
+          
+//             return res.status(200).json({ message: `ORIC Funded Project updated successfully by ${effectiveRole}`, oricFundedProject})
+//         } else if (effectiveRole === 'researcher ') {
+//             if (oricFundedProject.userId !== user.id) {
+//                 return res.status(403).json({ error: 'Unauthorized'})
+//             }
+//             return res.status(200).json({ message: 'ORIC Funded Project updated successfully', oricFundedProject });
+//         } else if (['dean', 'chaiperson'].includes(effectiveRole)) {
+//             if(oricFundedProject.departmentId !== effectiveDepartmentId) {
+//                 return res.status(403).json({ error: 'User is not allowed to update from different Department'})
+//             };
+          
+//             return res.status(200).json({ message: `ORIC Funded Project updated successfully by ${effectiveRole}`, oricFundedProject });
+//         } else {
+//             // Unauthorized access for any other roles
+//             return res.status(403).json({ error: 'Unauthorized' });
+//         }
+
+//         const oricFundedProject = await ORICFundedProject.create({
+//             ...oricfundedprojectData,
+//             userId: user.id,
+//             departmentId,
+//             createdBy: creatorRole,
+//             status: 'Pending'
+//         });
+
+//         res.status(201).json(oricFundedProject);
+//     } catch (error) {
+//         res.status(500).json({ error: 'Failed to create ORIC Funded Project', details: error.message})
+//     }
+// }
+
 const createOricFunded = async (req, res) => {
     try {
         const { user } = req;
-        const { role: userRole, departmentId, impersonatorRole, impersonating} = user;
+        const { role: userRole, departmentId: userDepartmentId, impersonatorRole, impersonating } = user;
 
-        const { createdBy, ...oricfundedprojectData} = req.body;
+        const { createdBy, ...oricFundedProjectData } = req.body;
 
-        const creatorRole = impersonating ? impersonatorRole : userRole;
+        // Determine the effective role and departmentId (if impersonating, use impersonator details)
+        const effectiveRole = impersonating ? impersonatorRole : userRole;
+        const effectiveDepartmentId = impersonating ? user.departmentId : userDepartmentId;
 
-         // Role-based check
-        
+        // Role-based checks before creating the project
+        if (effectiveRole === 'researcher') {
+            // Researcher can only create for their own department
+            oricFundedProjectData.departmentId = effectiveDepartmentId;
+            oricFundedProjectData.userId = user.id;
+        } else if (['dean', 'chairperson'].includes(effectiveRole)) {
+            // Dean and Chairperson can only create projects for their own department
+            oricFundedProjectData.departmentId = effectiveDepartmentId;
+        } else if (['admin', 'manager'].includes(effectiveRole)) {
+            // Admin and Manager can create for any department; accept departmentId from the body
+            if (!req.body.departmentId) {
+                return res.status(400).json({ error: 'Department ID is required for creating a project by Admin or Manager.' });
+            }
+            oricFundedProjectData.departmentId = req.body.departmentId;
+        } else {
+            // Unauthorized roles
+            return res.status(403).json({ error: 'Unauthorized role' });
+        }
 
+        // Now create the ORIC Funded Project
         const oricFundedProject = await ORICFundedProject.create({
-            ...oricfundedprojectData,
-            userId: user.id,
-            departmentId,
-            createdBy: creatorRole
+            ...oricFundedProjectData,
+            userId: user.id, // The user creating the project
+            createdBy: effectiveRole, // The role of the creator
+            status: 'Pending' // Default status for new projects
         });
 
-        res.status(201).json(oricFundedProject);
+        res.status(201).json({ message: `ORIC Funded Project created successfully by ${effectiveRole}`, oricFundedProject });
     } catch (error) {
-        res.status(500).json({ error: 'Failed to create ORIC Funded Project', details: error.message})
+        // Handle errors properly
+        res.status(500).json({ error: 'Failed to create ORIC Funded Project', details: error.message });
     }
-}
+};
+
 
 
 const getAllOricFundedProjects = async (req, res) => {
@@ -140,9 +205,93 @@ const deleteOricFundedProject = async (req, res) => {
     }
 };
 
+// Approve or reject a project
+const approveOrRejectProject = async (req, res) => {
+    try {
+        const { user } = req;  // Extract user from request (authenticated user)
+        const { role: userRole } = user;  // Extract role from user
+        const { id } = req.params;  // Project ID from URL params
+        const { status } = req.body;  // New status (approved/rejected)
+
+        if (!['admin', 'manager'].includes(userRole)) {
+            return res.status(403).json({ error: 'Unauthorized' });
+        }
+
+        if (!['approved', 'rejected'].includes(status)) {
+            return res.status(400).json({ error: 'Invalid status' });
+        }
+
+        const project = await ORICFundedProject.findByPk(id);
+
+        if (!project) {
+            return res.status(404).json({ error: 'Project not found' });
+        }
+
+        // Update project status
+        await project.update({ status });
+
+        res.status(200).json({ message: `Project ${status} successfully`, project });
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to update project status', details: error.message });
+    }
+};
+
+
+const getAllResearchProjects = async (req, res) => {
+    try {
+        const { user } = req;
+        const { role: userRole, departmentId } = user;
+
+        // Check if the user is an admin or manager
+        if (!['admin', 'manager'].includes(userRole)) {
+            return res.status(403).json({ error: 'Unauthorized' });
+        }
+
+        // Extract filters from query parameters
+        const { status, departmentId: filterDepartmentId, startDate, endDate } = req.query;
+
+        // Build the query object
+        let query = {};
+
+        if (status) {
+            query.status = status;  // Filter by status (e.g., 'pending', 'approved', 'rejected')
+        }
+        
+        if (filterDepartmentId) {
+            query.departmentId = filterDepartmentId;  // Filter by department ID
+        } else if (userRole === 'dean' || userRole === 'chairperson') {
+            // If the user is a Dean or Chairperson, filter by their own department
+            query.departmentId = departmentId;
+        }
+
+        if (startDate || endDate) {
+            query.createdAt = {};
+            if (startDate) {
+                query.createdAt[Op.gte] = new Date(startDate);  // Filter by start date
+            }
+            if (endDate) {
+                query.createdAt[Op.lte] = new Date(endDate);  // Filter by end date
+            }
+        }
+
+        // Fetch filtered research projects from the database
+        const researchProjects = await ORICFundedProject.findAll({ where: query });
+
+        res.status(200).json(researchProjects);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch research projects', details: error.message });
+    }
+};
+
+
+
+
+
 module.exports = {
     createOricFunded,
     getAllOricFundedProjects, 
     updateOricFundedProject, 
-    deleteOricFundedProject 
+    deleteOricFundedProject,
+    approveOrRejectProject,
+    getAllResearchProjects
 }

@@ -10,7 +10,7 @@ const ViewORICFundedProjects = () => {
   const navigate = useNavigate();
   
     const handleViewClick = () => {
-        navigate("/oric-funded-projects");
+        navigate("/oric-funded-project");
       };
 
 

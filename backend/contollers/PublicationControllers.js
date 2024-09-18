@@ -63,7 +63,7 @@ const createPublication = async (req, res) => {
   try {
     const { user } = req; // Current user (may be impersonating)
     const { role: userRole, departmentId, impersonatorRole, impersonating } = user;
-    const { targetRole, ...publicationData } = req.body;
+    const { createdBy, ...publicationData } = req.body;
 
     
 
@@ -79,7 +79,6 @@ const createPublication = async (req, res) => {
     const publication = await Publication.create({ 
       ...publicationData, 
       createdBy: creatorRole, // Set the creator role
-      targetRole: userRole, 
       departmentId,
       userId: user.id 
     });
@@ -95,11 +94,11 @@ const createPublication = async (req, res) => {
 
 
 
-const getManagedUserIds = async (userId, targetRoles) => {
+const getManagedUserIds = async (userId, createdBy) => {
   const users = await User.findAll({
       where: {
           role: {
-              [Op.in]: targetRoles
+              [Op.in]: createdBy
           },
          
       },

@@ -26,7 +26,7 @@ const Publication = sequelize.define('Publication', {
         key: 'id' // Key in the referenced model
     }
 },
-targetRole: {
+createdBy: {
   type: DataTypes.STRING, // Adjust the type if needed
   allowNull: true,
 },
