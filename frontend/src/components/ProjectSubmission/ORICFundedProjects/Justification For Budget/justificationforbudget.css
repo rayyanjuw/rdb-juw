@@ -98,9 +98,12 @@
   .justificationForBudget_button {
     font-weight: 600;
     font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 5vw;
     border: none;
-    height: 3vh;
+    height: 4vh;
     color: white;
     background-color: #51cbce;
     border-radius: 30px;

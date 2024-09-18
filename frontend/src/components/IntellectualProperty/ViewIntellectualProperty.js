@@ -63,7 +63,6 @@ const ViewIntellectualProperty = () => {
     setModalIsOpen(true);
   };
 
-
   const closeModal = () => {
     setModalIsOpen(false);
     setSelectedProperty(null);
@@ -255,6 +254,199 @@ const ViewIntellectualProperty = () => {
   };
 
   return (
+    // <div className="intelproperty-container">
+    //   <Sidebar />
+    //   <div className="intelproperty">
+    //     <div className="viewintell_navbar-div">
+    //       <h4>Submission | Intellectual Property</h4>
+    //       <NavBar />
+    //     </div>
+    //     {/* <div className="navbar-div">
+    //       <h4>Submission | Intellectual Property</h4>
+    //       <NavBar />
+    //     </div> */}
+    //     <div className="intelproperty-card">
+    //       <h5>Intellectual Property</h5>
+    //       <div className="download-btn" style={{ marginBottom: "20px" }}>
+    //         <button
+    //           type="button"
+    //           className="create-user-btn"
+    //           onClick={() => downloadPDF(IntelProperties)}
+    //         >
+    //           DOWNLOAD PDF
+    //         </button>
+    //         <button
+    //           type="button"
+    //           className="create-user-btn"
+    //           onClick={() => downloadExcel(IntelProperties)}
+    //         >
+    //           DOWNLOAD EXCEL
+    //         </button>
+    //         <button
+    //           type="button"
+    //           className="create-user-btn"
+    //           onClick={() => downloadCSV(IntelProperties)}
+    //         >
+    //           DOWNLOAD CSV
+    //         </button>
+    //       </div>
+
+    //       <div className="intelproperty-table-data">
+    //         <div className="intelproperty-table-container">
+    //           {IntelProperties.length > 0 ? (
+    //             IntelProperties.map((property, index) => (
+    //               <div key={index} className="intelproperty-list-table">
+    //                 <h5>
+    //                   {property.title || `Intellectual Property ${index + 1}`}
+    //                 </h5>
+    //                 <div className="edit-intelprop">
+    //                   <button
+    //                     className="edit-intelpropbtn"
+    //                     onClick={() => openModal(property)}
+    //                   >
+    //                     Edit
+    //                   </button>
+    //                   <button
+    //                     className="delete-intelpropbtn"
+    //                     onClick={() => handleDelete(property.id)}
+    //                   >
+    //                     Delete
+    //                   </button>
+    //                 </div>
+    //                 <div className="intelproperty-list-table-format title">
+    //                   <b>Title:</b>
+    //                   <span>{property.title}</span>
+    //                 </div>
+    //                 <div className="intelproperty-list-table-format">
+    //                   <b>Owner of IP:</b>
+    //                   <span>{property.OwnerIp}</span>
+    //                 </div>
+    //                 <div className="intelproperty-list-table-format">
+    //                   <b>Address:</b>
+    //                   <span>{property.address}</span>
+    //                 </div>
+    //                 <div className="intelproperty-list-table-format">
+    //                   <b>Field of Invention:</b>
+    //                   <span>{property.fieldofinvention}</span>
+    //                 </div>
+    //                 <div className="intelproperty-list-table-format">
+    //                   <b>Background of the Invention:</b>
+    //                   <span>{property.backgroundofinvention}</span>
+    //                 </div>
+    //                 <div className="intelproperty-list-table-format">
+    //                   <b>Description of Invention:</b>
+    //                   <span>{property.descriptionofinvention}</span>
+    //                 </div>
+    //                 <div className="intelproperty-list-table-format">
+    //                   <b>References:</b>
+    //                   <span>{property.refrences}</span>
+    //                 </div>
+    //                 <div className="intelproperty-list-table-format">
+    //                   <b>Inventive Steps:</b>
+    //                   <span>{property.inventivesteps}</span>
+    //                 </div>
+    //               </div>
+    //             ))
+    //           ) : (
+    //             <div>No intellectual properties found.</div>
+    //           )}
+    //         </div>
+    //       </div>
+    //     </div>
+
+    //     <Modal
+    //       isOpen={modalIsOpen}
+    //       onRequestClose={closeModal}
+    //       contentLabel={
+    //         editMode ? "Edit Intellectual Property Modal" : "Create Intellectual Property Modal"
+    //       }
+    //       className="Modal"
+    //       overlayClassName="Overlay"
+    //     >
+    //       <h2>{editMode ? "Edit Intellectual Property Modal" : "Create Intellectual Property Modal"}</h2>
+    //       <form className="create-property" onSubmit={handleSubmit}>
+    //         <div className="multi-fields">
+    //           <input
+    //             required
+    //             name="title"
+    //             onChange={handleInputChange}
+    //             value={selectedProperty?.title || ""}
+    //             type="text"
+    //             placeholder="Title"
+    //           />
+
+    //           <input
+    //             name="OwnerIp"
+    //             onChange={handleInputChange}
+    //             value={selectedProperty?.OwnerIp || ""}
+    //             type="text"
+    //             placeholder="Owner of IP:"
+    //             disabled
+    //           />
+
+    //           <input
+    //             name="address"
+    //             onChange={handleInputChange}
+    //             value={selectedProperty?.address || ""}
+    //             type="text"
+    //             placeholder="address"
+    //             disabled
+    //           />
+
+    //           <input
+    //             required
+    //             name="fieldofinvention"
+    //             onChange={handleInputChange}
+    //             value={selectedProperty?.fieldofinvention || ""}
+    //             type="text"
+    //             placeholder="(Not more than 50 words. Either it should describe your method of production or process or combination of both)"
+    //           />
+
+    //           <input
+    //             required
+    //             name="backgroundofinvention"
+    //             onChange={handleInputChange}
+    //             value={selectedProperty?.backgroundofinvention || ""}
+    //             type="text"
+    //             placeholder="Approximately 800 words: (showing how your research is different and more useful than past research)"
+    //           />
+
+    //           <input
+    //             name="descriptionofinvention"
+    //             onChange={handleInputChange}
+    //             value={selectedProperty?.descriptionofinvention || ""}
+    //             type="text"
+    //             placeholder="Approximately 250 words"
+    //           />
+
+    //           <input
+    //             name="refrences"
+    //             onChange={handleInputChange}
+    //             value={selectedProperty?.refrences || ""}
+    //             type="text"
+    //             placeholder="Not More than 10"
+    //           />
+
+    //           <input
+    //             name="inventivesteps"
+    //             onChange={handleInputChange}
+    //             value={selectedProperty?.inventivesteps || ""}
+    //             type="text"
+    //             placeholder="Approximately 5-6 Bullet points"
+    //           />
+    //         </div>
+    //         <button className="edit-modal-submit-button" type="submit">
+    //           {editMode ? "UPDATE" : "Submit"}
+    //         </button>
+    //       </form>
+    //     </Modal>
+
+    //     <div className="juw_copyright">
+    //       <p>© 2024, all rights reserved by Jinnah University for Women.</p>
+    //     </div>
+    //   </div>
+    // </div>
+
     <div className="intelproperty-container">
       <Sidebar />
       <div className="intelproperty">
@@ -263,9 +455,9 @@ const ViewIntellectualProperty = () => {
           <NavBar />
         </div>
         {/* <div className="navbar-div">
-          <h4>Submission | Intellectual Property</h4>
-          <NavBar />
-        </div> */}
+        <h4>Submission | Intellectual Property</h4>
+        <NavBar />
+      </div> */}
         <div className="intelproperty-card">
           <h5>Intellectual Property</h5>
           <div className="download-btn" style={{ marginBottom: "20px" }}>
@@ -300,6 +492,7 @@ const ViewIntellectualProperty = () => {
                     <h5>
                       {property.title || `Intellectual Property ${index + 1}`}
                     </h5>
+
                     <div className="edit-intelprop">
                       <button
                         className="edit-intelpropbtn"
@@ -359,12 +552,18 @@ const ViewIntellectualProperty = () => {
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
           contentLabel={
-            editMode ? "Edit Intellectual Property Modal" : "Create Intellectual Property Modal"
+            editMode
+              ? "Edit Intellectual Property Modal"
+              : "Create Intellectual Property Modal"
           }
           className="Modal"
           overlayClassName="Overlay"
         >
-          <h2>{editMode ? "Edit Intellectual Property Modal" : "Create Intellectual Property Modal"}</h2>
+          <h2>
+            {editMode
+              ? "Edit Intellectual Property Modal"
+              : "Create Intellectual Property Modal"}
+          </h2>
           <form className="create-property" onSubmit={handleSubmit}>
             <div className="multi-fields">
               <input

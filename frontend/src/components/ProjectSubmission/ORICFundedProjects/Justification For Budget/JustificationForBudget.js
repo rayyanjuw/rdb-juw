@@ -5,51 +5,75 @@ import Breadcrumb from "../../../shared-components/breadcrumps/BreadCrumps";
 import NavBar from "../../../shared-components/navbar/NavBar";
 import Sidebar from "../../../Sidebar/Sidebar";
 
-const JustificationForBudget = () => {
+// const JustificationForBudget = (handleSubmit) => {
+const JustificationForBudget = ({ formData, handleInputChange, handleSubmit}) => {
   const location = useLocation();
   const currentPath = location.pathname;
 
   const breadCrumps = [
     {
       label: "Proposal Cover",
-      path: "/add-oric-funded-projects",
+      // path: "/add-oric-funded-projects",
+      // path: "/add-oric-funded-projects",
       // path: "/add-international/national-grants",
     },
     {
       label: "Research Project",
-      path: "/oric-funded-project-research-project",
+      // path: "/oric-funded-project-research-project",
     },
     {
       label: "Facilities and Funding",
-      path: "/oric-funded-project-facilities-and-funding",
+      // path: "/oric-funded-project-facilities-and-funding",
     },
     {
       label: "Justification for The Requested Budget Items",
-      path: "/oric-funded-project-justification-and-budget-items",
+      // path: "/oric-funded-project-justification-and-budget-items",
     },
     {
       label: "Estimated Budget for Proposed Research Period",
-      path: "/oric-funded-project-estimated-budget-proposed-research-period",
+      // path: "/oric-funded-project-estimated-budget-proposed-research-period",
     },
   ];
+  const [justification, setJustification] = useState({
+    scientificEquipment: formData?.justificationForBudgetItems?.scientificEquipment || "",
+      // [{ item: "", justification: "" }],
+    travel: formData?.justificationForBudgetItems?.travel || ""
+  })
+
+  console.log(justification)
 
 
-  const [formData, setFormData] = useState({
-    ScientificEquipment : "", 
-    Travel : "N/A",   
-  });
-
-  console.log(formData)
-
-
-
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prevState) => ({
+  const handleLocalChange = (e) => {
+    const { name, value } = e.target;
+    setJustification((prevState) => ({
       ...prevState,
       [name]: value,
     }));
+
+
+    if (handleInputChange) {
+      handleInputChange(e); 
+    } else {
+      console.error("handleInputChange is not a function");
+    }
   };
+
+  // const [formData, setFormData] = useState({
+  //   ScientificEquipment : "", 
+  //   Travel : "N/A",   
+  // });
+
+  // console.log(formData)
+
+
+
+  // const handleInputChange = (event) => {
+  //   const { name, value } = event.target;
+  //   setFormData((prevState) => ({
+  //     ...prevState,
+  //     [name]: value,
+  //   }));
+  // };
 
   // const handleSave = () => {
   //   // Logic to handle form submission or saving data
@@ -66,7 +90,8 @@ const JustificationForBudget = () => {
         <div className="justificationForBudget-card">
           <h3>ORIC Funded Project | Justification for The Requested Budget Items</h3>
           <div className="justificationForBudget_bred-crumb">
-            <Breadcrumb items={breadCrumps} activePath={currentPath} />
+            <Breadcrumb items={breadCrumps}/>
+            {/* <Breadcrumb items={breadCrumps} activePath={currentPath} /> */}
           </div>
           <div className="justificationForBudget-content">
             <h3>Justification for The Requested Budget Items</h3>
@@ -76,9 +101,9 @@ const JustificationForBudget = () => {
               </label>
               <textarea
                 id="exampleTextarea"
-                name="ScientificEquipment"
-                value={formData.ScientificEquipment}
-                onChange={handleInputChange}
+                name="scientificEquipment"
+                value={justification.scientificEquipment}
+                onChange={handleLocalChange}
                 rows="2"
                 cols="20"
               />
@@ -88,16 +113,17 @@ const JustificationForBudget = () => {
               <label>Travel (if required):</label>
               <input
                 type="text"
-                name="Travel"
-                value={formData.Travel}
-                onChange={handleInputChange}
+                name="travel"
+                value={justification.travel}
+                // onChange={handleInputChange}
+                onChange={handleLocalChange}
                 placeholder="N/A"
                 disabled
               />
             </div>
 
             <div className="justificationForBudget_btn">
-              <button className="justificationForBudget_button">
+              <button className="justificationForBudget_button" onClick={handleSubmit}>
                 SAVE
               </button>
             </div>

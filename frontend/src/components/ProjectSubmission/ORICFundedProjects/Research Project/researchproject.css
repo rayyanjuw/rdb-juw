@@ -226,8 +226,11 @@
   font-weight: 600;
   font-size: 12px;
   width: 5vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: none;
-  height: 3vh;
+  height: 4vh;
   color: white;
   background-color: #51cbce;
   border-radius: 30px;

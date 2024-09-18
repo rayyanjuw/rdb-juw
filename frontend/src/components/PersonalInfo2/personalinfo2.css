@@ -38,7 +38,8 @@
 
 .add-personalInfo_card {
     width: 100%;
-    height: 900px;
+    height: 100%;
+    /* height: 1000px; */
     margin: auto;
     background-color: white;
     /* border-radius: 15px 15px 0 0; */
@@ -56,6 +57,7 @@
   padding: 1rem 1rem 0.7rem 1rem;
   font-size: 22px;
 }
+
 
 .bred-crumb {
     margin: 0 20px !important;
@@ -93,14 +95,39 @@
 }
 
 
-.EPI_save-btn-bg {
+/* .EPI_save-btn-bg {
     width: 100%;
     height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: white;
     transition: 0.3s;
+}
+
+.EPI_savebut {
+    font-weight: 600;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 7vw;
+    height: 5vh;
+    margin-left: 15px;
+    margin: center;
+    color: white;
+    background-color: #51cbce;
+    border-radius: 30px;
+    cursor: pointer;
+    border: none;
+    border-width: 1px;
+} */
+
+
+.EPI_save-btn-bg {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+    justify-content: center;
 }
 
 .EPI_savebut {
@@ -122,6 +149,15 @@
 }
 
 
+
+.juw_copyright p {
+/* .add-personalInfo_juw_copyright p { */
+    margin-top: 80px;
+    text-align: right;
+    font-size: 0.8571em;
+    line-height: 1.8;
+    color: #66615b;
+  }
 
 /* .save-button {
   display: block;

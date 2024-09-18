@@ -44,6 +44,7 @@ import ListofReferences from './components/ProjectSubmission/International_Natio
 import ProposedProjectBudget from './components/ProjectSubmission/International_NationalGrants/Proposed Project Budget/ProposedProjectBudget';
 import AvailedResearchGrants from './components/ProjectSubmission/International_NationalGrants/Principal Investigator’s availed research grant details/AvailedResearchGrants';
 import AcademicSectoralCollaborators from './components/ProjectSubmission/International_NationalGrants/Academic_Sectoral Collaborators/AcademicSectoralCollaborators';
+import MultiStepForm from './components/ProjectSubmission/ORICFundedProjects/MultiStepORICForms/MultiStepsORICForm';
 
 function App() {
   return (
@@ -64,13 +65,15 @@ function App() {
 
       {/* Project Submission */}
       {/* Oric Funded Project */}
+      
       <Route path="/view-oric-funded-projects" element={<ViewORICFundedProjects/>}/>
-      <Route path="/add-oric-funded-projects" element={<AddORICFundedProjects/>}/>
+      <Route path="/add-oric" element={<MultiStepForm/>}/>
+      {/* <Route path="/add-oric-funded-projects" element={<AddORICFundedProjects/>}/> */}
       <Route path="/oric-funded-project" element={<ORICFundedProject/>}/>
-      <Route path="/oric-funded-project-research-project" element={<ResearchProject/>}/>
-      <Route path="/oric-funded-project-facilities-and-funding" element={<FacilitiesAndFunding/>}/>
-      <Route path="/oric-funded-project-justification-and-budget-items" element={<JustificationForBudget/>}/>
-      <Route path="/oric-funded-project-estimated-budget-proposed-research-period" element={<EstimatedBudgetForPRP/>}/>
+      {/* <Route path="/oric-funded-project-research-project" element={<ResearchProject/>}/> */}
+      {/* <Route path="/oric-funded-project-facilities-and-funding" element={<FacilitiesAndFunding/>}/> */}
+      {/* <Route path="/oric-funded-project-justification-and-budget-items" element={<JustificationForBudget/>}/> */}
+      {/* <Route path="/oric-funded-project-estimated-budget-proposed-research-period" element={<EstimatedBudgetForPRP/>}/> */}
 
 
 

@@ -155,16 +155,16 @@ export default function SignInSide() {
     try {
       const response = await loginUser(loginData.username, loginData.password);
 
-      // Save the token and redirect
       localStorage.setItem("token", response.token);
       console.log("Login successful");
       window.location.href = "/dashboard";
     } catch (error) {
-      if (error.response && error.response.status === 401) {
-        setErrorMessage("Invalid credentials");
-      } else {
-        setErrorMessage("Server error, please try again later");
-      }
+      setErrorMessage("Invalid credentials")
+      // if (error.response && error.response.status === 401) {
+      //   setErrorMessage("Invalid credentials");
+      // } else {
+      //   setErrorMessage("Server error, please try again later");
+      // }
     }
       // } catch (error) {
       //   setErrorMessage(error.message || 'Login failed');
@@ -237,10 +237,6 @@ export default function SignInSide() {
                   id="password"
                   autoComplete="current-password"
                 />
-                <FormControlLabel
-                  control={<Checkbox value="remember" color="primary" />}
-                  label="Remember me"
-                />
                 {errorMessage && <Typography color="error">{errorMessage}</Typography>}{" "}
                 {/* Display error */}
                 <Box
@@ -258,13 +254,6 @@ export default function SignInSide() {
                     sx={{ flexGrow: 1, mr: 1 }}
                   >
                     Sign In
-                  </Button>
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    sx={{ flexGrow: 1, ml: 1 }}
-                  >
-                    Register
                   </Button>
                 </Box>
                 <Grid container>

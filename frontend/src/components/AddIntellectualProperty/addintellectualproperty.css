@@ -201,14 +201,12 @@
   }
 
   button.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-sizeMedium.css-w92lsb-MuiButtonBase-root-MuiIconButton-root {
-    /* margin-top: 40px !important; */
     margin-top: 22px !important;
   }
 }
 
 @media (max-width: 480px){
   button.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-sizeMedium.css-w92lsb-MuiButtonBase-root-MuiIconButton-root {
-    /* margin-top: 40px !important; */
     margin-top: 22px !important;
   }
 }
@@ -267,7 +265,6 @@
   }
 
   button.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-sizeMedium.css-w92lsb-MuiButtonBase-root-MuiIconButton-root {
-    /* margin-top: 40px !important; */
     margin-top: 35px !important;
   }
 }

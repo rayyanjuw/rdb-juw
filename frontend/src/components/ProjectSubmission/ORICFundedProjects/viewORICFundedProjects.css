@@ -260,7 +260,6 @@
 
 @media (max-width: 480px) {
   button.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-sizeMedium.css-w92lsb-MuiButtonBase-root-MuiIconButton-root {
-    /* margin-top: 10px !important; */
     margin-top: 40px !important;
   }
 }
@@ -359,9 +358,9 @@
     cursor: pointer;
   }
 
-  /* button.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-sizeMedium.css-w92lsb-MuiButtonBase-root-MuiIconButton-root {
+  button.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-sizeMedium.css-w92lsb-MuiButtonBase-root-MuiIconButton-root {
     margin-top: 10px !important;
-  } */
+  }
 
   .vieworicfundedproject-table-data h5 {
     margin-top: 5px;

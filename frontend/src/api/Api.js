@@ -70,6 +70,169 @@ export const updateUser = async (id, updatedData) => {
   }
 };
 
+// // Research Portfolio
+
+// Personal Information
+// get Personal Information
+
+// export const getProfile = async () => {
+//   try {
+//     const response = await api.get(`/membership/get`, {
+//       headers: {
+//         Authorization: `Bearer ${localStorage.getItem('token')}`,
+//       },
+//     });
+//     return response.data;
+//   } catch (error) {
+//     console.error('Error fetching memberships:', error);
+//     throw error;
+//   }
+// };
+
+export const getProfile = async () => {
+  try {
+    const response = await api.get("/user/profile", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "Error fetching profile data:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Error fetching profile");
+  }
+};
+
+
+// create profile
+export const createOrUpdateProfile = async (profileData) => {
+  try {
+    const response = await api.post('/user/profile', profileData,{
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Failed to create or update profile', error);
+    throw error;
+  }
+};
+
+
+
+// Create Membership
+export const createMembership = async (description) => {
+  try {
+    const response = await api.post(
+      `/membership/create`,
+      { description },
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error creating membership:", error);
+    throw error;
+  }
+};
+
+// get Memberhips
+export const getMemberships = async () => {
+  try {
+    const response = await api.get(`/membership/get`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching memberships:", error);
+    throw error;
+  }
+};
+
+// Create Honor And Awards
+export const createHonors = async (payload, token) => {
+  try {
+    const response = await api.post(`/honors/create`, payload, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error(
+      error.response?.data.message || "Failed to create or update honors"
+    );
+  }
+};
+
+// Get Honor And Awards
+export const getHonors = async () => {
+  try {
+    const response = await api.get("/honors/gethonors", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to fetch honors: " + error.message);
+  }
+};
+
+// Update Honor And Awards
+export const updateHonors = async (updatedHonors) => {
+  try {
+    const response = await api.put("/honors/update", updatedHonors, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to update Honor And Awards: " + error.message);
+  }
+};
+
+// Delete Honor And Awards
+// export const deleteHonors = async () => {
+//   try {
+//     const response = await api.delete('/honors/delete', {
+//       headers: {
+//         Authorization: `Bearer ${localStorage.getItem('token')}`,
+//         'Content-Type': 'application/json',
+//       },
+//     });
+//     return response.data;
+//   } catch (error) {
+//     throw new Error('Failed to update Honor And Awards: ' + error.message);
+//   }
+// };
+
+export const deleteHonors = async (category) => {
+  try {
+    const response = await api.delete("/honors/delete", {
+      data: { category },
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to update Honor And Awards: " + error.message);
+  }
+};
+
 // export const createPublication = async (publications, targetRole, departmentId) => {
 export const createPublication = async (publicationData) => {
   try {
@@ -186,7 +349,7 @@ export const updatePublication = async (id, updateData) => {
     });
     console.log("Publication updated Successfully", response.data);
     console.log("Publication id", id);
-    
+
     return response.data;
   } catch (error) {
     console.error("Error updating publication:", error);
@@ -275,12 +438,85 @@ export const updateIntellectualProperty = async (id, updateData) => {
       }
     );
     console.log("Intellectual Property Successfully Updated", response.data);
-    console.log("Intel Prop Id", id)
+    console.log("Intel Prop Id", id);
   } catch (error) {
     console.error(
       "Error updating Intellectual Property:",
       error.response ? error.response.data : error.message
     );
+    throw error;
+  }
+};
+
+// ORIC Funded Project
+
+// Create ORIC Funded Project
+// export const createOricFunded = async (data) => {
+//   try {
+//     const response = await api.post("/oricfundedproject/create", data, {
+//       headers: {
+//         Authorization: `Bearer ${localStorage.getItem("token")}`,
+//       },
+//     });
+//     console.log("Response Data", response)
+//     return response.data;
+//   } catch (error) {
+//     throw new Error(
+//       error.response ? error.response.data.error : "Network error"
+//     );
+//   }
+// };
+
+// export const createOricFunded = async (proposalCoverData, researchProjectData, facilitiesAndFundingData, justificationForBudgetData, estimatedBudgetData) => {
+//   try {
+//     const response = await api.post(
+//       "/oricfundedproject/create",
+//       proposalCoverData,
+//       researchProjectData,
+//       facilitiesAndFundingData,
+//       justificationForBudgetData,
+//       estimatedBudgetData,
+//       {
+//         headers: {
+//           Authorization: `Bearer ${localStorage.getItem("token")}`,
+//         },
+//       }
+//     );
+//     console.log("Response Data", response)
+//     return response.data; 
+//   } catch (error) {
+//     console.error("Error creating ORIC Funded Project:", error);
+//     throw error;
+//   }
+// };
+
+
+export const createOricFunded = async (proposalCoverData, researchProjectData, facilitiesAndFundingData, justificationForBudgetData, estimatedBudgetData) => {
+// export const createOricFunded = async (formData) => {
+  try {
+    // Combine all the data into one object
+    const requestData = {
+      proposalCoverData,
+      researchProjectData,
+      facilitiesAndFundingData,
+      justificationForBudgetData,
+      estimatedBudgetData,
+    };
+
+    const response = await api.post(
+      "/oricfundedproject/create",
+      // formData,
+      requestData, 
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
+    console.log("Response Data", response);
+    return response.data;
+  } catch (error) {
+    console.error("Error creating ORIC Funded Project:", error);
     throw error;
   }
 };

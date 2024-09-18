@@ -1067,7 +1067,8 @@ const sideBarData = [
             subsubitem: 'ORIC Funded Project',
             subsuboptions: [
               { subsubsubitem: 'View', subsubsubpath: '/view-oric-funded-projects' },
-              { subsubsubitem: 'Add New', subsubsubpath: '/add-oric-funded-projects' },
+              { subsubsubitem: 'Add New', subsubsubpath: '/add-oric'},
+              // { subsubsubitem: 'Add New', subsubsubpath: '/add-oric-funded-projects' },
             ],
           },
           {
