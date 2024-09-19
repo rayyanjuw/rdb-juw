@@ -45,6 +45,13 @@ const ORICFundedProject = sequelize.define('ORICFundedProject', {
         type: DataTypes.JSON,
         allowNull: true,
     },
+    status: {
+        type: DataTypes.STRING,
+    },
+    createdBy: {
+        type: DataTypes.STRING, // Adjust the type if needed
+        allowNull: true,
+      },
 }, {
     tableName: 'oric_funded_projects',
     timestamps: true,

@@ -14,12 +14,15 @@ const authenticate = require('../middlewares/auth');
 const honorsReward = require('../routes/honorRoutes');
 const Membership = require('../routes/membershipRoutes');
 const FacultyPublication = require('../routes/facultypublicationRoutes');
-const ORICFundedProject = require('../routes/oricfundedRoutes')
+const ORICFundedProject = require('../routes/oricfundedRoutes');
+const NationalInternationalGrant = require('../routes/nationalRouter')
 
 
 
 app.use(express.json()); // Middleware to parse JSON bodies
 app.use(cors())
+
+app.use('/upload', express.static('upload'));
 
 
 require('../Models/association')
@@ -38,6 +41,7 @@ app.use('/api/honors', honorsReward );
 app.use('/api/membership', Membership);
 app.use('/api/facultypublication', FacultyPublication );
 app.use('/api/oricfundedproject', ORICFundedProject);
+app.use('/api/nationalGrant', NationalInternationalGrant);
 
 
 // require('../routes')
