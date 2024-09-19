@@ -38,12 +38,6 @@
   color: #66615b;
 }
 
-/* ------------------------- */
-/* .intelproperty hr {
-  color: #ddd;
-  font-weight: bold;
-} */
-/* ---------------------------- */
 
 .intelproperty-card {
   background-color: white;
@@ -55,6 +49,9 @@
   padding: 25px;
   border-radius: 20px;
   flex-grow: 1;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
+  0 6px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .intelproperty-card h5 {
@@ -78,16 +75,27 @@
   background-color: #51ccfc;
 }
 
+
+
+
+
 .intelproperty-table-data h5 {
   font-weight: bold;
   font-size: 15px;
 }
+
+
+
+
 
 .intelproperty-table-container {
   display: flex;
   flex-direction: column;
   padding: 0 20px;
 }
+
+
+
 
 .intelproperty-list-table {
   display: flex;
@@ -96,6 +104,7 @@
   flex-direction: column;
   margin-left-right: 0;
 }
+
 
 .intelproperty-list-table-format {
   display: flex;
@@ -140,6 +149,11 @@
   text-align: left;
   word-wrap: break-word;
 }
+
+
+
+
+
 
 /* Media Query: For Mobile Phones (Portrait and Landscape) */
 @media only screen and (max-width: 600px) {

@@ -1,0 +1,239 @@
+.researchproject-container {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 20%;
+  background: #0037a5;
+  position: sticky;
+  color: #ffffff;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  padding-top: 10px;
+  font-size: 10px;
+}
+
+.researchproject {
+  flex: 1;
+  overflow-y: auto;
+  background-color: #f4f3ef !important;
+  padding: 20px;
+}
+
+.researchproject-card {
+  background-color: white;
+  margin-top: 15px;
+  width: 100%;
+  display: "flex";
+  flex-direction: column;
+  min-height: 600px;
+  padding: 25px;
+  border-radius: 20px;
+  flex-grow: 1;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
+  0 6px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.researchproject-card h5 {
+  font-size: 1.57em;
+  line-height: 1.4em;
+  margin-bottom: 20px;
+  font-weight: 400;
+  color: #252422;
+}
+
+.researchproject-bredcrumb {
+  margin: 0;
+  width: 100%;
+  background-color: #e9ecef;
+}
+
+.researchproject_multiInputFields h4 {
+  margin-top: 30px;
+}
+.researchproject_multiInputFields input {
+  width: calc(100% - 20px);
+  margin: 10px 0;
+  padding: 6px;
+  border: 1px solid #dddddd;
+  color: #66615b;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.researchproject_multiInputFields label {
+  /* width: calc(100% - 20px);  */
+  font-size: 0.8571em;
+  margin-bottom: 5px;
+  color: #9a9a9a;
+  box-sizing: border-box;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.researchproject_title-input {
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+.two-inputs {
+  /* .researchproject_two-inputs { */
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin-bottom: 20px;
+}
+
+.two-inputs .InputGroup {
+  /* .researchproject_two-inputs .researchproject_InputGroup { */
+  flex: 1;
+  margin-right: 10px;
+}
+
+.InputGroup {
+  /* .researchproject_InputGroup { */
+  margin-bottom: 15px;
+}
+
+.InputGroup input {
+    width: calc(100% - 20px);
+    margin: 10px 0;
+    padding: 6px;
+    border: 1px solid #dddddd;
+    color: #66615b;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+
+.InputGroup label {
+  margin-bottom: 5px;
+  color: #9a9a9a;
+  font-size: 13px;
+}
+
+.multiCheckBoxes h6 {
+  color: #6c757d;
+  font-size: 14px;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.research_project_domain {
+  margin-top: 10px;
+}
+
+.research_project_duration {
+  margin-top: 10px;
+}
+
+
+.domain_research_checkbox {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+
+.domain_research_checkbox div {
+  display: flex;
+  align-items: center;
+}
+
+.domain_research_checkbox label {
+  margin: 0;
+  display: inline-block;
+  font-size: 0.7571em;
+  display: flex;
+  align-items: center;
+}
+
+.domain_research_checkbox input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+.researchproject_textarea textarea {
+  width: 100%;
+  height: 8vh;
+  resize: none;
+  padding: 10px;
+  line-height: 1.5;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  outline: none;
+}
+
+.researchproject_textarea textarea:focus {
+  border-color: #ccc;
+}
+
+
+.researchproject_textarea label {
+  font-size: 0.81em;
+  margin-bottom: 5px;
+  color: #9a9a9a;
+}
+
+.researchproject_subheading {
+  padding: 1rem 1rem 0.3rem 0rem;
+  font-size: 14px;
+  color: #252422;
+}
+
+.researchproject_mainheading {
+  font-size: 1.414em;
+  line-height: 1.45em;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+.discipline_research_checkbox {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  /* gap: 10px;  */
+}
+
+.discipline_research_checkbox h6 {
+  grid-column: 1 / -1;
+  margin-bottom: 10px;
+}
+
+.discipline_research_checkbox div {
+  display: flex;
+  align-items: center;
+  font-size: 0.8571em;
+  color: #9a9a9a;
+}
+
+.discipline_research_checkbox input[type="checkbox"] {
+  margin-right: 4px;
+}
+
+.researchproject_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.researchproject_button {
+  font-weight: 600;
+  font-size: 12px;
+  width: 5vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  height: 4vh;
+  color: white;
+  background-color: #51cbce;
+  border-radius: 30px;
+  cursor: pointer;
+  text-align: center;
+}

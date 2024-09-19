@@ -4,17 +4,22 @@
     margin: 0;
 } */
 
-/* .breadcrumb ul {
+.breadcrumb ul {
     list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: start  ;
+    gap: 0.6rem;
+    margin: 0;
+}
+
+.bred-label {
+    font-size: 13px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: .5rem;
-    margin: 0;
-} */
-
-.bred-label {
-    font-size: 12px;
+    gap: 0.5rem;
 }
 
 .active {
@@ -40,18 +45,64 @@ nav.breadcrumb {
     padding: 0.5rem 0; 
 }
 
-
-.breadcrumb ul {
+/* previous */
+/* .breadcrumb ul {
     list-style: none;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.5
+} */
+
+
+/* Default Styles (for large screens) */
+/* .breadcrumb ul {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+    padding-left: 10px;
 }
 
+.breadcrumb li {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.bred-label {
+    font-size: 14px;
+} */
+
+/* Medium Screens: max-width 1024px */
+/* @media (max-width: 1024px) {
+    .breadcrumb ul {
+        gap: 0.2rem;
+        padding-left: 10px;
+    }
+
+    .breadcrumb li {
+        max-width: calc(100% / 5);
+        flex-basis: 20%;
+    }
+
+    .bred-label {
+        font-size: 12px;
+    }
+
+    .separator {
+        margin: 0 5px;
+    }
+} */
 
 
-@media (max-width: 768px) {
+
+
+
+
+
+
+/* previous */
+/* @media (max-width: 768px) {
     .breadcrumb ul {
         justify-content: flex-start;
         gap: 0.3rem;
@@ -65,9 +116,40 @@ nav.breadcrumb {
     .separator {
         margin: 0 3px;
     }
+} */
+
+/* latest */
+@media (max-width: 768px) {
+    .breadcrumb ul {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 10px;
+        background-color: #e9ecef;
+        justify-content: flex-start;
+        gap: 0.3rem;
+        padding-left: 10px;
+    }
+
+    .breadcrumb li {
+        max-width: calc(100% / 3); 
+        flex-basis: 30%; 
+        white-space: nowrap; 
+        overflow: hidden;
+        text-overflow: ellipsis; 
+    }
+
+    .bred-label {
+        font-size: 10px;
+        white-space: normal; 
+    }
+
+    .separator {
+        margin: 0 3px;
+    }
 }
 
-@media (max-width: 480px) {
+/* previous */
+/* @media (max-width: 480px) {
     .breadcrumb ul {
         flex-direction: column;
         align-items: flex-start;
@@ -78,4 +160,29 @@ nav.breadcrumb {
         font-size: 11px;
     }
 
+} */
+
+
+/* latest */
+@media (max-width: 480px) {
+    .breadcrumb ul {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 0.2rem;
+        padding-left: 5px;
+    }
+
+    .breadcrumb li {
+        max-width: 100%; 
+        flex-basis: 100%;
+        white-space: normal; 
+    }
+
+    .bred-label {
+        font-size: 8px;
+    }
+
+    .separator {
+        margin: 0 2px;
+    }
 }

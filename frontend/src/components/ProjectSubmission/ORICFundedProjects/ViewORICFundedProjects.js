@@ -4,21 +4,21 @@ import Sidebar from "../../Sidebar/Sidebar";
 import NavBar from "../../shared-components/navbar/NavBar";
 import { useNavigate } from "react-router-dom";
 
-
 const ViewORICFundedProjects = () => {
-
   const navigate = useNavigate();
-  
-    const handleViewClick = () => {
-        navigate("/oric-funded-project");
-      };
 
+  const handleViewClick = () => {
+    navigate("/oric-funded-project");
+  };
 
   const ORICProjects = [
     {
-      Title: "Low cost effective production of alginate salts. Low cost effective production of alginate salts. Low cost effective production of alginate salts. Low cost effective production of alginate salts.",
-      NameofPI: "Low cost effective production of alginate salts. Low cost effective production of alginate salts. Low cost effective production of alginate salts. Low cost effective production of alginate salts.",
-      NameofFaculty: "Low cost effective production of alginate salts. Low cost effective production of alginate salts. Low cost effective production of alginate salts. Low cost effective production of alginate salts.",
+      Title:
+        "Low cost effective production of alginate salts. Low cost effective production of alginate salts. Low cost effective production of alginate salts. Low cost effective production of alginate salts.",
+      NameofPI:
+        "Low cost effective production of alginate salts. Low cost effective production of alginate salts. Low cost effective production of alginate salts. Low cost effective production of alginate salts.",
+      NameofFaculty:
+        "Low cost effective production of alginate salts. Low cost effective production of alginate salts. Low cost effective production of alginate salts. Low cost effective production of alginate salts.",
       TotalBudgetRequested: "30000",
     },
     {
@@ -58,22 +58,24 @@ const ViewORICFundedProjects = () => {
                 <div key={index} className="vieworicfundedproject-list-table">
                   <div className="View_project_detail">
                     <h5>Project Details #{index + 1}</h5>
-                    <button type="button" onClick={handleViewClick}>VIEW</button>
+                    <button type="button" onClick={handleViewClick}>
+                      VIEW
+                    </button>
                   </div>
                   <div className="vieworicfundedproject-list-table-format title">
                     <b>Title:</b>
                     <span>{project.Title}</span>
                   </div>
                   <div className="vieworicfundedproject-list-table-format">
-                    <b>Owner of IP:</b>
+                    <b>Name of PI</b>
                     <span>{project.NameofPI}</span>
                   </div>
                   <div className="vieworicfundedproject-list-table-format">
-                    <b>Address:</b>
+                    <b>Name of Faculty</b>
                     <span>{project.NameofFaculty}</span>
                   </div>
                   <div className="vieworicfundedproject-list-table-format">
-                    <b>Field of Invention:</b>
+                    <b>Total Budget Requested</b>
                     <span>{project.TotalBudgetRequested}</span>
                   </div>
                 </div>

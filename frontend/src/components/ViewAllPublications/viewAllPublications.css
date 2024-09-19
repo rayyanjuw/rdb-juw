@@ -288,6 +288,9 @@ table td {
   padding: 25px;
   border-radius: 20px;
   flex-grow: 1;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
+  0 6px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 
@@ -351,6 +354,7 @@ table td {
   font-size: 0.8571em;
 }
 
+
 .Modal {
   background-color: #fff;
   border-radius: 8px;
@@ -372,6 +376,111 @@ table td {
   align-items: center;
   justify-content: center;
 }
+
+.create-publication {
+  display: flex;
+  flex-direction: column;
+}
+
+.create-publication-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.create-publication-left .title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.multi-fields {
+  margin-bottom: 10px;
+}
+
+.multi-fields label,
+.multi-fields select,
+.multi-fields input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.create-publication-left input[type="text"],
+.create-publication-left input[type="email"],
+.create-publication-left input[type="password"],
+.create-publication-left select {
+  width: 100%;
+}
+
+.create-publication button {
+  background: #51cbce;
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 110px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.create-publication-btn {
+  margin: 10px 7px;
+}
+
+.create-publication button:hover {
+  background-color: #218838;
+}
+
+.submit-button {
+  color: #51cbce;
+  background: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .Modal {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 500px;
+  margin: auto;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
 
 
 .edit-modal-submit-button {
@@ -403,12 +512,15 @@ table td {
   border: none;
 } */
 
+
 .multi-fields label {
+  font-size: 0.8571em;
   margin-bottom: 5px;
-  font-size: 10px;
+  color: #9a9a9a;
   border: none;
-  color: #555;
 }
+
+
 
 
 @media (max-width: 768px) {
@@ -516,6 +628,10 @@ table td {
     font-size: 12px;
   }
 }
+
+
+
+
 
 
 

@@ -1,86 +1,6 @@
+/* updated working code*/
+
 /* .honorAndAward-container {
-    display: flex;
-    height: 100vh;
-    flex-direction: row; 
-}
-
-.sidebar {
-    width: 20%;
-    background: #0037a5;
-    position: sticky;
-    color: #FFFFFF;
-    top: 0;
-    height: 100vh;
-    overflow-y: auto;
-    padding-top: 10px;
-    font-size: 10px;
-    z-index: 1000; 
-    transition: all 0.3s ease; 
-}
-
-.honor-and-awards {
-    flex: 1;
-    overflow-y: auto;
-    background-color: #F4F3EF;
-    padding: 20px;
-    transition: margin-left 0.3s ease; 
-}
-
-.bred-crumb {
-    margin: 0 20px !important;
-    width: calc(100% - 40px);
-}
-
-.honorAndAward-card {
-    width: 100%;
-    height: 680px;
-    margin: auto;
-    background-color: white;
-    border-radius: 15px 15px 0 0;
-    box-shadow: 0px 0px 10px #00000015;
-    transition: 0.3s;
-    animation: fadeIn 1s;
-}
-
-
-  .honorAndAward_heading {
-    padding: 1.5rem 1rem 0.7rem 1rem;
-    font-size: 22px;
-    font-weight: 400;
-  }
-
-  .awards_heading {
-    padding: 1.5rem 1rem 0.7rem 1rem;
-    font-size: 17px;
-    font-weight: bold;
-  } 
-
-div.navbar-div {
-    margin: 0 0 1.4rem 0;
-}
-
-
-
-.edit_button {
-    color: white;
-    background: #51cbce;
-    border-radius: 30px;
-    font-size: 13px;
-    padding: 10px 20px;
-    width: 90px;
-    height: 40px;
-    border: none;
-    align-self: flex-end;
-    margin-top: 20px;
-    cursor: pointer;
-    margin-bottom: 20px;
-}
- */
-
-
-/* updated*/
-
- .honorAndAward-container {
     display: flex;
     height: 100vh;
     flex-direction: row; 
@@ -122,10 +42,6 @@ div.navbar-div {
     background-color: #e9ecef;
 }
 
-/* .bred-crumb {
-    margin: 0 10px !important;
-    width: calc(100% - 40px);
-} */
 
 
 
@@ -133,11 +49,12 @@ div.navbar-div {
     width: 100%; 
     margin: auto;
     background-color: white;
-    border-radius: 15px 15px 0 0;
-    box-shadow: 0px 0px 10px #00000015;
-    transition: 0.3s;
+    border-radius: 18px;
     animation: fadeIn 1s;
-    padding: 20px; 
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
+    0 6px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
 }
 
 .honorAndAward-card hr {
@@ -151,9 +68,34 @@ div.navbar-div {
     font-weight: bold; 
 } 
 
-/* div.navbar-div {
-    margin: 0 0 1.4rem 0;
-} */
+.honorAndAward-table-head {
+    display: flex;
+    align-items: start;
+    gap: 10px;
+    justify-content: start;
+    flex-direction: row;
+}
+
+.honorAndAward-table-head h5 {
+    margin: 0;
+    margin-top: 5px;
+  }
+
+.honorAndAward-table-head button {
+    width: 100px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    border-radius: 30px;
+    height: 30px;
+    color: white;
+    font-size: 0.8571em;
+    padding: 5px 7px;
+    background-color: #51cbce;
+    border: none;
+    cursor: pointer;
+}
+
 
 .edit_button {
     color: white;
@@ -185,7 +127,185 @@ table {
     padding: 10px;
     font-weight: normal;
     width: 30%;
+  } */
+
+
+
+
+
+  /* Modal to do */
+.honorAndAward-container {
+  display: flex;
+  height: 100vh;
+  flex-direction: row;
+}
+
+.sidebar {
+  width: 20%;
+  background: #0037a5;
+  position: sticky;
+  color: #ffffff;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  padding-top: 10px;
+  font-size: 10px;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.honor-and-awards {
+  flex: 1;
+  overflow-y: auto;
+  background-color: #f4f3ef;
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+
+.honorAndAward_heading {
+  padding: 1.5rem 1rem 0.7rem 1rem;
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.HA_bred-crumb {
+  margin: 0 10px !important;
+  width: calc(100% - 40px);
+  background-color: #e9ecef;
+}
+
+.honorAndAward-card {
+  width: 100%;
+  margin: auto;
+  background-color: white;
+  border-radius: 18px;
+  animation: fadeIn 1s;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.honorAndAward-card hr {
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.awards_heading {
+  padding: 0.5rem 1rem 0.7rem 1rem;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.honorAndAward-table-head {
+  display: flex;
+  align-items: start;
+  gap: 10px;
+  justify-content: start;
+  flex-direction: row;
+}
+
+.honorAndAward-table-head h5 {
+  margin: 0;
+  margin-top: 5px;
+}
+
+.honorAndAward-table-head button {
+  width: 100px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  border-radius: 30px;
+  height: 30px;
+  color: white;
+  font-size: 0.8571em;
+  padding: 5px 7px;
+  background-color: #51cbce;
+  border: none;
+  cursor: pointer;
+}
+
+.edit_button {
+  color: white;
+  background: #51cbce;
+  border-radius: 30px;
+  font-size: 13px;
+  padding: 10px 20px;
+  width: 90px;
+  height: 40px;
+  border: none;
+  align-self: flex-end;
+  margin-top: 20px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  display: block;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table tr {
+  border-bottom: 1px solid #ddd;
+}
+
+.key-column {
+  background-color: #e2ecff;
+  padding: 10px;
+  font-weight: normal;
+  width: 30%;
+}
+
+
+
+
+
+
+/* Modal */
+
+.Modal {
+    content: {
+      padding: 20px;
+      border-radius: 10px;
+      background: #fff;
+    }
   }
-
-
-
+  
+  .Overlay {
+    background: rgba(0, 0, 0, 0.5);
+  }
+  
+  .modal-field {
+    margin-bottom: 15px;
+  }
+  
+  .modal-field label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .modal-field input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  button {
+    margin: 5px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button[type="submit"] {
+    background-color: #51cbce;
+    color: #FFFFFF;
+  }
+  
+  button[type="button"] {
+    /* background-color: #51cbce; */
+    color: #FFFFFF;
+  }
+  

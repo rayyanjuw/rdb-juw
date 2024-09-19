@@ -308,7 +308,7 @@ const getAllPublications = async (req, res) => {
         const publicationId = req.params.id;
         const { targetRole, ...updateData } = req.body;
         
-               
+    
 
         if (!publicationId) {
             return res.status(400).json({ message: 'Publication ID is required' });
