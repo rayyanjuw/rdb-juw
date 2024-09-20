@@ -5,7 +5,7 @@ import Sidebar from "../../../Sidebar/Sidebar";
 import Breadcrumb from "../../../shared-components/breadcrumps/BreadCrumps";
 import NavBar from "../../../shared-components/navbar/NavBar";
 
-const ProjectDescription = () => {
+const ProjectDescription = ({onSave, initialValues}) => {
   const location = useLocation();
   const currentPath = location.pathname;
 
@@ -58,13 +58,28 @@ const ProjectDescription = () => {
     },
   ];
 
-  const [text, setText] = useState("");
+  const [descriptionText, setDescriptionText] = useState(initialValues.projectDescription || "");
+  const [file, setFile] = useState(null);
+  const [fileName, setFileName] = useState("");
 
-  const handleChange = (event) => {
-    setText(event.target.value);
+  const handleDescriptionChange = (event) => {
+    setDescriptionText(event.target.value);
   };
 
-  console.log(text);
+  const handleFileChange = (event) => {
+    const selectedFile = event.target.files[0];
+    if (selectedFile) {
+      setFile(selectedFile);
+      setFileName(selectedFile.name);
+    }
+  };
+
+  const handleSave = () => {
+    onSave({
+      projectDescription: descriptionText,
+      file: file,
+    });
+  };
 
   return (
     <div className="projectdescription-container">
@@ -84,11 +99,12 @@ const ProjectDescription = () => {
               <input
                 type="text"
                 id="fileName"
+                value={fileName || "Choose file..."}
                 placeholder="Choose file..."
                 readOnly
               />
 
-              <input type="file" id="fileInput" className="hidden-file-input" />
+              <input type="file" id="fileInput" className="hidden-file-input" onChange={handleFileChange} />
 
               <label htmlFor="fileInput" className="browse-button">
                 Browse
@@ -190,7 +206,7 @@ const ProjectDescription = () => {
             </p>
 
             <div className="projectdescription_btn">
-              <button className="projectdescription_button">SAVE</button>
+              <button className="projectdescription_button" onClick={handleSave}>SAVE</button>
             </div>
           </div>
         </div>

@@ -45,6 +45,8 @@ import ProposedProjectBudget from './components/ProjectSubmission/International_
 import AvailedResearchGrants from './components/ProjectSubmission/International_NationalGrants/Principal Investigator’s availed research grant details/AvailedResearchGrants';
 import AcademicSectoralCollaborators from './components/ProjectSubmission/International_NationalGrants/Academic_Sectoral Collaborators/AcademicSectoralCollaborators';
 import MultiStepForm from './components/ProjectSubmission/ORICFundedProjects/MultiStepORICForms/MultiStepsORICForm';
+import NationalGrants from './components/ProjectSubmission/International_NationalGrants/International/NationalGrants';
+
 
 function App() {
   return (
@@ -93,6 +95,9 @@ function App() {
       <Route path="/international/national-grants-proposed-project-budget" element={<ProposedProjectBudget/>}/>         
       <Route path="/international/national-grants-principal-investigators-availed-research-grant-details" element={<AvailedResearchGrants/>}/>         
       <Route path="/international/national-grants-academic/Sectoral-collaborators" element={<AcademicSectoralCollaborators/>}/>         
+      <Route path="/international/national-grants" element={<NationalGrants/>}/>         
+
+      
       
 
 

@@ -5,9 +5,17 @@ import NavBar from "../../shared-components/navbar/NavBar";
 import { useLocation } from "react-router-dom";
 import Breadcrumb from "../../shared-components/breadcrumps/BreadCrumps";
 
-const AddGrants = () => {
+const defaultOnSave = (proposalCover) => {
+  console.log("Save function called with data:", proposalCover);
+  // You can handle the save logic here
+};
+
+const AddGrants = ({ onSave  }) => {
+  console.log("onSave prop:", onSave);
   const location = useLocation();
   const currentPath = location.pathname;
+  // const history = useHistory();
+
 
   const breadCrumps = [
     { label: "Proposal Cover", path: "/add-international/national-grants" },
@@ -58,79 +66,122 @@ const AddGrants = () => {
   ];
 
   const [proposalCover, setProposalCover] = useState({
-    ProposalReferenceNo: "",
-    TitleofProject: "",
-    DurationofProject: "",
-    TotalBudgetRequested: "",
-    ThemeofProposedResearch: [],
-    DisciplineofProposedResearch: [],
+    proposalReferenceNo: "",
+    titleOfProject: "",
+    durationOfProject: 0,
+    totalBudgetRequested: 0,
+    themeOfProposedResearch: "",
+    disciplineOfProposedResearch: "",
+    principalInvestigator: {
+      institutionName: "",
+      streetAddress: "",
+      city: "",
+      name: "",
+      positionTitle: "",
+      department: "",
+      tel: "",
+      email: "",
+      cnic: "",
+    },
+    facultyDetails: {
+      institutionName: "",
+      streetAddress: "",
+      city: "",
+      name: "",
+      positionTitle: "",
+      department: "",
+      tel: "",
+      email: "",
+      cnic: "",
+    },
   });
 
-  const [principleInvestigator, setPrincipleInvestigator] = useState({
-    InstitutionName: "",
-    StreetAddress: "",
-    City: "",
-    Name: "",
-    Position_or_Title: "",
-    Department: "",
-    TellNo: "",
-    Email: "",
-    CNIC_PassportNo: "",
-  });
+  // Handle the form submission
+  // Handle changes in form fields
+  // Handle changes in form fields
+ 
+  // Initialize state
+ 
+ 
+  // const handleChange = (e) => {
+  //   const { name, value, dataset, type, checked } = e.target;
+  //   const section = dataset.section;
+  //   const subSection = dataset.subsection;
 
-  const [faculty, setFaculty] = useState({
-    InstitutionName: "",
-    StreetAddress: "",
-    City: "",
-    Name: "",
-    Position_or_Title: "",
-    Department: "",
-    TellNo: "",
-    Email: "",
-    CNIC_PassportNo: "",
-  });
-
-  console.log(proposalCover);
-  console.log(principleInvestigator);
-  console.log(faculty);
-
-  // Handle change for text inputs
-  const handleTextChange = (e) => {
-    const { name, value } = e.target;
-    const section = e.target.dataset.section;
-
-    if (section === "proposalCover") {
-      setProposalCover((prevState) => ({
+  //   if (section === "proposalCover") {
+  //     if (subSection) {
+  //       // Update nested fields
+  //       setProposalCover((prevState) => ({
+  //         ...prevState,
+  //         [subSection]: {
+  //           ...prevState[subSection],
+  //           [name]: value,
+  //         },
+  //       }));
+  //     } else {
+  //         setProposalCover((prevState) => ({
+  //           ...prevState,
+  //           [name]: value,
+  //         }));
+  //       }
+  //     }
+  //   }
+  const handleChange = (e) => {
+    const { name, value, dataset } = e.target;
+    const section = dataset.section;
+  
+    if (section === "principalInvestigator") {
+      setProposalCover(prevState => ({
         ...prevState,
-        [name]: value,
+        principalInvestigator: {
+          ...prevState.principalInvestigator,
+          [name]: value
+        }
       }));
-    } else if (section === "principleInvestigator") {
-      setPrincipleInvestigator((prevState) => ({
+    } else if (section === "facultyDetails") {
+      setProposalCover(prevState => ({
         ...prevState,
-        [name]: value,
+        facultyDetails: {
+          ...prevState.facultyDetails,
+          [name]: value
+        }
       }));
-    } else if (section === "faculty") {
-      setFaculty((prevState) => ({
+    } else {
+      setProposalCover(prevState => ({
         ...prevState,
-        [name]: value,
+        [name]: value
       }));
     }
   };
+  
+ 
 
-  // Handle change for checkboxes
-  const handleCheckboxChange = (e) => {
+   // Handle checkbox changes for array-based fields
+   const handleCheckboxChange = (e) => {
     const { name, value, checked } = e.target;
     const section = e.target.dataset.section;
 
     if (section === "proposalCover") {
-      setProposalCover((prevState) => ({
+      setProposalCover(prevState => ({
         ...prevState,
         [name]: checked
           ? [...prevState[name], value]
-          : prevState[name].filter((item) => item !== value),
+          : prevState[name].filter(item => item !== value)
       }));
     }
   };
+
+  
+  
+  const handleSave = () => {
+    if (typeof onSave === 'function') {
+        onSave(proposalCover); // This will trigger the parent's handleSaveAndNext
+    } else {
+        console.error('onSave is not a function');
+    }
+};
+
+  
 
   return (
     <div className="addgrants-container">
@@ -145,69 +196,69 @@ const AddGrants = () => {
         <div className="addgrants-card">
           <h5>International/National Grants | Proposal Cover</h5>
           <div className="addgrants_bredcrumb">
-          {/* <div className="addgrants_bred-crumb"> */}
-          {/* <div className="nav.bredcrumb"> */}
+            {/* <div className="addgrants_bred-crumb"> */}
+            {/* <div className="nav.bredcrumb"> */}
             <Breadcrumb items={breadCrumps} activePath={currentPath} />
           </div>
           <div className="addgrants_multiInputFields">
             <div className="title-input">
               <label>*Proposal Reference No:</label>
               <input
-                value={proposalCover.ProposalReferenceNo}
+                value={proposalCover.proposalReferenceNo}
                 type="text"
                 placeholder="(Not for completion by applicant)"
-                name="ProposalReferenceNo"
+                name="proposalReferenceNo"
                 data-section="proposalCover"
-                onChange={handleTextChange}
+                onChange={handleChange}
               />
             </div>
             <div className="InputGroup">
               <label>*Title of Project:</label>
               <input
                 type="text"
-                value={proposalCover.TitleofProject}
-                name="TitleofProject"
+                value={proposalCover.titleOfProject}
+                name="titleOfProject"
                 placeholder="NRPU:"
                 data-section="proposalCover"
-                onChange={handleTextChange}
+                onChange={handleChange}
               />
             </div>
             <div className="InputGroup">
               <label>Duration of Project:</label>
               <input
                 type="text"
-                value={proposalCover.DurationofProject}
-                name="DurationofProject"
+                value={proposalCover.durationOfProject}
+                name="durationOfProject"
                 placeholder="In months"
                 data-section="proposalCover"
-                onChange={handleTextChange}
+                onChange={handleChange}
               />
             </div>
             <div className="InputGroup">
               <label>Total Budget Requested:</label>
               <input
                 type="text"
-                value={proposalCover.TotalBudgetRequested}
-                name="TotalBudgetRequested"
+                value={proposalCover.totalBudgetRequested}
+                name="totalBudgetRequested"
                 placeholder="PKR million"
                 data-section="proposalCover"
-                onChange={handleTextChange}
+                onChange={handleChange}
               />
             </div>
             <div className="multiCheckBoxes">
               <h6>Theme of Proposed Research:</h6>
-              <div className="theme_research_checkbox">
+              {/* <div className="theme_research_checkbox">
                 <div>
                   <label>
                     <input
                       type="checkbox"
                       name="ThemeofProposedResearch"
                       value="Basic"
-                      checked={proposalCover.ThemeofProposedResearch.includes(
+                      checked={proposalCover.themeOfProposedResearch.includes(
                         "Basic"
                       )}
                       data-section="proposalCover"
-                      onChange={handleCheckboxChange}
+                      onChange={handleChange}
                     />
                     Basic
                   </label>
@@ -218,15 +269,32 @@ const AddGrants = () => {
                       type="checkbox"
                       name="ThemeofProposedResearch"
                       value="Applied"
-                      checked={proposalCover.ThemeofProposedResearch.includes(
+                      checked={proposalCover.themeOfProposedResearch.includes(
                         "Applied"
                       )}
                       data-section="proposalCover"
-                      onChange={handleCheckboxChange}
+                      onChange={handleChange}
                     />
                     Applied
                   </label>
                 </div>
+              </div> */}
+              <div className="theme_research_checkbox">
+                {['Basic', 'Applied'].map((theme) => (
+                  <div key={theme}>
+                    <label>
+                      <input
+                        type="checkbox"
+                        name="themeOfProposedResearch"
+                        value={theme}
+                        checked={proposalCover.themeOfProposedResearch.includes(theme)}
+                        data-section="proposalCover"
+                        onChange={handleCheckboxChange}
+                      />
+                      {theme}
+                    </label>
+                  </div>
+                ))}
               </div>
 
               <div className="discipline_research_checkbox">
@@ -245,9 +313,9 @@ const AddGrants = () => {
                     <label>
                       <input
                         type="checkbox"
-                        name="DisciplineofProposedResearch"
+                        name="disciplineOfProposedResearch"
                         value={discipline}
-                        checked={proposalCover.DisciplineofProposedResearch.includes(
+                        checked={proposalCover.disciplineOfProposedResearch.includes(
                           discipline
                         )}
                         data-section="proposalCover"
@@ -262,7 +330,7 @@ const AddGrants = () => {
 
             <div className="addgrants_multiInputFields">
               <h4>Principal Investigator Details:</h4>
-              {Object.keys(principleInvestigator).map((key) => (
+              {Object.keys(proposalCover.principalInvestigator).map((key) => (
                 <div className="InputGroup" key={key}>
                   <label>
                     {key
@@ -272,10 +340,10 @@ const AddGrants = () => {
                   </label>
                   <input
                     type="text"
-                    value={principleInvestigator[key]}
+                    value={proposalCover.principalInvestigator[key]}
                     name={key}
-                    data-section="principleInvestigator"
-                    onChange={handleTextChange}
+                    data-section="principalInvestigator"
+                    onChange={handleChange}
                   />
                 </div>
               ))}
@@ -283,7 +351,7 @@ const AddGrants = () => {
 
             <div className="addgrants_multiInputFields">
               <h4>Faculty Details:</h4>
-              {Object.keys(faculty).map((key) => (
+              {Object.keys(proposalCover.facultyDetails).map((key) => (
                 <div className="InputGroup" key={key}>
                   <label>
                     {key
@@ -293,10 +361,10 @@ const AddGrants = () => {
                   </label>
                   <input
                     type="text"
-                    value={faculty[key]}
+                    value={proposalCover.facultyDetails[key]}
                     name={key}
-                    data-section="faculty"
-                    onChange={handleTextChange}
+                    data-section="facultyDetails"
+                    onChange={handleChange}
                   />
                 </div>
               ))}
@@ -304,7 +372,9 @@ const AddGrants = () => {
 
             <div>
               <div className="addgrant_save-btn">
-                <button className="addgrant_savebut">Save</button>
+                <button className="addgrant_savebut" onClick={handleSave}>
+                  Save
+                </button>
               </div>
             </div>
           </div>

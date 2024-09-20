@@ -6,7 +6,7 @@ import Breadcrumb from '../../../shared-components/breadcrumps/BreadCrumps';
 import NavBar from '../../../shared-components/navbar/NavBar';
 
 
-const ExecutiveSummary = () => {
+const ExecutiveSummary = ({ onSave }) => {
 
     const location = useLocation();
     const currentPath = location.pathname;
@@ -59,13 +59,18 @@ const ExecutiveSummary = () => {
     },
   ];
 
-    const [text, setText] = useState("");
+  const [summary, setSummary] = useState("");
 
-    const handleChange = (event) => {
-        setText(event.target.value);
-    };
+  const handleChange = (e) => {
+    setSummary(e.target.value);
+  };
 
-    console.log(text);
+  // Handle save button click
+  const handleSave = () => {
+    onSave({ summary });
+  };
+
+   
 
     return (
         <div className="executivesummary-container">
@@ -86,7 +91,7 @@ const ExecutiveSummary = () => {
                             <label htmlFor="exampleTextarea">Executive Summary:</label>
                             <textarea
                                 id="exampleTextarea"
-                                value={text}
+                                value={summary}
                                 placeholder='Limited to one page'
                                 onChange={handleChange}
                                 rows="2"
@@ -94,7 +99,7 @@ const ExecutiveSummary = () => {
                             />
                         </div>
                         <div className='executivesummary_btn'>
-                            <button className="executivesummary_button">SAVE</button>
+                            <button className="executivesummary_button" onClick={handleSave}>SAVE</button>
                         </div>
                     </div>
                 </div>
