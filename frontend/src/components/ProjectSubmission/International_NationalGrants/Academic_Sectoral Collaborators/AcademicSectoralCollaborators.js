@@ -5,7 +5,7 @@ import Sidebar from "../../../Sidebar/Sidebar";
 import NavBar from "../../../shared-components/navbar/NavBar";
 import Breadcrumb from "../../../shared-components/breadcrumps/BreadCrumps";
 
-const AcademicSectoralCollaborators = () => {
+const AcademicSectoralCollaborators = ({onSave}) => {
   const location = useLocation();
   const currentPath = location.pathname;
 
@@ -106,20 +106,48 @@ const AcademicSectoralCollaborators = () => {
 
   console.log(formData);
 
-  const handleChange = (e, index) => {
-    const { name, value } = e.target;
-    const updatedCollaborators = [...formData.academicCollaboratorsDetails];
-    const updatedSectoralContributors = [
-      ...formData.sectoralCollaboratorsDetails,
-    ];
-    updatedSectoralContributors[index][name] = value;
-    setFormData({
-      ...formData,
-      academicCollaboratorsDetails: updatedCollaborators,
-      sectoralCollaboratorsDetails: updatedSectoralContributors,
-    });
-  };
+  // const handleChange = (e, index) => {
+  //   const { name, value } = e.target;
+  //   const updatedCollaborators = [...formData.academicCollaboratorsDetails];
+  //   const updatedSectoralContributors = [
+  //     ...formData.sectoralCollaboratorsDetails,
+  //   ];
+  //   updatedSectoralContributors[index][name] = value;
+  //   setFormData({
+  //     ...formData,
+  //     academicCollaboratorsDetails: updatedCollaborators,
+  //     sectoralCollaboratorsDetails: updatedSectoralContributors,
+  //   });
+  // };
 
+  const handleChange = (e, index, isAcademic) => {
+    const { name, value } = e.target;
+  
+    if (isAcademic) {
+      const updatedCollaborators = [...formData.academicCollaboratorsDetails];
+      updatedCollaborators[index][name] = value;
+      setFormData({
+        ...formData,
+        academicCollaboratorsDetails: updatedCollaborators,
+      });
+    } else {
+      const updatedSectoralContributors = [...formData.sectoralCollaboratorsDetails];
+      updatedSectoralContributors[index][name] = value;
+      setFormData({
+        ...formData,
+        sectoralCollaboratorsDetails: updatedSectoralContributors,
+      });
+    }
+  };
+  
+  
+  const handleSave = () => {
+    if (typeof onSave === 'function') {
+        onSave(formData); // This will trigger the parent's handleSaveAndNext
+    } else {
+        console.error('onSave is not a function');
+    }
+};
 
 
   return (
@@ -195,7 +223,7 @@ const AcademicSectoralCollaborators = () => {
                         type="text"
                         name="nameofcollaborator"
                         value={academicCollaboratorsDetail.nameofcollaborator}
-                        onChange={(e) => handleChange(e, index)}
+                        onChange={(e) => handleChange(e, index, true)}
                       />
                     </div>
                     <div className="ascollaborators_InputGroup">
@@ -206,7 +234,7 @@ const AcademicSectoralCollaborators = () => {
                         value={
                           academicCollaboratorsDetail.institutionofcollaborator
                         }
-                        onChange={(e) => handleChange(e, index)}
+                        onChange={(e) => handleChange(e, index, true)}
                       />
                     </div>
 
@@ -217,7 +245,7 @@ const AcademicSectoralCollaborators = () => {
                           type="text"
                           name="location"
                           value={academicCollaboratorsDetail.location}
-                          onChange={(e) => handleChange(e, index)}
+                          onChange={(e) => handleChange(e, index, true)}
                         />
                       </div>
                       <div className="ascollaborators_InputGroup">
@@ -230,7 +258,7 @@ const AcademicSectoralCollaborators = () => {
                           value={
                             academicCollaboratorsDetail.focusofcollaboration
                           }
-                          onChange={(e) => handleChange(e, index)}
+                          onChange={(e) => handleChange(e, index, true)}
                         />
                       </div>
                     </div>
@@ -239,10 +267,10 @@ const AcademicSectoralCollaborators = () => {
                       <div className="ascollaborators_InputGroup">
                         <label>Tel. #:</label>
                         <input
-                          type="text"
+                          type="tel"
                           name="tellno"
                           value={academicCollaboratorsDetail.tellno}
-                          onChange={(e) => handleChange(e, index)}
+                          onChange={(e) => handleChange(e, index, true)}
                         />
                       </div>
                       <div className="ascollaborators_InputGroup">
@@ -251,7 +279,7 @@ const AcademicSectoralCollaborators = () => {
                           type="email"
                           name="email"
                           value={academicCollaboratorsDetail.email}
-                          onChange={(e) => handleChange(e, index)}
+                          onChange={(e) => handleChange(e, index, true)}
                         />
                       </div>
                     </div>
@@ -281,7 +309,7 @@ const AcademicSectoralCollaborators = () => {
                         type="text"
                         name="companyname"
                         value={sectoralCollaboratorsDetail.companyname}
-                        onChange={(e) => handleChange(e, index)}
+                        onChange={(e) => handleChange(e, index, false)}
                       />
                     </div>
                     <div className="ascollaborators_InputGroup">
@@ -290,7 +318,7 @@ const AcademicSectoralCollaborators = () => {
                         type="text"
                         name="location"
                         value={sectoralCollaboratorsDetail.location}
-                        onChange={(e) => handleChange(e, index)}
+                        onChange={(e) => handleChange(e, index, false)}
                       />
                     </div>
 
@@ -301,7 +329,7 @@ const AcademicSectoralCollaborators = () => {
                           type="text"
                           name="nameofcollaborator"
                           value={sectoralCollaboratorsDetail.nameofcollaborator}
-                          onChange={(e) => handleChange(e, index)}
+                          onChange={(e) => handleChange(e, index, false)}
                         />
                       </div>
                       <div className="ascollaborators_InputGroup">
@@ -310,7 +338,7 @@ const AcademicSectoralCollaborators = () => {
                           type="text"
                           name="position"
                           value={sectoralCollaboratorsDetail.position}
-                          onChange={(e) => handleChange(e, index)}
+                          onChange={(e) => handleChange(e, index, false)}
                         />
                       </div>
                     </div>
@@ -322,7 +350,7 @@ const AcademicSectoralCollaborators = () => {
                           type="text"
                           name="tellno"
                           value={sectoralCollaboratorsDetail.tellno}
-                          onChange={(e) => handleChange(e, index)}
+                          onChange={(e) => handleChange(e, index, false)}
                         />
                       </div>
                       <div className="ascollaborators_InputGroup">
@@ -331,7 +359,7 @@ const AcademicSectoralCollaborators = () => {
                           type="email"
                           name="email"
                           value={sectoralCollaboratorsDetail.email}
-                          onChange={(e) => handleChange(e, index)}
+                          onChange={(e) => handleChange(e, index, false)}
                         />
                       </div>
                     </div>
@@ -341,7 +369,7 @@ const AcademicSectoralCollaborators = () => {
                           type="text"
                           name="ProjectGoalsAnticipatedContribution"
                           value={sectoralCollaboratorsDetail.ProjectGoalsAnticipatedContribution}
-                          onChange={(e) => handleChange(e, index)}
+                          onChange={(e) => handleChange(e, index, false)}
                         />
                       </div>
                       <div className="ascollaborators_InputGroup">
@@ -350,7 +378,7 @@ const AcademicSectoralCollaborators = () => {
                           type="text"
                           name="AnnualFinancialContribution"
                           value={sectoralCollaboratorsDetail.AnnualFinancialContribution}
-                          onChange={(e) => handleChange(e, index)}
+                          onChange={(e) => handleChange(e, index, false)}
                         />
                       </div>
                   </div>
@@ -359,7 +387,7 @@ const AcademicSectoralCollaborators = () => {
             
 
             <div className="ascollaborators_btn">
-              <button className="ascollaborators_button">SAVE</button>
+              <button className="ascollaborators_button" onClick={handleSave}>SAVE</button>
             </div>
           </div>
         </div>

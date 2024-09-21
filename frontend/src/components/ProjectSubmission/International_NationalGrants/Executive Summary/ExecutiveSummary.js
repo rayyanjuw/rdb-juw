@@ -67,7 +67,7 @@ const ExecutiveSummary = ({ onSave }) => {
 
   // Handle save button click
   const handleSave = () => {
-    onSave({ summary });
+    onSave(summary);
   };
 
    

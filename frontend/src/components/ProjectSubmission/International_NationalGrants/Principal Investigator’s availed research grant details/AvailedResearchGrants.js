@@ -272,7 +272,7 @@ import Sidebar from "../../../Sidebar/Sidebar";
 import NavBar from "../../../shared-components/navbar/NavBar";
 import Breadcrumb from "../../../shared-components/breadcrumps/BreadCrumps";
 
-const AvailedResearchGrants = () => {
+const AvailedResearchGrants = ({ onSave}) => {
   const location = useLocation();
   const currentPath = location.pathname;
 
@@ -326,39 +326,49 @@ const AvailedResearchGrants = () => {
 
   const [formData, setFormData] = useState({
     scientificPersonnelDetails: "",
-    projects: [
-      {
+    projects: Array(3).fill({
+      
         title: "",
         initiationDate: "",
         completionDate: "",
         amountAwarded: "",
         fundingSource: "",
-      },
-      {
-        title: "",
-        initiationDate: "",
-        completionDate: "",
-        amountAwarded: "",
-        fundingSource: "",
-      },
-      {
-        title: "",
-        initiationDate: "",
-        completionDate: "",
-        amountAwarded: "",
-        fundingSource: "",
-      },
-    ],
+     
+      // {
+      //   title: "",
+      //   initiationDate: "",
+      //   completionDate: "",
+      //   amountAwarded: "",
+      //   fundingSource: "",
+      // },
+      // {
+      //   title: "",
+      //   initiationDate: "",
+      //   completionDate: "",
+      //   amountAwarded: "",
+      //   fundingSource: "",
+      // },
+    })
   });
 
-  console.log(formData);
+
+
 
   const handleChange = (e, index) => {
     const { name, value } = e.target;
     const updatedProjects = [...formData.projects];
-    updatedProjects[index][name] = value;
+    updatedProjects[index] = {
+      ...updatedProjects[index],
+      [name]: value,
+    };
     setFormData({ ...formData, projects: updatedProjects });
   };
+
+  const handleSave = () => {
+    onSave(formData); // Call the parent's function with the form data
+  };
+
+
 
   return (
     <div className="availedresearchgrants-container">
@@ -389,12 +399,7 @@ const AvailedResearchGrants = () => {
                 id="scientificPersonnelDetails"
                 name="scientificPersonnelDetails"
                 value={formData.scientificPersonnelDetails}
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    scientificPersonnelDetails: e.target.value,
-                  })
-                }
+                onChange={(e) => setFormData({ ...formData, scientificPersonnelDetails: e.target.value })}
                 rows="2"
                 cols="20"
               />
@@ -463,7 +468,7 @@ const AvailedResearchGrants = () => {
             ))}
 
             <div className="availedresearchgrants_btn">
-              <button className="availedresearchgrants_button">SAVE</button>
+              <button className="availedresearchgrants_button" onClick={handleSave}>SAVE</button>
             </div>
 
           </div>

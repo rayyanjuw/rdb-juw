@@ -5,7 +5,7 @@ import Sidebar from "../../../Sidebar/Sidebar";
 import NavBar from "../../../shared-components/navbar/NavBar";
 import Breadcrumb from "../../../shared-components/breadcrumps/BreadCrumps";
 
-const ProjectManagement = () => {
+const ProjectManagement = ({onSave}) => {
   const location = useLocation();
   const currentPath = location.pathname;
 
@@ -59,12 +59,24 @@ const ProjectManagement = () => {
 
 
   const [text, setText] = useState("");
+  const [error, setError] = useState("");
 
   const handleChange = (event) => {
     setText(event.target.value);
+    if (event.target.value.length < 10) {
+      setError("Description must be at least 10 characters long.");
+    } else {
+      setError("");
+    }
   };
 
-  console.log(text);
+  const handleSave = () => {
+    if (text.length < 10) {
+      setError("Description must be at least 10 characters long.");
+      return;
+    }
+    onSave({ text });
+  };
 
   return (
     <div className="projectmanagement-container">
@@ -88,6 +100,7 @@ const ProjectManagement = () => {
                 rows="2"
                 cols="20"
               />
+                 {error && <p className="error-text">{error}</p>}
             </div>
 
             <p>In this Section (maximum one page), describe the anticipated Project Management structure for the proposed project.  An organogram may be employed.</p>
@@ -97,7 +110,7 @@ const ProjectManagement = () => {
             <p>As the leader of the host institution, the University Vice-Chancellor has a crucial role in the success of the proposed project.  What support will the university leadership provide to the proposed project?</p>    
             
             <div className="projectmanagement_btn">
-              <button className="projectmanagement_button">SAVE</button>
+              <button className="projectmanagement_button" onClick={handleSave}>SAVE</button>
             </div>
           </div>
         </div>

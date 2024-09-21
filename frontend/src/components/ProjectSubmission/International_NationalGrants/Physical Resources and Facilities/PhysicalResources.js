@@ -5,7 +5,7 @@ import Sidebar from "../../../Sidebar/Sidebar";
 import NavBar from "../../../shared-components/navbar/NavBar";
 import Breadcrumb from "../../../shared-components/breadcrumps/BreadCrumps";
 
-const PhysicalResources = () => {
+const PhysicalResources = ({onSave}) => {
   const location = useLocation();
   const currentPath = location.pathname;
 
@@ -56,13 +56,17 @@ const PhysicalResources = () => {
     },
   ];
 
-  const [text, setText] = useState("");
+  const [resources, setResources] = useState("");
+  const [error, setError] = useState("");
 
   const handleChange = (event) => {
-    setText(event.target.value);
+    setResources(event.target.value);
   };
 
-  console.log(text);
+  const handleSave = () => {
+    setError("");
+    onSave(resources);
+  };
 
   return (
     <div className="physicalresources-container">
@@ -81,7 +85,7 @@ const PhysicalResources = () => {
               <label htmlFor="exampleTextarea">Physical Resources and Facilities Details:</label>
               <textarea
                 id="exampleTextarea"
-                value={text}
+                value={resources}
                 placeholder="In this Section (maximum two pages narrative)"
                 onChange={handleChange}
                 rows="2"
@@ -96,7 +100,7 @@ const PhysicalResources = () => {
             <p>In this Section, be sure to identify major anticipated equipment expenditures as part of the proposed project. Include preliminary cost estimates and a plan for maintenance costs both during the lifetime of the proposed project and after the project funding concludes</p>    
             
             <div className="physicalresources_btn">
-              <button className="physicalresources_button">SAVE</button>
+              <button className="physicalresources_button" onClick={handleSave}>SAVE</button>
             </div>
           </div>
         </div>

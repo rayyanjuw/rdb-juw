@@ -5,7 +5,7 @@ import Sidebar from "../../../Sidebar/Sidebar";
 import NavBar from "../../../shared-components/navbar/NavBar";
 import Breadcrumb from "../../../shared-components/breadcrumps/BreadCrumps";
 
-const RiskManagementStrategy = () => {
+const RiskManagementStrategy = ({onSave}) => {
   const location = useLocation();
   const currentPath = location.pathname;
 
@@ -62,7 +62,9 @@ const RiskManagementStrategy = () => {
     setText(event.target.value);
   };
 
-  console.log(text);
+  const handleSave = () => {
+    onSave(text); // Call the parent's function with the text data
+  };
 
   return (
     <div className="riskmanagementstrategy-container">
@@ -98,7 +100,7 @@ const RiskManagementStrategy = () => {
             <p>In both contexts, discuss how the Principal Investigator will work together with the institutional leadership to implement the strategy.</p>
             
             <div className="riskmanagementstrategy_btn">
-              <button className="riskmanagementstrategy_button">SAVE</button>
+              <button className="riskmanagementstrategy_button" onClick={handleSave}>SAVE</button>
             </div>
           </div>
         </div>

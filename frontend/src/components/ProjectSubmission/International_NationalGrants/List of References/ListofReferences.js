@@ -5,7 +5,7 @@ import Sidebar from "../../../Sidebar/Sidebar";
 import NavBar from "../../../shared-components/navbar/NavBar";
 import Breadcrumb from "../../../shared-components/breadcrumps/BreadCrumps";
 
-const ListofReferences = () => {
+const ListofReferences = ({onSave}) => {
   const location = useLocation();
   const currentPath = location.pathname;
 
@@ -62,7 +62,16 @@ const ListofReferences = () => {
     setText(event.target.value);
   };
 
-  console.log(text);
+  const handleSave = () => {
+    const reffrencelist = text.split("\n").map(text => text.trim()) // Trim each entry
+    .filter(resource => resource !== ""); // Remove empty entries
+
+  if (reffrencelist.length === 0) {
+   
+    return;
+  }
+    onSave(text); // Call the parent's function with the text data
+  };
 
   return (
     <div className="listofreferences-container">
@@ -82,13 +91,13 @@ const ListofReferences = () => {
               <textarea
                 id="exampleTextarea"
                 value={text}
-                placeholder="1.
+                placeholder=" 1. 
                 2. 
-                3. 
-                4.
+                3.  
+                4.  
                 5."
                 onChange={handleChange}
-                rows="2"
+                rows="5"
                 cols="20"
               />
             </div>
@@ -96,7 +105,7 @@ const ListofReferences = () => {
             <p>Proposals should follow accepted academic practice in citing references throughout the proposal. References should numbered sequentially, and listed separately as a required attachment to the proposal.  References should be reported in a standard form, and include: the names of all authors; the article and journal title; book title; volume and page numbers; and year of publication. If available, a Digital Object Identifier (DOI) may be provided.</p>
    
             <div className="listofreferences_btn">
-              <button className="listofreferences_button">SAVE</button>
+              <button className="listofreferences_button" onClick={handleSave}>SAVE</button>
             </div>
           </div>
         </div>

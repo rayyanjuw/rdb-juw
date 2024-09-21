@@ -26,7 +26,7 @@ const NationalInternationalGrant = sequelize.define('NationalInternationalGrant'
         allowNull: true,
     },
     executiveSummary: {
-        type: DataTypes.TEXT,
+        type: DataTypes.JSON,
         allowNull: true,
     },
     academicSectoralCollaborators: {

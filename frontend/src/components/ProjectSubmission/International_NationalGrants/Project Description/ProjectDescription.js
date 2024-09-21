@@ -5,7 +5,7 @@ import Sidebar from "../../../Sidebar/Sidebar";
 import Breadcrumb from "../../../shared-components/breadcrumps/BreadCrumps";
 import NavBar from "../../../shared-components/navbar/NavBar";
 
-const ProjectDescription = ({onSave, initialValues}) => {
+const ProjectDescription = ({onSave}) => {
   const location = useLocation();
   const currentPath = location.pathname;
 
@@ -58,13 +58,11 @@ const ProjectDescription = ({onSave, initialValues}) => {
     },
   ];
 
-  const [descriptionText, setDescriptionText] = useState(initialValues.projectDescription || "");
+ 
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState("");
+  const [error, setError] = useState("");
 
-  const handleDescriptionChange = (event) => {
-    setDescriptionText(event.target.value);
-  };
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
@@ -74,11 +72,21 @@ const ProjectDescription = ({onSave, initialValues}) => {
     }
   };
 
+  const validateForm = () => {
+    if (!file) {
+      setError("Please provide a project description or upload a file.");
+      return false;
+    }
+    setError("");
+    return true;
+  };
+
   const handleSave = () => {
+    if (validateForm()) {
     onSave({
-      projectDescription: descriptionText,
       file: file,
     });
+  }
   };
 
   return (
@@ -206,7 +214,7 @@ const ProjectDescription = ({onSave, initialValues}) => {
             </p>
 
             <div className="projectdescription_btn">
-              <button className="projectdescription_button" onClick={handleSave}>SAVE</button>
+              <button className="projectdescription_button" onClick={handleSave} disabled={!file}>SAVE</button>
             </div>
           </div>
         </div>

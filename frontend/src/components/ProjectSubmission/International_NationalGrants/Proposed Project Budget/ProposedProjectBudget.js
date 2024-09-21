@@ -5,7 +5,7 @@ import Sidebar from "../../../Sidebar/Sidebar";
 import NavBar from "../../../shared-components/navbar/NavBar";
 import Breadcrumb from "../../../shared-components/breadcrumps/BreadCrumps";
 
-const ProposedProjectBudget = () => {
+const ProposedProjectBudget = ({onSave}) => {
   const location = useLocation();
   const currentPath = location.pathname;
 
@@ -62,7 +62,10 @@ const ProposedProjectBudget = () => {
     setText(event.target.value);
   };
 
-  console.log(text);
+  const handleSave = () => {
+    const budgetData = { text };
+    onSave(budgetData); // Send the data to the parent component
+  };
 
   return (
     <div className="proposedprojectbudget-container">
@@ -105,7 +108,7 @@ const ProposedProjectBudget = () => {
             <p>In addition to the Budget Sheet, this section can include a narrative (maximum two pages) that provides further details on the proposed budget.</p>
             
             <div className="proposedprojectbudget_btn">
-              <button className="proposedprojectbudget_button">SAVE</button>
+              <button className="proposedprojectbudget_button" onClick={handleSave}>SAVE</button>
             </div>
           </div>
         </div>

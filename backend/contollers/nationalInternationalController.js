@@ -26,22 +26,12 @@ const createNationalInternationalGrant = async (req, res) => {
         const { role: userRole, departmentId, impersonatorRole, impersonating } = user;
 
         const { createdBy, ...grantData } = req.body;
-
+        // if (!grantData || Object.keys(grantData).length === 0) {
+        //     return res.status(400).json({ error: 'No grant data provided' });
+        // }
         const creatorRole = impersonating ? impersonatorRole : userRole;
 
-        // Role-based check
-         // Role-based check
-         if (userRole === 'researcher') {
-            // Researchers can only create grants for themselves within their own department
-            if (createdBy !== user.id || departmentId !== user.departmentId) {
-                return res.status(403).json({ error: 'Unauthorized - Researchers can only create grants for themselves within their own department' });
-            }
-        } else if (['dean', 'chairperson'].includes(userRole)) {
-            // Dean and Chairperson can create grants only within their own department
-            if (departmentId !== user.departmentId) {
-                return res.status(403).json({ error: 'Unauthorized - Dean/Chairperson can only create grants within their own department' });
-            }
-        }
+       
 
           // Handle file upload
           const projectDescription = req.file ? req.file.path : null;
@@ -63,8 +53,14 @@ const createNationalInternationalGrant = async (req, res) => {
             createdBy: creatorRole
         });
 
+        console.log("User Role:", userRole);
+        console.log("Created By:", createdBy);
+        console.log("Department ID:", departmentId);
+
+
         res.status(201).json(grant);
     } catch (error) {
+        console.error("Error creating grant:", error); // Log the error
         res.status(500).json({ error: 'Failed to create National/International Grant', details: error.message });
     }
 };

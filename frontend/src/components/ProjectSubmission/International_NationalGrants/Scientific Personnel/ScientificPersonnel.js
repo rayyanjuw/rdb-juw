@@ -5,7 +5,7 @@ import Sidebar from "../../../Sidebar/Sidebar";
 import NavBar from "../../../shared-components/navbar/NavBar";
 import Breadcrumb from "../../../shared-components/breadcrumps/BreadCrumps";
 
-const ScientificPersonnel = () => {
+const ScientificPersonnel = ({onSave}) => {
   const location = useLocation();
   const currentPath = location.pathname;
 
@@ -62,7 +62,9 @@ const ScientificPersonnel = () => {
     setText(event.target.value);
   };
 
-  console.log(text);
+ const handleSave = () => {
+  onSave( text);
+ }
 
   return (
     <div className="scientificpersonnel-container">
@@ -92,7 +94,7 @@ const ScientificPersonnel = () => {
    
             
             <div className="scientificpersonnel_btn">
-              <button className="scientificpersonnel_button">SAVE</button>
+              <button className="scientificpersonnel_button" onClick={handleSave}>SAVE</button>
             </div>
           </div>
         </div>
