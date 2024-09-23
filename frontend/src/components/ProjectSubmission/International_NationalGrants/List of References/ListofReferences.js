@@ -63,14 +63,13 @@ const ListofReferences = ({onSave}) => {
   };
 
   const handleSave = () => {
-    const reffrencelist = text.split("\n").map(text => text.trim()) // Trim each entry
-    .filter(resource => resource !== ""); // Remove empty entries
+    const referenceList = text.split("\n").map(item => item.trim()).filter(item => item !== ""); // Remove empty entries
 
-  if (reffrencelist.length === 0) {
+  if (referenceList.length === 0) {
    
     return;
   }
-    onSave(text); // Call the parent's function with the text data
+    onSave({text}); // Call the parent's function with the text data
   };
 
   return (

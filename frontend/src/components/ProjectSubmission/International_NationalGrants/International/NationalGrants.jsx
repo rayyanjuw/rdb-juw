@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import AddGrants from '../AddGrants';
 import ExecutiveSummary from '../Executive Summary/ExecutiveSummary';
 import ProjectDescription from '../Project Description/ProjectDescription';
@@ -17,23 +17,29 @@ import axios from 'axios';
 const NationalGrants = () => {
     const [step, setStep] = useState(1);
     const [grantData, setGrantData] = useState({
-        proposalCover: {},
+    proposalCover: {},
     executiveSummary: "",
     academicSectoralCollaborators: {},
     projectDescription: {},
-    ProjectManagement: {},
+    projectManagement: "",
     implementationTimeline: {},
+    physicalResourcesAndFacilities: {},
     scientificPersonnel: {},
-    principalInvestigator: {},
+    principalInvestigatorsAvailedResearchGrantDetails: {},
     riskManagementStrategy: {},
     listOfReferences: {},
     proposedProjectBudget: {}
     }); // Store all form data
 
-    const [formData, setFormData] = useState({
-        proposalCover: {},
-        executiveSummary: {},
-    })
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+     // UseEffect to handle form submission after the last step's data is saved
+     useEffect(() => {
+      if (isSubmitting) {
+          handleFormSubmit();
+      }
+  }, [isSubmitting]);
+
 
       // Function to handle saving data from a step
   const handleSave = (data) => {
@@ -56,17 +62,24 @@ const NationalGrants = () => {
     setStep((prevStep) => prevStep - 1);
   };
 
-  // Function to handle saving and moving to the next step
-  const handleSaveAndNext = async (data) => {
-    console.log("Saving data:", data);
+   // Function to handle saving and moving to the next step
+   const handleSaveAndNext = (data) => {
     handleSave(data);
-      // Check if it's the last step
-      if (step === 12) {
+    if (step === 12) {
+        setIsSubmitting(true); // Set the flag to trigger form submission
+    } else {
+        nextStep();
+    }
+};
+
+  // Function to handle saving and moving to the next step
+  const handleFormSubmit = async (data) => {
         try {
           const token = localStorage.getItem('token');
             const response = await axios.post('http://localhost:5000/api/nationalGrant/create', grantData, {
               headers: {
                 Authorization: `Bearer ${token}`,
+                'Content-Type': 'multipart/form-data',
               }
             });
             console.log("Data being sent to API:", grantData);
@@ -75,10 +88,9 @@ const NationalGrants = () => {
         } catch (error) {
             console.error('Error submitting data:', error);
             // Handle error (e.g., show an error message)
-        }
-    } else {
-        nextStep();
-    }
+        } finally {
+          setIsSubmitting(false); // Reset flag after submission
+      }
   };
 
 
@@ -105,7 +117,7 @@ const NationalGrants = () => {
        />
     )}
     {step === 5 && (
-        <ProjectManagement onSave={(data) => handleSaveAndNext({ProjectManagement: data})}
+        <ProjectManagement onSave={(data) => handleSaveAndNext({projectManagement: data})}
        />
     )}
     {step === 6 && (
@@ -113,7 +125,7 @@ const NationalGrants = () => {
        />
     )}
     {step === 7 && (
-        <PhysicalResources onSave={(data) => handleSaveAndNext({implementationTimeline: data})}
+        <PhysicalResources onSave={(data) => handleSaveAndNext({physicalResourcesAndFacilities: data})}
        />
     )}
     {step === 8 && (
@@ -121,7 +133,7 @@ const NationalGrants = () => {
        />
     )}
     {step === 9 && (
-        <AvailedResearchGrants onSave={(data) => handleSaveAndNext({principalInvestigator: data})}
+        <AvailedResearchGrants onSave={(data) => handleSaveAndNext({principalInvestigatorsAvailedResearchGrantDetails: data})}
        />
     )}
     {step === 10 && (

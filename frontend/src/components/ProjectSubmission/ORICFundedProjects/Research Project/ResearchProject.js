@@ -381,115 +381,108 @@
 
 // export default ResearchProject;
 
-
-
 import React, { useState } from "react";
 import "./researchproject.css";
 import Sidebar from "../../../Sidebar/Sidebar";
 import NavBar from "../../../shared-components/navbar/NavBar";
 import Breadcrumb from "../../../shared-components/breadcrumps/BreadCrumps";
 import { useLocation, useNavigate } from "react-router-dom";
+
 // import { createOricFunded } from "../../../../api/Api";
 
-
-const ResearchProject = ({ formData, handleInputChange, handleSubmit }) => {
+const ResearchProject = ({ onSave }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const currentPath = location.pathname;
+
   const [ResearchProject, setResearchProject] = useState({
-    projectTitle: formData?.researchProject?.projectTitle || "",
-    natureOfProposedResearch:
-      formData?.researchProject?.natureOfProposedResearch || [],
-    domainOfProposedResearch:
-      formData?.researchProject?.domainOfProposedResearch || [],
-    shortSummary: formData?.researchProject?.shortSummary || "",
-    objectives: formData?.researchProject?.objectives || [
-      { description: "", measurableOutput: "", benefits: "" },
-      { description: "", measurableOutput: "", benefits: "" },
-      { description: "", measurableOutput: "", benefits: "" },
+    projectTitle: "",
+    natureOfProposedResearch: [],
+    domainOfProposedResearch: [],
+    shortSummary: "",
+    projectDuration: {
+      year: "",
+      totalFundsRequested: "",
+      summaryAbstract: "",
+      backgroundoftheProblem: "",
+    },
+    objectives: [
+      {
+        description: "",
+        measurableOutput: "",
+        benefits: "",
+      },
     ],
-    // year: formData?.researchProject?.year || "",
-    projectDuration: formData?.researchProject?.projectDuration || "",
-    fundsRequested: formData?.researchProject?.fundsRequested || "",
-    summary: formData?.researchProject?.summary || "",
-    background: formData?.researchProject?.summary || "",
-    socioEconomicBenefit: formData?.researchProject?.socioEconomicBenefit || "",
-    methodology: formData?.researchProject?.methodology || "",
-    durations: formData?.researchProject?.durations || [
-      { activities: "" },
-      { activities: "" },
-      { activities: "" },
-      { activities: "" },
-    ],
-    priorExperience: formData?.researchProject?.priorExperience || "",
+    expectedSocioBenefit: "",
+    methodology: "",
+    schedulephasing: Array(3).fill({
+      activities: "",
+    }),
+    priorExperience: "",
   });
 
-  console.log(ResearchProject);
+  const handleChange = (e) => {
+    const { name, value, dataset } = e.target;
+    const section = dataset.section;
 
-  const handleLocalChange = (e) => {
-    const { name, value } = e.target;
-    setResearchProject((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-
-
-    if (handleInputChange) {
-      handleInputChange(e); 
+    if (section === "projectDuration") {
+      setResearchProject((prevState) => ({
+        ...prevState,
+        projectDuration: {
+          ...prevState.principalInvestigator,
+          [name]: value,
+        },
+      }));
+    } else if (section === "objectives") {
+      setResearchProject((prevState) => ({
+        ...prevState,
+        objectives: {
+          ...prevState.facultyDetails,
+          [name]: value,
+        },
+      }));
     } else {
-      console.error("handleInputChange is not a function");
+      setResearchProject((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
     }
   };
 
-
-
+  // Handle checkbox changes for array-based fields
+  // Handle checkbox changes for multi-select fields
   const handleCheckboxChange = (e) => {
     const { name, value, checked } = e.target;
-    setResearchProject((prevState) => {
-      let updatedArray = [...prevState[name]];
-      if (checked) {
-        updatedArray.push(value);
-      } else {
-        updatedArray = updatedArray.filter((item) => item !== value);
-      }
-      return {
-        ...prevState,
-        [name]: updatedArray,
-      };
-    });
+
+    setResearchProject((prevState) => ({
+      ...prevState,
+      [name]: checked
+        ? [...prevState[name], value] // Add value if checked
+        : prevState[name].filter((item) => item !== value), // Remove value if unchecked
+    }));
   };
 
-
+  // Handle changes in objectives
   const handleObjectiveChange = (index, field, value) => {
     setResearchProject((prevState) => {
       const updatedObjectives = [...prevState.objectives];
-      updatedObjectives[index] = {
-        ...updatedObjectives[index],
-        [field]: value,
-      };
-      return {
-        ...prevState,
-        objectives: updatedObjectives,
-      };
+      updatedObjectives[index][field] = value;
+      return { ...prevState, objectives: updatedObjectives };
     });
   };
 
-
-
+  // Handle changes in project duration activities
   const handleDurationChange = (index, value) => {
     setResearchProject((prevState) => {
-      const updatedDurations = [...prevState.durations];
-      updatedDurations[index] = {
-        ...updatedDurations[index],
-        activities: value,
-      };
+      const updatedSchedule = [...prevState.schedulephasing]; // Make a copy of the existing array
+      updatedSchedule[index] = { activities: value }; // Update the activities of the specific index
       return {
         ...prevState,
-        durations: updatedDurations,
+        schedulephasing: updatedSchedule, // Return the updated array
       };
     });
   };
-
+  
 
   // const handleSubmit = async () => {
   //   try {
@@ -510,7 +503,7 @@ const ResearchProject = ({ formData, handleInputChange, handleSubmit }) => {
   //         durations: ResearchProject.durations,
   //         priorExperience: ResearchProject.priorExperience,
   //       };
-  
+
   //     // Call the API function
   //     const createdResearchProject = await createOricFunded(researchProjectData);
   //     navigate("/oric-funded-project-facilities-and-funding")
@@ -524,8 +517,13 @@ const ResearchProject = ({ formData, handleInputChange, handleSubmit }) => {
   //   }
   // };
 
-
-
+  const handleSave = () => {
+    if (typeof onSave === "function") {
+      onSave(ResearchProject); // This will trigger the parent's handleSaveAndNext
+    } else {
+      console.error("onSave is not a function");
+    }
+  };
 
   const breadCrumps = [
     {
@@ -563,7 +561,7 @@ const ResearchProject = ({ formData, handleInputChange, handleSubmit }) => {
             <h5>ORIC Funded Project | Research Project</h5>
 
             <div className="researchproject-bredcrumb">
-              <Breadcrumb items={breadCrumps}/>
+              <Breadcrumb items={breadCrumps} />
               {/* <Breadcrumb items={breadCrumps} activePath={currentPath} /> */}
             </div>
 
@@ -576,7 +574,7 @@ const ResearchProject = ({ formData, handleInputChange, handleSubmit }) => {
                   // value={formData.projectTitle}
                   value={ResearchProject.projectTitle}
                   // onChange={handleInputChange}
-                  onChange={handleLocalChange}
+                  onChange={handleChange}
                 />
               </div>
 
@@ -589,15 +587,17 @@ const ResearchProject = ({ formData, handleInputChange, handleSubmit }) => {
                     "Community",
                     "Commercialized",
                     "Thematic Research",
-                  ].map((item, index) => (
-                    <div className="checkbox-item" key={index}>
+                  ].map((item) => (
+                    <div className="checkbox-item" key={item}>
                       <label>
                         <input
                           type="checkbox"
                           name="natureOfProposedResearch"
                           value={item}
                           // checked={formData.natureOfResearch.includes(item)}
-                          checked={ResearchProject.natureOfProposedResearch.includes(item)}
+                          checked={ResearchProject.natureOfProposedResearch.includes(
+                            item
+                          )}
                           onChange={handleCheckboxChange}
                         />
                         {item}
@@ -606,6 +606,22 @@ const ResearchProject = ({ formData, handleInputChange, handleSubmit }) => {
                   ))}
                 </div>
               </div>
+
+              {/* <div className="multiCheckBoxes">
+  <h6>Nature of Proposed Research</h6>
+  {["Basic", "Applied", "Community", "Commercialized", "Thematic Research"].map((item) => (
+    <label key={item}>
+      <input
+        type="checkbox"
+        name="natureOfProposedResearch" // This should match the state key
+        value={item}
+        checked={ResearchProject.natureOfProposedResearch.includes(item)} // Check if item is included
+        onChange={handleCheckboxChange} // Use the updated handler
+      />
+      {item}
+    </label>
+  ))}
+</div> */}
 
               <h6 className="research_project_domain">
                 Domain of Proposed Research
@@ -619,18 +635,20 @@ const ResearchProject = ({ formData, handleInputChange, handleSubmit }) => {
                   "Life Sciences",
                   "Natural & Environment sciences",
                   "Information and Communication Technology",
-                ].map((domain, index) => (
-                  <div key={index}>
+                ].map((domain) => (
+                  <div key={domain}>
                     <label>
                       <input
                         type="checkbox"
                         name="domainOfProposedResearch"
                         value={domain}
                         // checked={formData.domainOfResearch.includes(domain)}
-                        checked={ResearchProject.domainOfProposedResearch.includes(domain)}
+                        checked={ResearchProject.domainOfProposedResearch.includes(
+                          domain
+                        )}
                         onChange={handleCheckboxChange}
                       />
-                      {index + 1}. {domain}
+                      {domain}
                     </label>
                   </div>
                 ))}
@@ -648,7 +666,7 @@ const ResearchProject = ({ formData, handleInputChange, handleSubmit }) => {
                 cols="20"
                 // value={formData.shortSummary}
                 value={ResearchProject.shortSummary}
-                onChange={handleLocalChange}
+                onChange={handleChange}
                 // onChange={handleInputChange}
               />
             </div>
@@ -661,8 +679,8 @@ const ResearchProject = ({ formData, handleInputChange, handleSubmit }) => {
                   type="text"
                   name="projectDuration"
                   // value={formData.year}
-                  value={ResearchProject.projectDuration}
-                  onChange={handleLocalChange}
+                  value={ResearchProject.projectDuration.year}
+                  onChange={handleChange}
                   // onChange={handleInputChange}
                 />
               </div>
@@ -670,9 +688,9 @@ const ResearchProject = ({ formData, handleInputChange, handleSubmit }) => {
                 <label>Total funds requested (Rs):</label>
                 <input
                   type="text"
-                  name="fundsRequested"
-                  value={ResearchProject.fundsRequested}
-                  onChange={handleLocalChange}
+                  name="totalFundsRequested"
+                  value={ResearchProject.projectDuration.totalFundsRequested}
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -681,11 +699,11 @@ const ResearchProject = ({ formData, handleInputChange, handleSubmit }) => {
               <label htmlFor="summary">Summary / Abstract:</label>
               <textarea
                 id="summary"
-                name="summary"
+                name="summaryAbstract"
                 rows="2"
                 cols="20"
-                value={ResearchProject.summary}
-                onChange={handleLocalChange}
+                value={ResearchProject.projectDuration.summaryAbstract}
+                onChange={handleChange}
               />
             </div>
 
@@ -695,11 +713,11 @@ const ResearchProject = ({ formData, handleInputChange, handleSubmit }) => {
               </label>
               <textarea
                 id="background"
-                name="background"
+                name="backgroundoftheProblem"
                 rows="2"
                 cols="20"
-                value={ResearchProject.background}
-                onChange={handleLocalChange}
+                value={ResearchProject.projectDuration.backgroundoftheProblem}
+                onChange={handleChange}
               />
             </div>
 
@@ -766,7 +784,7 @@ const ResearchProject = ({ formData, handleInputChange, handleSubmit }) => {
                 rows="2"
                 cols="20"
                 value={ResearchProject.socioEconomicBenefit}
-                onChange={handleLocalChange}
+                onChange={handleChange}
               />
             </div>
 
@@ -779,12 +797,12 @@ const ResearchProject = ({ formData, handleInputChange, handleSubmit }) => {
                 rows="2"
                 cols="20"
                 value={ResearchProject.methodology}
-                onChange={handleLocalChange}
+                onChange={handleChange}
               />
             </div>
 
-            <h4 className="researchproject_mainheading">Schedule/ Phasing</h4>
-            {ResearchProject.durations.map((duration, index) => {
+            {/* <h4 className="researchproject_mainheading">Schedule/ Phasing</h4>
+            {ResearchProject.schedulephasing && ResearchProject.schedulephasing.map((Schedule, index) => {
               const quarterLabel = `${
                 index + 1 === 1
                   ? "1st"
@@ -806,7 +824,7 @@ const ResearchProject = ({ formData, handleInputChange, handleSubmit }) => {
                     <label>Activities:</label>
                     <input
                       type="text"
-                      value={ResearchProject.durations.activities}
+                      value={Schedule.activities}
                       onChange={(e) =>
                         handleDurationChange(index, e.target.value)
                       }
@@ -814,7 +832,41 @@ const ResearchProject = ({ formData, handleInputChange, handleSubmit }) => {
                   </div>
                 </div>
               );
-            })}
+            })} */}
+
+            <h4 className="researchproject_mainheading">Schedule/ Phasing</h4>
+            {ResearchProject.schedulephasing &&
+              ResearchProject.schedulephasing.map((Schedule, index) => {
+                const quarterLabel = `${
+                  index + 1 === 1
+                    ? "1st"
+                    : index + 1 === 2
+                    ? "2nd"
+                    : index + 1 === 3
+                    ? "3rd"
+                    : index + 1 === 4
+                    ? "4th"
+                    : `${index + 1}th`
+                } Quarter`;
+
+                return (
+                  <div key={index}>
+                    <h6 className="researchproject_subheading">
+                      {index + 1}. Duration/ Time period {quarterLabel}
+                    </h6>
+                    <div className="title-input">
+                      <label>Activities:</label>
+                      <input
+                        type="text"
+                        value={Schedule.activities} // Access activities from the Schedule item
+                        onChange={
+                          (e) => handleDurationChange(index, e.target.value) // Pass the correct index and value
+                        }
+                      />
+                    </div>
+                  </div>
+                );
+              })}
 
             <div className="researchproject_textarea">
               <h4 className="researchproject_mainheading">
@@ -830,12 +882,14 @@ const ResearchProject = ({ formData, handleInputChange, handleSubmit }) => {
                 rows="2"
                 cols="20"
                 value={ResearchProject.priorExperience}
-                onChange={handleLocalChange}
+                onChange={handleChange}
               />
             </div>
 
             <div className="researchproject_btn">
-              <button className="researchproject_button" onClick={handleSubmit}>SAVE</button>
+              <button className="researchproject_button" onClick={handleSave}>
+                SAVE
+              </button>
             </div>
           </div>
 
@@ -849,13 +903,3 @@ const ResearchProject = ({ formData, handleInputChange, handleSubmit }) => {
 };
 
 export default ResearchProject;
-
-
-
-
-
-
-
-
-
-

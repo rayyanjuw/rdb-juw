@@ -23,15 +23,15 @@ const Breadcrumb = ({ items, activePath }) => {
   );
 };
 
-Breadcrumb.propTypes = {
-  items: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      path: PropTypes.string,
-    })
-  ).isRequired,
-    activePath: PropTypes.string.isRequired,
-};
+// Breadcrumb.propTypes = {
+//   items: PropTypes.arrayOf(
+//     PropTypes.shape({
+//       label: PropTypes.string.isRequired,
+//       path: PropTypes.string,
+//     })
+//   ),
+//     activePath: PropTypes.string.isRequired,
+// };
 
 export default Breadcrumb;
 

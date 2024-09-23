@@ -63,8 +63,7 @@ const ProposedProjectBudget = ({onSave}) => {
   };
 
   const handleSave = () => {
-    const budgetData = { text };
-    onSave(budgetData); // Send the data to the parent component
+    onSave(text); // Send the data to the parent component
   };
 
   return (

@@ -119,7 +119,7 @@ import Sidebar from "../../../Sidebar/Sidebar";
 
 
 
-const FacilitiesAndFunding = ({ formData, handleInputChange, handleSubmit }) => {
+const FacilitiesAndFunding = ({ onSave }) => {
   const location = useLocation();
   // const currentPath = location.pathname;
   const breadCrumps = [
@@ -146,14 +146,9 @@ const FacilitiesAndFunding = ({ formData, handleInputChange, handleSubmit }) => 
   ];
 
   const [FacilitiesAndFunding, setFacilitiesAndFunding] = useState({
-    
-    facilitiesAvailable: formData?.facilitiesAndFunding?.facilitiesAvailable || "",
-    otherSourceOfFunding: formData?.facilitiesAndFunding?.otherSourceOfFunding || "N/A",
-    // facilitiesAvailable: "",
-    // otherSourceOfFunding: "N/A",
+      facilitiesAvailable: "",
+      otherSourceOfFunding: "N/A",
   });
-
-  console.log(FacilitiesAndFunding);
 
   const handleLocalChange = (e) => {
     const { name, value } = e.target;
@@ -161,52 +156,15 @@ const FacilitiesAndFunding = ({ formData, handleInputChange, handleSubmit }) => 
       ...prevState,
       [name]: value,
     }));
-
-    if (handleInputChange) {
-      handleInputChange(e);
-    } else {
-      console.error("handleInputChange is not a function");
-    }
   };
 
-  // const handleSubmit = async () => {
-  //   try {
-  //     const facilitiesAndFundingData = {
-  //       facilitiesAvailable: FacilitiesAndFunding.facilitiesAvailable,
-  //       otherSourceOfFunding: FacilitiesAndFunding.otherSourceOfFunding,
-  //     };
-
-  //     // Call the API function
-  //     const createdFacilitiesAndFunding = await createOricFunded(
-  //       facilitiesAndFundingData
-  //     );
-  //     navigate("/oric-funded-project-justification-and-budget-items")
-  //     // Handle success (e.g., display a success message or navigate to another page)
-  //     console.log(
-  //       "Facilities And Funding created successfully:",
-  //       createdFacilitiesAndFunding
-  //     );
-  //     alert("Facilities And Funding created successfully!");
-      
-  //   } catch (error) {
-  //     // Handle error (e.g., display an error message)
-  //     console.error("Failed to create Facilities And Funding:", error);
-  //     alert("Error creating Facilities And Funding.");
-  //   }
-  // };
-
-  // const handleInputChange = (event) => {
-  //   const { name, value } = event.target;
-  //   setFormData((prevState) => ({
-  //     ...prevState,
-  //     [name]: value,
-  //   }));
-  // };
-
-  // const handleSave = () => {
-  //   // Logic to handle form submission or saving data
-  //   console.log("Form Data:", formData);
-  // };
+  const handleSave = () => {
+    if (typeof onSave === 'function') {
+        onSave(FacilitiesAndFunding); // This will trigger the parent's handleSaveAndNext
+    } else {
+        console.error('onSave is not a function');
+    }
+};
 
   return (
     <div className="facilitiesAndfunding-container">
@@ -253,7 +211,7 @@ const FacilitiesAndFunding = ({ formData, handleInputChange, handleSubmit }) => 
             </div>
 
             <div className="facilitiesAndfunding_btn">
-              <button className="facilitiesAndfunding_button" onClick={handleSubmit} >SAVE</button>
+              <button className="facilitiesAndfunding_button" onClick={handleSave} >SAVE</button>
             </div>
           </div>
         </div>

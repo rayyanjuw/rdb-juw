@@ -242,120 +242,32 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Breadcrumb from "../../shared-components/breadcrumps/BreadCrumps";
 // import { createOricFunded } from "../../../api/Api";
 
-const AddORICFundedProjects = ({ formData, handleInputChange, handleSubmit }) => {
+const AddORICFundedProjects = ({ onSave }) => {
+
   // const navigate = useNavigate();
   const location = useLocation();
   const currentPath = location.pathname;
 
+  const [proposalCover, setProposalCover] = useState({
+      title: "",
+      nameOfPI: "",
+      nameOfFaculty: "",
+      totalBudgetRequested: "",
+    })
 
-
-  // const [AddFundedProjects, setFundedProjects] = useState({
-  //   title: formData?.proposalCover?.title || "",
-  //   nameOfPI: formData?.proposalCover?.nameOfPI || "",
-  //   nameOfFaculty: formData?.proposalCover?.nameOfFaculty || "",
-  //   totalBudgetRequested: formData?.proposalCover?.totalBudgetRequested || "",
-  //   // title: formData.title || "",
-  //   // nameOfPI: formData.nameOfPI || "",
-  //   // nameOfFaculty: formData.nameOfFaculty || "",
-  //   // totalBudgetRequested: formData.totalBudgetRequested || "",
-  // });
-  const [AddFundedProjects, setAddFundedProjects] = useState({
-    title: formData?.title || "",
-    nameOfPI: formData?.nameOfPI || "",
-    nameOfFaculty: formData?.nameOfFaculty || "",
-    totalBudgetRequested: formData?.totalBudgetRequested || "",
-  });
-
-  useEffect(() => {
-    setAddFundedProjects({
-      title: formData?.title || "",
-      nameOfPI: formData?.nameOfPI || "",
-      nameOfFaculty: formData?.nameOfFaculty || "",
-      totalBudgetRequested: formData?.totalBudgetRequested || "",
-    });
-  }, [formData]);
-
-  // console.log(AddFundedProjects)
-
-  // useEffect(() => {
-  //   setFundedProjects({
-  //     title: formData?.proposalCover?.title || "",
-  //     nameOfPI: formData?.proposalCover?.nameOfPI || "",
-  //     nameOfFaculty: formData?.proposalCover?.nameOfFaculty || "",
-  //     totalBudgetRequested: formData?.proposalCover?.totalBudgetRequested || "",
-  //     // title: formData.title || "",
-  //     // nameOfPI: formData.nameOfPI || "",
-  //     // nameOfFaculty: formData.nameOfFaculty || "",
-  //     // totalBudgetRequested: formData.totalBudgetRequested || "",
-  //   });
-  // }, [formData]);
-
-  // const handleLocalChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setFundedProjects((prevState) => ({
-  //     ...prevState,
-  //     [name]: value,
-  //   }));
-    
-  //   handleInputChange(e);
-  // };
-
-  // const handleLocalChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setFundedProjects((prevState) => ({
-  //     ...prevState,
-  //     [name]: value,
-  //   }));
-
-
-  //   if (handleInputChange) {
-  //     handleInputChange(e); 
-  //   } else {
-  //     console.error("handleInputChange is not a function");
-  //   }
-  // };
-  const handleLocalChange = (e) => {
-    const { name, value } = e.target;
-    setAddFundedProjects((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-
-    // Call handleInputChange from parent to update the global formData
-    if (handleInputChange) {
-      handleInputChange(e); 
-    } else {
-      console.error("handleInputChange is not a function");
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      setProposalCover(prevState => ({
+        ...prevState,
+        [name]: value
+      }));
     }
-  };
 
-// const handleSubmit = async () => {
-//   try {
-//     // const proposalCoverData = {
-//     //   title: AddFundedProjects.title,
-//     //   nameOfPI: AddFundedProjects.nameOfPI,
-//     //   nameOfFaculty: AddFundedProjects.nameOfFaculty,
-//     //   totalBudgetRequested: AddFundedProjects.totalBudgetRequested,
-//     // };
-//     const proposalCoverData = AddFundedProjects;
-//     const createdProject = await createOricFunded({
-//       proposalCoverData,
-//       // Pass other data as needed
-//     });
-    
 
-//     // Call the API function
-//     // const createdProject = await createOricFunded(proposalCoverData);
-//     navigate("/oric-funded-project-research-project")
-//     // Handle success (e.g., display a success message or navigate to another page)
-//     console.log('Project created successfully:', createdProject);
-//     alert('ORIC Funded Project created successfully!');
-//   } catch (error) {
-//     // Handle error (e.g., display an error message)
-//     console.error('Failed to create ORIC Funded Project:', error);
-//     alert('Error creating ORIC Funded Project.');
-//   }
-// };
+    const handleSave = () => {
+      onSave(proposalCover);
+    }
+
 
 
 
@@ -403,19 +315,19 @@ const AddORICFundedProjects = ({ formData, handleInputChange, handleSubmit }) =>
               <label>Title:</label>
               <input
                 type="text"
-                value={AddFundedProjects.title}
+                value={proposalCover.title}
                 name="title"
                 // onChange={handleInputChange}
-                onChange={handleLocalChange}
+                onChange={handleChange}
               />
             </div>
             <div className="addoric_InputGroup">
               <label>Name of PI:</label>
               <input
                 type="text"
-                value={AddFundedProjects.nameOfPI}
+                value={proposalCover.nameOfPI}
                 name="nameOfPI"
-                onChange={handleLocalChange}
+                onChange={handleChange}
                 // onChange={handleInputChange}
               />
             </div>
@@ -424,9 +336,9 @@ const AddORICFundedProjects = ({ formData, handleInputChange, handleSubmit }) =>
                 <label>Name of Faculty:</label>
                 <input
                   type="text"
-                  value={AddFundedProjects.nameOfFaculty}
+                  value={proposalCover.nameOfFaculty}
                   name="nameOfFaculty"
-                  onChange={handleLocalChange}
+                  onChange={handleChange}
                   // onChange={handleInputChange}
                 />
               </div>
@@ -434,15 +346,15 @@ const AddORICFundedProjects = ({ formData, handleInputChange, handleSubmit }) =>
                 <label>Total Budget Requested:</label>
                 <input
                   type="number"
-                  value={AddFundedProjects.totalBudgetRequested}
+                  value={proposalCover.totalBudgetRequested}
                   name="totalBudgetRequested"
-                  onChange={handleLocalChange}
+                  onChange={handleChange}
                   // onChange={handleInputChange}
                 />
               </div>
             </div>
             <div className="AOF_save-btn">
-              <button className="AOF_savebut" onClick={handleSubmit}>Save</button>
+              <button className="AOF_savebut" onClick={handleSave}>Save</button>
             </div>
           </div>
         </div>

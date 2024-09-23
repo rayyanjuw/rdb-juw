@@ -72,7 +72,7 @@ function App() {
       <Route path="/add-oric" element={<MultiStepForm/>}/>
       {/* <Route path="/add-oric-funded-projects" element={<AddORICFundedProjects/>}/> */}
       <Route path="/oric-funded-project" element={<ORICFundedProject/>}/>
-      {/* <Route path="/oric-funded-project-research-project" element={<ResearchProject/>}/> */}
+      <Route path="/oric-funded-project-research-project" element={<ResearchProject/>}/>
       {/* <Route path="/oric-funded-project-facilities-and-funding" element={<FacilitiesAndFunding/>}/> */}
       {/* <Route path="/oric-funded-project-justification-and-budget-items" element={<JustificationForBudget/>}/> */}
       {/* <Route path="/oric-funded-project-estimated-budget-proposed-research-period" element={<EstimatedBudgetForPRP/>}/> */}

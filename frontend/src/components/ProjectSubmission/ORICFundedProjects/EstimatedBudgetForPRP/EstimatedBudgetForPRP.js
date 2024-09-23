@@ -5,7 +5,7 @@ import Sidebar from "../../../Sidebar/Sidebar";
 import NavBar from "../../../shared-components/navbar/NavBar";
 import Breadcrumb from "../../../shared-components/breadcrumps/BreadCrumps";
 
-const EstimatedBudgetForPRP = ({formData, handleInputChange, handleSubmit}) => {
+const EstimatedBudgetForPRP = ({onSave}) => {
   const location = useLocation();
 
   const [estimatedBudget, setEstimatedBudget] = useState({
@@ -14,18 +14,26 @@ const EstimatedBudgetForPRP = ({formData, handleInputChange, handleSubmit}) => {
     //   { item: "Computer", qty: "", unitPrice: "", amount: "" },
     //   { item: "Printer", qty: "", unitPrice: "", amount: "" },
     // ],
-    permanentEquipment: formData?.estimatedBudget?.permanentEquipment || {
+    permanentEquipment: {
       hotplates: { qty: "", unitPrice: "", amount: "" },
       computer: { qty: "", unitPrice: "", amount: "" },
       printer: { qty: "", unitPrice: "", amount: "" }
     },
-    localTravel: formData?.estimatedBudget?.localTravel || {amount: ""},
-    paperrimAmount: formData?.estimatedBudget?.paperrimAmount || {amount: ""},
-    literatureAndOtherAmount: formData?.estimatedBudget?.literatureAndOtherAmount || {amount: ""},
-    othercostAmount: formData?.estimatedBudget?.othercostAmount || {amount: ""},
+    localTravel: {
+      amount: ""
+    },
+    paperrimAmount: {
+      amount: ""
+    },
+    literatureAndOtherAmount: {
+      amount: ""
+    },
+    othercostAmount:{
+      amount: ""
+    },
   });
 
-  console.log(estimatedBudget)
+
 
 
   // const handleLocalChange = (e, equipmentType, field) => {
@@ -76,13 +84,15 @@ const EstimatedBudgetForPRP = ({formData, handleInputChange, handleSubmit}) => {
         };
       }
     });
-  
-    if (handleInputChange) {
-      handleInputChange(e);
-    } else {
-      console.error("handleInputChange is not a function");
-    }
   };
+
+  const handleSave = () => {
+    if (typeof onSave === 'function') {
+        onSave(estimatedBudget); // This will trigger the parent's handleSaveAndNext
+    } else {
+        console.error('onSave is not a function');
+    }
+};
 
 
   const breadCrumps = [
@@ -212,7 +222,7 @@ const EstimatedBudgetForPRP = ({formData, handleInputChange, handleSubmit}) => {
                     <input
                       type="text"
                       value={estimatedBudget?.permanentEquipment?.printer?.unitPrice}
-                      onChange={(e) => handleLocalChange(e, "printer", "unit")}
+                      onChange={(e) => handleLocalChange(e, "printer", "unitPrice")}
                     />
                   </div>
                   <div className="input-field">
@@ -294,7 +304,7 @@ const EstimatedBudgetForPRP = ({formData, handleInputChange, handleSubmit}) => {
             </div>
 
             <div className="AIP_save-btn">
-              <button className="AIP_savebut" onClick={handleSubmit}>Save</button>
+              <button className="AIP_savebut" onClick={handleSave}>Save</button>
             </div>
           </div>
         </div>

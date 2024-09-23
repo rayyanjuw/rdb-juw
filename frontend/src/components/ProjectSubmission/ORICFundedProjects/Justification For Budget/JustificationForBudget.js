@@ -6,7 +6,7 @@ import NavBar from "../../../shared-components/navbar/NavBar";
 import Sidebar from "../../../Sidebar/Sidebar";
 
 // const JustificationForBudget = (handleSubmit) => {
-const JustificationForBudget = ({ formData, handleInputChange, handleSubmit}) => {
+const JustificationForBudget = ({onSave}) => {
   const location = useLocation();
   const currentPath = location.pathname;
 
@@ -35,12 +35,12 @@ const JustificationForBudget = ({ formData, handleInputChange, handleSubmit}) =>
     },
   ];
   const [justification, setJustification] = useState({
-    scientificEquipment: formData?.justificationForBudgetItems?.scientificEquipment || "",
+    scientificEquipment: "",
       // [{ item: "", justification: "" }],
-    travel: formData?.justificationForBudgetItems?.travel || ""
+    travel: "N/A"
   })
 
-  console.log(justification)
+ 
 
 
   const handleLocalChange = (e) => {
@@ -49,13 +49,6 @@ const JustificationForBudget = ({ formData, handleInputChange, handleSubmit}) =>
       ...prevState,
       [name]: value,
     }));
-
-
-    if (handleInputChange) {
-      handleInputChange(e); 
-    } else {
-      console.error("handleInputChange is not a function");
-    }
   };
 
   // const [formData, setFormData] = useState({
@@ -75,10 +68,13 @@ const JustificationForBudget = ({ formData, handleInputChange, handleSubmit}) =>
   //   }));
   // };
 
-  // const handleSave = () => {
-  //   // Logic to handle form submission or saving data
-  //   console.log("Form Data:", formData);
-  // };
+  const handleSave = () => {
+    if (typeof onSave === 'function') {
+        onSave(justification); // This will trigger the parent's handleSaveAndNext
+    } else {
+        console.error('onSave is not a function');
+    }
+};
 
   return (
     <div className="justificationForBudget-container">
@@ -123,7 +119,7 @@ const JustificationForBudget = ({ formData, handleInputChange, handleSubmit}) =>
             </div>
 
             <div className="justificationForBudget_btn">
-              <button className="justificationForBudget_button" onClick={handleSubmit}>
+              <button className="justificationForBudget_button" onClick={handleSave}>
                 SAVE
               </button>
             </div>

@@ -3,14 +3,17 @@ const path = require('path');
 const { Op } = require("sequelize");
 const { allowedRoles } = require("../config/roles");
 const NationalInternationalGrant = require("../Models/nationalGrantsModels");
+const dotenv = require('dotenv')
+dotenv.config();
+const BASE_URL = process.env.BASE_URL || `http://localhost:${process.env.PORT}`;
 
 // Set up multer storage configuration
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'uploads/');
     },
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + path.extname(file.originalname)); // Save file with a timestamp
+       filename: (req, file, cb) => {
+        cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`);
     }
 });
 
@@ -34,7 +37,7 @@ const createNationalInternationalGrant = async (req, res) => {
        
 
           // Handle file upload
-          const projectDescription = req.file ? req.file.path : null;
+          const projectDescription = req.file.filename ? req.file.path : null;
 
         //   console.log(req.file.path)
         // console.log({

@@ -1075,7 +1075,7 @@ const sideBarData = [
             subsubitem: 'International/National Grants',
             subsuboptions: [
               { subsubsubitem: 'View', subsubsubpath: '/view-international/national-grants' },
-              { subsubsubitem: 'Add New', subsubsubpath: '/add-international/national-grants' },
+              { subsubsubitem: 'Add New', subsubsubpath: '/international/national-grants' },
             ],
           },
         ],

@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import Sidebar from "../../../Sidebar/Sidebar";
 import Breadcrumb from "../../../shared-components/breadcrumps/BreadCrumps";
 import NavBar from "../../../shared-components/navbar/NavBar";
+import axios from "axios";
 
 const ProjectDescription = ({onSave}) => {
   const location = useLocation();
@@ -81,13 +82,31 @@ const ProjectDescription = ({onSave}) => {
     return true;
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (validateForm()) {
-    onSave({
-      file: file,
-    });
-  }
+      const formData = new FormData();
+      formData.append('projectDescription', file); // Match the field name here
+  
+      try {
+        const token = localStorage.getItem('token');
+        const response = await axios.post('http://localhost:5000/api/nationalGrant/create', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${token}`,
+          },
+        });
+  
+        console.log("File uploaded successfully:", response.data);
+        setFile(null);
+        setFileName("");
+        onSave(response.data); // Optional, call parent's onSave
+      } catch (error) {
+        console.error("Error uploading file:", error);
+        setError("Failed to upload the file. Please try again.");
+      }
+    }
   };
+  
 
   return (
     <div className="projectdescription-container">

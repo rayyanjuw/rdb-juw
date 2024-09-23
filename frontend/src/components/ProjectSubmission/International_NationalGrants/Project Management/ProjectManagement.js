@@ -75,7 +75,7 @@ const ProjectManagement = ({onSave}) => {
       setError("Description must be at least 10 characters long.");
       return;
     }
-    onSave({ text });
+    onSave(text);
   };
 
   return (
