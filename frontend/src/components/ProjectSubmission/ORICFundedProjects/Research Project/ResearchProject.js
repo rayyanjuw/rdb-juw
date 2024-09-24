@@ -406,13 +406,13 @@ const ResearchProject = ({ onSave }) => {
       summaryAbstract: "",
       backgroundoftheProblem: "",
     },
-    objectives: [
+    objectives: Array(3).fill(
       {
         description: "",
         measurableOutput: "",
         benefits: "",
       },
-    ],
+    ),
     expectedSocioBenefit: "",
     methodology: "",
     schedulephasing: Array(3).fill({
@@ -429,7 +429,7 @@ const ResearchProject = ({ onSave }) => {
       setResearchProject((prevState) => ({
         ...prevState,
         projectDuration: {
-          ...prevState.principalInvestigator,
+          ...prevState.projectDuration,
           [name]: value,
         },
       }));
@@ -437,7 +437,7 @@ const ResearchProject = ({ onSave }) => {
       setResearchProject((prevState) => ({
         ...prevState,
         objectives: {
-          ...prevState.facultyDetails,
+          ...prevState.objectives,
           [name]: value,
         },
       }));
@@ -607,21 +607,6 @@ const ResearchProject = ({ onSave }) => {
                 </div>
               </div>
 
-              {/* <div className="multiCheckBoxes">
-  <h6>Nature of Proposed Research</h6>
-  {["Basic", "Applied", "Community", "Commercialized", "Thematic Research"].map((item) => (
-    <label key={item}>
-      <input
-        type="checkbox"
-        name="natureOfProposedResearch" // This should match the state key
-        value={item}
-        checked={ResearchProject.natureOfProposedResearch.includes(item)} // Check if item is included
-        onChange={handleCheckboxChange} // Use the updated handler
-      />
-      {item}
-    </label>
-  ))}
-</div> */}
 
               <h6 className="research_project_domain">
                 Domain of Proposed Research
@@ -677,7 +662,8 @@ const ResearchProject = ({ onSave }) => {
                 <label>Year:</label>
                 <input
                   type="text"
-                  name="projectDuration"
+                  name="year"
+                   data-section="projectDuration"
                   // value={formData.year}
                   value={ResearchProject.projectDuration.year}
                   onChange={handleChange}
@@ -689,6 +675,7 @@ const ResearchProject = ({ onSave }) => {
                 <input
                   type="text"
                   name="totalFundsRequested"
+                   data-section="projectDuration"
                   value={ResearchProject.projectDuration.totalFundsRequested}
                   onChange={handleChange}
                 />
@@ -700,6 +687,7 @@ const ResearchProject = ({ onSave }) => {
               <textarea
                 id="summary"
                 name="summaryAbstract"
+                 data-section="projectDuration"
                 rows="2"
                 cols="20"
                 value={ResearchProject.projectDuration.summaryAbstract}
@@ -714,6 +702,7 @@ const ResearchProject = ({ onSave }) => {
               <textarea
                 id="background"
                 name="backgroundoftheProblem"
+                 data-section="projectDuration"
                 rows="2"
                 cols="20"
                 value={ResearchProject.projectDuration.backgroundoftheProblem}

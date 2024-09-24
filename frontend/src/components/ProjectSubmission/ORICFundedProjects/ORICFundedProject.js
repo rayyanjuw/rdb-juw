@@ -1,12 +1,53 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./ORICFundedProject.css";
 import Sidebar from "../../Sidebar/Sidebar";
 import { jsPDF } from "jspdf";
 import * as XLSX from "xlsx";
 import "jspdf-autotable";
 import NavBar from "../../shared-components/navbar/NavBar";
+import { useParams } from "react-router-dom";
+import { fetchORICProjectsById } from "../../../api/Api";
 
 const ORICFundedProject = () => {
+  const { id } = useParams();
+  const [project, setProject] = useState(null);
+
+  useEffect(() => {
+    const loadProject = async () => {
+      try {
+        const fetchedProject = await fetchORICProjectsById(id);
+        setProject(fetchedProject);
+      } catch (error) {
+        console.error("Error fetchiong project details:", error);
+      }
+    };
+
+    loadProject();
+  }, [id]);
+
+  if (!project) {
+    return <div>Loading...</div>;
+  }
+
+  const proposalCover = project.proposalCover
+    ? JSON.parse(project.proposalCover)
+    : {};
+  const researchProject = project.researchProject
+    ? JSON.parse(project.researchProject)
+    : {};
+
+  const facilitiesandFunding = project.facilitiesandFunding
+    ? JSON.parse(project.facilitiesandFunding)
+    : {};
+
+  const justificationForBudgetItems = project.justificationForBudgetItems
+    ? JSON.parse(project.justificationForBudgetItems)
+    : {};
+
+  const estimatedBudget = project.estimatedBudget
+    ? JSON.parse(project.estimatedBudget)
+    : {};
+
   const proposal_coverState = {
     Title:
       "Low cost effective production of alginate salts. Low cost effective production of alginate salts. Low cost effective production of alginate salts. Low cost effective production of alginate salts.",
@@ -18,33 +59,26 @@ const ORICFundedProject = () => {
   };
 
   const research_projectState = {
-    ProjectTitle: "",
-    NatureofProposedResearch: "",
-    DomainofProposedResearch: "",
-    ShortSummaryoftheProject: "",
-    ProjectDuration: "",
-    TotalFundsRequested: "",
-    Summary_or_Abstract: "",
-    ProblemtobeAddressed: "",
+    ProjectTitle: researchProject.projectTitle,
+    NatureofProposedResearch: researchProject.natureOfProposedResearch,
+    DomainofProposedResearch: researchProject.domainOfProposedResearch,
+    ShortSummaryoftheProject: researchProject.shortSummary,
+    ProjectDuration: researchProject.projectDuration.year,
+    TotalFundsRequested: researchProject.projectDuration.totalFundsRequested,
+    Summary_or_Abstract: researchProject.projectDuration.summaryAbstract,
+    ProblemtobeAddressed: researchProject.projectDuration.backgroundoftheProblem,
+   
   };
 
   const ObjectiveswithExpectedOutputs = {
-    Objective1Description: "",
-    MeasurableOutput_or_ExpectedResults1: "",
-    Benefits1: "",
-    Objective2Description: "",
-    MeasurableOutput_or_ExpectedResults2: "",
-    Benefits2: "",
-    Objective3Description: "",
-    MeasurableOutput_or_ExpectedResults3: "",
-    Benefits3: "",
-    ExpectedSocioEconomicBenefit: "",
-    Methodology: "",
-    ActivitiesduringTimeperiod1stQuarter: "",
-    ActivitiesduringTimeperiod2ndQuarter: "",
-    ActivitiesduringTimeperiod3rdQuarter: "",
-    ActivitiesduringTimeperiod4thQuarter: "",
-    ResearcherPriorExperience: "",
+    Objectives: Array.isArray(researchProject.objectives)
+    ? researchProject.objectives.map((objective, index) => ({
+        ObjectiveNumber: index + 1,
+        Description: objective.description || "No Description",
+        MeasurableOutput: objective.measurableOutput || "No Measurable Output",
+        Benefits: objective.benefits || "No Benefits",
+      }))
+    : [], 
   };
 
   const facilitiesAndFundingState = {
@@ -57,7 +91,7 @@ const ORICFundedProject = () => {
     Travel: "",
   };
 
-  const estimatedBudget = [
+  const estimatedBudgetdetail = [
     {
       PermanentEquipment: {
         HotPlatesQty: "",
@@ -86,20 +120,20 @@ const ORICFundedProject = () => {
     let yOffset = 25; // Initial Y position
 
     const sections = [
-      { title: "PROPOSAL COVER", data: proposal_coverState },
+      { title: "PROPOSAL COVER", data: proposalCover },
       { title: "RESEARCH PROJECT", data: research_projectState },
       {
         title: "OBJECTIVES WITH EXPECTED OUTPUTS",
-        data: ObjectiveswithExpectedOutputs,
+        data: ObjectiveswithExpectedOutputs?.Objectives || [],
       },
-      { title: "FACILITIES AND FUNDING", data: facilitiesAndFundingState },
+      { title: "FACILITIES AND FUNDING", data: facilitiesandFunding },
       {
         title: "JUSTIFICATION FOR THE REQUESTED BUDGET ITEMS",
-        data: justification,
+        data: justificationForBudgetItems,
       },
       {
         title: "ESTIMATED BUDGET FOR PROPOSED RESEARCH PERIOD",
-        data: estimatedBudget,
+        data: estimatedBudgetdetail,
       },
     ];
 
@@ -108,41 +142,145 @@ const ORICFundedProject = () => {
       doc.setFontSize(14);
       doc.text(section.title, 14, yOffset);
       yOffset += 10; // Adjust position for the next element
+        // Safeguard each section's data
+        if (!section.data || (!Array.isArray(section.data) && typeof section.data !== "object")) {
+          doc.text("No data available", 14, yOffset);
+          yOffset += 10;
+          return; // Skip to the next section if data is undefined or invalid
+        }
+  
+      // const tableData = Object.entries(section.data).map(([key, value]) => [
+      //   key,
+      //   value,
+      // ]);
 
-      const tableData = Object.entries(section.data).map(([key, value]) => [
-        key,
-        value,
-      ]);
+      // Handle objectives separately to format them
+    // if (section.title === "OBJECTIVES WITH EXPECTED OUTPUTS") {
+    //   section.data.forEach((objective) => {
+    //     doc.setFontSize(12);
+    //     doc.text(`Objective ${objective.ObjectiveNumber}: ${objective.Description}`, 14, yOffset);
+    //     yOffset += 10;
+    //     doc.text(`Measurable Output: ${objective.MeasurableOutput}`, 14, yOffset);
+    //     yOffset += 10;
+    //     doc.text(`Benefits: ${objective.Benefits}`, 14, yOffset);
+    //     yOffset += 10; // Add space after each objective
+    //   });
+    // } else {
+    //   // Create a table for other sections
+    //   const tableData = Object.entries(section.data).map(([key, value]) => [
+    //     key,
+    //     value,
+    //   ]);
 
-      // Create a table for the section
-      doc.autoTable({
-        startY: yOffset,
-        head: [["Key", "Value"]],
-        body: tableData,
-        theme: "grid",
-        headStyles: {
-          fillColor: [79, 129, 189], // Blue color for header background
-          textColor: [255, 255, 255], // White color for header text
-          fontStyle: "bold",
-        },
-        bodyStyles: {
-          fillColor: [226, 236, 255], // Light blue color for body background
-          textColor: [0, 0, 0], // Black color for body text
-        },
-        alternateRowStyles: {
-          fillColor: [255, 255, 255], // White background for alternate rows
-        },
-        styles: {
-          lineColor: [0, 0, 0], // Black border for cells
-          lineWidth: 0.1,
-          fontSize: 10,
-        },
-        margin: { top: 10, left: 14, right: 14 },
-        didDrawPage: (data) => {
-          yOffset = data.cursor.y; // Update yOffset to the position after the table
-        },
-      });
+    //   // Create a table for the section
+    //   doc.autoTable({
+    //     startY: yOffset,
+    //     head: [["Key", "Value"]],
+    //     body: tableData,
+    //     theme: "grid",
+    //     headStyles: {
+    //       fillColor: [79, 129, 189], // Blue color for header background
+    //       textColor: [255, 255, 255], // White color for header text
+    //       fontStyle: "bold",
+    //     },
+    //     bodyStyles: {
+    //       fillColor: [226, 236, 255], // Light blue color for body background
+    //       textColor: [0, 0, 0], // Black color for body text
+    //     },
+    //     alternateRowStyles: {
+    //       fillColor: [255, 255, 255], // White background for alternate rows
+    //     },
+    //     styles: {
+    //       lineColor: [0, 0, 0], // Black border for cells
+    //       lineWidth: 0.1,
+    //       fontSize: 10,
+    //     },
+    //     margin: { top: 10, left: 14, right: 14 },
+    //     didDrawPage: (data) => {
+    //       yOffset = data.cursor.y; // Update yOffset to the position after the table
+    //     },
+    //   });
+    // }
 
+      // Handle objectives in a table format
+      if (section.title === "OBJECTIVES WITH EXPECTED OUTPUTS") {
+        if (Array.isArray(section.data)) {
+          const objectivesData = section.data.map((objective, index) => [
+            `Objective ${objective.ObjectiveNumber}`,
+            objective.Description || "No Description",
+            objective.MeasurableOutput || "No Measurable Output",
+            objective.Benefits || "No Benefits",
+          ]);
+  
+          // Create a table for objectives
+          doc.autoTable({
+            startY: yOffset,
+            head: [["Objective", "Description", "Measurable Output", "Benefits"]],
+            body: objectivesData,
+            theme: "grid",
+            headStyles: {
+              fillColor: [79, 129, 189], // Blue color for header background
+              textColor: [255, 255, 255], // White color for header text
+              fontStyle: "bold",
+            },
+            bodyStyles: {
+              fillColor: [226, 236, 255], // Light blue color for body background
+              textColor: [0, 0, 0], // Black color for body text
+            },
+            alternateRowStyles: {
+              fillColor: [255, 255, 255], // White background for alternate rows
+            },
+            styles: {
+              lineColor: [0, 0, 0], // Black border for cells
+              lineWidth: 0.1,
+              fontSize: 10,
+            },
+            margin: { top: 10, left: 14, right: 14 },
+            didDrawPage: (data) => {
+              yOffset = data.cursor.y; // Update yOffset to the position after the table
+            },
+          });
+  
+          yOffset += 10 + objectivesData.length * 10; // Space after the objectives table
+        }
+      } else {
+        // Handle non-objective sections with a table
+        const tableData = Object.entries(section.data).map(([key, value]) => [
+          key,
+          value || "N/A", // Default to "N/A" if a value is undefined
+        ]);
+  
+        doc.autoTable({
+          startY: yOffset,
+          head: [["Key", "Value"]],
+          body: tableData,
+          theme: "grid",
+          headStyles: {
+            fillColor: [79, 129, 189], // Blue color for header background
+            textColor: [255, 255, 255], // White color for header text
+            fontStyle: "bold",
+          },
+          bodyStyles: {
+            fillColor: [226, 236, 255], // Light blue color for body background
+            textColor: [0, 0, 0], // Black color for body text
+          },
+          alternateRowStyles: {
+            fillColor: [255, 255, 255], // White background for alternate rows
+          },
+          styles: {
+            lineColor: [0, 0, 0], // Black border for cells
+            lineWidth: 0.1,
+            fontSize: 10,
+          },
+          margin: { top: 10, left: 14, right: 14 },
+          didDrawPage: (data) => {
+            yOffset = data.cursor.y; // Update yOffset to the position after the table
+          },
+        });
+  
+        yOffset += 10; // Space between tables
+      }
+    
       yOffset += 10; // Space between tables
 
       // If the content reaches the bottom of the page, add a new page
@@ -152,91 +290,229 @@ const ORICFundedProject = () => {
       }
     });
 
+     // Handle estimatedBudget separately, as per your frontend structure
+   // Handle estimatedBudget separately, with a table format
+   if (estimatedBudget) {
+    doc.setFontSize(14);
+    doc.text("ESTIMATED BUDGET FOR PROPOSED RESEARCH PERIOD", 14, yOffset);
+    yOffset += 10;
+
+    // Prepare table data for estimatedBudget
+    const estimatedBudgetData = [
+      ["Permanent Equipment", ""],
+    ];
+
+    Object.entries(estimatedBudget.permanentEquipment).forEach(([equipment, details]) => {
+      estimatedBudgetData.push([equipment.charAt(0).toUpperCase() + equipment.slice(1), `Qty: ${details.qty}, Unit Price: ${details.unitPrice}, Amount: ${details.amount}`]);
+    });
+
+    estimatedBudgetData.push(["B. Paper Rim", estimatedBudget.paperrimAmount.amount]);
+    estimatedBudgetData.push(["C. Literature, documentation, online literature search, contingencies, postage", estimatedBudget.literatureAndOtherAmount.amount]);
+    estimatedBudgetData.push(["D. Local Travel", estimatedBudget.localTravel.amount]);
+    estimatedBudgetData.push(["E. Other costs", estimatedBudget.othercostAmount.amount]);
+
+    // Create a table for estimated budget
+    doc.autoTable({
+      startY: yOffset,
+      head: [["Item", "Details"]],
+      body: estimatedBudgetData,
+      theme: "grid",
+      headStyles: {
+        fillColor: [79, 129, 189],
+        textColor: [255, 255, 255],
+        fontStyle: "bold",
+      },
+      bodyStyles: {
+        fillColor: [226, 236, 255],
+        textColor: [0, 0, 0],
+      },
+      alternateRowStyles: {
+        fillColor: [255, 255, 255],
+      },
+      styles: {
+        lineColor: [0, 0, 0],
+        lineWidth: 0.1,
+        fontSize: 10,
+      },
+      margin: { top: 10, left: 14, right: 14 },
+      didDrawPage: (data) => {
+        yOffset = data.cursor.y; // Update yOffset to the position after the table
+      },
+    });
+
+    yOffset += 10; // Space after the budget table
+  }
+
     doc.save("ORICFundedProject.pdf");
   };
 
 
-  const downloadORICFundedProjectExcel = () => {
-    // Create a new workbook and worksheet
-    const workbook = XLSX.utils.book_new();
-    const worksheet = XLSX.utils.aoa_to_sheet([]);
 
-    // Initialize row index
-    let rowIndex = 0;
+// Function to download ORIC Funded Project data as an Excel file
+const downloadORICFundedProjectExcel = () => {
+  // Create a new workbook
+  const workbook = XLSX.utils.book_new();
+  const sections = [
+    { title: "PROPOSAL COVER", data: proposalCover },
+    { title: "RESEARCH PROJECT", data: research_projectState },
+    {
+      title: "OBJECTIVES WITH EXPECTED OUTPUTS",
+      data: ObjectiveswithExpectedOutputs?.Objectives || [],
+    },
+    { title: "FACILITIES AND FUNDING", data: facilitiesandFunding },
+    {
+      title: "JUSTIFICATION FOR THE REQUESTED BUDGET ITEMS",
+      data: justificationForBudgetItems,
+    },
+    {
+      title: "ESTIMATED BUDGET FOR PROPOSED RESEARCH PERIOD",
+      data: estimatedBudgetdetail,
+    },
+  ];
 
-    // Define the sections with their respective data
-    const sections = [
-      { title: "PROPOSAL COVER", data: proposal_coverState },
-      { title: "RESEARCH PROJECT", data: research_projectState },
-      {
-        title: "OBJECTIVES WITH EXPECTED OUTPUTS",
-        data: ObjectiveswithExpectedOutputs,
-      },
-      { title: "FACILITIES AND FUNDING", data: facilitiesAndFundingState },
-      { title: "JUSTIFICATION", data: justification },
-      { title: "ESTIMATED BUDGET", data: estimatedBudget },
-    ];
+  sections.forEach((section) => {
+    // Create data for each section
+    let sheetData = [];
 
-    // Loop through each section and add the content to the worksheet
-    sections.forEach((section) => {
-      // Add the section title as a header row
-      const headerRow = [section.title];
-      XLSX.utils.sheet_add_aoa(worksheet, [headerRow], {
-        origin: `A${rowIndex + 1}`,
-      });
-
-      // Style the header row
-      const headerCell = XLSX.utils.encode_cell({ r: rowIndex, c: 0 });
-      worksheet[headerCell] = worksheet[headerCell] || {};
-      worksheet[headerCell].s = {
-        font: { bold: true, color: { rgb: "FFFFFF" } },
-        fill: { fgColor: { rgb: "4F81BD" } },
-        alignment: { horizontal: "center", vertical: "center" },
-      };
-
-      // Extract keys and values from the section data
-      const keys = Object.keys(section.data);
-      const values = Object.values(section.data);
-
-      // Add the keys and values as table rows
-      const tableData = keys.map((key, idx) => [key, values[idx]]);
-      XLSX.utils.sheet_add_aoa(worksheet, tableData, {
-        origin: `A${rowIndex + 2}`,
-      });
-
-      // Apply background color and border styling to the table cells
-      for (let r = rowIndex + 1; r <= rowIndex + keys.length + 1; r++) {
-        for (let c = 0; c < 2; c++) {
-          const cell = XLSX.utils.encode_cell({ r, c });
-          worksheet[cell] = worksheet[cell] || {};
-          worksheet[cell].s = {
-            fill: { fgColor: { rgb: "E2ECFF" } },
-            border: {
-              top: { style: "thin", color: { rgb: "000000" } },
-              bottom: { style: "thin", color: { rgb: "000000" } },
-              left: { style: "thin", color: { rgb: "000000" } },
-              right: { style: "thin", color: { rgb: "000000" } },
-            },
-          };
-        }
+    if (section.title === "OBJECTIVES WITH EXPECTED OUTPUTS") {
+      // Format objectives specifically
+      sheetData.push(["Objective", "Description", "Measurable Output", "Benefits"]);
+      if (Array.isArray(section.data)) {
+        section.data.forEach((objective) => {
+          sheetData.push([
+            `Objective ${objective.ObjectiveNumber}`,
+            objective.Description || "No Description",
+            objective.MeasurableOutput || "No Measurable Output",
+            objective.Benefits || "No Benefits",
+          ]);
+        });
       }
+    } else {
+      // For other sections, format as key-value pairs
+      sheetData.push(["Key", "Value"]);
+      Object.entries(section.data || {}).forEach(([key, value]) => {
+        sheetData.push([key, value || "N/A"]); // Default to "N/A" if value is undefined
+      });
+    }
 
-      // Adjust column widths for the key and value columns
-      worksheet["!cols"] = [
-        { wch: 30 }, // Width for the key column
-        { wch: 50 }, // Width for the value column
-      ];
+    // Create a worksheet from the sheet data
+    const worksheet = XLSX.utils.aoa_to_sheet(sheetData);
 
-      // Update the rowIndex for the next section, adding spacing
-      rowIndex += keys.length + 3;
+    // Add the worksheet to the workbook
+    XLSX.utils.book_append_sheet(workbook, worksheet, section.title);
+  });
+
+  // Handle estimatedBudget separately
+  if (estimatedBudget) {
+    let estimatedBudgetData = [["Item", "Details"]];
+    estimatedBudgetData.push(["Permanent Equipment", ""]);
+
+    Object.entries(estimatedBudget.permanentEquipment).forEach(([equipment, details]) => {
+      estimatedBudgetData.push([
+        equipment.charAt(0).toUpperCase() + equipment.slice(1),
+        `Qty: ${details.qty}, Unit Price: ${details.unitPrice}, Amount: ${details.amount}`,
+      ]);
     });
 
-    // Append the worksheet to the workbook
-    XLSX.utils.book_append_sheet(workbook, worksheet, "ORIC Funded Project");
+    estimatedBudgetData.push(["B. Paper Rim", estimatedBudget.paperrimAmount.amount]);
+    estimatedBudgetData.push([
+      "C. Literature, documentation, online literature search, contingencies, postage",
+      estimatedBudget.literatureAndOtherAmount.amount,
+    ]);
+    estimatedBudgetData.push(["D. Local Travel", estimatedBudget.localTravel.amount]);
+    estimatedBudgetData.push(["E. Other costs", estimatedBudget.othercostAmount.amount]);
 
-    // Trigger the download of the Excel file
-    XLSX.writeFile(workbook, "ORICFundedProject.xlsx");
-  };
+    // Create a worksheet for the estimated budget
+    const estimatedBudgetWorksheet = XLSX.utils.aoa_to_sheet(estimatedBudgetData);
+    XLSX.utils.book_append_sheet(workbook, estimatedBudgetWorksheet, "Estimated Budget");
+  }
+
+  // Generate Excel file and trigger download
+  XLSX.writeFile(workbook, "ORICFundedProject.xlsx");
+};
+
+
+  // const downloadORICFundedProjectExcel = () => {
+  //   // Create a new workbook and worksheet
+  //   const workbook = XLSX.utils.book_new();
+  //   const worksheet = XLSX.utils.aoa_to_sheet([]);
+
+  //   // Initialize row index
+  //   let rowIndex = 0;
+
+  //   // Define the sections with their respective data
+  //   const sections = [
+  //     { title: "PROPOSAL COVER", data: proposal_coverState },
+  //     { title: "RESEARCH PROJECT", data: research_projectState },
+  //     {
+  //       title: "OBJECTIVES WITH EXPECTED OUTPUTS",
+  //       data: ObjectiveswithExpectedOutputs,
+  //     },
+  //     { title: "FACILITIES AND FUNDING", data: facilitiesAndFundingState },
+  //     { title: "JUSTIFICATION", data: justification },
+  //     { title: "ESTIMATED BUDGET", data: estimatedBudget },
+  //   ];
+
+  //   // Loop through each section and add the content to the worksheet
+  //   sections.forEach((section) => {
+  //     // Add the section title as a header row
+  //     const headerRow = [section.title];
+  //     XLSX.utils.sheet_add_aoa(worksheet, [headerRow], {
+  //       origin: `A${rowIndex + 1}`,
+  //     });
+
+  //     // Style the header row
+  //     const headerCell = XLSX.utils.encode_cell({ r: rowIndex, c: 0 });
+  //     worksheet[headerCell] = worksheet[headerCell] || {};
+  //     worksheet[headerCell].s = {
+  //       font: { bold: true, color: { rgb: "FFFFFF" } },
+  //       fill: { fgColor: { rgb: "4F81BD" } },
+  //       alignment: { horizontal: "center", vertical: "center" },
+  //     };
+
+  //     // Extract keys and values from the section data
+  //     const keys = Object.keys(section.data);
+  //     const values = Object.values(section.data);
+
+  //     // Add the keys and values as table rows
+  //     const tableData = keys.map((key, idx) => [key, values[idx]]);
+  //     XLSX.utils.sheet_add_aoa(worksheet, tableData, {
+  //       origin: `A${rowIndex + 2}`,
+  //     });
+
+  //     // Apply background color and border styling to the table cells
+  //     for (let r = rowIndex + 1; r <= rowIndex + keys.length + 1; r++) {
+  //       for (let c = 0; c < 2; c++) {
+  //         const cell = XLSX.utils.encode_cell({ r, c });
+  //         worksheet[cell] = worksheet[cell] || {};
+  //         worksheet[cell].s = {
+  //           fill: { fgColor: { rgb: "E2ECFF" } },
+  //           border: {
+  //             top: { style: "thin", color: { rgb: "000000" } },
+  //             bottom: { style: "thin", color: { rgb: "000000" } },
+  //             left: { style: "thin", color: { rgb: "000000" } },
+  //             right: { style: "thin", color: { rgb: "000000" } },
+  //           },
+  //         };
+  //       }
+  //     }
+
+  //     // Adjust column widths for the key and value columns
+  //     worksheet["!cols"] = [
+  //       { wch: 30 }, // Width for the key column
+  //       { wch: 50 }, // Width for the value column
+  //     ];
+
+  //     // Update the rowIndex for the next section, adding spacing
+  //     rowIndex += keys.length + 3;
+  //   });
+
+  //   // Append the worksheet to the workbook
+  //   XLSX.utils.book_append_sheet(workbook, worksheet, "ORIC Funded Project");
+
+  //   // Trigger the download of the Excel file
+  //   XLSX.writeFile(workbook, "ORICFundedProject.xlsx");
+  // };
 
   const downloadORICFundedProjectCSV = () => {
     const csvContent = "data:text/csv;charset=utf-8,";
@@ -313,26 +589,26 @@ const ORICFundedProject = () => {
 
           <div className="oricfundedproject-table-data">
             <div className="oricfundedproject-table-container">
-              <h2>Project Title: test</h2>
+              <h2>Project Title: {proposalCover.title}</h2>
               <div className="oricfundedproject-list-table">
                 <div className="project_detail">
                   <h5>PROPOSAL COVER</h5>
                 </div>
                 <div className="oricfundedproject-list-table-format title">
                   <b>Title:</b>
-                  <span>{proposal_coverState.Title}</span>
+                  <span>{proposalCover.title || "N/A"}</span>
                 </div>
                 <div className="oricfundedproject-list-table-format">
                   <b>Owner of IP:</b>
-                  <span>{proposal_coverState.NameofPI}</span>
+                  <span>{proposalCover.nameOfPI || "N/A"}</span>
                 </div>
                 <div className="oricfundedproject-list-table-format">
                   <b>Address:</b>
-                  <span>{proposal_coverState.NameofFaculty}</span>
+                  <span>{proposalCover.nameOfFaculty || "N/A"}</span>
                 </div>
                 <div className="oricfundedproject-list-table-format">
                   <b>Field of Invention:</b>
-                  <span>{proposal_coverState.TotalBudgetRequested}</span>
+                  <span>{proposalCover.totalBudgetRequested || "N/A"}</span>
                 </div>
               </div>
               <div className="oricfundedproject-list-table">
@@ -341,145 +617,93 @@ const ORICFundedProject = () => {
                 </div>
                 <div className="oricfundedproject-list-table-format title">
                   <b>Project Title</b>
-                  <span>{research_projectState.ProjectTitle}</span>
+                  <span>{researchProject.projectTitle}</span>
                 </div>
                 <div className="oricfundedproject-list-table-format">
                   <b>Nature of Proposed Research</b>
-                  <span>{research_projectState.NatureofProposedResearch}</span>
+                  <span>{researchProject.natureOfProposedResearch}</span>
                 </div>
                 <div className="oricfundedproject-list-table-format">
                   <b>Domain of Proposed Research</b>
-                  <span>{research_projectState.DomainofProposedResearch}</span>
+                  <span>{researchProject.domainOfProposedResearch}</span>
                 </div>
                 <div className="oricfundedproject-list-table-format">
                   <b>Short Summary of the Project</b>
-                  <span>{research_projectState.ShortSummaryoftheProject}</span>
+                  <span>{researchProject.shortSummary}</span>
                 </div>
                 <div className="oricfundedproject-list-table-format">
                   <b>Project Duration (Years)</b>
-                  <span>{research_projectState.ProjectDuration}</span>
+                  <span>
+                    {researchProject.projectDuration.year || "Loading..."}
+                  </span>
                 </div>
                 <div className="oricfundedproject-list-table-format">
                   <b>Total Funds Requested (Rs)</b>
-                  <span>{research_projectState.TotalFundsRequested}</span>
+                  <span>
+                    {researchProject.projectDuration.totalFundsRequested}
+                  </span>
                 </div>
                 <div className="oricfundedproject-list-table-format">
                   <b>Summary / Abstract</b>
-                  <span>{research_projectState.Summary_or_Abstract}</span>
+                  <span>{researchProject.projectDuration.summaryAbstract}</span>
                 </div>
                 <div className="oricfundedproject-list-table-format">
                   <b>Background of The Problem to be Addressed</b>
-                  <span>{research_projectState.ProblemtobeAddressed}</span>
+                  <span>
+                    {researchProject.projectDuration.backgroundoftheProblem}
+                  </span>
                 </div>
               </div>
               <div className="oricfundedproject-list-table">
-                <div className="project_detail">
-                  <h5>Objectives with Expected Outputs</h5>
-                </div>
-                <div className="oricfundedproject-list-table-format title">
-                  <b>Objective 1 Description</b>
-                  <span>
-                    {ObjectiveswithExpectedOutputs.Objective1Description}
-                  </span>
-                </div>
-                <div className="oricfundedproject-list-table-format">
-                  <b>Measurable Output / Expected Results</b>
-                  <span>
-                    {
-                      ObjectiveswithExpectedOutputs.MeasurableOutput_or_ExpectedResults1
-                    }
-                  </span>
-                </div>
-                <div className="oricfundedproject-list-table-format">
-                  <b>Benefits</b>
-                  <span>{ObjectiveswithExpectedOutputs.Benefits1}</span>
-                </div>
-                <div className="oricfundedproject-list-table-format">
-                  <b>Objective 2 Description</b>
-                  <span>
-                    {ObjectiveswithExpectedOutputs.Objective2Description}
-                  </span>
-                </div>
-                <div className="oricfundedproject-list-table-format">
-                  <b>Measurable Output / Expected Results</b>
-                  <span>
-                    {
-                      ObjectiveswithExpectedOutputs.MeasurableOutput_or_ExpectedResults2
-                    }
-                  </span>
-                </div>
-                <div className="oricfundedproject-list-table-format">
-                  <b>Benefits</b>
-                  <span>{ObjectiveswithExpectedOutputs.Benefits2}</span>
-                </div>
-                <div className="oricfundedproject-list-table-format">
-                  <b>Objective 3 Description</b>
-                  <span>
-                    {ObjectiveswithExpectedOutputs.Objective3Description}
-                  </span>
-                </div>
-                <div className="oricfundedproject-list-table-format">
-                  <b>Measurable Output / Expected Results</b>
-                  <span>
-                    {
-                      ObjectiveswithExpectedOutputs.MeasurableOutput_or_ExpectedResults3
-                    }
-                  </span>
-                </div>
-                <div className="oricfundedproject-list-table-format">
-                  <b>Benefits</b>
-                  <span>{ObjectiveswithExpectedOutputs.Benefits3}</span>
-                </div>
+                <b>Objectives with Expected Outputs</b>
+                {researchProject.objectives.map((objective, index) => (
+                  <div key={index} className="objective-container">
+                    <div className="oricfundedproject-list-table-format title">
+                      <b>Objective {index + 1} Description</b>
+                      <span>{objective.description}</span>
+                    </div>
+                    <div className="oricfundedproject-list-table-format">
+                      <b>Measurable Output / Expected Results</b>
+                      <span>{objective.measurableOutput}</span>
+                    </div>
+                    <div className="oricfundedproject-list-table-format">
+                      <b>Benefits</b>
+                      <span>{objective.benefits}</span>
+                    </div>
+                  </div>
+                ))}
+
                 <div className="oricfundedproject-list-table-format">
                   <b>Expected Socio-Economic Benefit</b>
-                  <span>
-                    {ObjectiveswithExpectedOutputs.ExpectedSocioEconomicBenefit}
-                  </span>
+                  <span>{researchProject.socioEconomicBenefit}</span>
                 </div>
                 <div className="oricfundedproject-list-table-format">
                   <b>Methodology</b>
-                  <span>{ObjectiveswithExpectedOutputs.Methodology}</span>
+                  <span>{researchProject.methodology}</span>
                 </div>
-                <div className="oricfundedproject-list-table-format">
-                  <b>Activities during Time period 1st Quarter</b>
-                  <span>
-                    {
-                      ObjectiveswithExpectedOutputs.ActivitiesduringTimeperiod1stQuarter
-                    }
-                  </span>
-                </div>
-                <div className="oricfundedproject-list-table-format">
-                  <b>Activities during Time period 2nd Quarter</b>
-                  <span>
-                    {
-                      ObjectiveswithExpectedOutputs.ActivitiesduringTimeperiod2ndQuarter
-                    }
-                  </span>
-                </div>
-                <div className="oricfundedproject-list-table-format">
-                  <b>Activities during Time period 3rd Quarter</b>
-                  <span>
-                    {
-                      ObjectiveswithExpectedOutputs.ActivitiesduringTimeperiod3rdQuarter
-                    }
-                  </span>
-                </div>
-                <div className="oricfundedproject-list-table-format">
-                  <b>Activities during Time period 4th Quarter</b>
-                  <span>
-                    {
-                      ObjectiveswithExpectedOutputs.ActivitiesduringTimeperiod4thQuarter
-                    }
-                  </span>
-                </div>
+                {researchProject.schedulephasing.length > 0 ? (
+                  researchProject.schedulephasing.map((phase, index) => (
+                    <div key={index} className="schedule-phase-container">
+                      <div className="oricfundedproject-list-table-format">
+                        <b>
+                          Activities during Time period {index + 1}st Quarter{" "}
+                        </b>
+                        <span>{phase.activities}</span>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div className="oricfundedproject-list-table-format">
+                    <span>No schedule phasing activities available.</span>
+                  </div>
+                )}
+
                 <div className="oricfundedproject-list-table-format">
                   <b>
                     Researcher’s Prior Experience in Relation to Current Project
                     Details
                   </b>
-                  <span>
-                    {ObjectiveswithExpectedOutputs.ResearcherPriorExperience}
-                  </span>
+                  <span>{researchProject.priorExperience}</span>
                 </div>
               </div>
 
@@ -492,15 +716,11 @@ const ORICFundedProject = () => {
                     Facilities available for the research project in the
                     department
                   </b>
-                  <span>
-                    {
-                      facilitiesAndFundingState.Facilitiesavailableinthedepartment
-                    }
-                  </span>
+                  <span>{facilitiesandFunding.facilitiesAvailable}</span>
                 </div>
                 <div className="oricfundedproject-list-table-format">
                   <b>Other source of funding (if any)</b>
-                  <span>{facilitiesAndFundingState.otherfundingsources}</span>
+                  <span>{facilitiesandFunding.otherSourceOfFunding}</span>
                 </div>
               </div>
 
@@ -510,11 +730,11 @@ const ORICFundedProject = () => {
                 </div>
                 <div className="oricfundedproject-list-table-format title">
                   <b>Scientific Equipment (if any)</b>
-                  <span>{justification.ScientificEquipment}</span>
+                  <span>{justificationForBudgetItems.scientificEquipment}</span>
                 </div>
                 <div className="oricfundedproject-list-table-format">
                   <b>Travel (if required)</b>
-                  <span>{justification.Travel}</span>
+                  <span>{justificationForBudgetItems.travel}</span>
                 </div>
               </div>
 
@@ -523,27 +743,41 @@ const ORICFundedProject = () => {
                   <h5>ESTIMATED BUDGET FOR PROPOSED RESEARCH PERIOD</h5>
                 </div>
                 <div className="oricfundedproject-list-table-format title">
-                  <b>A. Permanent Equipment</b>
-                  <span>{estimatedBudget.PermanentEquipment}</span>
+                <h6>Permanent Equipment</h6>
+                <span className="">
+                    
+                      <ul>
+                        {Object.entries(
+                          estimatedBudget.permanentEquipment
+                        ).map(([equipment, details], index) => (
+                          <li key={index} className="diskstyle">
+                            {equipment.charAt(0).toUpperCase() +
+                              equipment.slice(1)}{" "}
+                            Qty: {details.qty}, Unit Price: {details.unitPrice},
+                            Amount: {details.amount}
+                          </li>
+                        ))}
+                      </ul>
+                    </span>
                 </div>
                 <div className="oricfundedproject-list-table-format">
                   <b>B. Paper Rim</b>
-                  <span>{estimatedBudget.PaperRimy}</span>
+                  <span>{estimatedBudget.paperrimAmount.amount}</span>
                 </div>
                 <div className="oricfundedproject-list-table-format">
                   <b>
                     C. Literature, documentation, information, online literature
                     search, contingencies, postage
                   </b>
-                  <span>{estimatedBudget.Literature}</span>
+                  <span>{estimatedBudget.literatureAndOtherAmount.amount}</span>
                 </div>
                 <div className="oricfundedproject-list-table-format">
                   <b>D. Local Travel (For project involving field work etc.)</b>
-                  <span>{estimatedBudget.LocalTravel}</span>
+                  <span>{estimatedBudget.localTravel.amount}</span>
                 </div>
                 <div className="oricfundedproject-list-table-format">
                   <b>E. Other costs (specify)</b>
-                  <span>{justification.OtherCosts}</span>
+                  <span>{estimatedBudget.othercostAmount.amount}</span>
                 </div>
               </div>
             </div>

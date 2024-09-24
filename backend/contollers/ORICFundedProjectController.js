@@ -97,6 +97,46 @@ const createOricFunded = async (req, res) => {
     }
 };
 
+const getOricFundedProjectById = async (req, res) => {
+    try {
+        const { user } = req;
+        const { role: userRole, departmentId, impersonatorRole, impersonating } = user;
+        const { id } = req.params; // Extract project ID from URL params
+
+        const oricFundedProject = await ORICFundedProject.findByPk(id);
+
+        if (!oricFundedProject) {
+            return res.status(404).json({ error: 'ORIC Funded Project not found' });
+        }
+
+        // Determine the effective role and department ID
+        const effectiveRole = impersonating ? impersonatorRole : userRole;
+        const effectiveDepartmentId = impersonating ? user.departmentId : departmentId;
+
+        // Access control logic
+        if (['admin', 'manager'].includes(effectiveRole)) {
+            // Admins and managers can access any project
+            return res.status(200).json(oricFundedProject);
+        } else if (['dean', 'chairperson'].includes(effectiveRole)) {
+            // Deans and Chairpersons can access projects in their own department
+            if (oricFundedProject.departmentId !== effectiveDepartmentId) {
+                return res.status(403).json({ error: 'Unauthorized: You can only access projects in your own department' });
+            }
+            return res.status(200).json(oricFundedProject);
+        } else if (effectiveRole === 'researcher') {
+            // Researchers can only access their own projects
+            if (oricFundedProject.userId !== user.id) {
+                return res.status(403).json({ error: 'Unauthorized: You can only access your own projects' });
+            }
+            return res.status(200).json(oricFundedProject);
+        } else {
+            // Other roles are unauthorized
+            return res.status(403).json({ error: 'Unauthorized' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to retrieve ORIC Funded Project', details: error.message });
+    }
+};
 
 
 const getAllOricFundedProjects = async (req, res) => {
@@ -205,6 +245,8 @@ const deleteOricFundedProject = async (req, res) => {
     }
 };
 
+
+
 // Approve or reject a project
 const approveOrRejectProject = async (req, res) => {
     try {
@@ -293,5 +335,6 @@ module.exports = {
     updateOricFundedProject, 
     deleteOricFundedProject,
     approveOrRejectProject,
-    getAllResearchProjects
+    getAllResearchProjects,
+    getOricFundedProjectById
 }

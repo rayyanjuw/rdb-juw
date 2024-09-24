@@ -521,3 +521,42 @@ export const createOricFunded = async (proposalCoverData, researchProjectData, f
   }
 };
 
+
+export const fetchORICProjects = async () => {
+  try {
+    const response = await api.get("/oricfundedproject/getAll", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    console.log("Successfully fetched all intellectual properties");
+    return response.data;
+  } catch (error) {
+    console.log(
+      "Error While Fetching Intellectual Properties",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error(
+      error.response
+        ? error.response.data.error
+        : "Failed to Fetch All Intellectual Properties"
+    );
+  }
+};
+
+export const fetchORICProjectsById = async (id) => {
+  try {
+
+    const response = await api.get(`/oricfundedproject/oricby/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      }
+    });
+    
+    console.log(response.data)
+    return  response.data;
+  } catch (error) {
+    console.error("Error fetching project by id", error);
+    throw error
+  }
+}

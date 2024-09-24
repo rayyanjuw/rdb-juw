@@ -8,7 +8,7 @@ import axios from "axios";
 import { createOricFunded } from "../../../../api/Api";
 
 const MultiStepForm = () => {
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(1);
 
   const [formData, setFormData] = useState({
     proposalCover: {},

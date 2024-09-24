@@ -71,7 +71,7 @@ function App() {
       <Route path="/view-oric-funded-projects" element={<ViewORICFundedProjects/>}/>
       <Route path="/add-oric" element={<MultiStepForm/>}/>
       {/* <Route path="/add-oric-funded-projects" element={<AddORICFundedProjects/>}/> */}
-      <Route path="/oric-funded-project" element={<ORICFundedProject/>}/>
+      <Route path="/oric-funded-project/:id" element={<ORICFundedProject/>}/>
       <Route path="/oric-funded-project-research-project" element={<ResearchProject/>}/>
       {/* <Route path="/oric-funded-project-facilities-and-funding" element={<FacilitiesAndFunding/>}/> */}
       {/* <Route path="/oric-funded-project-justification-and-budget-items" element={<JustificationForBudget/>}/> */}
