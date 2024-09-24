@@ -92,6 +92,7 @@ const ThesisProjectDetails = () => {
                         <div className="thesisprojectdetails_title-input">
                             <label>Title:</label>
                             <input
+                                required
                                 type="text"
                                 value={ThesisProjectDetail.Title}
                                 name="Title"
@@ -104,6 +105,7 @@ const ThesisProjectDetails = () => {
                             <div className="thesisprojectdetails_InputGroup">
                                 <label>Student Name:</label>
                                 <input
+                                    required
                                     type="text"
                                     value={ThesisProjectDetail.StudentName}
                                     name="StudentName"
@@ -113,6 +115,7 @@ const ThesisProjectDetails = () => {
                             <div className="thesisprojectdetails_InputGroup">
                                 <label>Principal and Co-Principal Investigator Details:</label>
                                 <input
+                                    required
                                     type="text"
                                     value={ThesisProjectDetail.PrincipalandCoPrincipalInvestigatorDetails}
                                     name="PrincipalandCoPrincipalInvestigatorDetails"
@@ -126,7 +129,8 @@ const ThesisProjectDetails = () => {
                         <div className="thesisprojectdetails_four-inputs">
                             <div className="thesisprojectdetails_InputGroup">
                                 <label>Funded or non-funded research:</label>
-                                <input
+                                <input 
+                                    required
                                     type="text"
                                     value={ResearchFundingStatus.FundedornonfundedResearch}
                                     name="StudentName"
@@ -136,6 +140,7 @@ const ThesisProjectDetails = () => {
                             <div className="thesisprojectdetails_InputGroup">
                                 <label>Amount if funded:</label>
                                 <input
+                                    required
                                     type="text"
                                     value={ResearchFundingStatus.AmountIfFunded}
                                     name="PrincipalandCoPrincipalInvestigatorDetails"
@@ -145,6 +150,7 @@ const ThesisProjectDetails = () => {
                             <div className="thesisprojectdetails_InputGroup">
                                 <label>Source of funding:</label>
                                 <input
+                                    required
                                     type="text"
                                     value={ResearchFundingStatus.Sourceoffunding}
                                     name="Sourceoffunding"
@@ -154,7 +160,8 @@ const ThesisProjectDetails = () => {
                             <div className="thesisprojectdetails_InputGroup">
                                 <label>Date of initiation and submission of final report to BASR:</label>
                                 <input
-                                    type="text"
+                                    required
+                                    type="date"
                                     value={ResearchFundingStatus.DateofFinalReportSubmission}
                                     name="DateofFinalReportSubmission"
                                     onChange={handleChange}

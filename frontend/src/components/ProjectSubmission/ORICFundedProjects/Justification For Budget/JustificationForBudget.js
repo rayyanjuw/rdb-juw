@@ -89,10 +89,11 @@ const JustificationForBudget = ({ formData, handleInputChange, handleSubmit}) =>
         </div>
         <div className="justificationForBudget-card">
           <h3>ORIC Funded Project | Justification for The Requested Budget Items</h3>
-          <div className="justificationForBudget_bred-crumb">
-            <Breadcrumb items={breadCrumps}/>
+          <p>Proposal Cover / Research Project / Facilities and Funding / Justification for The Requested Budget Items / Estimated Budget for Proposed Research Period</p>
+          {/* <div className="justificationForBudget_bred-crumb"> */}
+            {/* <Breadcrumb items={breadCrumps}/> */}
             {/* <Breadcrumb items={breadCrumps} activePath={currentPath} /> */}
-          </div>
+          {/* </div> */}
           <div className="justificationForBudget-content">
             <h3>Justification for The Requested Budget Items</h3>
             <div className="justificationForBudget_textarea">

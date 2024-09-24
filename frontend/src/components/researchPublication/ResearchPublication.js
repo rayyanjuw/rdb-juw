@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import Breadcrumb from "../shared-components/breadcrumps/BreadCrumps";
 import NavBar from "../shared-components/navbar/NavBar";
 import { createPublication } from "../../api/Api";
+import { toast } from "react-toastify";
 
 const ResearchPublication = () => {
   const location = useLocation();
@@ -27,6 +28,7 @@ const ResearchPublication = () => {
     urlOfPublication: "",
   };
 
+  const [error, setError] = useState("");
   const [publications, setPublications] = useState([data]);
   // const [publications, setPublications] = useState([initialPublication]);
 
@@ -38,13 +40,31 @@ const ResearchPublication = () => {
   //   setPublications(updatedPublications);
   // };
 
+  const validateURL = (url) => {
+    // Ensure the URL starts with http:// or https://
+    const urlPattern = new RegExp("^(https?:\\/\\/)", "i");
+    return urlPattern.test(url);
+  };
+
   const handleInput = (e, index) => {
     const { name, value } = e.target;
     const updatedPublications = publications.map((publication, i) => {
       if (i === index) {
         // Convert "Yes" to true and "No" to false for boolean fields
-        const updatedValue = (name === "scopus" || name === "webofScience") ? (value === "Yes") : value;
-        // const updatedValue = (name === "Scopus" || name === "WebofScience") ? (value === "Yes") : value;
+        const updatedValue =
+          name === "scopus" || name === "webofScience"
+            ? value === "Yes"
+            : value;
+        // const updatedValue = (name === "scopus" || name === "webofScience") ? value : value;
+        // Add URL validation
+        if (name === "urlOfPublication") {
+          if (validateURL(value)) {
+            setError("");
+          } else {
+            // toast.error("URL must start with http:// or https://");
+            setError("URL must start with http:// or https://");
+          }
+        }
         return { ...publication, [name]: updatedValue };
       }
       return publication;
@@ -103,40 +123,21 @@ const ResearchPublication = () => {
       for (const publication of publications) {
         const response = await createPublication(publication);
         if (response.status === 201) {
-          alert("Publication added successfully");
+          toast.success("Publication added successfully");
+          // alert("Publication added successfully");
         } else {
-          alert("Error while adding publication");
+          toast.error("Error while adding publication");
+          // alert("Error while adding publication");
         }
       }
       setPublications([data]);
     } catch (error) {
       console.error("Error:", error);
-      alert("Error while adding publications");
+      toast.error("Error while adding publications");
+      // alert("Error while adding publications");
     }
   };
 
-  // const handleSubmit = async () => {
-  //   try {
-  //     const response = await fetch("/research", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(publications),
-  //     });
-
-  //     const result = await response.json();
-
-  //     if (result.success) {
-  //       alert("Research added successfully");
-  //     } else {
-  //       alert("Error while adding research");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error:", error);
-  //     alert("Error while adding research");
-  //   }
-  // };
 
   console.log(publications);
 
@@ -176,7 +177,8 @@ const ResearchPublication = () => {
             <h3 className="research-portfolio">
               Research portfolio | Publications
             </h3>
-            <div className="bred-crumb">
+            <div className="RP_bred-crumb">
+              {/* <div className="bred-crumb"> */}
               <Breadcrumb items={breadCrumps} activePath={currentPath} />
             </div>
             {publications.map((publication, index) => (
@@ -205,6 +207,7 @@ const ResearchPublication = () => {
                   <div className="">
                     <label>Title of Manuscript:</label>
                     <input
+                      required
                       type="text"
                       name="titleofmanuscript"
                       // name="TitleofManuscript"
@@ -217,6 +220,7 @@ const ResearchPublication = () => {
                   <div className="">
                     <label>Journal:</label>
                     <input
+                      required
                       type="text"
                       name="journal"
                       // name="Journal"
@@ -242,7 +246,7 @@ const ResearchPublication = () => {
                   <div className="">
                     <label>Volume:</label>
                     <input
-                      type="text"
+                      type="number"
                       name="Volume"
                       placeholder="Volume:"
                       value={publication.Volume}
@@ -303,7 +307,7 @@ const ResearchPublication = () => {
                       // type="Number"
                       type="text"
                       name="Pages"
-                      placeholder="Pages:"
+                      placeholder="e.g: 100-200"
                       value={publication.Pages}
                       // onChange={(e) => handleInput(e, index)}
                       onChange={(e) => handleInput(e, index)}
@@ -335,10 +339,11 @@ const ResearchPublication = () => {
                       // name="WebofScience"
                       id="WebofScience"
                       placeholder="Web of Science (Yes/No):"
-                      // value={publication.WebofScience}
-                      value={publication.webofScience ? "Yes" : "No"}
+                      // value={publication.webofScience ? "Yes" : "No"}
+                      value={publication.webofScience || ""}
                       onChange={(e) => handleInput(e, index)}
                     >
+                      <option value="Selectoption">Select an option</option>
                       <option value="Yes">Yes</option>
                       <option value="No">No</option>
                     </select>
@@ -351,7 +356,7 @@ const ResearchPublication = () => {
                       // step="0.01"
                       name="impactfactor"
                       // name="ImpactFactor"
-                      placeholder="Impact Factor:"
+                      placeholder="e.g: 0.01"
                       value={publication.impactfactor}
                       // value={publication.ImpactFactor}
                       onChange={(e) => handleInput(e, index)}
@@ -362,43 +367,53 @@ const ResearchPublication = () => {
                     <label>Scopus (Yes/No):</label>
                     <select
                       name="scopus"
-                      // name="Scopus"
                       id="Scopus"
                       placeholder="Scopus"
                       // value={publication.Scopus}
-                      value={publication.scopus ? "Yes" : "No"}
-                      // value={publication.Scopus ? "Yes" : "No"}
+                      // value={publication.scopus ? "Yes" : "No"}
+                      value={publication.scopus || ""} // Use empty string for the default option
                       onChange={(e) => handleInput(e, index)}
                     >
+                      <option value="Selectoption">Select an option</option>
                       <option value="Yes">Yes</option>
                       <option value="No">No</option>
                     </select>
                   </div>
-                  <div className="url-publication">
-                    <label>URL of Publication:</label>
-                    <input
-                      type="url"
-                      name="urlOfPublication"
-                      // name="URLofPublication"
-                      placeholder="URL of Publication:"
-                      value={publication.urlOfPublication}
-                      // value={publication.URLofPublication}
-                      onChange={(e) => handleInput(e, index)}
-                    />
+                  <div>
+                    {publications.map((publication, index) => (
+                      <div key={index} className="url-publication">
+                        <label>URL of Publication:</label>
+                        <input
+                          type="url"
+                          name="urlOfPublication"
+                          placeholder="URL of Publication"
+                          value={publication.urlOfPublication}
+                          onChange={(e) => handleInput(e, index)}
+                        />
+                        {error && <span style={{ color: "red" }}>{error}</span>}
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
             ))}
-            <div className="add-more-bg">
-              <button className="button" onClick={addMorePublications}>
+            <div className="save-button">
+              <button
+                className="researchpublication_button"
+                onClick={addMorePublications}
+              >
                 ADD MORE
               </button>
-            </div>
-            <div className="save-button">
-              <button className="button" onClick={handleSubmit}>
+              <button
+                className="researchpublication_button"
+                onClick={handleSubmit}
+              >
                 SAVE
               </button>
             </div>
+          </div>
+          <div className="juw-copyright">
+            <p>© 2024, all rights reserved by Jinnah University for Women.</p>
           </div>
         </div>
       </div>

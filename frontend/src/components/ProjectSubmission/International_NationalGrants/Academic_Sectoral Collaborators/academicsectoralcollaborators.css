@@ -161,6 +161,9 @@ div.textarea {
   .ascollaborators_button {
     width: 15vw !important;
     height: 5vh !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .ascollaborators_two-inputs {
@@ -233,6 +236,9 @@ div.textarea {
     font-size: 12px;
     width: 15vw;
     border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 4vh;
     color: white;
     background-color: #51cbce;
@@ -246,6 +252,9 @@ div.textarea {
   .ascollaborators_button {
     width: 9vw;
     height: 4vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .collaborators-heading h4 {

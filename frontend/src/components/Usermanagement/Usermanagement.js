@@ -2,11 +2,17 @@ import React, { useState, useEffect } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import Modal from "react-modal";
 import "./usermanagement.css";
+
 import NavBar from "../shared-components/navbar/NavBar";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { createUser, getAllUsers, updateUser } from "../../api/Api";
+import { createUser, getAllUsers, updateUser, impersonateUser } from "../../api/Api";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+
+
 
 const UserManagement = () => {
+  const navigate = useNavigate();
   const [error, setError] = useState("");
   const [data, setData] = useState({
     name: "",
@@ -17,44 +23,70 @@ const UserManagement = () => {
     departmentName: "",
   });
   const [emailError, setEmailError] = useState("");
-  const [users, setUsers] = useState([]); 
+  const [users, setUsers] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [selectedUserId, setSelectedUserId] = useState(null); 
-  const [editMode, setEditMode] = useState(false); 
+  const [selectedUserId, setSelectedUserId] = useState(null);
+  const [editMode, setEditMode] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-
 
   const fetchUsersFromServer = async () => {
     try {
-      const fetchedUsers = await getAllUsers(); 
-      setUsers(fetchedUsers); 
+      const fetchedUsers = await getAllUsers();
+      setUsers(fetchedUsers);
     } catch (error) {
       console.error("Error fetching users:", error);
     }
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     if (!validateEmail(data.email)) {
+      toast.error("Invalid email address.")
       setEmailError("Invalid email address.");
-      return; 
+      return;
     }
-  
+
     try {
       if (editMode && selectedUserId) {
         await updateUser(selectedUserId, data);
-        console.log("User updated", data);
+        toast.success("User updated Successfully")
+        // console.log("User updated", data);
       } else {
         await createUser(data);
+        toast.success("User Created Successfully")
         console.log("User created", data);
       }
-  
+
       closeModal();
-      fetchUsersFromServer(); 
+      fetchUsersFromServer();
     } catch (error) {
-      handleError(error); 
+      handleError(error);
+    }
+  };
+
+
+  const handleImpersonate = async (id) => {
+    try {
+      const response = await impersonateUser(id);
+      
+      let roleMessage = "";
+      if (response.role === "researcher") {
+        roleMessage = "You are now logged in as a Researcher";
+      } else if (response.role === "admin") {
+        roleMessage = "You are now logged in as an Admin";
+      } else if (response.role === "manager") {
+        roleMessage = "You are now logged in as a Manager";
+      } else {
+        roleMessage = `You are now logged in as ${response.role}`;
+      }
+  
+      toast.success(roleMessage);
+      localStorage.setItem('token', response.token);
+      navigate("/dashboard")
+      window.location.reload();
+    } catch (error) {
+      toast.error("Failed to impersonate user: " + error.message);
     }
   };
 
@@ -64,8 +96,8 @@ const UserManagement = () => {
     return emailPattern.test(email);
   };
 
-
   const handleError = (error) => {
+    toast.error("Server Error, Please try again later")
     setError(error.message || "Server Error, Please try again later");
   };
 
@@ -117,7 +149,6 @@ const UserManagement = () => {
       setEmailError("");
     }
   };
-
 
   useEffect(() => {
     fetchUsersFromServer();
@@ -218,38 +249,48 @@ const UserManagement = () => {
               </form>
             </Modal>
             <button>SEARCH</button>
-            <h5>Current Users</h5>
+
             <div className="usermanagement-table-container">
-              <div className="list add flex-col">
-                <div className="list-table">
-                  <div className="list-table-format title">
-                    <b>Name</b>
-                    <b>Username</b>
-                    <b>User Role</b>
-                    <b>Department</b>
-                    <b>Email</b>
-                    <b>Actions</b>
-                  </div>
+              <h5>Current Users</h5>
+              <table className="user-table">
+                <thead>
+                  <tr className="list-table-format title">
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th>User Role</th>
+                    <th>Department</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
                   {users.map((user, index) => (
-                    <div key={index} className="list-table-format">
-                      <p>{user.name}</p>
-                      <p>{user.username}</p>
-                      <p>{user.role}</p>
-                      <p>{user.departmentName}</p>
-                      <p>{user.email}</p>
-                      <div className="Edit-Modal">
+                    <tr key={index} className="list-table-format">
+                      <td>{user.name}</td>
+                      <td>{user.username}</td>
+                      <td>{user.role}</td>
+                      <td>{user.departmentName}</td>
+                      <td>{user.email}</td>
+                      <td>
                         <button
-                          type="button"
-                          className="create-user-btn"
+                          // type="button"
+                          className="edit_create-user-btn"
                           onClick={() => openEditModal(user)}
                         >
                           EDIT
                         </button>
-                      </div>
-                    </div>
+                        <button
+                          // type="button"
+                          className="edit_create-user-btn"
+                          onClick={() => handleImpersonate(user.id)}
+                        >
+                          LOGIN AS
+                        </button>
+                      </td>
+                    </tr>
                   ))}
-                </div>
-              </div>
+                </tbody>
+              </table>
             </div>
           </div>
           <div className="juw-copyright">

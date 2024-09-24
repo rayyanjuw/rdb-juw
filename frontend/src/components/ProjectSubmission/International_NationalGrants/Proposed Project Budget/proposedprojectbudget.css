@@ -26,13 +26,6 @@
     background-color: #f4f3ef !important;
     padding: 20px;
   }
-  
-  /* .proposedprojectbudget-card {
-    background-color: white;
-    margin-top: 30px;
-    padding: 20px;
-    border-radius: 20px;
-  } */
 
   .proposedprojectbudget-card {
     background-color: white;
@@ -101,6 +94,9 @@
   
   .proposedprojectbudget_button {
     font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 12px;
     /* width: 6vw; */
     width: 6vw;
@@ -114,70 +110,33 @@
     text-align: center; 
   }
   
-  
-  
-  
-
-
-  
-  /* @media (max-width: 480px){
-    .collaborative_button{
+  @media (max-width: 480px){
+    .proposedprojectbudget_button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       width: 15vw !important;
       height: 5vh !important; 
     }
   }
-  
-  
-  
-  
-  @media (max-width: 768px) {
-  
-    .collaborativework-card {
-      background-color: white;
-      margin-top: 30px;
-      border-radius: 20px;
-    }
-  
-    .collaborativework-card h3 {
-      margin: 10px;
-      margin-left: 0;
-      font-size: 1.22em;
-      font-weight: 400;
-      margin-bottom: 20px;
-    }
-  
-    .collaborative-content h3 {
-      font-size: 14px;
-      margin: 0;
-      margin-bottom: 20px;
-      margin-top: 20px;
-    }
-  
-    .textarea label {
-      font-size: 0.8571em;
-      margin-bottom: 5px;
-      color: #9a9a9a;
-    }
-  
-  
-    .collaborative_button {
-      font-weight: 600;
-      font-size: 12px;
-      width: 15vw;
-      border: none;
-      height: 4vh;
-      color: white;
-      background-color: #51cbce;
-      border-radius: 30px;
-      cursor: pointer;
-      text-align: center; 
+
+  @media (max-width: 786px){
+    .proposedprojectbudget_button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 10vw;
+      height: 4vh; 
     }
   }
-  
+
   @media (max-width: 1024px){
-    .collaborative_button {
-      width: 9vw;
-      height: 4vh;
+    .proposedprojectbudget_button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 10vw;
+      height: 4vh; 
     }
   }
-   */
+  

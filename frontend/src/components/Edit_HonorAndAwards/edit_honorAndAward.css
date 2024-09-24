@@ -42,51 +42,24 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* .edit_honorandaward_card {
-    width: calc(100% - 40px); 
-    margin: 20px auto; 
-    background-color: white;
-    border-radius: 15px 15px 0 0;
-    box-shadow: 0px 0px 10px #00000015;
-    transition: 0.3s;
-    animation: fadeIn 1s;
-    max-height: calc(100vh - 60px); 
-    overflow-y: auto; 
-} */
-
-
-
-
 .edit_honorandaward_heading {
     padding: 1rem 1rem 0.7rem 1rem;
     font-size: 22px;
 }
 
-/* .edit_honorandaward_subheading {
-    padding: 1rem 1rem 0.7rem 1rem;
-    font-size: 16px;
-} */
 
 .edit_honorandaward_subheading {
     padding: 1rem 1rem 0.3rem 1rem; 
     font-size: 16px;
 }
 
-/* .navba-div {
-    display: flex;
-    flex-direction: row-reverse;
-    margin-bottom: 20px;
-} */
 
 .EHA_bred-crumb {
     margin: 0 20px !important;
     width: calc(100% - 40px);
     background-color: #e9ecef;
 }
-/* .bred-crumb {
-    margin: 0 20px !important;
-    width: calc(100% - 40px);
-} */
+
 
 .EDIT_Honor_multiInputFields {
     display: grid;

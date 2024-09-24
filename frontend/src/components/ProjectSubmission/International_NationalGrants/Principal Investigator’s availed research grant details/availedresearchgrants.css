@@ -26,13 +26,6 @@
     background-color: #f4f3ef !important;
     padding: 20px;
   }
-  
-  /* .proposedprojectbudget-card {
-    background-color: white;
-    margin-top: 30px;
-    padding: 20px;
-    border-radius: 20px;
-  } */
 
   .availedresearchgrants-card {
     background-color: white;
@@ -148,6 +141,9 @@
     /* width: 6vw; */
     width: 6vw;
     border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     /* height: 5vh; */
     height: 3vh;
     color: white;
@@ -156,71 +152,96 @@
     cursor: pointer;
     text-align: center; 
   }
-  
-  
-  
-  
 
+@media (max-width: 480px) {
+  .availedresearchgrants-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .sidebar {
+    width: 100%; 
+    position: relative;
+    height: auto;
+  }
+
+  .availedresearchgrants {
+    padding: 10px;
+    background-color: white;
+  }
+
+  .availedresearchgrants-card {
+    padding: 10px;
+    margin-top: 10px;
+    box-shadow: none; 
+  }
+
+  .availedresearchgrants-card h3 {
+    font-size: 1em;
+  }
+
+  .availedresearchgrants_InputGroup input {
+    font-size: 12px;
+    padding: 5px;
+  }
+
+  .textarea textarea {
+    height: 15vh;
+  }
+
+  .availedresearchgrants_two-inputs {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 20px;
+  }
+
+  .ascollaborators_two-inputs {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 20px;
+  }
+
+  .availedresearchgrants_btn {
+    margin-top: 15px;
+  }
+
+  .availedresearchgrants_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15vw;
+    height: 4vh;
+  }
+
+  .textarea label {
+    font-size: 0.75em;
+  }
+
+  .availedresearchgrants-content p {
+    font-size: 12px;
+  }
+}
 
   
-  /* @media (max-width: 480px){
-    .collaborative_button{
-      width: 15vw !important;
-      height: 5vh !important; 
-    }
+@media (max-width: 768px){
+  .availedresearchgrants_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10vw;
+    height: 4vh;
   }
-  
-  
-  
-  
-  @media (max-width: 768px) {
-  
-    .collaborativework-card {
-      background-color: white;
-      margin-top: 30px;
-      border-radius: 20px;
-    }
-  
-    .collaborativework-card h3 {
-      margin: 10px;
-      margin-left: 0;
-      font-size: 1.22em;
-      font-weight: 400;
-      margin-bottom: 20px;
-    }
-  
-    .collaborative-content h3 {
-      font-size: 14px;
-      margin: 0;
-      margin-bottom: 20px;
-      margin-top: 20px;
-    }
-  
-    .textarea label {
-      font-size: 0.8571em;
-      margin-bottom: 5px;
-      color: #9a9a9a;
-    }
-  
-  
-    .collaborative_button {
-      font-weight: 600;
-      font-size: 12px;
-      width: 15vw;
-      border: none;
-      height: 4vh;
-      color: white;
-      background-color: #51cbce;
-      border-radius: 30px;
-      cursor: pointer;
-      text-align: center; 
-    }
+}
+
+@media (max-width: 1024px){
+  .availedresearchgrants_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10vw;
+    height: 4vh;
   }
-  
-  @media (max-width: 1024px){
-    .collaborative_button {
-      width: 9vw;
-      height: 4vh;
-    }
-  }
-   */
+}
+

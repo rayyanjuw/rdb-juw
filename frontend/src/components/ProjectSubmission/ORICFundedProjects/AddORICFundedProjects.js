@@ -394,10 +394,13 @@ const AddORICFundedProjects = ({ formData, handleInputChange, handleSubmit }) =>
         </div>
         <div className="add-oricfundedproject-card">
           <h4>ORIC Funded Project | Proposal Cover</h4>
-          <div className="researchproject-bredcrumb">
-            <Breadcrumb items={breadCrumps}/>
+
+          {/* <div className="add-oricfundedproject-bredcrumb"> */}
+            {/* <Breadcrumb items={breadCrumps}/> */}
             {/* <Breadcrumb items={breadCrumps} activePath={currentPath} /> */}
-          </div>
+          <p>Proposal Cover / Research Project / Facilities and Funding / Justification for The Requested Budget Items / Estimated Budget for Proposed Research Period</p>
+          {/* </div> */}
+          
           <div className="add-oricfundedproject_multiInputFields">
             <div className="addoric_InputGroup">
               <label>Title:</label>
@@ -446,7 +449,7 @@ const AddORICFundedProjects = ({ formData, handleInputChange, handleSubmit }) =>
             </div>
           </div>
         </div>
-        <div className="juw_copyright">
+        <div className="AO_juw_copyright">
           <p>© 2024, all rights reserved by Jinnah University for Women.</p>
         </div>
       </div>

@@ -155,7 +155,6 @@ const ORICFundedProject = () => {
     doc.save("ORICFundedProject.pdf");
   };
 
-
   const downloadORICFundedProjectExcel = () => {
     // Create a new workbook and worksheet
     const workbook = XLSX.utils.book_new();
@@ -285,7 +284,6 @@ const ORICFundedProject = () => {
           <h5>ORIC Funded Project</h5>
 
           <div className="download-btn" style={{ marginBottom: "20px" }}>
-            {/* <button type="button" className="create-user-btn" onClick={()=> downloadPDF(IntelProperties)}> */}
             <button
               type="button"
               className="create-user-btn"
@@ -293,7 +291,6 @@ const ORICFundedProject = () => {
             >
               DOWNLOAD PDF
             </button>
-            {/* <button type="button" className="create-user-btn" onClick={()=> downloadExcel(IntelProperties)}> */}
             <button
               type="button"
               className="create-user-btn"
@@ -301,7 +298,6 @@ const ORICFundedProject = () => {
             >
               DOWNLOAD EXCEL
             </button>
-            {/* <button type="button" className="create-user-btn" onClick={()=> downloadCSV(IntelProperties)}> */}
             <button
               type="button"
               className="create-user-btn"
@@ -522,10 +518,20 @@ const ORICFundedProject = () => {
                 <div className="project_detail">
                   <h5>ESTIMATED BUDGET FOR PROPOSED RESEARCH PERIOD</h5>
                 </div>
-                <div className="oricfundedproject-list-table-format title">
+
+                <div className="oricfundedproject-list-table-format title2">
                   <b>A. Permanent Equipment</b>
+                  <div className="value-details">
+                    <p>Hot Plates Qty:</p>
+                    <p>Hot Plates Unit Price:</p>
+                    <p>Hot Plates Amount:</p>
+                    <p>Printer Qty:</p>
+                    <p>Printer Unit Price:</p>
+                    <p>Printer Amount:</p>
+                  </div>
                   <span>{estimatedBudget.PermanentEquipment}</span>
                 </div>
+
                 <div className="oricfundedproject-list-table-format">
                   <b>B. Paper Rim</b>
                   <span>{estimatedBudget.PaperRimy}</span>

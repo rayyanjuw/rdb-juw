@@ -17,13 +17,7 @@ const Card = ({ title, number, image, publications, submitted, approved }) => {
       width: '300px',
       boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     }}>
-    {/* <div className="container">
-        <img src={publications_icon} alt=""  style={{display: 'flex', alignItems: 'flex-start', width: '40px', height: '40px'}}/>
-        <Typography variant="h6" component="div">
-            <i className="fa-solid fa-check"></i>
-            {title}
-        </Typography>
-    </div> */}
+
        <img src={image} alt="" style={{display: 'flex', width: '50px', height: '50px'}}/>
       <Typography variant="h6" style={{display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end'}}>
         {title}

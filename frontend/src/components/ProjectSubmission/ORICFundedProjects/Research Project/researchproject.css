@@ -45,6 +45,16 @@
   color: #252422;
 }
 
+.researchproject-card p {
+  background-color: #e9ecef;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  color: #252422;
+  padding: 0.75rem 1rem;
+  border-radius: 0.25rem;
+}
+
 .researchproject-bredcrumb {
   margin: 0;
   width: 100%;
@@ -236,4 +246,47 @@
   border-radius: 30px;
   cursor: pointer;
   text-align: center;
+}
+
+
+.researchproject_juw-copyright p {
+  margin-top: 80px;
+  text-align: end;
+  font-size: 0.8571em;
+  line-height: 1.8;
+  color: #66615b;
+}
+
+
+@media (max-width: 576px) {
+
+  .researchproject {
+    padding: 5px;
+  }
+
+  .researchproject-card {
+    padding: 10px;
+    margin-top: 70px;
+  }
+
+
+  .domain_research_checkbox {
+    display: flex;
+    align-items: start;
+    margin-bottom: 20px;
+  }
+
+  .domain_research_checkbox label{
+    display: flex;
+    flex-wrap: wrap;
+    line-height: 0.5;
+  }
+
+  .two-inputs {
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 20px;
+  }
 }

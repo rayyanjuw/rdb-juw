@@ -13,6 +13,8 @@ import {
   deletePublication,
   updatePublication,
 } from "../../api/Api";
+import { toast } from "react-toastify";
+
 
 const ViewAllPublications = () => {
   const location = useLocation();
@@ -78,13 +80,15 @@ const ViewAllPublications = () => {
   const handleDelete = async (id) => {
     try {
       await deletePublication(id);
+      toast.success("Successfully Deleted!")
       // After deleting, fetch the updated list of publications
       setData((prevData) =>
         prevData.filter((publication) => publication.id !== id)
       );
     } catch (error) {
       console.error("Error deleting publication:", error);
-      alert("Failed to delete the publication.");
+      toast.error("Failed to delete the publication.");
+      // alert("Failed to delete the publication.");
     }
   };
 
@@ -93,7 +97,7 @@ const ViewAllPublications = () => {
 
     try {
       await updatePublication(selectedPublication.id, selectedPublication);
-
+      toast.success("Success!")
       setData((prevData) =>
         prevData.map(
           (publication) =>
@@ -167,7 +171,7 @@ const ViewAllPublications = () => {
                         {research.titleofmanuscript ||
                           `Publication ${index + 1}`}
                       </h5>
-                      {/* <div className="publication-actions"> */}
+                      <div className="publication-actions">
                       <button
                         className="edit-btn"
                         onClick={() => openModal(research)}
@@ -180,7 +184,7 @@ const ViewAllPublications = () => {
                       >
                         Delete
                       </button>
-                      {/* </div> */}
+                      </div>
                     </div>
                     <table>
                       <tbody>
@@ -201,163 +205,16 @@ const ViewAllPublications = () => {
               )}
             </div>
           </div>
-
-          {/* previous */}
-          {/* <Modal
-            isOpen={modalIsOpen}
-            onRequestClose={closeModal}
-            contentLabel={
-              editMode ? "Edit Publication Modal" : "Create Publication Modal"
-            }
-            // className="VAP_Modal"
-            className="Modal"
-            // overlayClassName="VAP_Overlay"
-            overlayClassName="Overlay"
-          >
-            <h2>{editMode ? "Edit Publication" : "Create Publication"}</h2>
-            <form className="create-publication" onSubmit={handleSubmit}>
-              <div className="multi-fields">
-                <label htmlFor="articletype">Article Type</label>
-                <input
-                  name="articletype"
-                  onChange={handleInputChange}
-                  value={selectedPublication?.articletype || ""}
-                  type="text"
-                  placeholder="Article Type"
-                />
-
-                <label htmlFor="titleofmanuscript">Title of Manuscript</label>
-                <input
-                  name="titleofmanuscript"
-                  onChange={handleInputChange}
-                  value={selectedPublication?.titleofmanuscript || ""}
-                  type="text"
-                  placeholder="Title of Manuscript"
-                />
-
-                <label htmlFor="journal">Journal</label>
-                <input
-                  required
-                  name="journal"
-                  onChange={handleInputChange}
-                  value={selectedPublication?.journal || ""}
-                  type="text"
-                  placeholder="Journal"
-                />
-
-                <label htmlFor="ISSN">ISSN</label>
-                <input
-                  required
-                  name="ISSN"
-                  onChange={handleInputChange}
-                  value={selectedPublication?.ISSN || ""}
-                  type="text"
-                  placeholder="ISSN"
-                />
-
-                <label htmlFor="Volume">Volume</label>
-                <input
-                  required
-                  name="Volume"
-                  onChange={handleInputChange}
-                  value={selectedPublication?.Volume || ""}
-                  type="text"
-                  placeholder="Volume"
-                />
-
-                <label htmlFor="Issue">Issue</label>
-                <input
-                  name="Issue"
-                  onChange={handleInputChange}
-                  value={selectedPublication?.Issue || ""}
-                  type="text"
-                  placeholder="Issue"
-                />
-
-                <label htmlFor="Year">Year</label>
-                <input
-                  name="Year"
-                  onChange={handleInputChange}
-                  value={selectedPublication?.Year || ""}
-                  type="text"
-                  placeholder="Year"
-                />
-
-                <label htmlFor="DateofPublication">Date of Publication</label>
-                <input
-                  name="DateofPublication"
-                  onChange={handleInputChange}
-                  value={selectedPublication?.DateofPublication || ""}
-                  type="text"
-                  placeholder="Date of Publication"
-                />
-
-                <label htmlFor="HECcategory">HEC Category</label>
-                <input
-                  name="HECcategory"
-                  onChange={handleInputChange}
-                  value={selectedPublication?.HECcategory || ""}
-                  type="text"
-                  placeholder="HEC Category"
-                />
-
-                <label htmlFor="webofScience">Web of Science</label>
-                <input
-                  name="webofScience"
-                  onChange={handleInputChange}
-                  value={selectedPublication?.webofScience || ""}
-                  type="text"
-                  placeholder="Web of Science"
-                />
-
-                <label htmlFor="impactfactor">Impact Factor</label>
-                <input
-                  name="impactfactor"
-                  onChange={handleInputChange}
-                  value={selectedPublication?.impactfactor || ""}
-                  type="number"
-                  placeholder="Impact Factor"
-                />
-
-                <label htmlFor="scopus">Scopus</label>
-                <input
-                  name="scopus"
-                  onChange={handleInputChange}
-                  value={selectedPublication?.scopus || ""}
-                  type="text"
-                  placeholder="Scopus"
-                />
-
-                <label htmlFor="urlOfPublication">URL of Publication</label>
-                <input
-                  name="urlOfPublication"
-                  onChange={handleInputChange}
-                  value={selectedPublication?.urlOfPublication || ""}
-                  type="text"
-                  placeholder="URL of Publication"
-                />
-              </div>
-              <button className="edit-modal-submit-button" type="submit">
-                {editMode ? "UPDATE" : "Submit"}
-              </button>
-            </form>
-          </Modal> */}
-
-          {/* usermanagement modal */}
           <Modal
             isOpen={modalIsOpen}
             onRequestClose={closeModal}
             contentLabel={"Edit Publication Modal"}
-            // contentLabel={editMode ? "Edit User Modal" : "Create User Modal"}
             className="Modal"
             overlayClassName="Overlay"
           >
             <h2>"Edit Publication"</h2>
-            {/* <h2>{editMode ? "Edit User" : "Create User"}</h2> */}
             <form className="create-publication" onSubmit={handleSubmit}>
-            {/* <form className="create-publication" onSubmit={handleSubmit}> */}
               <div className="create-publication-left">
-                {/* <p className="title">User Information</p> */}
                 <div className="multi-fields">
                   <input
                     name="articletype"
@@ -446,7 +303,6 @@ const ViewAllPublications = () => {
                     placeholder="Impact Factor"
                   />
 
-                  {/* <label htmlFor="scopus">Scopus</label> */}
                   <input
                     name="scopus"
                     onChange={handleInputChange}
@@ -455,7 +311,6 @@ const ViewAllPublications = () => {
                     placeholder="Scopus"
                   />
 
-                  {/* <label htmlFor="urlOfPublication">URL of Publication</label> */}
                   <input
                     name="urlOfPublication"
                     onChange={handleInputChange}

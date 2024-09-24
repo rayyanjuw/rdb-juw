@@ -22,44 +22,6 @@ const Dashboard = () => {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      {/* <Drawer
-        variant="permanent"
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
-        }}
-      >
-        <Toolbar />
-        <Box sx={{ overflow: 'auto' }}>
-          <List sx={{ padding: 0 }}>
-            {menuData.map((item, index) => (
-              <Accordion key={index} sx={{ boxShadow: 'none', margin: 0 }}>
-                <AccordionSummary
-                  expandIcon={item.options ? <ExpandMoreIcon /> : null}
-                  aria-controls={`panel${index}-content`}
-                  id={`panel${index}-header`}
-                  sx={{ minHeight: 0, padding: '0 16px' }}
-                >
-                  <ListItemIcon sx={{ minWidth: 'auto', marginRight: '8px' }}>
-                    <img src={item.icon} alt="" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '30px', height: '30px' }} />
-                  </ListItemIcon>
-                  <ListItemText primary={item.title} sx={{ margin: 0 }} />
-                </AccordionSummary>
-                {item.options && (
-                  <AccordionDetails sx={{ padding: '0 16px' }}>
-                    {item.options.map((option, idx) => (
-                      <Typography key={idx} sx={{ paddingLeft: 4, marginBottom: '8px' }}>
-                        {option}
-                      </Typography>
-                    ))}
-                  </AccordionDetails>
-                )}
-              </Accordion>
-            ))}
-          </List>
-        </Box>
-      </Drawer> */}
       <Sidebar/>
       <Box
         component="main"

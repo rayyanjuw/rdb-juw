@@ -309,3 +309,74 @@ table tr {
     color: #FFFFFF;
   }
   
+
+
+
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 60%;
+      position: fixed;
+      left: -100%;
+      height: 100%;
+      z-index: 1000;
+    }
+  
+    .sidebar.open {
+      left: 0;
+    }
+  
+    .honor-and-awards {
+      margin-left: 0;
+      padding: 10px;
+    }
+  
+    .bred-crumb {
+      margin: 0 10px !important;
+      width: calc(100% - 20px);
+    }
+  
+    .honorAndAward-section {
+      padding: 15px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .sidebar {
+      width: 70%;
+      position: fixed;
+      left: -100%;
+      height: 100%;
+      z-index: 1000;
+    }
+  
+    .sidebar.open {
+      left: 0;
+    }
+  
+    .honorAndAward-container {
+      flex-direction: column;
+    }
+  
+    .honor-and-awards {
+      padding: 10px;
+    }
+  
+    .bred-crumb {
+      margin: 0 5px !important;
+      width: calc(100% - 10px);
+    }
+  
+    .honorAndAward-section {
+      padding: 10px;
+    }
+  
+    .edit_button {
+      width: 20%;
+      padding: 10px;
+      margin: 10px 0;
+      /* display: flex;
+      align-items: center;
+      justify-content: center; */
+    }
+  }
+  

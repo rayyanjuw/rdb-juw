@@ -561,11 +561,11 @@ const ResearchProject = ({ formData, handleInputChange, handleSubmit }) => {
           </div>
           <div className="researchproject-card">
             <h5>ORIC Funded Project | Research Project</h5>
-
-            <div className="researchproject-bredcrumb">
-              <Breadcrumb items={breadCrumps}/>
+            <p>Proposal Cover / Research Project / Facilities and Funding / Justification for The Requested Budget Items / Estimated Budget for Proposed Research Period</p>
+            {/* <div className="researchproject-bredcrumb"> */}
+              {/* <Breadcrumb items={breadCrumps}/> */}
               {/* <Breadcrumb items={breadCrumps} activePath={currentPath} /> */}
-            </div>
+            {/* </div> */}
 
             <div className="researchproject_multiInputFields">
               <div className="researchproject_title-input">
@@ -839,7 +839,7 @@ const ResearchProject = ({ formData, handleInputChange, handleSubmit }) => {
             </div>
           </div>
 
-          <div className="juw-copyright">
+          <div className="researchproject_juw-copyright">
             <p>© 2024, all rights reserved by Jinnah University for Women.</p>
           </div>
         </div>
