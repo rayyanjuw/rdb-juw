@@ -472,47 +472,14 @@ export const updateIntellectualProperty = async (id, updateData) => {
   }
 };
 
-// ORIC Funded Project
-
-// Create ORIC Funded Project
-// export const createOricFunded = async (data) => {
-//   try {
-//     const response = await api.post("/oricfundedproject/create", data, {
-//       headers: {
-//         Authorization: `Bearer ${localStorage.getItem("token")}`,
-//       },
-//     });
-//     console.log("Response Data", response)
-//     return response.data;
-//   } catch (error) {
-//     throw new Error(
-//       error.response ? error.response.data.error : "Network error"
-//     );
-//   }
-// };
-
-// export const createOricFunded = async (proposalCoverData, researchProjectData, facilitiesAndFundingData, justificationForBudgetData, estimatedBudgetData) => {
-//   try {
-//     const response = await api.post(
-//       "/oricfundedproject/create",
-//       proposalCoverData,
-//       researchProjectData,
-//       facilitiesAndFundingData,
-//       justificationForBudgetData,
-//       estimatedBudgetData,
-//       {
-//         headers: {
-//           Authorization: `Bearer ${localStorage.getItem("token")}`,
-//         },
-//       }
-//     );
-//     console.log("Response Data", response)
-//     return response.data; 
-//   } catch (error) {
-//     console.error("Error creating ORIC Funded Project:", error);
-//     throw error;
-//   }
-// };
+export const getAllDepartmentNames = async () => {
+  const response = await api.get(`/department/get`, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+  return response.data.map(department => department.name);
+};
 
 
 export const createOricFunded = async (proposalCoverData, researchProjectData, facilitiesAndFundingData, justificationForBudgetData, estimatedBudgetData) => {

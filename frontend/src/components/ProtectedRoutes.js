@@ -16,28 +16,30 @@
 
 import React from 'react';
 // import { Route, Navigate } from 'react-router-dom';
-import { useAuth } from './Context/AuthContext';
+// import { useAuth } from './Context/AuthContext';
 
 // const ProtectedRoute = ({ component: Component, ...rest }) => {
-//     const { isAuthenticated } = useAuth();
-
+    //     const { isAuthenticated } = useAuth();
+    
 //     return (
-//         <Route
-//             {...rest}
-//             render={props =>
-//                 isAuthenticated ? (
-//                     <Component {...props} />
-//                 ) : (
-//                     <Navigate to="/login" />
-//                 )
-//             }
-//         />
-//     );
+    //         <Route
+    //             {...rest}
+    //             render={props =>
+        //                 isAuthenticated ? (
+            //                     <Component {...props} />
+            //                 ) : (
+                //                     <Navigate to="/login" />
+                //                 )
+                //             }
+                //         />
+                //     );
 // };
 
 // export default ProtectedRoute;
 
 import { Navigate, Outlet } from 'react-router-dom'
+// import { Route, Navigate } from 'react-router-dom';
+import { useAuth } from './Context/AuthContext';
 const PrivateRoutes = () => {
     const { currentUser } = useAuth();
     console.log('Current user in PrivateRoutes:', currentUser);
@@ -46,10 +48,25 @@ const PrivateRoutes = () => {
 
     console.log(`Navigating to ${isAuthenticated}`)
     return isAuthenticated ? <Outlet /> : <Navigate to="/" />;
-// return (
+
+    // return (
 //     currentUser  ? <Outlet/> : <Navigate to='/'/>
 //   )
 }
 
 export default PrivateRoutes;
 
+
+
+
+
+// import { Route, Navigate } from 'react-router-dom';
+// import { useAuth } from './Context/AuthContext';
+
+// const ProtectedRoutes = ({ element }) => {
+//   const { isAuthenticated } = useAuth();
+//   return isAuthenticated() ? element : <Navigate to="/login" />;
+// };
+
+
+// export default PrivateRoutes;

@@ -3,7 +3,7 @@
 // import logo from './logo.svg';
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import React, {useState} from "react";
+import React, { useState } from "react";
 import SignInSide from "./components/SignInSide";
 import ViewAllPublications from "./components/ViewAllPublications/ViewAllPublications";
 import DepartmentalResearch from "./components/DepartmentalResearch/DepartmentalResearch";
@@ -54,11 +54,172 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import InternationalGrants from "./components/ProjectSubmission/International_NationalGrants/InternationalGrants/InternationalGrants";
 
-
-
 function App() {
-
   return (
+    // <>
+    //   <ToastContainer />
+    //   <AuthProvider>
+    //     <div className="app">
+    //       <Routes>
+    //         <Route path="/" element={<SignInSide />} />
+    //         <Route element={<PrivateRoutes />}>
+    //           <Route path="/dashboard" element={<Dashboard />} />
+
+    //           {/* <Route path="/dashboard" component={<Dashboard />} /> */}
+    //           {/* Submission */}
+    //           {/* Submission */}
+    //           {/* Intellectual Property */}
+    //           <Route
+    //             path="/viewintellectualproperty"
+    //             element={<ViewIntellectualProperty />}
+    //           />
+    //           <Route
+    //             path="/addintellectualproperty"
+    //             element={<AddIntellectualProperty />}
+    //           />
+
+    //           {/* Project Submission */}
+    //           {/* Oric Funded Project */}
+
+    //           <Route
+    //             path="/view-oric-funded-projects"
+    //             element={<ViewORICFundedProjects />}
+    //           />
+    //           <Route path="/add-oric" element={<MultiStepForm />} />
+    //           {/* <Route path="/add-oric-funded-projects" element={<AddORICFundedProjects/>}/> */}
+    //           <Route
+    //             path="/oric-funded-project"
+    //             element={<ORICFundedProject />}
+    //           />
+    //           {/* <Route path="/oric-funded-project-research-project" element={<ResearchProject/>}/> */}
+    //           {/* <Route path="/oric-funded-project-facilities-and-funding" element={<FacilitiesAndFunding/>}/> */}
+    //           {/* <Route path="/oric-funded-project-justification-and-budget-items" element={<JustificationForBudget/>}/> */}
+    //           {/* <Route path="/oric-funded-project-estimated-budget-proposed-research-period" element={<EstimatedBudgetForPRP/>}/> */}
+
+    //           {/* International/National Grants */}
+    //           <Route
+    //             path="/view-international/national-grants"
+    //             element={<ViewGrants />}
+    //           />
+    //           <Route
+    //             path="/add-international/national-grants"
+    //             element={<AddGrants />}
+    //           />
+    //           <Route
+    //             path="/add-international/national-grants-executive-summary"
+    //             element={<ExecutiveSummary />}
+    //           />
+    //           <Route
+    //             path="/international/national-grants"
+    //             element={<InternationalGrants />}
+    //             />
+    //           <Route
+    //             path="/international/national-grants-project-description"
+    //             element={<ProjectDescription />}
+    //           />
+    //           <Route
+    //             path="/international/national-grants-project-management"
+    //             element={<ProjectManagement />}
+    //           />
+    //           <Route
+    //             path="/international/national-grants-implementation-timeline"
+    //             element={<ImplementationTimeline />}
+    //           />
+    //           <Route
+    //             path="/international/national-grants-physical-resources-and-facilities"
+    //             element={<PhysicalResources />}
+    //           />
+    //           <Route
+    //             path="/international/national-grants-scientific-personnel"
+    //             element={<ScientificPersonnel />}
+    //           />
+    //           <Route
+    //             path="/international/national-grants-risk-management-strategy"
+    //             element={<RiskManagementStrategy />}
+    //           />
+    //           <Route
+    //             path="/international/national-grants-list-of-references"
+    //             element={<ListofReferences />}
+    //           />
+    //           <Route
+    //             path="/international/national-grants-proposed-project-budget"
+    //             element={<ProposedProjectBudget />}
+    //           />
+    //           <Route
+    //             path="/international/national-grants-principal-investigators-availed-research-grant-details"
+    //             element={<AvailedResearchGrants />}
+    //           />
+    //           <Route
+    //             path="/international/national-grants-academic/Sectoral-collaborators"
+    //             element={<AcademicSectoralCollaborators />}
+    //           />
+
+    //           {/* Research Portfolio */}
+    //           {/* Personal Information */}
+    //           <Route
+    //             path="/researchportfolio"
+    //             element={<ResearchPortfolio />}
+    //           />
+    //           <Route path="/edit-personal-info" element={<PersonalInfo2 />} />
+    //           {/* Honor And Awards, Scholarships */}
+    //           <Route path="/honorandawards" element={<HonorAndAwards />} />
+    //           <Route
+    //             path="/edit-honorandawards"
+    //             element={<Edit_HonorAndAward />}
+    //           />
+    //           {/* Membership */}
+    //           <Route path="/membership" element={<Membership />} />
+    //           <Route path="/add-membership" element={<Add_membership />} />
+    //           {/* View All Publications */}
+    //           <Route
+    //             path="/viewallpublications"
+    //             element={<ViewAllPublications />}
+    //           />
+    //           {/* Add New Publications */}
+    //           <Route
+    //             path="/researchpublication"
+    //             element={<ResearchPublication />}
+    //           />
+
+    //           {/* Research Grants And Contracts */}
+    //           <Route
+    //             path="/research-grants-and-contracts"
+    //             element={<ResearchGrants />}
+    //           />
+    //           <Route
+    //             path="/add-research-grants-and-contracts"
+    //             element={<Add_ResearchGrants />}
+    //           />
+
+    //           {/* Departmental Research Data */}
+    //           <Route
+    //             path="/departmental-research-data-publications-of-faculty"
+    //             element={<DepartmentalResearch />}
+    //           />
+    //           <Route
+    //             path="/departmental-research-data-conferences-workshops-attended"
+    //             element={<Conference />}
+    //           />
+    //           <Route
+    //             path="/departmental-research-data-collaborative-research-academic-work"
+    //             element={<CollaborativeWork />}
+    //           />
+    //           <Route
+    //             path="/departmental-research-data-thesis-project-details"
+    //             element={<ThesisProjectDetails />}
+    //           />
+
+    //           {/* Downloadable */}
+    //           <Route path="/downloadable" element={<Downloadable />} />
+
+    //           {/* User % Roles */}
+    //           <Route path="/usermanagement" element={<UserManagement />} />
+    //         </Route>
+    //       </Routes>
+    //     </div>
+    //   </AuthProvider>
+    // </>
+
     <>
       <ToastContainer />
       <AuthProvider>
@@ -115,7 +276,7 @@ function App() {
               <Route
                 path="/international/national-grants"
                 element={<InternationalGrants />}
-                />
+              />
               <Route
                 path="/international/national-grants-project-description"
                 element={<ProjectDescription />}

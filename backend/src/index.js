@@ -15,7 +15,8 @@ const honorsReward = require('../routes/honorRoutes');
 const Membership = require('../routes/membershipRoutes');
 const FacultyPublication = require('../routes/facultypublicationRoutes');
 const ORICFundedProject = require('../routes/oricfundedRoutes');
-const NationalInternationalGrant = require('../routes/nationalRouter')
+const NationalInternationalGrant = require('../routes/nationalRouter');
+const DepartmentRoute = require("../routes/DepartmentRoute")
 
 
 
@@ -42,6 +43,7 @@ app.use('/api/membership', Membership);
 app.use('/api/facultypublication', FacultyPublication );
 app.use('/api/oricfundedproject', ORICFundedProject);
 app.use('/api/nationalGrant', NationalInternationalGrant);
+app.use('/api/department', DepartmentRoute);
 
 
 // require('../routes')
