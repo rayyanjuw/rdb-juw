@@ -1,14 +1,49 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import "./viewgrants.css";
 import Sidebar from "../../Sidebar/Sidebar";
 import NavBar from "../../shared-components/navbar/NavBar";
 import { useNavigate } from "react-router-dom";
+import NationalGrants from './International/NationalGrants';
+import { fetchAllNationalGrants } from "../../../api/Api";
 
 const ViewGrants = () => {
   const navigate = useNavigate();
+  const [nationalGrants, setNationalGrants] = useState([]);
 
-  const handleViewClick = () => {
-    navigate("/international/national-grants");
+  useEffect(() => {
+    const loadProjects = async () => {
+      try {
+        const projects = await fetchAllNationalGrants();
+        // Parse the necessary JSON fields
+        const parsedProjects = projects.map((project) => ({
+          ...project,
+          proposalCover: project.proposalCover
+            ? JSON.parse(project.proposalCover)
+            : {},
+          implementationTimeline: project.implementationTimeline
+            ? JSON.parse(project.implementationTimeline)
+            : {},
+          academicSectoralCollaborators: project.academicSectoralCollaborators
+            ? JSON.parse(project.academicSectoralCollaborators)
+            : {},
+          proposedProjectBudget: project.proposedProjectBudget
+            ? JSON.parse(project.proposedProjectBudget)
+            : {},
+        }));
+        setNationalGrants(parsedProjects);
+        console.log(parsedProjects);
+      } catch (error) {
+        console.error("Error loading projects:", error);
+      }
+    };
+
+    loadProjects();
+  }, []);
+
+ 
+
+  const handleViewClick = (id) => {
+    navigate(`/international/national-grants/${id}`);
   };
 
   const Grants = [
@@ -36,7 +71,7 @@ const ViewGrants = () => {
           <h5>International/National Grants | Proposal Cover</h5>
           <div className="viewgrants-table-data">
             <div className="viewgrants-table-container">
-              {Grants.map((project, index) => (
+              {nationalGrants.map((project, index) =>  (
                 <div key={index} className="viewgrants-list-table">
                   <div className="Viewgrants_detail">
                     <h5>Project Details #{index + 1}</h5>
@@ -46,19 +81,19 @@ const ViewGrants = () => {
                   </div>
                   <div className="viewgrants-list-table-format title">
                     <b>Title:</b>
-                    <span>{project.Title}</span>
+                    <span>{project.proposalCover.titleOfProject}</span>
                   </div>
                   <div className="viewgrants-list-table-format">
                     <b>Name of PI:</b>
-                    <span>{project.NameofPI}</span>
+                    <span>{project.proposalCover.principalInvestigator.name}</span>
                   </div>
                   <div className="viewgrants-list-table-format">
                     <b>Name of PI Institute:</b>
-                    <span>{project.NameofPIInstitute}</span>
+                    <span>{project.proposalCover.principalInvestigator.institutionName}</span>
                   </div>
                   <div className="viewgrants-list-table-format">
                     <b>Total Budget Requested:</b>
-                    <span>{project.TotalBudgetRequested}</span>
+                    <span>{project.proposalCover.totalBudgetRequested}</span>
                   </div>
                 </div>
               ))}

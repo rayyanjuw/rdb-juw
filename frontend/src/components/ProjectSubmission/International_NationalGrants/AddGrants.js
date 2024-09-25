@@ -68,8 +68,8 @@ const AddGrants = ({ onSave  }) => {
   const [proposalCover, setProposalCover] = useState({
     proposalReferenceNo: "",
     titleOfProject: "",
-    durationOfProject: 0,
-    totalBudgetRequested: 0,
+    durationOfProject: "",
+    totalBudgetRequested: "",
     themeOfProposedResearch: "",
     disciplineOfProposedResearch: "",
     principalInvestigator: {

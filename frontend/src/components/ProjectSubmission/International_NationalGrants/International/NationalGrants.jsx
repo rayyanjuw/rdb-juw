@@ -20,7 +20,7 @@ const NationalGrants = () => {
     proposalCover: {},
     executiveSummary: "",
     academicSectoralCollaborators: {},
-    projectDescription: {},
+    projectDescription: null,
     projectManagement: "",
     implementationTimeline: {},
     physicalResourcesAndFacilities: {},
@@ -31,6 +31,12 @@ const NationalGrants = () => {
     proposedProjectBudget: {}
     }); // Store all form data
 
+    const [fileData, setFileData] = useState(null);
+
+    const handleFileUpload = (file) => {
+      setFileData(file); // Set the file data
+    };
+  
     const [isSubmitting, setIsSubmitting] = useState(false);
 
      // UseEffect to handle form submission after the last step's data is saved
@@ -46,6 +52,7 @@ const NationalGrants = () => {
     setGrantData((prevState) => ({
       ...prevState,
       ...data,
+     
     }));
   };
 
@@ -64,6 +71,7 @@ const NationalGrants = () => {
 
    // Function to handle saving and moving to the next step
    const handleSaveAndNext = (data) => {
+     console.log(data);
     handleSave(data);
     if (step === 12) {
         setIsSubmitting(true); // Set the flag to trigger form submission
@@ -72,14 +80,21 @@ const NationalGrants = () => {
     }
 };
 
+
   // Function to handle saving and moving to the next step
   const handleFormSubmit = async (data) => {
+    // if (!fileData) return; // Ensure there's a file to upload
+
+    const formData = new FormData();
+    formData.append('projectDescription', fileData); // Append file to FormData
+   
         try {
+
           const token = localStorage.getItem('token');
             const response = await axios.post('http://localhost:5000/api/nationalGrant/create', grantData, {
               headers: {
-                Authorization: `Bearer ${token}`,
                 'Content-Type': 'multipart/form-data',
+                Authorization: `Bearer ${token}`,
               }
             });
             console.log("Data being sent to API:", grantData);

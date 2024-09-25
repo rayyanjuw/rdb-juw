@@ -520,17 +520,17 @@ export const fetchORICProjects = async () => {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
-    console.log("Successfully fetched all intellectual properties");
+    console.log("Successfully fetched all ORIC Funded Project");
     return response.data;
   } catch (error) {
     console.log(
-      "Error While Fetching Intellectual Properties",
+      "Error While Fetching ORIC Funded Project",
       error.response ? error.response.data : error.message
     );
     throw new Error(
       error.response
         ? error.response.data.error
-        : "Failed to Fetch All Intellectual Properties"
+        : "Failed to Fetch All ORIC Funded Project"
     );
   }
 };
@@ -551,3 +551,47 @@ export const fetchORICProjectsById = async (id) => {
     throw error
   }
 }
+
+
+
+
+
+export const fetchAllNationalGrants = async () => {
+  try {
+    const response = await api.get("/nationalGrant/getAll", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    console.log("Successfully fetched all International/National Grants");
+    return response.data;
+  } catch (error) {
+    console.log(
+      "Error While Fetching International/National Grants ",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error(
+      error.response
+        ? error.response.data.error
+        : "Failed to Fetch All International/National Grants "
+    );
+  }
+};
+
+
+// export const fetchAllNationalGrants = async (id) => {
+//   try {
+
+//     const response = await api.get(`/oricfundedproject/oricby/${id}`, {
+//       headers: {
+//         Authorization: `Bearer ${localStorage.getItem("token")}`,
+//       }
+//     });
+    
+//     console.log(response.data)
+//     return  response.data;
+//   } catch (error) {
+//     console.error("Error fetching project by id", error);
+//     throw error
+//   }
+// }

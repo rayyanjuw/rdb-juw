@@ -116,17 +116,17 @@ function App() {
                 path="/view-international/national-grants"
                 element={<ViewGrants />}
               />
-              <Route
+              {/* <Route
                 path="/add-international/national-grants"
                 element={<AddGrants />}
-              />
+              /> */}
                 
               <Route
                 path="/add-international/national-grants-executive-summary"
                 element={<ExecutiveSummary />}
               />
               <Route
-                path="/international/national-grants"
+                path="/international/national-grants/:id"
                 element={<InternationalGrants />}
               />
               <Route
@@ -217,9 +217,9 @@ function App() {
                 element={<Conference />}
               />
               <Route
-                />
                 path="/departmental-research-data-collaborative-research-academic-work"
                 element={<CollaborativeWork />}
+                />
               <Route
                 path="/departmental-research-data-thesis-project-details"
                 element={<ThesisProjectDetails />}
@@ -234,7 +234,7 @@ function App() {
             
       
           
-      <Route path="/international/national-grants" element={<NationalGrants/>}/>         
+      <Route path="/add-international/national-grants" element={<NationalGrants/>}/>         
 
       
       
