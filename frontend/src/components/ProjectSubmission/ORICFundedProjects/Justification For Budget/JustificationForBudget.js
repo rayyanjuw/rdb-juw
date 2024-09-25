@@ -4,6 +4,9 @@ import { useLocation } from "react-router-dom";
 import Breadcrumb from "../../../shared-components/breadcrumps/BreadCrumps";
 import NavBar from "../../../shared-components/navbar/NavBar";
 import Sidebar from "../../../Sidebar/Sidebar";
+import { toast } from "react-toastify";
+
+
 
 // const JustificationForBudget = (handleSubmit) => {
 const JustificationForBudget = ({onSave}) => {
@@ -69,6 +72,15 @@ const JustificationForBudget = ({onSave}) => {
   // };
 
   const handleSave = () => {
+
+    const { scientificEquipment, travel } = justification;
+
+    // Check if scientific equipment is empty
+    if (!scientificEquipment.trim()) {
+      toast.error('Please provide Scientific Equipment (if any)');
+      return; // Stop the save operation if validation fails
+    }
+
     if (typeof onSave === 'function') {
         onSave(justification); // This will trigger the parent's handleSaveAndNext
     } else {
@@ -103,6 +115,7 @@ const JustificationForBudget = ({onSave}) => {
                 onChange={handleLocalChange}
                 rows="2"
                 cols="20"
+                required
               />
             </div>
 

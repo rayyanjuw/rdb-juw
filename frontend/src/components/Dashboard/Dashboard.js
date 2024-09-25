@@ -5,6 +5,7 @@ import publications_icon from "../../assets/publications_icon.png";
 import i_icon from '../../assets/i_icon.png';
 import check_icon from '../../assets/check_icon.png';
 import NavBar from "../shared-components/navbar/NavBar";
+import pending_icon from "../../assets/pending_icon.png";
 
 const Dashboard = () => {
 
@@ -67,6 +68,22 @@ const Dashboard = () => {
               <hr />
                 {/* <hr style={{color: "black", marginTop: '10px'}}/> */}
                 <a href="/">View All Approved Proposal</a>
+              </div>
+            </div>
+            <div className="dashboard-subcard">
+              <div className="subcard-title">
+                <h5>Research Proposal Pending</h5> 
+              </div>
+              <div className="subcard-number">
+                <h4>8</h4>
+              </div>
+              <div className="subcard-img">
+                <img src={pending_icon} alt="" />
+              </div>
+              <div className="subcard-link">
+              <hr />
+                {/* <hr style={{color: "black", marginTop: '10px'}}/> */}
+                <a href="/">View All Pending Proposal</a>
               </div>
             </div>
           </div>

@@ -54,6 +54,7 @@ import PrivateRoutes from "./components/ProtectedRoutes";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import InternationalGrants from "./components/ProjectSubmission/International_NationalGrants/InternationalGrants/InternationalGrants";
+import AdminDashboard from "./components/AdminDashboard/AdminDashboard";
 
 function App() {
   return (
@@ -66,6 +67,7 @@ function App() {
             <Route path="/" element={<SignInSide />} />
             <Route element={<PrivateRoutes />}>
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/admin-dashboard" element={<AdminDashboard />} />
 
               {/* <Route path="/dashboard" component={<Dashboard />} /> */}
               {/* Submission */}
@@ -217,9 +219,9 @@ function App() {
                 element={<Conference />}
               />
               <Route
-                />
                 path="/departmental-research-data-collaborative-research-academic-work"
                 element={<CollaborativeWork />}
+              />
               <Route
                 path="/departmental-research-data-thesis-project-details"
                 element={<ThesisProjectDetails />}

@@ -7,6 +7,9 @@ import "jspdf-autotable";
 import NavBar from "../../shared-components/navbar/NavBar";
 import { useParams } from "react-router-dom";
 import { fetchORICProjectsById } from "../../../api/Api";
+import { toast } from "react-toastify";
+
+
 
 const ORICFundedProject = () => {
   const { id } = useParams();
@@ -26,7 +29,7 @@ const ORICFundedProject = () => {
   }, [id]);
 
   if (!project) {
-    return <div>Loading...</div>;
+    toast.error("Not Found Found")
   }
 
   const proposalCover = project.proposalCover
@@ -652,19 +655,19 @@ const downloadORICFundedProjectExcel = () => {
               </div>
               <div className="oricfundedproject-list-table">
                 <b>Objectives with Expected Outputs</b>
-                {researchProject.objectives.map((objective, index) => (
+                {researchProject?.objectives?.map((objective, index) => (
                   <div key={index} className="objective-container">
                     <div className="oricfundedproject-list-table-format title">
                       <b>Objective {index + 1} Description</b>
-                      <span>{objective.description}</span>
+                      <span>{objective?.description}</span>
                     </div>
                     <div className="oricfundedproject-list-table-format">
                       <b>Measurable Output / Expected Results</b>
-                      <span>{objective.measurableOutput}</span>
+                      <span>{objective?.measurableOutput}</span>
                     </div>
                     <div className="oricfundedproject-list-table-format">
                       <b>Benefits</b>
-                      <span>{objective.benefits}</span>
+                      <span>{objective?.benefits}</span>
                     </div>
                   </div>
                 ))}
@@ -677,7 +680,7 @@ const downloadORICFundedProjectExcel = () => {
                   <b>Methodology</b>
                   <span>{researchProject.methodology}</span>
                 </div>
-                {researchProject.schedulephasing.length > 0 ? (
+                {researchProject?.schedulephasing?.length > 0 ? (
                   researchProject.schedulephasing.map((phase, index) => (
                     <div key={index} className="schedule-phase-container">
                       <div className="oricfundedproject-list-table-format">
@@ -750,7 +753,7 @@ const downloadORICFundedProjectExcel = () => {
                             {equipment.charAt(0).toUpperCase() +
                               equipment.slice(1)}{" "}
                             Qty: {details.qty}, Unit Price: {details.unitPrice},
-                            Amount: {details.amount}
+                            Amount: {details?.amount}
                           </li>
                         ))}
                       </ul>
@@ -759,22 +762,22 @@ const downloadORICFundedProjectExcel = () => {
 
                 <div className="oricfundedproject-list-table-format">
                   <b>B. Paper Rim</b>
-                  <span>{estimatedBudget.paperrimAmount.amount}</span>
+                  <span>{estimatedBudget?.paperrimAmount?.amount}</span>
                 </div>
                 <div className="oricfundedproject-list-table-format">
                   <b>
                     C. Literature, documentation, information, online literature
                     search, contingencies, postage
                   </b>
-                  <span>{estimatedBudget.literatureAndOtherAmount.amount}</span>
+                  <span>{estimatedBudget?.literatureAndOtherAmount?.amount}</span>
                 </div>
                 <div className="oricfundedproject-list-table-format">
                   <b>D. Local Travel (For project involving field work etc.)</b>
-                  <span>{estimatedBudget.localTravel.amount}</span>
+                  <span>{estimatedBudget?.localTravel?.amount}</span>
                 </div>
                 <div className="oricfundedproject-list-table-format">
                   <b>E. Other costs (specify)</b>
-                  <span>{estimatedBudget.othercostAmount.amount}</span>
+                  <span>{estimatedBudget?.othercostAmount?.amount}</span>
                 </div>
               </div>
             </div>
