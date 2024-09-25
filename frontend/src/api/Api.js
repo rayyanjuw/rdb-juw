@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 // Create an axios instance with a base URL
 const api = axios.create({
@@ -22,10 +23,29 @@ export const loginUser = async (username, password) => {
   try {
     const response = await api.post("/auth/login", { username, password });
     return response.data;
+    
   } catch (error) {
     throw error.response ? error.response.data : new Error("Server error");
   }
 };
+
+// impersonate User
+export const impersonateUser = async (id) => {
+  try {
+    const response = await api.post(`/auth/impersonate/${id}`, {}, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw error.response ? error.response.data : new Error("Server error");
+  }
+};
+
+
+
+
 
 // Create a new user
 export const createUser = async (userData) => {
@@ -35,8 +55,10 @@ export const createUser = async (userData) => {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
+    // toast.success("User Created Successfully")
     return response.data;
   } catch (error) {
+    toast.error("Failed to create User")
     throw error.response ? error.response.data : error;
   }
 };
@@ -96,6 +118,7 @@ export const getProfile = async () => {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
+    // toast.success("Successfully get user profile")
     return response.data;
   } catch (error) {
     console.error(
@@ -182,6 +205,7 @@ export const getHonors = async () => {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
+    // toast.success("Successfully get All Honors And Awards")
     return response.data;
   } catch (error) {
     throw new Error("Failed to fetch honors: " + error.message);
@@ -448,47 +472,14 @@ export const updateIntellectualProperty = async (id, updateData) => {
   }
 };
 
-// ORIC Funded Project
-
-// Create ORIC Funded Project
-// export const createOricFunded = async (data) => {
-//   try {
-//     const response = await api.post("/oricfundedproject/create", data, {
-//       headers: {
-//         Authorization: `Bearer ${localStorage.getItem("token")}`,
-//       },
-//     });
-//     console.log("Response Data", response)
-//     return response.data;
-//   } catch (error) {
-//     throw new Error(
-//       error.response ? error.response.data.error : "Network error"
-//     );
-//   }
-// };
-
-// export const createOricFunded = async (proposalCoverData, researchProjectData, facilitiesAndFundingData, justificationForBudgetData, estimatedBudgetData) => {
-//   try {
-//     const response = await api.post(
-//       "/oricfundedproject/create",
-//       proposalCoverData,
-//       researchProjectData,
-//       facilitiesAndFundingData,
-//       justificationForBudgetData,
-//       estimatedBudgetData,
-//       {
-//         headers: {
-//           Authorization: `Bearer ${localStorage.getItem("token")}`,
-//         },
-//       }
-//     );
-//     console.log("Response Data", response)
-//     return response.data; 
-//   } catch (error) {
-//     console.error("Error creating ORIC Funded Project:", error);
-//     throw error;
-//   }
-// };
+export const getAllDepartmentNames = async () => {
+  const response = await api.get(`/department/get`, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+  return response.data.map(department => department.name);
+};
 
 
 export const createOricFunded = async (proposalCoverData, researchProjectData, facilitiesAndFundingData, justificationForBudgetData, estimatedBudgetData) => {

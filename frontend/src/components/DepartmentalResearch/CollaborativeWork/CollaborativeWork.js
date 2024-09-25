@@ -55,6 +55,7 @@ const CollaborativeWork = () => {
                         <div className="textarea">
                             <label htmlFor="exampleTextarea">Short summary of the project:</label>
                             <textarea
+                                required
                                 id="exampleTextarea"
                                 value={text}
                                 onChange={handleChange}

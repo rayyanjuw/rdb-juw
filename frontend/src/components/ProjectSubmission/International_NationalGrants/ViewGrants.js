@@ -2,18 +2,25 @@ import React from "react";
 import "./viewgrants.css";
 import Sidebar from "../../Sidebar/Sidebar";
 import NavBar from "../../shared-components/navbar/NavBar";
+import { useNavigate } from "react-router-dom";
 
 const ViewGrants = () => {
+  const navigate = useNavigate();
 
-    const Grants = [
-        {
-          Title: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
-          NameofPI: "test",
-          NameofPIInstitute: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
-          TotalBudgetRequested: "30000",
-        }
-      ];
+  const handleViewClick = () => {
+    navigate("/international/national-grants");
+  };
 
+  const Grants = [
+    {
+      Title:
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+      NameofPI: "test",
+      NameofPIInstitute:
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+      TotalBudgetRequested: "30000",
+    },
+  ];
 
   return (
     <div className="viewgrants-container">
@@ -33,7 +40,9 @@ const ViewGrants = () => {
                 <div key={index} className="viewgrants-list-table">
                   <div className="Viewgrants_detail">
                     <h5>Project Details #{index + 1}</h5>
-                    <button type="button">VIEW</button>
+                    <button type="button" onClick={handleViewClick}>
+                      VIEW
+                    </button>
                   </div>
                   <div className="viewgrants-list-table-format title">
                     <b>Title:</b>

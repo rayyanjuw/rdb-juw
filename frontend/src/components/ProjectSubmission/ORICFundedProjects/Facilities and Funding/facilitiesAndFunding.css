@@ -14,11 +14,6 @@
   font-size: max(1vw, 10px);
 }
 
-.facilitiesAndfunding_bred-crumb {
-  margin: 0;
-  width: 100%;
-  background-color: #e9ecef;
-}
 
 .facilitiesAndfunding {
   flex: 1;
@@ -45,6 +40,16 @@
   font-size: 1.3em;
   font-weight: 400;
   margin-bottom: 20px;
+}
+
+.facilitiesAndfunding-card p {
+  background-color: #e9ecef;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  color: #252422;
+  padding: 0.75rem 1rem;
+  border-radius: 0.25rem;
 }
 
 .facilitiesAndfunding_textarea textarea {

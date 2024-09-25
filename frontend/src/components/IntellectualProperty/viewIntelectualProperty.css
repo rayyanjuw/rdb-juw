@@ -75,18 +75,10 @@
   background-color: #51ccfc;
 }
 
-
-
-
-
 .intelproperty-table-data h5 {
   font-weight: bold;
   font-size: 15px;
 }
-
-
-
-
 
 .intelproperty-table-container {
   display: flex;
@@ -94,17 +86,32 @@
   padding: 0 20px;
 }
 
-
-
-
 .intelproperty-list-table {
   display: flex;
   border-top: 1px solid #dee2e6;
-  padding: 12px 0px;
+  padding: 5px 0px;
   flex-direction: column;
   margin-left-right: 0;
 }
 
+
+.intelproperty-title {
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  width: 100%;
+}
+
+.intelproperty-title h5 {
+  margin: 0;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.edit-intelprop {
+  display: flex; /* Use flex to align buttons */
+  gap: 10px; /* Space between buttons */
+}
 
 .intelproperty-list-table-format {
   display: flex;
@@ -151,14 +158,17 @@
 }
 
 
+.VIP_juw_copyright p {
+  margin-top: 80px;
+  text-align: end;
+  font-size: 0.8571em;
+  line-height: 1.8;
+  color: #66615b;
+}
 
 
-
-
-/* Media Query: For Mobile Phones (Portrait and Landscape) */
 @media only screen and (max-width: 600px) {
   .intelproperty-list-table-format {
-    /* flex-direction: row;  */
     flex-direction: column;
     align-items: flex-start;
     gap: 15px;
@@ -203,6 +213,30 @@
     font-size: 14px;
     text-align: left;
   }
+
+  .VIP_juw_copyright p {
+    margin-top: 80px;
+    text-align: center;
+    font-size: 0.8571em;
+    line-height: 1.8;
+    color: #66615b;
+  }
+
+  .edit-intelpropbtn, .delete-intelpropbtn {
+    width: 15vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5vh;
+    /* font-size: 10px; */
+  }
+/* 
+  .intelproperty-card button{
+    display: flex;
+    font-size: 10px;
+    width: 25vw;
+    height: 10vh;
+  } */
 }
 
 /* Media Query: Small Tablets (Portrait and Landscape) */

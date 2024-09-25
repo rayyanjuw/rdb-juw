@@ -75,8 +75,7 @@
   background-color: #fff;
   border-radius: 8px;
   padding: 20px;
-  /* max-width: 600px; */
-  max-width: 500px;
+  max-width: 35%;
   margin: auto;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
@@ -146,9 +145,10 @@
   margin: 10px 7px;
 }
 
-.create-user button:hover {
-  background-color: #218838;
-}
+/* .edit_create-user-btn {
+  margin: 10px 7px;
+} */
+
 
 .submit-button {
   color: #51cbce;
@@ -178,81 +178,51 @@
   font-weight: bold;
 }
 
-.user-management-table {
+
+
+/* added */
+
+.usermanagement-table-container {
   width: 100%;
-  border-collapse: collapse;
-  margin: 20px 0;
-  font-size: 1em;
-  text-align: left;
+  overflow-x: auto;
+  margin-bottom: 20px;
 }
 
-.user-management-table thead tr {
-  background-color: #f2f2f2;
-  text-align: left;
+.usermanagement-table-container button {
+  font-size: 14px;
+}
+
+
+.list {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
+.list-table {
+  width: 100%;
 }
 
 .list-table-format {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  line-height: 0.6;
   align-items: center;
-  gap: 20px;
-  /* padding: 12px 15px; */
-  padding: 5px 7px;
-  background-color: white;
-  border-top: 1px solid #cacaca;
-  width: 100%;
-  height: 50px;
-  font-size: 13px;
+  border-bottom: 1px solid #ddd;
 }
-
-/* .list-table-format.title b{
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 5px 7px;
-  background-color: white;
-  border-top: 1px solid #cacaca;
-  width: 100%;
-  height: 50px;
-  font-size: 13px;
-} */
 
 .list-table-format.title {
-  background-color: white;
-  padding: 20px 10px;
+  font-weight: 400;
+  text-align: left;
 }
 
-.list-table-format.title b {
-  flex: 1;
+/* .list-table-format p, .list-table-format b {
   margin: 0;
-  /* padding: 20px; */
-}
-
-.list-table-format p {
-  flex: 1;
-  margin: 0;
-  font-size: 12px;
-}
-
-.list-table-format button {
-  width: 100px;
-  align-items: center;
-  justify-content: center;
-  border-radius: 3px;
-  height: 30px;
-  color: white;
-  font-size: 0.8571em;
-  padding: 5px 7px;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-.list-table-format.title p {
-  flex: 1;
-  text-align: center;
-}
-
-/* password field */
+  padding: 8px;
+  font-size: 14px;
+  text-align: left;
+} */
 
 .password-container {
   position: relative;
@@ -268,45 +238,117 @@
   right: 10px;
   transform: translateY(-50%);
   cursor: pointer;
-  font-size: 1.2em; /* Adjust the size as needed */
-  color: #888; /* Adjust the color as needed */
+  font-size: 1.2em; 
+  color: #888; 
 }
 
-@media (max-width: 600px) {
-  /* .Modal {
-    width: 80%;
-    padding: 15px;
-  } */
 
-  .Modal {
-    width: 95%;
-    max-width: 500px;
-    padding: 20px;
-    z-index: 1;
-  }
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+}
 
-  /* .Edit-Modal button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.user-table th,
+.user-table td {
+  /* padding: 10px; */
+  padding: 8px;
+  font-size: 13px;
+  text-align: left;
+}
+
+/* .user-table th {
+  background-color: #f4f4f4;
 } */
 
 
+/* dropdown */
 
-  .list-table {
-    overflow: scroll;
-  }
+.department-dropdown {
+  border: 1px solid #ccc; 
+  max-height: 150px; 
+  overflow-y: auto; 
+  background-color: white; 
+  z-index: 1; 
+  width: 100%; 
+  border-radius: 4px; 
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+  padding: 0;
+  list-style-type: none;
+}
 
-  .multi-fields input,
-  .multi-fields select {
-    width: 100%;
-    margin-bottom: 10px;
-  }
+.department-dropdown li {
+  padding: 8px; 
+  cursor: pointer; 
+  border-bottom: 1px solid #eaeaea; 
+  list-style-type: none;
+  transition: background-color 0.2s;
+}
 
-  .list-table-format {
-    flex-direction: row;
-    width: 100vw;
-    margin: 10px;
-    align-items: flex-start;
+.department-dropdown li:hover {
+  background-color: #e0e0e0; 
+}
+
+.department-dropdown li:last-child {
+  border-bottom: none; /* Remove border from last item */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 1024px){
+  .Modal {
+    max-width: 40%;
+    align-items: center;
+    justfiy-content: center;
   }
 }
+
+
+
+
+
+
+
+
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .user-table th, .user-table td {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .Modal {
+    max-width: 80%;
+  }
+}
+
+@media (max-width: 480px) {
+  .user-table th, .user-table td {
+    font-size: 12px;
+    padding: 6px;
+  }
+
+  .usermanagement-table-container button {
+    font-size: 10px;
+  }
+
+  .list-table-format button {
+    font-size: 9px;
+    text-align: center;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+

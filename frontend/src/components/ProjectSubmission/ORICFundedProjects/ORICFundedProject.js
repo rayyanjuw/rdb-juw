@@ -347,7 +347,6 @@ const ORICFundedProject = () => {
   };
 
 
-
 // Function to download ORIC Funded Project data as an Excel file
 const downloadORICFundedProjectExcel = () => {
   // Create a new workbook
@@ -561,7 +560,6 @@ const downloadORICFundedProjectExcel = () => {
           <h5>ORIC Funded Project</h5>
 
           <div className="download-btn" style={{ marginBottom: "20px" }}>
-            {/* <button type="button" className="create-user-btn" onClick={()=> downloadPDF(IntelProperties)}> */}
             <button
               type="button"
               className="create-user-btn"
@@ -569,7 +567,6 @@ const downloadORICFundedProjectExcel = () => {
             >
               DOWNLOAD PDF
             </button>
-            {/* <button type="button" className="create-user-btn" onClick={()=> downloadExcel(IntelProperties)}> */}
             <button
               type="button"
               className="create-user-btn"
@@ -577,7 +574,6 @@ const downloadORICFundedProjectExcel = () => {
             >
               DOWNLOAD EXCEL
             </button>
-            {/* <button type="button" className="create-user-btn" onClick={()=> downloadCSV(IntelProperties)}> */}
             <button
               type="button"
               className="create-user-btn"
@@ -760,6 +756,7 @@ const downloadORICFundedProjectExcel = () => {
                       </ul>
                     </span>
                 </div>
+
                 <div className="oricfundedproject-list-table-format">
                   <b>B. Paper Rim</b>
                   <span>{estimatedBudget.paperrimAmount.amount}</span>
