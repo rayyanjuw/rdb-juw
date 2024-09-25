@@ -102,7 +102,7 @@ const ViewORICFundedProjects = () => {
             </div>
           </div>
         </div>
-        <div className="juw_copyright">
+        <div className="VOF_juw_copyright">
           <p>© 2024, all rights reserved by Jinnah University for Women.</p>
         </div>
       </div>

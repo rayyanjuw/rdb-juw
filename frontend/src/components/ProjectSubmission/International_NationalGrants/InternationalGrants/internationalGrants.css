@@ -1,5 +1,5 @@
 /* responsive */
-.oricfundedproject_container {
+.internationalGrants_container {
     display: flex;
     height: 100vh;
 }
@@ -18,7 +18,7 @@
     transition: transform 0.3s ease-in-out; 
 }
   
-.oricfundedproject {
+.internationalGrants {
     flex: 1;
     overflow-y: auto;
     background-color: #f4f3ef !important;
@@ -27,7 +27,7 @@
 }
 
 
-  .oricfundedproject-card {
+  .internationalGrants-card {
     background-color: white;
     margin-top: 15px;
     width: 100%;
@@ -42,7 +42,7 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
-  .oricfundedproject-card button {
+  .internationalGrants-card button {
     background-color: #51cbce;
     color: white;
     border: none;
@@ -53,11 +53,11 @@
     border-radius: 30px;
   }
   
-  .oricfundedproject-card button:hover {
+  .internationalGrants-card button:hover {
     background-color: #51ccfc;
   }
 
-  .oricfundedproject-card h5 {
+  .internationalGrants-card h5 {
     font-size: 20px;
     margin-bottom: 10px;
     margin-left: 10px;
@@ -67,19 +67,19 @@
   }
 
 
-  .oricfundedproject-table-data h5 {
+  .internationalGrants-table-data h5 {
     font-weight: bold;
     font-size: 14px;
     font-family: "Montserrat", "Helvetica Neue", "Arial", "sans-serif";
   }
   
-  .oricfundedproject-table-container {
+  .internationalGrants-table-container {
     display: flex;
     flex-direction: column;
     padding: 0 20px;
   }
   
-  .oricfundedproject-table-container h2 {
+  .internationalGrants-table-container h2 {
     font-size: 28px;
     font-weight: 500;
   }
@@ -93,7 +93,7 @@
   }
 
 
-  .oricfundedproject-list-table {
+  .internationalGrants-list-table {
     display: flex;
     border-top: 1px solid #dee2e6;
     padding: 12px 0px;
@@ -102,18 +102,18 @@
     margin-right: 0;
   }
   
-  .oricfundedproject-list-table-format {
+  .internationalGrants-list-table-format {
     display: flex;
     border-top: 1px solid #dee2e6;
     justify-content: space-between;
     padding: 10px 0;
   }
   
-  .oricfundedproject-list-table-format.title {
+  .internationalGrants-list-table-format.title {
     font-weight: normal;
   }
   
-  .oricfundedproject-list-table-format b {
+  .internationalGrants-list-table-format b {
     font-weight: 450;
     font-size: 15px;
     /* width: 18%; */
@@ -124,17 +124,16 @@
   }
 
 
-  .oricfundedproject-list-table-format.title2 {
+  .internationalGrants-list-table-format.title2 {
     display: flex;
     border-top: 1px solid #dee2e6;
     padding: 10px 0;
     justify-content: space-between;
-    /* border-right: 1px solid #dee2e6; */
     align-items: flex-start;
     /* text-align: left; */
   }
   
-  .oricfundedproject-list-table-format.title2 b {
+  .internationalGrants-list-table-format.title2 b {
     font-weight: 450;
     font-size: 15px;
     width: 30%;
@@ -144,20 +143,20 @@
     padding-right: 10px; 
   }
   
-  .oricfundedproject-list-table-format .value-details {
+  .internationalGrants-list-table-format .value-details {
     width: 50%; 
     display: flex;
     flex-direction: column;
     margin-right: 10px;
   }
   
-  .oricfundedproject-list-table-format .value-details p {
+  .internationalGrants-list-table-format .value-details p {
     margin-left: 10px;
     font-size: 15px;
     color: #555;
   }
   
-  .oricfundedproject-list-table-format span {
+  .internationalGrants-list-table-format span {
     width: 50%;
     color: #555;
     font-size: 15px;
@@ -174,21 +173,9 @@
   }
 
 
-  .diskstyle{
-    list-style: none !important;
-  }
-
-
 @media (max-width: 480px){
-  .oricfundedproject-list-table-format {
-    display: flex;
-    flex-direction: column;
-    border-top: 1px solid #dee2e6;
-    /* justify-content: space-between; */
-    padding: 10px 0;
-  }
 
-  .oricfundedproject-card {
+  .internationalGrants-card {
     display: flex;
     align-items: start;
   }
@@ -199,7 +186,7 @@
   }
 
 
-  .oricfundedproject button {
+  .internationalGrants-card button {
     width: 25vw;
     height: 5vh;
     display: flex;
@@ -208,14 +195,23 @@
     font-size: 10px;
   }
 
-  .oricfundedproject-table-container {
+
+  .internationalGrants-table-container {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     padding: 0;
   }
 
-  .oricfundedproject-list-table-format span {
+  .internationalGrants-list-table-format {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid #dee2e6;
+    justify-content: space-between;
+    padding: 10px 0;
+  }
+
+  .internationalGrants-list-table-format span {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -225,33 +221,27 @@
     margin-left: 0px;
   }
 
-  .oricfundedproject-list-table-format b {
+
+  .internationalGrants-list-table-format b {
     font-weight: bold;
     font-size: 13px;
     width: 100%;
     margin-bottom: 10px;
   }
 
-  .oricfundedproject-list-table-format.title2 b {
-    font-weight: 450;
-    font-size: 12px;
-    width: 100%;
-    color: #333;
-  }
 
-  .oricfundedproject-list-table-format .value-details {
+  .internationalGrants-list-table-format .value-details {
     width: 100%; 
     display: flex;
     flex-direction: column;
     margin-right: 10px;
   }
   
-  .oricfundedproject-list-table-format .value-details p {
+  .internationalGrants-list-table-format .value-details p {
     margin: 0;
     margin-left: 6px;
     font-size: 9px;
     color: #555;
   }
 }
-
 

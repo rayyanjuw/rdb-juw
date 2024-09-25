@@ -26,13 +26,6 @@
     background-color: #f4f3ef !important;
     padding: 20px;
   }
-  
-  /* .riskmanagementstrategy-card {
-    background-color: white;
-    margin-top: 30px;
-    padding: 20px;
-    border-radius: 20px;
-  } */
 
   .riskmanagementstrategy-card {
     background-color: white;
@@ -105,75 +98,42 @@
     height: 3vh;
     color: white;
     background-color: #51cbce;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 30px;
     cursor: pointer;
     text-align: center; 
   }
   
-  
-  
-  
 
-
-  
-  /* @media (max-width: 480px){
-    .collaborative_button{
+  @media (max-width: 480px){
+    .riskmanagementstrategy_button{
       width: 15vw !important;
-      height: 5vh !important; 
+      height: 5vh !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
-  
-  
-  
-  
-  @media (max-width: 768px) {
-  
-    .collaborativework-card {
-      background-color: white;
-      margin-top: 30px;
-      border-radius: 20px;
-    }
-  
-    .collaborativework-card h3 {
-      margin: 10px;
-      margin-left: 0;
-      font-size: 1.22em;
-      font-weight: 400;
-      margin-bottom: 20px;
-    }
-  
-    .collaborative-content h3 {
-      font-size: 14px;
-      margin: 0;
-      margin-bottom: 20px;
-      margin-top: 20px;
-    }
-  
-    .textarea label {
-      font-size: 0.8571em;
-      margin-bottom: 5px;
-      color: #9a9a9a;
-    }
-  
-  
-    .collaborative_button {
-      font-weight: 600;
-      font-size: 12px;
-      width: 15vw;
-      border: none;
+
+  @media (max-width: 768px){
+    .riskmanagementstrategy_button{
+      width: 10vw;
       height: 4vh;
-      color: white;
-      background-color: #51cbce;
-      border-radius: 30px;
-      cursor: pointer;
-      text-align: center; 
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
   
   @media (max-width: 1024px){
-    .collaborative_button {
-      width: 9vw;
+    .riskmanagementstrategy_button{
+      width: 10vw;
       height: 4vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
-   */
+  
