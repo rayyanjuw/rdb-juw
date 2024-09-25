@@ -579,19 +579,19 @@ export const fetchAllNationalGrants = async () => {
 };
 
 
-// export const fetchAllNationalGrants = async (id) => {
-//   try {
+export const fetchAllNationalGrantsbyId = async (id) => {
+  try {
 
-//     const response = await api.get(`/oricfundedproject/oricby/${id}`, {
-//       headers: {
-//         Authorization: `Bearer ${localStorage.getItem("token")}`,
-//       }
-//     });
+    const response = await api.get(`/nationalGrant/getBy${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      }
+    });
     
-//     console.log(response.data)
-//     return  response.data;
-//   } catch (error) {
-//     console.error("Error fetching project by id", error);
-//     throw error
-//   }
-// }
+    console.log(response.data)
+    return  response.data;
+  } catch (error) {
+    console.error("Error fetching project by id", error);
+    throw error
+  }
+}

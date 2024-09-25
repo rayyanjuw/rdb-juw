@@ -8,6 +8,22 @@ import NavBar from "../../../shared-components/navbar/NavBar";
 
 
 const InternationalGrants = () => {
+  // const { id } = useParams();
+  // const [project, setProject] = useState(null);
+
+  // useEffect(() => {
+  //   const loadProject = async () => {
+  //     try {
+  //       const fetchedProject = await fetchORICProjectsById(id);
+  //       setProject(fetchedProject);
+  //     } catch (error) {
+  //       console.error("Error fetchiong project details:", error);
+  //     }
+  //   };
+
+  //   loadProject();
+  // }, [id]);
+
 
   // Proposal Cover
   const internationalProposalCover = {

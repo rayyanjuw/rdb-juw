@@ -5,6 +5,8 @@ import NavBar from "../../shared-components/navbar/NavBar";
 import { useNavigate } from "react-router-dom";
 import NationalGrants from './International/NationalGrants';
 import { fetchAllNationalGrants } from "../../../api/Api";
+import { useParams } from "react-router-dom";
+
 
 const ViewGrants = () => {
   const navigate = useNavigate();
