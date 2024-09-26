@@ -306,7 +306,9 @@ table tr {
   
   button[type="button"] {
     /* background-color: #51cbce; */
-    color: #FFFFFF;
+    /* color: #FFFFFF; */
+    color: black;
+    margin-top: 50px;
   }
   
 

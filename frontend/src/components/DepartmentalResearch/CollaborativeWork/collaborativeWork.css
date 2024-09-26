@@ -86,6 +86,9 @@
 .collaborative_button {
   font-weight: 600;
   font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   /* width: 6vw; */
   width: 8vw;
   border: none;

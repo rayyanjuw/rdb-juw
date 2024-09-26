@@ -15,8 +15,8 @@
   height: 100vh;
   overflow-y: auto;
   padding-top: 10px;
-  font-size: 10px;
-  flex-shrink: 0; 
+  font-size: 14px;
+  border-right: 2px solid #0057e7;
 }
 
 .dashboard {
@@ -24,30 +24,41 @@
   overflow-y: auto;
   background-color: #f4f3ef;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .dashboard-card {
   width: 100%;
   margin-top: 40px;
-  /* height: auto;  */
-  height: 100%; 
-  background-color: white !important;
+  height: auto; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff; /* Change to a softer white */
   border-radius: 15px;
   animation: fadeIn 1s;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
-  0 6px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 20px; /* Add padding inside the card */
 }
 
 .dashboard-portfolio {
-  padding: 1.5rem 1rem 0.7rem 1rem;
-  font-size: 22px;
+  padding: 1.5rem;
+  font-size: 24px; /* Increase font size */
+  font-weight: bold; /* Make it bold */
+  color: #0037a5; /* Change text color */
+  text-align: center; /* Center the text */
+  border-bottom: 2px solid #0037a5; /* Add a bottom border for emphasis */
 }
 
 .dashboard-subcards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px; /* Adds spacing between grid items */
+  /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
+  grid-template-columns: 2fr 2fr;
+  gap: 30px;
+  width: 65%;
   margin: 20px 0;
 }
 
@@ -56,44 +67,51 @@
   flex-direction: column;
   align-items: center;
   height: auto; 
-  background-color: white;
+  background-color: #f9f9f9; /* Soft background for subcards */
   border-radius: 15px;
-  padding: 1.5rem 1rem 0.7rem 1rem;
-  font-size: 22px;
-  box-shadow: 0px 0px 10px #00000015;
-  animation: fadeIn 1s;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
-  0 6px 20px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  /* box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1); */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.dashboard-subcard:hover {
+  transform: translateY(-5px); /* Slight lift effect on hover */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Deepen shadow on hover */
+}
+
 .subcard-title h5 {
-  color: #9a9a9a;
-  font-size: 16px;
+  color: #0057e7; /* Change to a brighter blue */
+  font-size: 18px; /* Slightly larger title */
+  margin-bottom: 10px; /* Add margin for spacing */
 }
 
 .subcard-number h4 {
-  font-size: 24px;
+  font-size: 26px; /* Larger number */
   color: #333;
+  font-weight: bold; /* Make number bold */
 }
 
 .subcard-img img {
-  min-height: auto;
-  width: 30px;
-  height: 30px;
+  width: 50px; /* Increase icon size */
+  height: 50px; /* Increase icon size */
+  margin-bottom: 10px; /* Add margin for spacing */
 }
 
 .subcard-link a {
-  font-size: 13px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-size: 14px; /* Slightly larger link text */
   color: #51cbce;
+  text-decoration: none; /* Remove underline */
+  transition: color 0.3s; /* Transition for hover effect */
+}
+
+.subcard-link a:hover {
+  color: #007bff; /* Change color on hover */
 }
 
 .subcard-link hr {
   width: 100%;
-  margin-top: 40px;
+  margin-top: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -126,25 +144,12 @@
 }
 
 @media (max-width: 768px) {
-  .sidebar {
-    width: 100%;
-    height: auto;
-    position: static;
-    padding: 0;
-    font-size: 14px;
+  .dashboard-portfolio {
+    font-size: 20px; /* Slightly smaller font on mobile */
   }
 
-  .dashboard {
-    padding: 10px;
-  }
-
-  .dashboard-subcards {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 10px;
-  }
-
-  .dashboard-subcard {
-    margin: 10px 0;
+  .subcard-number h4 {
+    font-size: 22px; /* Adjust number size */
   }
 }
 
@@ -167,6 +172,7 @@
   font-size: 14px;
   color: #9a9a9a;
   padding: 20px 0;
+  background-color: #f0f0f0; /* Add a background for copyright */
+  border-top: 1px solid #ccc; /* Add a border for separation */
 }
-
 

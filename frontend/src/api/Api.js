@@ -84,31 +84,35 @@ export const getAllResearchProjects = async () => {
   }
 };
 
-
-
-
-
-// admin dashboard approve button
-export const approveProject = async (userId) => {
+// Approve project
+export const approveProject = async (id) => {
   try {
-      const response = await api.get(`/oricfundedproject/approval-requests`, userId,{
-          status: 'approved',
-      });
-      return response.data;
+    const response = await api.post(`/oricfundedproject/approval-requests/${id}`, {
+      status: 'approved',
+    }, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    return response.data;
   } catch (error) {
-      throw error.response.data;
+    throw error.response.data;
   }
 };
 
-// admin dashboard reject button
+// Reject project
 export const rejectProject = async (id) => {
   try {
-      const response = await api.post(`/approval-requests/${id}`, {
-          status: 'rejected',
-      });
-      return response.data;
+    const response = await api.post(`/oricfundedproject/approval-requests/${id}`, {
+      status: 'rejected',
+    }, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    return response.data;
   } catch (error) {
-      throw error.response.data;
+    throw error.response.data;
   }
 };
 

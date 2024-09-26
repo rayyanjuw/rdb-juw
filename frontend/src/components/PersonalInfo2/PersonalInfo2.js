@@ -14,8 +14,8 @@ const PersonalInfo2 = () => {
   const currentPath = location.pathname;
 
   const [personalInfo, setPersonalInfo] = useState({
-    Name: "",
-    Email: "oricadmin@juw.edu.pk",
+    name: "",
+    email: "",
     address: "",
     cellPhone: "",
   });
@@ -62,6 +62,8 @@ const PersonalInfo2 = () => {
   // Handle form submission to call the API
   const handleSubmit = async () => {
     const profileData = {
+      name: personalInfo.name,
+      email: personalInfo.email,
       address: personalInfo.address,
       cellPhone: personalInfo.cellPhone,
       highestDegree: highestDegree.highestDegree,
@@ -129,9 +131,9 @@ const PersonalInfo2 = () => {
                   <label>Name</label>
                   <input
                     type="text"
-                    name="Name"
+                    name="name"
                     placeholder="Administrator"
-                    value={personalInfo.Name}
+                    value={personalInfo.name}
                     onChange={handlePersonalInfoChange}
                   />
                 </div>
@@ -139,9 +141,9 @@ const PersonalInfo2 = () => {
                   <label>Email</label>
                   <input
                     type="text"
-                    name="Email"
+                    name="email"
                     // placeholder="Email"
-                    value={personalInfo.Email}
+                    value={personalInfo.email}
                     disabled
                   />
                 </div>

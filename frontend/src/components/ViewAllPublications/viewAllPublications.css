@@ -34,8 +34,9 @@
 }
 
 .VAP_bred-crumb {
-  margin: 0 10px !important;
-  width: calc(100% - 40px);
+  /* margin: 0 10px !important; */
+  /* width: calc(100% - 40px); */
+  margin-top: 10px;
   background-color: #e9ecef;
 }
 
@@ -89,12 +90,13 @@
   align-items: center;
   background-color: #cbdbf9;
   margin-top: 5px;
-  /* margin-bottom: 10px; */
 }
 
 .publication-heading {
   font-size: 1.25em;
   margin: 0;
+  margin-left: 10px;
+  font-weight: 550;
 }
 
 .publication-actions {
