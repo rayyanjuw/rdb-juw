@@ -1,3 +1,4 @@
+
 const multer = require('multer');
 const path = require('path');
 const { Op } = require("sequelize");
@@ -7,6 +8,8 @@ const dotenv = require('dotenv')
 dotenv.config();
 const BASE_URL = process.env.BASE_URL || `http://localhost:${process.env.PORT}`;
 const UPLOAD_DIR = process.env.UPLOAD_DIR || 'uploads/';
+
+
 
 // Set up multer storage configuration
 const storage = multer.diskStorage({
@@ -19,6 +22,16 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage }).single('projectDescription');
+
+// Serve files
+const serveFile = (req, res) => {
+    const filePath = path.join(__dirname, '..', UPLOAD_DIR, req.params.filename);
+    res.sendFile(filePath, (err) => {
+        if (err) {
+            res.status(404).send('File not found');
+        }
+    });
+};
 
 const canCreateGrantFor = (creatorRole, createdBy) => {
     return allowedRoles[creatorRole]?.includes(createdBy);
@@ -42,7 +55,9 @@ const createNationalInternationalGrant = async (req, res) => {
       }
       
           // Handle file upload
-          const projectDescription = req.file.path;
+          const projectDescription = `${BASE_URL}/uploads/${req.file.filename}`; 
+
+
 
 
         //   console.log(req.file.path)
@@ -166,8 +181,10 @@ const updateNationalInternationalGrant = async (req, res) => {
         const effectiveRole = impersonating ? impersonatorRole : userRole;
         const effectiveDepartmentId = impersonating ? user.departmentId : departmentId;
 
-        // Handle file upload
-        const projectDescription = req.file ? req.file.path : grant.projectDescription;
+         // Update projectDescription with the new file URL
+         const projectDescription = req.file 
+         ? `${BASE_URL}/uploads/${req.file.filename}`
+         : grant.projectDescription;
 
         console.log('Request Body:', req.body);
 console.log('Uploaded File Path:', req.file ? req.file.path : 'No file uploaded');
@@ -229,5 +246,6 @@ module.exports = {
     updateNationalInternationalGrant, 
     deleteNationalInternationalGrant,
     getAllNationalInternationalGrantsById,
-    upload
+    upload,
+    serveFile
 };

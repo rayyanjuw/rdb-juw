@@ -15,7 +15,7 @@ import ProposedProjectBudget from '../Proposed Project Budget/ProposedProjectBud
 import axios from 'axios';
 
 const NationalGrants = () => {
-    const [step, setStep] = useState(1);
+    const [step, setStep] = useState(3);
     const [grantData, setGrantData] = useState({
     proposalCover: {},
     executiveSummary: "",

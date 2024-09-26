@@ -582,7 +582,7 @@ export const fetchAllNationalGrants = async () => {
 export const fetchAllNationalGrantsbyId = async (id) => {
   try {
 
-    const response = await api.get(`/nationalGrant/getBy${id}`, {
+    const response = await api.get(`/nationalGrant/getBy/${id}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       }

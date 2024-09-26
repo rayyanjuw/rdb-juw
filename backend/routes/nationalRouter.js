@@ -6,7 +6,7 @@ const {
     getAllNationalInternationalGrants,
     updateNationalInternationalGrant,
     deleteNationalInternationalGrant, upload,
-    getAllNationalInternationalGrantsById
+    getAllNationalInternationalGrantsById, serveFile
 } = require('../contollers/nationalInternationalController');
 
 // Route to create a new grant
@@ -22,5 +22,8 @@ router.put('/update/:id',authenticate ,upload, updateNationalInternationalGrant)
 
 // Route to delete a specific grant
 router.delete('/delete/:id',authenticate, deleteNationalInternationalGrant);
+
+// Serve the file from the uploads directory
+router.get('/uploads/:filename', serveFile);
 
 module.exports = router;

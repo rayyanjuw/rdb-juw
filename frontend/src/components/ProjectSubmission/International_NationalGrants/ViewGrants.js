@@ -77,7 +77,7 @@ const ViewGrants = () => {
                 <div key={index} className="viewgrants-list-table">
                   <div className="Viewgrants_detail">
                     <h5>Project Details #{index + 1}</h5>
-                    <button type="button" onClick={handleViewClick}>
+                    <button type="button"  onClick={() => handleViewClick(project.id)}>
                       VIEW
                     </button>
                   </div>
