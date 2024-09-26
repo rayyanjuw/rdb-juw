@@ -8,8 +8,6 @@ import NavBar from "../../../shared-components/navbar/NavBar";
 import { useParams } from "react-router-dom";
 
 import { fetchAllNationalGrantsbyId } from "./../../../../api/Api";
-import ProjectDescription from './../Project Description/ProjectDescription';
-import ExecutiveSummary from './../Executive Summary/ExecutiveSummary';
 
 const BASE_URL = "http://localhost:5000";
 
