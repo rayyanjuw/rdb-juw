@@ -4,6 +4,7 @@ import "./addintellectualproperty.css";
 import Sidebar from "../Sidebar/Sidebar";
 import NavBar from "../shared-components/navbar/NavBar";
 import { createIntellectualProperty } from "../../api/Api";
+import { toast } from "react-toastify";
 
 const AddIntellectualProperty = () => {
   const initialPropertyState = {
@@ -52,8 +53,10 @@ const AddIntellectualProperty = () => {
       await createIntellectualProperty(newProperty);
       setSuccessMessage("Intellectual property created successfully.");
       setIntellectualProperty(initialPropertyState);
+      toast.success("Intellectual property created successfully.");
     } catch (error) {
       setError(error.message || "An error occurred. Please try again.");
+      toast.error(error.message || "An error occurred. Please try again.")
     }
   };
 
@@ -170,8 +173,7 @@ const AddIntellectualProperty = () => {
                 <button type="submit" className="AIP_savebut">Save</button>
               </div>
 
-              {error && <p className="error-message">{error}</p>}
-              {successMessage && <p className="success-message">{successMessage}</p>}
+              
             </div>
           </form>
         </div>

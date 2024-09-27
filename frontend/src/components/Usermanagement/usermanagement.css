@@ -136,9 +136,9 @@
   margin: 10px 7px;
 }
 
-/* .edit_create-user-btn {
-  margin: 10px 7px;
-} */
+.edit-create-user-btn {
+  font-size: 12px !important;
+}
 
 
 .submit-button {
@@ -283,6 +283,12 @@
   border-bottom: none; /* Remove border from last item */
 }
 
+
+.buttonz {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 
 

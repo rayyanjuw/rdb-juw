@@ -6,11 +6,13 @@ import { useNavigate } from "react-router-dom";
 import NationalGrants from './International/NationalGrants';
 import { fetchAllNationalGrants } from "../../../api/Api";
 import { useParams } from "react-router-dom";
+import { IoIosSearch } from "react-icons/io";
 
 
 const ViewGrants = () => {
   const navigate = useNavigate();
   const [nationalGrants, setNationalGrants] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const loadProjects = async () => {
@@ -48,6 +50,13 @@ const ViewGrants = () => {
     navigate(`/international/national-grants/${id}`);
   };
 
+   // Filter projects based on search term (Name of PI)
+   const filteredGrants = nationalGrants.filter((project) => {
+    const piName = project.proposalCover?.principalInvestigator?.name || "";
+    return piName.toLowerCase().includes(searchTerm.toLowerCase());
+  });
+
+
   const Grants = [
     {
       Title:
@@ -70,32 +79,41 @@ const ViewGrants = () => {
           <NavBar />
         </div>
         <div className="viewgrants-card">
+          <div className="d-flex align-items-center justify-content-between">
+            
           <h5>International/National Grants | Proposal Cover</h5>
+          
+          <div className="searchbar m-2">
+                <input type="text" placeholder='Search by Name of PI'  value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)} className="search-input" />      
+                  <IoIosSearch />
+             </div>
+            </div>
           <div className="viewgrants-table-data">
             <div className="viewgrants-table-container">
-              {nationalGrants.map((project, index) =>  (
+              {filteredGrants.map((project, index) =>  (
                 <div key={index} className="viewgrants-list-table">
                   <div className="Viewgrants_detail">
                     <h5>Project Details #{index + 1}</h5>
-                    <button type="button"  onClick={() => handleViewClick(project.id)}>
+                    <button type="button" className="m-0"  onClick={() => handleViewClick(project.id)}>
                       VIEW
                     </button>
                   </div>
                   <div className="viewgrants-list-table-format title">
                     <b>Title:</b>
-                    <span>{project.proposalCover.titleOfProject}</span>
+                    <span>{project?.proposalCover?.titleOfProject}</span>
                   </div>
                   <div className="viewgrants-list-table-format">
                     <b>Name of PI:</b>
-                    <span>{project.proposalCover.principalInvestigator.name}</span>
+                    <span>{project.proposalCover?.principalInvestigator?.name}</span>
                   </div>
                   <div className="viewgrants-list-table-format">
                     <b>Name of PI Institute:</b>
-                    <span>{project.proposalCover.principalInvestigator.institutionName}</span>
+                    <span>{project.proposalCover?.principalInvestigator?.institutionName}</span>
                   </div>
                   <div className="viewgrants-list-table-format">
                     <b>Total Budget Requested:</b>
-                    <span>{project.proposalCover.totalBudgetRequested}</span>
+                    <span>{project?.proposalCover?.totalBudgetRequested}</span>
                   </div>
                 </div>
               ))}

@@ -529,6 +529,7 @@ const ResearchProject = ({ onSave }) => {
             <p>© 2024, all rights reserved by Jinnah University for Women.</p>
           </div>
       </div>
+      </div>
     </>
   );
 };

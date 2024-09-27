@@ -32,23 +32,23 @@ const ORICFundedProject = () => {
     toast.error("Not Found Found")
   }
 
-  const proposalCover = project.proposalCover
-    ? JSON.parse(project.proposalCover)
+  const proposalCover = project?.proposalCover
+    ? JSON.parse(project?.proposalCover)
     : {};
-  const researchProject = project.researchProject
-    ? JSON.parse(project.researchProject)
-    : {};
-
-  const facilitiesandFunding = project.facilitiesandFunding
-    ? JSON.parse(project.facilitiesandFunding)
+  const researchProject = project?.researchProject
+    ? JSON.parse(project?.researchProject)
     : {};
 
-  const justificationForBudgetItems = project.justificationForBudgetItems
-    ? JSON.parse(project.justificationForBudgetItems)
+  const facilitiesandFunding = project?.facilitiesandFunding
+    ? JSON.parse(project?.facilitiesandFunding)
     : {};
 
-  const estimatedBudget = project.estimatedBudget
-    ? JSON.parse(project.estimatedBudget)
+  const justificationForBudgetItems = project?.justificationForBudgetItems
+    ? JSON.parse(project?.justificationForBudgetItems)
+    : {};
+
+  const estimatedBudget = project?.estimatedBudget
+    ? JSON.parse(project?.estimatedBudget)
     : {};
 
   const proposal_coverState = {
@@ -66,10 +66,10 @@ const ORICFundedProject = () => {
     NatureofProposedResearch: researchProject.natureOfProposedResearch,
     DomainofProposedResearch: researchProject.domainOfProposedResearch,
     ShortSummaryoftheProject: researchProject.shortSummary,
-    ProjectDuration: researchProject.projectDuration.year,
-    TotalFundsRequested: researchProject.projectDuration.totalFundsRequested,
-    Summary_or_Abstract: researchProject.projectDuration.summaryAbstract,
-    ProblemtobeAddressed: researchProject.projectDuration.backgroundoftheProblem,
+    ProjectDuration: researchProject?.projectDuration?.year,
+    TotalFundsRequested: researchProject?.projectDuration?.totalFundsRequested,
+    Summary_or_Abstract: researchProject?.projectDuration?.summaryAbstract,
+    ProblemtobeAddressed: researchProject?.projectDuration?.backgroundoftheProblem,
    
   };
 
@@ -868,32 +868,32 @@ const ORICFundedProject = () => {
                 </div>
                 <div className="oricfundedproject-list-table-format">
                   <b>Domain of Proposed Research</b>
-                  <span>{researchProject.domainOfProposedResearch}</span>
+                  <span>{researchProject?.domainOfProposedResearch}</span>
                 </div>
                 <div className="oricfundedproject-list-table-format">
                   <b>Short Summary of the Project</b>
-                  <span>{researchProject.shortSummary}</span>
+                  <span>{researchProject?.shortSummary}</span>
                 </div>
                 <div className="oricfundedproject-list-table-format">
                   <b>Project Duration (Years)</b>
                   <span>
-                    {researchProject.projectDuration.year || "Loading..."}
+                    {researchProject?.projectDuration?.year || "Loading..."}
                   </span>
                 </div>
                 <div className="oricfundedproject-list-table-format">
                   <b>Total Funds Requested (Rs)</b>
                   <span>
-                    {researchProject.projectDuration.totalFundsRequested}
+                    {researchProject?.projectDuration?.totalFundsRequested}
                   </span>
                 </div>
                 <div className="oricfundedproject-list-table-format">
                   <b>Summary / Abstract</b>
-                  <span>{researchProject.projectDuration.summaryAbstract}</span>
+                  <span>{researchProject?.projectDuration?.summaryAbstract}</span>
                 </div>
                 <div className="oricfundedproject-list-table-format">
                   <b>Background of The Problem to be Addressed</b>
                   <span>
-                    {researchProject.projectDuration.backgroundoftheProblem}
+                    {researchProject?.projectDuration?.backgroundoftheProblem}
                   </span>
                 </div>
               </div>
@@ -991,12 +991,12 @@ const ORICFundedProject = () => {
                     
                       <ul>
                         {Object.entries(
-                          estimatedBudget.permanentEquipment
-                        ).map(([equipment, details], index) => (
+                          estimatedBudget?.permanentEquipment || {}
+                        )?.map(([equipment, details], index) => (
                           <li key={index} className="diskstyle">
                             {equipment.charAt(0).toUpperCase() +
                               equipment.slice(1)}{" "}
-                            Qty: {details.qty}, Unit Price: {details.unitPrice},
+                            Qty: {details?.qty}, Unit Price: {details?.unitPrice},
                             Amount: {details?.amount}
                           </li>
                         ))}
