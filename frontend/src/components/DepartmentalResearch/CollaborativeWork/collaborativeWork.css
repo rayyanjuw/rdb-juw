@@ -32,8 +32,8 @@
   margin-top: 30px;
   padding: 20px;
   border-radius: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
-  0 6px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgb(0 0 0 / 10%),
+  0 6px 20px rgb(0 0 0 / 10%);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -41,6 +41,7 @@
   /* padding: 10px; */
   margin: 10px;
   margin-left: 0;
+
   /* font-size: 1.57em; */
   font-size: 1.3em;
   font-weight: 400;
@@ -86,9 +87,11 @@
 .collaborative_button {
   font-weight: 600;
   font-size: 12px;
+
   /* width: 6vw; */
   width: 8vw;
   border: none;
+
   /* height: 5vh; */
   height: 3vh;
   color: white;
@@ -102,7 +105,7 @@
 
 
 
-@media (max-width: 480px){
+@media (width <= 480px){
   .collaborative_button{
     width: 15vw !important;
     height: 5vh !important; 
@@ -112,11 +115,11 @@
 
 
 
-@media (max-width: 768px) {
-
+@media (width <= 768px) {
   .collaborativework-card {
     background-color: white;
     margin-top: 30px;
+
     /* padding: 20px; */
     border-radius: 20px;
   }
@@ -125,6 +128,7 @@
     /* padding: 10px; */
     margin: 10px;
     margin-left: 0;
+
     /* font-size: 1.57em; */
     font-size: 1.22em;
     font-weight: 400;
@@ -160,7 +164,7 @@
 }
 
 
-@media (max-width: 1024px){
+@media (width <= 1024px){
   .collaborative_button {
     width: 9vw;
     height: 4vh;

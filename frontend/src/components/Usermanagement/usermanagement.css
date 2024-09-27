@@ -25,10 +25,7 @@
 
 .Modal {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  right: auto;
-  bottom: auto;
+  inset: 50% auto auto 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
   background: #f4f3ef;
@@ -40,11 +37,8 @@
 
 .Overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.75);
+  inset: 0;
+  background-color: rgb(0 0 0 / 75%);
 }
 
 .whole-page-container {
@@ -77,16 +71,13 @@
   padding: 20px;
   max-width: 35%;
   margin: auto;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 15px rgb(0 0 0 / 30%);
 }
 
 .Overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
+  inset: 0;
+  background-color: rgb(0 0 0 / 70%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -163,8 +154,8 @@
   margin-top: 30px;
   padding: 25px;
   border-radius: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
-  0 6px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgb(0 0 0 / 10%),
+  0 6px 20px rgb(0 0 0 / 10%);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -271,7 +262,7 @@
   z-index: 1; 
   width: 100%; 
   border-radius: 4px; 
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0 2px 8px rgb(0 0 0 / 10%); 
   padding: 0;
   list-style-type: none;
 }
@@ -303,7 +294,7 @@
 
 
 
-@media (max-width: 1024px){
+@media (width <= 1024px){
   .Modal {
     max-width: 40%;
     align-items: center;
@@ -321,7 +312,7 @@
 
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .user-table th, .user-table td {
     font-size: 14px;
     padding: 8px;
@@ -332,7 +323,7 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (width <= 480px) {
   .user-table th, .user-table td {
     font-size: 12px;
     padding: 6px;

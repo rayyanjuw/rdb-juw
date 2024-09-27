@@ -10,7 +10,7 @@
   width: 25%;
   background: #0037a5;
   position: sticky;
-  color: #ffffff;
+  color: #fff;
   top: 0;
   height: 100vh;
   overflow-y: auto;
@@ -29,18 +29,19 @@
 .dashboard-card {
   width: 100%;
   margin-top: 40px;
+
   /* height: auto;  */
   height: 100%; 
   background-color: white !important;
   border-radius: 15px;
   animation: fadeIn 1s;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
-  0 6px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgb(0 0 0 / 10%),
+  0 6px 20px rgb(0 0 0 / 10%);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .dashboard-portfolio {
-  padding: 1.5rem 1rem 0.7rem 1rem;
+  padding: 1.5rem 1rem 0.7rem;
   font-size: 22px;
 }
 
@@ -58,12 +59,11 @@
   height: auto; 
   background-color: white;
   border-radius: 15px;
-  padding: 1.5rem 1rem 0.7rem 1rem;
+  padding: 1.5rem 1rem 0.7rem;
   font-size: 22px;
-  box-shadow: 0px 0px 10px #00000015;
   animation: fadeIn 1s;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
-  0 6px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgb(0 0 0 / 10%),
+  0 6px 20px rgb(0 0 0 / 10%);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -102,7 +102,7 @@
   margin-bottom: 10px;
 }
 
-@media (max-width: 1200px) {
+@media (width <= 1200px) {
   .sidebar {
     width: 100%;
     height: auto;
@@ -125,7 +125,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .sidebar {
     width: 100%;
     height: auto;
@@ -148,7 +148,7 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (width <= 480px) {
   .dashboard-portfolio {
     font-size: 18px; 
   }

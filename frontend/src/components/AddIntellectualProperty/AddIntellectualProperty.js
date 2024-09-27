@@ -61,16 +61,16 @@ const AddIntellectualProperty = () => {
     <div className="addintelproperty-container">
       <Sidebar />
       <div className="addintelproperty">
-        <div className="intelprop_navbar-div">
+        <div className="intelprop-navbar-div">
           <h4>Submission | Intellectual Property</h4>
           <NavBar />
         </div>
         <div className="addintelproperty-card">
-          <h3 className="addintelproperty_heading">
+          <h3 className="addintelproperty-heading">
             Intellectual Property Form
           </h3>
           <form onSubmit={handleSubmit}>
-            <div className="addintelproperty_multiInputFields">
+            <div className="addintelproperty-multiInputFields">
               <div className="title-input">
                 <label>Title:</label>
                 <input
@@ -84,7 +84,7 @@ const AddIntellectualProperty = () => {
               </div>
 
               <div className="two-inputs">
-                <div className="InputGroup">
+                <div className="Input-Group">
                   <label>Owner of IP:</label>
                   <input
                     type="text"
@@ -94,7 +94,7 @@ const AddIntellectualProperty = () => {
                     disabled
                   />
                 </div>
-                <div className="InputGroup">
+                <div className="Input-Group">
                   <label>Address:</label>
                   <input
                     type="text"
@@ -106,7 +106,7 @@ const AddIntellectualProperty = () => {
                 </div>
               </div>
 
-              <div className="InputGroup">
+              <div className="Input-Group">
                 <label>Field of The Invention:</label>
                 <textarea
                   rows="3"
@@ -118,7 +118,7 @@ const AddIntellectualProperty = () => {
                 />
               </div>
 
-              <div className="InputGroup">
+              <div className="Input-Group">
                 <label>Background Of The Invention:</label>
                 <textarea
                   rows="5"
@@ -130,7 +130,7 @@ const AddIntellectualProperty = () => {
                 />
               </div>
 
-              <div className="InputGroup">
+              <div className="Input-Group">
                 <label>Description Of Invention:</label>
                 <textarea
                   rows="4"
@@ -142,7 +142,7 @@ const AddIntellectualProperty = () => {
                 />
               </div>
 
-              <div className="InputGroup">
+              <div className="Input-Group">
                 <label>References:</label>
                 <textarea
                   rows="2"
@@ -154,7 +154,7 @@ const AddIntellectualProperty = () => {
                 />
               </div>
 
-              <div className="InputGroup">
+              <div className="Input-Group">
                 <label>Inventive Steps:</label>
                 <textarea
                   rows="4"

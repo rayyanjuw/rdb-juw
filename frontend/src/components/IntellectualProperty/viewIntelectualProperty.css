@@ -7,7 +7,7 @@
   width: 20%;
   background: #0037a5;
   position: sticky;
-  color: #ffffff;
+  color: #fff;
   top: 0;
   height: 100vh;
   overflow-y: auto;
@@ -49,8 +49,8 @@
   padding: 25px;
   border-radius: 20px;
   flex-grow: 1;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
-  0 6px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgb(0 0 0 / 10%),
+  0 6px 20px rgb(0 0 0 / 10%);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -89,7 +89,7 @@
 .intelproperty-list-table {
   display: flex;
   border-top: 1px solid #dee2e6;
-  padding: 5px 0px;
+  padding: 5px 0;
   flex-direction: column;
   margin-left-right: 0;
 }
@@ -127,6 +127,7 @@
 .intelproperty-list-table-format b {
   /* font-weight: normal; */
   font-weight: 450;
+
   /* width: 30%; */
   width: 25%;
   color: #333;
@@ -138,6 +139,7 @@
 }
 
 /* Base Styles (For larger screens by default) */
+
 /* .intelproperty-list-table-format {
   display: flex;
   justify-content: space-between;
@@ -167,7 +169,7 @@
 }
 
 
-@media only screen and (max-width: 600px) {
+@media only screen and (width <= 600px) {
   .intelproperty-list-table-format {
     flex-direction: column;
     align-items: flex-start;
@@ -198,6 +200,7 @@
 
   .intelproperty-list-table-format b {
     flex: 1;
+
     /* width: 30%; */
     width: 100%;
     font-size: 14px;
@@ -208,6 +211,7 @@
 
   .intelproperty-list-table-format span {
     flex: 1;
+
     /* width: 70%; */
     width: 100%;
     font-size: 14px;
@@ -228,8 +232,10 @@
     align-items: center;
     justify-content: center;
     height: 5vh;
+
     /* font-size: 10px; */
   }
+
 /* 
   .intelproperty-card button{
     display: flex;
@@ -240,7 +246,7 @@
 }
 
 /* Media Query: Small Tablets (Portrait and Landscape) */
-@media only screen and (min-width: 601px) and (max-width: 767px) {
+@media only screen and (width >= 601px) and (width <= 767px) {
   .intelproperty-list-table-format {
     flex-direction: row;
     align-items: flex-start;
@@ -255,7 +261,7 @@
 }
 
 /* Media Query: Medium Tablets and Devices */
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
+@media only screen and (width >= 768px) and (width <= 1024px) {
   .intelproperty-list-table-format {
     flex-direction: row;
     align-items: center;
@@ -282,7 +288,7 @@
 }
 
 /* Media Query: Large Tablets and Smaller Laptops */
-@media only screen and (min-width: 1025px) and (max-width: 1366px) {
+@media only screen and (width >= 1025px) and (width <= 1366px) {
   .intelproperty-list-table-format {
     flex-direction: row;
     align-items: center;
@@ -301,7 +307,7 @@
 }
 
 /* Media Query: Larger Screens */
-@media only screen and (min-width: 1367px) {
+@media only screen and (width >= 1367px) {
   .intelproperty-list-table-format {
     flex-direction: row;
     align-items: center;

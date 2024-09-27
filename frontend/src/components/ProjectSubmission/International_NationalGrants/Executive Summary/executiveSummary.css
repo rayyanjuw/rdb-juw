@@ -18,6 +18,7 @@
   /* .executivesummary_bred-crumb { */
     margin: 0;
     width: 100%;
+
     /* display: flex;
     flex-wrap: wrap; */
     background-color: #e9ecef;
@@ -35,8 +36,8 @@
     margin-top: 30px;
     padding: 20px;
     border-radius: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
-                0 6px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgb(0 0 0 / 10%),
+                0 6px 20px rgb(0 0 0 / 10%);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   
@@ -98,7 +99,7 @@
   }
   
   
-  @media (max-width: 480px){
+  @media (width <= 480px){
     .executivesummary_button{
       width: 17vw !important;
       height: 4vh !important; 
@@ -108,8 +109,7 @@
     }
   }
   
-  @media (max-width: 768px) {
-  
+  @media (width <= 768px) {
     .executivesummary-card {
       background-color: white;
       margin-top: 30px;
@@ -152,7 +152,7 @@
     }
   }
   
-  @media (max-width: 1024px){
+  @media (width <= 1024px){
     .executivesummary_button {
       width: 9vw;
       height: 4vh;

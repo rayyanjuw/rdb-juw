@@ -8,7 +8,7 @@
     width: 20%;
     background: #0037a5;
     position: sticky;
-    color: #ffffff;
+    color: #fff;
     top: 0;
     height: 100vh;
     overflow-y: auto;
@@ -37,8 +37,8 @@
     padding: 25px;
     border-radius: 20px;
     flex-grow: 1;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
-    0 6px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgb(0 0 0 / 10%),
+    0 6px 20px rgb(0 0 0 / 10%);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
@@ -70,7 +70,7 @@
   .internationalGrants-table-data h5 {
     font-weight: bold;
     font-size: 14px;
-    font-family: "Montserrat", "Helvetica Neue", "Arial", "sans-serif";
+    font-family: Montserrat, "Helvetica Neue", Arial, sans-serif;
   }
   
   .internationalGrants-table-container {
@@ -96,7 +96,7 @@
   .internationalGrants-list-table {
     display: flex;
     border-top: 1px solid #dee2e6;
-    padding: 12px 0px;
+    padding: 12px 0;
     flex-direction: column;
     margin-left: 0;
     margin-right: 0;
@@ -116,6 +116,7 @@
   .internationalGrants-list-table-format b {
     font-weight: 450;
     font-size: 15px;
+
     /* width: 18%; */
     width: 30%;
     color: #333;
@@ -130,6 +131,7 @@
     padding: 10px 0;
     justify-content: space-between;
     align-items: flex-start;
+
     /* text-align: left; */
   }
   
@@ -173,8 +175,7 @@
   }
 
 
-@media (max-width: 480px){
-
+@media (width <= 480px){
   .internationalGrants-card {
     display: flex;
     align-items: start;
@@ -198,8 +199,7 @@
 
   .internationalGrants-table-container {
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
+    flex-flow: column wrap;
     padding: 0;
   }
 
@@ -213,12 +213,11 @@
 
   .internationalGrants-list-table-format span {
     display: flex;
-    flex-direction: row;
+    flex-flow: row wrap;
     width: 100%;
-    flex-wrap: wrap;
     font-size: 11px;
     flex: 1;
-    margin-left: 0px;
+    margin-left: 0;
   }
 
 

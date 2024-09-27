@@ -70,7 +70,7 @@
   left: 250px;
   background-color: transparent;
   border: none;
-  color: #ffffff;
+  color: #fff;
   cursor: pointer;
   transition: left 0.3s ease-in-out;
   z-index: 2; 
@@ -91,6 +91,7 @@ svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.css-i4bv87-MuiSvgIcon-root {
 div.css-1mk9mw3-MuiList-root {
   list-style: none;
   margin: 0;
+
   /* margin-right: 21px; */
   padding: 0;
   position: relative;

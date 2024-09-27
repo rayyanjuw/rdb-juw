@@ -9,7 +9,7 @@
   width: 20%;
   background: #0037a5;
   position: sticky;
-  color: #ffffff;
+  color: #fff;
   top: 0;
   height: 100vh;
   overflow-y: auto;
@@ -27,14 +27,14 @@
   transition: margin-left 0.3s ease;
 }
 
-/* .intelprop_navbar-div {
+/* .intelprop-navbar-div {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
   } */
 
-.intelprop_navbar-div h4 {
+.intelprop-navbar-div h4 {
   font-weight: 400;
   font-size: 20px;
   margin-top: 10px;
@@ -43,7 +43,7 @@
 }
 
 /* added */
-.intelprop_navbar-div {
+.intelprop-navbar-div {
   display: flex;
   align-items: center;
   flex-direction: row;
@@ -58,30 +58,30 @@
   border-radius: 15px;
   padding: 20px;
   box-sizing: border-box;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
-  0 6px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgb(0 0 0 / 10%),
+  0 6px 20px rgb(0 0 0 / 10%);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.addintelproperty_heading {
+.addintelproperty-heading {
   font-size: 22px;
   margin-top: 10px;
   font-weight: 400;
 }
 
-.addintelproperty_multiInputFields input,
-.addintelproperty_multiInputFields textarea {
+.addintelproperty-multiInputFields input,
+.addintelproperty-multiInputFields textarea {
   width: calc(100% - 20px);
   margin: 10px 0;
   padding: 6px;
-  border: 1px solid #dddddd;
+  border: 1px solid #ddd;
   color: #66615b;
   border-radius: 4px;
   font-size: 14px;
   box-sizing: border-box;
 }
 
-.addintelproperty_multiInputFields textarea {
+.addintelproperty-multiInputFields textarea {
   resize: vertical;
   width: 100%;
 }
@@ -97,24 +97,24 @@
   margin-bottom: 20px;
 }
 
-.two-inputs .InputGroup {
+.two-inputs .Input-Group {
   flex: 1;
   margin-right: 10px;
 }
 
-.two-inputs .InputGroup:last-child {
+.two-inputs .Input-Group:last-child {
   margin-right: 0;
 }
 
-.InputGroup {
+.Input-Group {
   margin-bottom: 15px;
 }
 
-.InputGroup label {
+.Input-Group label {
   margin-bottom: 5px;
 }
 
-.AIP_save-btn {
+.AIP-save-btn {
   width: 100%;
   height: 100px;
   display: flex;
@@ -122,14 +122,16 @@
   justify-content: center;
 }
 
-.AIP_savebut {
+.AIP-savebut {
   font-weight: 600;
   font-size: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
+
   /* width: 7vw; */
   width: 10vw;
+
   /* height: 5vh; */
   height: 4vh;
   margin-left: 15px;
@@ -141,7 +143,7 @@
   border-width: 1px;
 }
 
-.juw_copyright p {
+.juw-copyright p {
   margin-top: 80px;
   text-align: right;
   font-size: 0.8571em;
@@ -150,7 +152,7 @@
 }
 
 /* Responsive Styles */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .addintelproperty-container {
     flex-direction: column;
     height: auto;
@@ -168,7 +170,7 @@
     margin-left: 0;
   }
 
-  .intelprop_navbar-div {
+  .intelprop-navbar-div {
     flex-direction: column;
     align-items: flex-start;
   }
@@ -177,8 +179,8 @@
     padding: 15px;
   }
 
-  .addintelproperty_multiInputFields input,
-  .addintelproperty_multiInputFields textarea {
+  .addintelproperty-multiInputFields input,
+  .addintelproperty-multiInputFields textarea {
     width: 100%;
     font-size: 12px;
   }
@@ -187,7 +189,7 @@
     flex-direction: column;
   }
 
-  .AIP_savebut {
+  .AIP-savebut {
     width: 100%;
   }
 
@@ -195,7 +197,7 @@
     margin-top: -7px;
   }
 
-  .juw_copyright p {
+  .juw-copyright p {
     font-size: 0.75em;
     margin-top: 20px;
   }
@@ -205,15 +207,15 @@
   }
 }
 
-@media (max-width: 480px){
+@media (width <= 480px){
   button.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-sizeMedium.css-w92lsb-MuiButtonBase-root-MuiIconButton-root {
     margin-top: 22px !important;
   }
 }
 
 /* @media (max-width: 1200px){ */
-@media (max-width: 1024px) {
-  .intelprop_navbar-div h4 {
+@media (width <= 1024px) {
+  .intelprop-navbar-div h4 {
     font-weight: 400;
     font-size: 20px;
     margin-top: 10px !important;
@@ -221,12 +223,13 @@
     color: #66615b;
   }
 
-  .intelprop_navbar-div {
+  .intelprop-navbar-div {
     display: flex;
     align-items: center;
     flex-direction: row;
     margin-top: 20px;
     justify-content: space-between;
+
     /* margin-bottom: 20px; */
     margin-bottom: 30px;
   }
@@ -236,7 +239,7 @@
   }
 }
 
-@media (max-width: 1200px) {
+@media (width <= 1200px) {
   /* .two-inputs {
     display: flex;
     align-items: center;
@@ -245,8 +248,9 @@
     margin-bottom: 20px;
   } */
 
-  .intelprop_navbar-div h4 {
+  .intelprop-navbar-div h4 {
     font-weight: 400;
+
     /* font-size: 21px; */
     font-size: 20px;
     margin-top: 10px;
@@ -254,12 +258,13 @@
     color: #66615b;
   }
 
-  .intelprop_navbar-div {
+  .intelprop-navbar-div {
     display: flex;
     align-items: center;
     flex-direction: row;
     margin-top: 20px;
     justify-content: space-between;
+
     /* margin-bottom: 20px; */
     margin-bottom: 30px;
   }
@@ -269,13 +274,13 @@
   }
 }
 
-@media (max-width: 480px) {
-  /* .intelprop_navbar-div h4 {
+@media (width <= 480px) {
+  /* .intelprop-navbar-div h4 {
       font-size: 16px;
       margin-top: 5px;
     } */
 
-  .intelprop_navbar-div {
+  .intelprop-navbar-div {
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -283,29 +288,29 @@
     margin-bottom: 20px;
   }
 
-  .intelprop_navbar-div h4 {
+  .intelprop-navbar-div h4 {
     font-weight: 400;
     font-size: 11px;
     margin-top: 10px;
     margin-left: 38px;
   }
 
-  .addintelproperty_heading {
+  .addintelproperty-heading {
     font-size: 18px;
   }
 
-  .addintelproperty_multiInputFields input,
-  .addintelproperty_multiInputFields textarea {
+  .addintelproperty-multiInputFields input,
+  .addintelproperty-multiInputFields textarea {
     font-size: 10px;
     padding: 5px;
   }
 
-  .AIP_savebut {
+  .AIP-savebut {
     font-size: 10px;
     height: 40px;
   }
 
-  .juw_copyright p {
+  .juw-copyright p {
     font-size: 0.65em;
   }
 }

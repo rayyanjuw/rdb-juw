@@ -7,7 +7,7 @@
   width: 20%;
   background: #0037a5;
   position: sticky;
-  color: #ffffff;
+  color: #fff;
   top: 0;
   height: 100vh;
   overflow-y: auto;
@@ -47,8 +47,8 @@
   padding: 25px;
   border-radius: 20px;
   flex-grow: 1;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
-  0 6px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgb(0 0 0 / 10%),
+  0 6px 20px rgb(0 0 0 / 10%);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -96,7 +96,7 @@
 .vieworicfundedproject-table-data h5 {
   font-weight: bold;
   font-size: 14px;
-  font-family: "Montserrat", "Helvetica Neue", "Arial", "sans-serif";
+  font-family: Montserrat, "Helvetica Neue", Arial, sans-serif;
 }
 
 .vieworicfundedproject-table-container {
@@ -108,7 +108,7 @@
 .vieworicfundedproject-list-table {
   display: flex;
   border-top: 1px solid #dee2e6;
-  padding: 12px 0px;
+  padding: 12px 0;
   flex-direction: column;
   margin-left-right: 0;
 }
@@ -146,7 +146,7 @@
 
 
 /* my media query */
-@media (max-width: 480px) {
+@media (width <= 480px) {
   button.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-sizeMedium.css-w92lsb-MuiButtonBase-root-MuiIconButton-root {
     margin-top: 40px !important;
   }
@@ -160,7 +160,7 @@
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (width <= 600px) {
   .vieworic_navbar-div {
     display: flex;
     align-items: center;
@@ -211,17 +211,17 @@
     width: 100%;
     font-size: 14px;
     text-align: left;
-    margin-left: 0px;
+    margin-left: 0;
   }
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   button.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-sizeMedium.css-w92lsb-MuiButtonBase-root-MuiIconButton-root {
     margin-top: 20px !important;
   }
 }
 
-@media (max-width: 1024px) {
+@media (width <= 1024px) {
   .vieworic_navbar-div {
     display: flex;
     align-items: center;
@@ -231,9 +231,11 @@
 
   .vieworic_navbar-div h4 {
     font-weight: 400;
+
     /* font-size: 22px; */
     font-size: 18px;
     margin-top: 10px;
+
     /* margin-left: 30px; */
     margin-left: 40px;
     color: #66615b;

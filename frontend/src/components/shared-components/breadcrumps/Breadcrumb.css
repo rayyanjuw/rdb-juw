@@ -46,6 +46,7 @@ nav.breadcrumb {
 }
 
 /* previous */
+
 /* .breadcrumb ul {
     list-style: none;
     display: flex;
@@ -56,6 +57,7 @@ nav.breadcrumb {
 
 
 /* Default Styles (for large screens) */
+
 /* .breadcrumb ul {
     display: flex;
     justify-content: flex-start;
@@ -74,6 +76,7 @@ nav.breadcrumb {
 } */
 
 /* Medium Screens: max-width 1024px */
+
 /* @media (max-width: 1024px) {
     .breadcrumb ul {
         gap: 0.2rem;
@@ -102,6 +105,7 @@ nav.breadcrumb {
 
 
 /* previous */
+
 /* @media (max-width: 768px) {
     .breadcrumb ul {
         justify-content: flex-start;
@@ -119,7 +123,7 @@ nav.breadcrumb {
 } */
 
 /* latest */
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .breadcrumb ul {
         display: flex;
         flex-wrap: wrap;
@@ -149,6 +153,7 @@ nav.breadcrumb {
 }
 
 /* previous */
+
 /* @media (max-width: 480px) {
     .breadcrumb ul {
         flex-direction: column;
@@ -164,7 +169,7 @@ nav.breadcrumb {
 
 
 /* latest */
-@media (max-width: 480px) {
+@media (width <= 480px) {
     .breadcrumb ul {
         flex-wrap: wrap;
         justify-content: flex-start;

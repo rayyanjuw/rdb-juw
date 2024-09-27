@@ -7,7 +7,7 @@
   width: 20%;
   background: #0037a5;
   position: sticky;
-  color: #ffffff;
+  color: #fff;
   top: 0;
   height: 100vh;
   overflow-y: auto;
@@ -32,8 +32,8 @@
   padding: 25px;
   border-radius: 20px;
   flex-grow: 1;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
-  0 6px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgb(0 0 0 / 10%),
+  0 6px 20px rgb(0 0 0 / 10%);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -64,11 +64,12 @@
 .researchproject_multiInputFields h4 {
   margin-top: 30px;
 }
+
 .researchproject_multiInputFields input {
   width: calc(100% - 20px);
   margin: 10px 0;
   padding: 6px;
-  border: 1px solid #dddddd;
+  border: 1px solid #ddd;
   color: #66615b;
   border-radius: 4px;
   font-size: 14px;
@@ -113,7 +114,7 @@
     width: calc(100% - 20px);
     margin: 10px 0;
     padding: 6px;
-    border: 1px solid #dddddd;
+    border: 1px solid #ddd;
     color: #66615b;
     border-radius: 4px;
     font-size: 1rem;
@@ -157,7 +158,6 @@
 
 .domain_research_checkbox label {
   margin: 0;
-  display: inline-block;
   font-size: 0.7571em;
   display: flex;
   align-items: center;
@@ -191,7 +191,7 @@
 }
 
 .researchproject_subheading {
-  padding: 1rem 1rem 0.3rem 0rem;
+  padding: 1rem 1rem 0.3rem 0;
   font-size: 14px;
   color: #252422;
 }
@@ -206,6 +206,7 @@
 .discipline_research_checkbox {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+
   /* gap: 10px;  */
 }
 
@@ -258,8 +259,7 @@
 }
 
 
-@media (max-width: 576px) {
-
+@media (width <= 576px) {
   .researchproject {
     padding: 5px;
   }

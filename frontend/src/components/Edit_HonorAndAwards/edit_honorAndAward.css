@@ -8,7 +8,7 @@
     width: 20%;
     background: #0037a5;
     position: sticky;
-    color: #FFFFFF;
+    color: #FFF;
     top: 0;
     height: 100vh;
     overflow-y: auto;
@@ -30,26 +30,28 @@
 .edit_honorandaward_card {
     width: 95%;
     height: 100vh;
+
     /* height: 680px; */
     margin-top: 20px;
     margin-left: 20px;
+
     /* margin: auto; */
     background-color: white;
     border-radius: 18px;
     animation: fadeIn 1s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
-    0 6px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgb(0 0 0 / 10%),
+    0 6px 20px rgb(0 0 0 / 10%);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .edit_honorandaward_heading {
-    padding: 1rem 1rem 0.7rem 1rem;
+    padding: 1rem 1rem 0.7rem;
     font-size: 22px;
 }
 
 
 .edit_honorandaward_subheading {
-    padding: 1rem 1rem 0.3rem 1rem; 
+    padding: 1rem 1rem 0.3rem; 
     font-size: 16px;
 }
 
@@ -83,7 +85,7 @@
 .EDIT_Honor_multiInputFields input {
     width: 100%;
     padding: 6px; 
-    border: 1px solid #DDDDDD;
+    border: 1px solid #DDD;
     color: #66615B;
     border-radius: 4px;
     font-size: 14px;
@@ -129,11 +131,12 @@
 /* responsiveness */
 
 /* Responsive Styles */
-@media (max-width: 1200px) {
+@media (width <= 1200px) {
     .sidebar {
         width: 25%;
         font-size: 0.875rem;
     }
+
     .edit_honorandaward_card {
         height: auto;
     }
@@ -144,13 +147,15 @@
     }
 }
 
-@media (max-width: 992px) {
+@media (width <= 992px) {
     .sidebar {
         width: 30%;
     }
+
     .edit_honorandaward {
         padding: 15px;
     }
+
     .edit_honorandaward_card {
         width: calc(100% - 30px); /* Adjust width for medium screens */
     }
@@ -161,26 +166,31 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .edit_honorandaward_container {
         flex-direction: column;
     }
+
     .sidebar {
         width: 100%;
         height: auto;
         font-size: 0.75rem; /* Smaller font size for smaller screens */
     }
+
     .edit_honorandaward {
         padding: 10px;
     }
+
     .edit_honorandaward_card {
         width: 100%;
         margin: 10px 0; /* Adjust margin for small screens */
         height: auto; /* Allow card to adjust height */
     }
+
     .edit_honorandaward_heading {
         font-size: 1.5rem; /* Adjust font size for smaller screens */
     }
+
     .edit_honorandaward_subheading {
         font-size: 1.2rem;
     }
@@ -191,25 +201,29 @@
     }
 }
 
-@media (max-width: 480px) {
-
+@media (width <= 480px) {
     .edit_honorandaward_heading {
         font-size: 1.25rem;
     }
+
     .edit_honorandaward_subheading {
         font-size: 1rem;
     }
+
     .EDIT_Honor_multiInputFields {
         grid-template-columns: 1fr; 
         font-size: 12px;
     }
+
     .EDIT_Honor_multiInputFields label {
         font-size: 0.75em;
     }
+
     .EDIT_Honor_multiInputFields input {
         font-size: 12px;
         padding: 4px;
     }
+
     .juw_copyright p {
         font-size: 0.75em;
     }

@@ -7,7 +7,7 @@
   width: 15%;
   background: #0037a5;
   position: sticky;
-  color: #ffffff;
+  color: #fff;
   top: 0;
   height: 100vh;
   overflow-y: auto;
@@ -16,7 +16,7 @@
 }
 
 .research-portfolio {
-  padding: 1.5rem 1rem 0.7rem 1rem;
+  padding: 1.5rem 1rem 0.7rem;
   font-size: 22px;
 }
 
@@ -43,6 +43,7 @@
   display: flex !important;
   flex-wrap: wrap !important;
   align-items: center;
+
   /* padding: 1rem 0; */
   border-radius: 5px;
   margin: 0 1rem;
@@ -68,7 +69,7 @@
   background-color: white;
   border-radius: 15px;
   animation: fadeIn 1s;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgb(0 0 0 / 10%), 0 6px 20px rgb(0 0 0 / 10%);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -93,7 +94,6 @@
 
 .multi-input-fields > div > input {
   padding: 4px 12px;
-
   outline: #9a9a9a;
   border: 1px solid #9a9a9a;
   border-radius: 5px;
@@ -134,7 +134,7 @@ div.url-publication > input {
   justify-content: center;
   background-color: white;
   border-radius: 0 0 15px 15px;
-  box-shadow: 0px 0px 10px #00000015;
+  box-shadow: 0 0 10px #00000015;
   transition: 0.3s;
   animation: fadeIn 1s;
 }
@@ -153,6 +153,7 @@ label {
   display: flex;
   align-items: center;
   justify-content: center;
+
   /* width: 10vw; */
   width: 7vw;
   height: 5vh;
@@ -173,7 +174,7 @@ label {
   align-items: center;
 }
 
-@media (min-width: 1200px) {
+@media (width >= 1200px) {
   .multi-input-fields {
     grid-template-columns: repeat(4, 1fr);
   }
@@ -185,7 +186,7 @@ label {
   }
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (width >= 768px) and (width <= 1024px) {
   .multi-input-fields {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -198,7 +199,7 @@ label {
 }
 
 
-@media (max-width: 767px) {
+@media (width <= 767px) {
   /* .RP_bred-crumb {
     background-color: #e9ecef;
     display: flex !important;
@@ -240,7 +241,7 @@ label {
   }
 }
 
-@media (max-width: 480px) {
+@media (width <= 480px) {
   .researchpublication_button {
     font-size: 10px;
     display: flex;

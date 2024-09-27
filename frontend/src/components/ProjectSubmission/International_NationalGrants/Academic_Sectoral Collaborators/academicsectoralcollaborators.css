@@ -39,7 +39,7 @@
   margin-top: 30px;
   padding: 20px;
   border-radius: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgb(0 0 0 / 10%), 0 6px 20px rgb(0 0 0 / 10%);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -56,6 +56,7 @@
   height: 25vh;
   resize: none;
   padding: 10px;
+
   /* margin-top: 20px; */
   line-height: 1.5;
   border-radius: 5px;
@@ -104,7 +105,7 @@ div.textarea {
   width: 100%;
   margin: 10px 0;
   padding: 6px;
-  border: 1px solid #dddddd;
+  border: 1px solid #ddd;
   color: #66615b;
   border-radius: 4px;
   box-sizing: border-box;
@@ -157,7 +158,7 @@ div.textarea {
   text-align: center;
 }
 
-@media (max-width: 480px) {
+@media (width <= 480px) {
   .ascollaborators_button {
     width: 15vw !important;
     height: 5vh !important;
@@ -203,7 +204,7 @@ div.textarea {
   }
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .ascollaborators-card {
     background-color: white;
     margin-top: 30px;
@@ -248,7 +249,7 @@ div.textarea {
   }
 }
 
-@media (max-width: 1024px) {
+@media (width <= 1024px) {
   .ascollaborators_button {
     width: 9vw;
     height: 4vh;

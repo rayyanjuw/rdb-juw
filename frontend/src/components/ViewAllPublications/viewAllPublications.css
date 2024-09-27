@@ -8,7 +8,7 @@
   width: 25%;
   background: #0037a5;
   position: sticky;
-  color: #ffffff;
+  color: #fff;
   top: 0;
   height: 100vh;
   overflow-y: auto;
@@ -44,7 +44,7 @@
 }
 
 .viewAllPublications-heading {
-  padding: 1.5rem 1rem 0.7rem 1rem;
+  padding: 1.5rem 1rem 0.7rem;
   font-size: 22px;
 }
 
@@ -58,8 +58,8 @@
   padding: 25px;
   border-radius: 20px;
   flex-grow: 1;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
-  0 6px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgb(0 0 0 / 10%),
+  0 6px 20px rgb(0 0 0 / 10%);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -73,10 +73,11 @@
 
 .publication-section {
   background-color: #f4f3ef;
+
   /* padding: 20px; */
   border-radius: 8px;
   overflow: auto;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 10%);
   display: flex;
   flex-direction: column;
 }
@@ -89,6 +90,7 @@
   align-items: center;
   background-color: #cbdbf9;
   margin-top: 5px;
+
   /* margin-bottom: 10px; */
 }
 
@@ -151,19 +153,17 @@ table td {
   background-color: #fff;
   border-radius: 8px;
   padding: 20px;
+
   /* max-width: 600px; */
   max-width: 500px;
   margin: auto;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 15px rgb(0 0 0 / 30%);
 }
 
 .Overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
+  inset: 0;
+  background-color: rgb(0 0 0 / 70%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -259,7 +259,7 @@ table td {
 
 
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .viewallpublications-whole-page {
     flex-direction: column;
   }
@@ -314,7 +314,7 @@ table td {
 }
 
 
-@media (max-width: 480px) {
+@media (width <= 480px) {
   .viewAllPublications {
     padding: 5px;
   }
@@ -347,7 +347,6 @@ table td {
   .publication-heading {
     font-size: 14px;
     margin-bottom: 8px;
-    width: auto;
     padding: 12px 7px;
     display: flex;
     width: 100%; 

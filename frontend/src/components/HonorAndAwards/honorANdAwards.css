@@ -1,4 +1,4 @@
-/* updated working code*/
+/* updated working code */
 
 /* .honorAndAward-container {
     display: flex;
@@ -144,7 +144,7 @@ table {
   width: 20%;
   background: #0037a5;
   position: sticky;
-  color: #ffffff;
+  color: #fff;
   top: 0;
   height: 100vh;
   overflow-y: auto;
@@ -163,7 +163,7 @@ table {
 }
 
 .honorAndAward_heading {
-  padding: 1.5rem 1rem 0.7rem 1rem;
+  padding: 1.5rem 1rem 0.7rem;
   font-size: 22px;
   font-weight: 400;
 }
@@ -181,7 +181,7 @@ table {
   border-radius: 18px;
   animation: fadeIn 1s;
   padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgb(0 0 0 / 10%), 0 6px 20px rgb(0 0 0 / 10%);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -191,7 +191,7 @@ table {
 }
 
 .awards_heading {
-  padding: 0.5rem 1rem 0.7rem 1rem;
+  padding: 0.5rem 1rem 0.7rem;
   font-size: 17px;
   font-weight: bold;
 }
@@ -272,7 +272,7 @@ table tr {
   }
   
   .Overlay {
-    background: rgba(0, 0, 0, 0.5);
+    background: rgb(0 0 0 / 50%);
   }
   
   .modal-field {
@@ -301,18 +301,18 @@ table tr {
   
   button[type="submit"] {
     background-color: #51cbce;
-    color: #FFFFFF;
+    color: #FFF;
   }
   
   button[type="button"] {
     /* background-color: #51cbce; */
-    color: #FFFFFF;
+    color: #FFF;
   }
   
 
 
 
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     .sidebar {
       width: 60%;
       position: fixed;
@@ -340,7 +340,7 @@ table tr {
     }
   }
   
-  @media (max-width: 576px) {
+  @media (width <= 576px) {
     .sidebar {
       width: 70%;
       position: fixed;
@@ -374,6 +374,7 @@ table tr {
       width: 20%;
       padding: 10px;
       margin: 10px 0;
+
       /* display: flex;
       align-items: center;
       justify-content: center; */
