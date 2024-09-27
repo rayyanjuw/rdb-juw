@@ -9,14 +9,114 @@ const api = axios.create({
   },
 });
 
-// Add an interceptor to attach the token (if available) to every request
-// api.interceptors.request.use((config) => {
-//     const token = localStorage.getItem('token');
-//     if (token) {
-//       config.headers.Authorization = `Bearer ${token}`;
-//     }
-//     return config;
-//   });
+
+// Function to get all research projects
+// export const getAllResearchProjects = async () => {
+//   try {
+//     const response = await api.get("/oricfundedproject/getAll", {
+//       headers: {
+//         Authorization: `Bearer ${localStorage.getItem("token")}`,
+//       },
+//     });
+//     const filteredProjects = response.data.map((project) => {
+//       const proposalCover = JSON.parse(project.proposalCover);
+//       return {
+//         title: proposalCover.title || "Untitled", 
+//         nameOfPI: proposalCover.nameOfPI,
+//         nameOfFaculty: proposalCover.nameOfFaculty,
+//         // Add other fields here as needed
+//       };
+//     });
+//     return filteredProjects;
+//   } catch (error) {
+//     console.error("Error fetching research projects:", {
+//       message: error.message,
+//       response: error.response ? error.response.data : "No response data",
+//       status: error.response ? error.response.status : "No status",
+//     });
+//     throw error; // Rethrow the error if you want to handle it further up
+//   }
+// };
+
+// export const getAllResearchProjects = async () => {
+//   try {
+//     const response = await api.get("/oricfundedproject/getAll", {
+//       headers: {
+//         Authorization: `Bearer ${localStorage.getItem("token")}`,
+//       },
+//     });
+
+//     const filteredProjects = response.data.map((project) => {
+//       // Parse the proposalCover JSON string
+//       const proposalCover = JSON.parse(project.proposalCover);
+      
+//       return {
+//         title: proposalCover.title || "Untitled", 
+//         nameOfPI: proposalCover.nameOfPI,
+//         nameOfFaculty: proposalCover.nameOfFaculty,
+//         // You can add more fields here if necessary
+//       };
+//     });
+
+//     return filteredProjects;
+//   } catch (error) {
+//     console.error("Error fetching research projects:", {
+//       message: error.message,
+//       response: error.response ? error.response.data : "No response data",
+//       status: error.response ? error.response.status : "No status",
+//     });
+//     throw error; // Rethrow the error if you want to handle it further up
+//   }
+// };
+
+
+// get All Research Project
+export const getAllResearchProjects = async () => {
+  try {
+      const response = await api.get("/oricfundedproject/getAll", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }); 
+      return response.data;
+  } catch (error) {
+      throw error.response?.data || 'Failed to fetch research projects';
+  }
+};
+
+// Approve project
+export const approveProject = async (id) => {
+  try {
+    const response = await api.post(`/oricfundedproject/approval-requests/${id}`, {
+      status: 'approved',
+    }, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+};
+
+// Reject project
+export const rejectProject = async (id) => {
+  try {
+    const response = await api.post(`/oricfundedproject/approval-requests/${id}`, {
+      status: 'rejected',
+    }, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+};
+
+
 
 // Function to login user
 export const loginUser = async (username, password) => {

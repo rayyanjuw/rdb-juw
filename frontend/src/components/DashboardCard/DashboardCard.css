@@ -153,9 +153,9 @@
     color: #555;
   }
 
-  button.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-sizeMedium.css-w92lsb-MuiButtonBase-root-MuiIconButton-root {
+  /* button.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-sizeMedium.css-w92lsb-MuiButtonBase-root-MuiIconButton-root {
     margin-top: 14px !important;
-  }
+  } */
 }
 
 @media (width <= 480px) {

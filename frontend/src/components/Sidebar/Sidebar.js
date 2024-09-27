@@ -114,7 +114,7 @@ const Sidebar = () => {
     <>
       <IconButton
         onClick={toggleSidebar}
-        sx={{ position: 'fixed', top: 10, left: 10, zIndex: 2, display: { lg: 'none' } }}
+        sx={{ position: 'fixed',color: "black", top: 10, left: 10, zIndex: 2, display: { lg: 'none' } }}
       >
         {isOpen ? <CloseIcon /> : <MenuIcon />}
       </IconButton>
@@ -201,7 +201,7 @@ const Sidebar = () => {
                                               key={subSubSubIndex}
                                               sx={{ pl: 8, color: 'white', backgroundColor: '#0037a5' }}
                                             >
-                                              <ListItemText primary={subSubSubItem.subsubsubitem} primaryTypographyProps={{ fontSize: '0.675rem' }} />
+                                              <ListItemText primary={subSubSubItem.subsubsubitem} primaryTypographyProps={{ fontSize: '0.675rem', marginLeft: '35px' }} />
                                             </ListItem>
                                           ))}
                                         </List>

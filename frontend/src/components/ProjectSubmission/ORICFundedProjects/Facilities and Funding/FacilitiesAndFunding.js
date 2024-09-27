@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Breadcrumb from "../../../shared-components/breadcrumps/BreadCrumps";
 import NavBar from "../../../shared-components/navbar/NavBar";
 import Sidebar from "../../../Sidebar/Sidebar";
+import { toast } from "react-toastify";
 
 
 
@@ -47,6 +48,14 @@ const FacilitiesAndFunding = ({ onSave }) => {
   };
 
   const handleSave = () => {
+    const { facilitiesAvailable, otherSourceOfFunding } = FacilitiesAndFunding;
+
+    // Check if facilities available is empty
+    if (!facilitiesAvailable.trim()) {
+      toast.error('Please fill in the facilities available for the research project.');
+      return; // Stop the save operation if validation fails
+    }
+
     if (typeof onSave === 'function') {
         onSave(FacilitiesAndFunding); // This will trigger the parent's handleSaveAndNext
     } else {
@@ -82,6 +91,7 @@ const FacilitiesAndFunding = ({ onSave }) => {
                 // onChange={handleInputChange}
                 rows="2"
                 cols="20"
+                required
               />
             </div>
 

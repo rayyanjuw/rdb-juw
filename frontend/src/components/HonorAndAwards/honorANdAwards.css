@@ -263,12 +263,20 @@ table tr {
 
 /* Modal */
 
-.Modal {
+/* .Modal {
     content: {
       padding: 20px;
       border-radius: 10px;
       background: #fff;
     }
+  } */
+
+.Modal {
+   
+      padding: 20px;
+      border-radius: 10px;
+      background: #fff;
+   
   }
   
   .Overlay {
@@ -306,7 +314,9 @@ table tr {
   
   button[type="button"] {
     /* background-color: #51cbce; */
-    color: #FFF;
+    /* color: #FFF; */
+    color: black;
+    margin-top: 50px;
   }
   
 
