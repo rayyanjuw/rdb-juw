@@ -1,4 +1,4 @@
-.add_personal_info_container {
+.add-personal-info-container {
     display: flex;
     height: 100vh;
     flex-direction: row; 
@@ -8,7 +8,7 @@
     width: 20%;
     background: #0037a5;
     position: sticky;
-    color: #FFFFFF;
+    color: #FFF;
     top: 0;
     height: 100vh;
     overflow-y: auto;
@@ -18,38 +18,36 @@
     transition: all 0.3s ease; 
 }
 
-.add_personal_info {
+.add-personal-info {
     flex: 1;
     overflow-y: auto;
     background-color: #F4F3EF;
     padding: 20px;
-    transition: margin-left 0.3s ease; 
+    transition: margin-left 0.3s ease;
 }
 
-.PI2_bred-crumb {
+.pi2-bred-crumb {
     margin: 0 20px !important;
     width: calc(100% - 40px);
     background-color: #e9ecef;
 }
 
 
-.add-personalInfo_card {
+.add-personalinfo-card {
     width: 100%;
     height: 100%;
-    /* height: 1000px; */
     margin: auto;
     background-color: white;
-    /* border-radius: 15px 15px 0 0; */
     border-radius: 18px;
     animation: fadeIn 1s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
-    0 6px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgb(0 0 0 / 10%),
+    0 6px 20px rgb(0 0 0 / 10%);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 
-.add-personalInfo_heading {
-  padding: 1rem 1rem 0.7rem 1rem;
+.add-personalinfo-heading {
+  padding: 1rem 1rem 0.7rem;
   font-size: 22px;
 }
 
@@ -60,7 +58,7 @@
 }
 
 
-.multiInputFields {
+.multiinputfields {
     display: grid;
      grid-template-columns: repeat(2, 1fr);
      gap: 10px;
@@ -73,16 +71,16 @@
      padding: 10px 15px;
  }
  
- .multiInputFields label {
+ .multiinputfields label {
      color: #9A9A9A;
      font-size: 0.8571em;
  }
 
 
-.multiInputFields input {
+.multiinputfields input {
   width: 100%;
   padding: 8px;
-  border: 1px solid #DDDDDD;
+  border: 1px solid #DDD;
   color: #66615B;
   border-radius: 4px;
   font-size: 14px;
@@ -90,14 +88,14 @@
 }
 
 
-.EPI_save-btn-bg {
+.epi-save-btn-bg {
     display: flex;
     align-items: center;
     margin-top: 30px;
     justify-content: center;
 }
 
-.EPI_savebut {
+.epi-savebut {
     font-weight: 600;
     font-size: 12px;
     display: flex;
@@ -105,8 +103,8 @@
     justify-content: center;
     width: 7vw;
     height: 5vh;
-    margin-left: 15px;
     margin: center;
+    margin-left: 15px;
     color: white;
     background-color: #51cbce;
     border-radius: 30px;
@@ -117,8 +115,7 @@
 
 
 
-.juw_copyright p {
-/* .add-personalInfo_juw_copyright p { */
+.juw-copyright p {
     margin-top: 80px;
     text-align: right;
     font-size: 0.8571em;
@@ -134,101 +131,98 @@
     justify-content: center;
     background-color: white;
     border-radius: 0 0 15px 15px;
-    box-shadow: 0px 0px 10px #00000015;
+    box-shadow: 0 0 10px #00000015;
     transition: 0.3s;
     animation: fadeIn 1s;
 }
 
 div.navbar-div {
-    margin: 0 0 1.4rem 0;
+    margin: 0 0 1.4rem;
 }
 
-/* Responsive Styles */
-@media (max-width: 1200px) {
+@media (width <= 1200px) {
     .sidebar {
         width: 25%;
     }
 
-    .add_personal_info {
+    .add-personal-info {
         padding: 15px;
     }
 
-    .add-personalInfo_card {
-        height: auto; /* Allow the card to adjust its height based on content */
+    .add-personalinfo-card {
+        height: auto;
     }
 
-    .multiInputFields {
+    .multiinputfields {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .EPI_savebut {
+    .epi-savebut {
         font-size: 14px; 
         width: 10vw; 
         height: 5vh;
     }
 }
 
-@media (max-width: 992px) {
+@media (width <= 992px) {
     .sidebar {
         width: 30%;
     }
 
-    .add_personal_info {
+    .add-personal-info {
         padding: 10px;
     }
 
-    .add-personalInfo_card {
+    .add-personalinfo-card {
         height: auto;
     }
 
-    .multiInputFields {
+    .multiinputfields {
         grid-template-columns: 1fr; 
     }
 
-    .EPI_savebut {
+    .epi-savebut {
         font-size: 14px; 
         width: 10vw; 
         height: 3vh;
     }
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .sidebar {
         width: 100%; 
         position: static; 
     }
 
-    .add_personal_info_container {
+    .add-personal-info-container {
         flex-direction: column; 
     }
 
-    .add_personal_info {
+    .add-personal-info {
         padding: 5px;
     }
 
-    .add-personalInfo_card {
+    .add-personalinfo-card {
         margin: 5px;
     }
 
-    .EPI_savebut {
-        /* width: 100%;  */
-        width: 98%; 
+    .epi-savebut {
         height: 40px;
         width: 11vw;
     }
 }
 
-@media (max-width: 576px) {
-    .multiInputFields {
+@media (width <= 576px) {
+    .multiinputfields {
         padding: 5px;
     }
 
-    .multiInputFields input {
-        font-size: 12px; /* Adjust font size for small screens */
+    .multiinputfields input {
+        font-size: 12px; 
     }
 
-    .EPI_savebut {
-        font-size: 14px; /* Adjust font size */
+    .epi-savebut {
+        font-size: 14px; 
         height: 40px;
         width: 15vw;
     }

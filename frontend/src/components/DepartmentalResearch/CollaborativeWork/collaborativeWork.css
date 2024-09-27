@@ -14,7 +14,7 @@
   font-size: max(1vw, 10px);
 }
 
-.collaborativework_bred-crumb {
+.collaborativework-bred-crumb {
   margin: 0;
   width: 100%;
   background-color: #e9ecef;
@@ -32,16 +32,14 @@
   margin-top: 30px;
   padding: 20px;
   border-radius: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
-  0 6px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgb(0 0 0 / 10%),
+  0 6px 20px rgb(0 0 0 / 10%);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .collaborativework-card h3 {
-  /* padding: 10px; */
   margin: 10px;
   margin-left: 0;
-  /* font-size: 1.57em; */
   font-size: 1.3em;
   font-weight: 400;
   margin-bottom: 20px;
@@ -76,23 +74,21 @@
   margin-top: 20px;
 }
 
-.collaborative_btn {
+.collaborative-btn {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 25px;
 }
 
-.collaborative_button {
+.collaborative-button {
   font-weight: 600;
   font-size: 12px;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* width: 6vw; */
   width: 8vw;
   border: none;
-  /* height: 5vh; */
   height: 3vh;
   color: white;
   background-color: #51cbce;
@@ -105,8 +101,8 @@
 
 
 
-@media (max-width: 480px){
-  .collaborative_button{
+@media (width <= 480px){
+  .collaborative-button{
     width: 15vw !important;
     height: 5vh !important; 
   }
@@ -115,20 +111,16 @@
 
 
 
-@media (max-width: 768px) {
-
+@media (width <= 768px) {
   .collaborativework-card {
     background-color: white;
     margin-top: 30px;
-    /* padding: 20px; */
     border-radius: 20px;
   }
 
   .collaborativework-card h3 {
-    /* padding: 10px; */
     margin: 10px;
     margin-left: 0;
-    /* font-size: 1.57em; */
     font-size: 1.22em;
     font-weight: 400;
     margin-bottom: 20px;
@@ -148,7 +140,7 @@
   }
 
 
-  .collaborative_button {
+  .collaborative-button {
     font-weight: 600;
     font-size: 12px;
     width: 15vw;
@@ -163,8 +155,8 @@
 }
 
 
-@media (max-width: 1024px){
-  .collaborative_button {
+@media (width <= 1024px){
+  .collaborative-button {
     width: 9vw;
     height: 4vh;
   }

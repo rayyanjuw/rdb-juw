@@ -75,21 +75,21 @@ const ThesisProjectDetails = () => {
         <div className='thesisprojectdetails-container'>
             <Sidebar />
             <div className='thesisprojectdetails'>
-                <div className="thsisproject_navbar-div">
+                <div className="thsisproject-navbar-div">
                     <NavBar />
                 </div>
                 <div className="thesisprojectdetails-card">
-                    <h3 className="thesisprojectdetails_heading">
+                    <h3 className="thesisprojectdetails-heading">
                         Departmental Research Data | Publications of Faculty
                     </h3>
-                    <div className="thesisprojectdetails_bred-crumb">
+                    <div className="thesisprojectdetails-bred-crumb">
                         <Breadcrumb items={breadCrumps} activePath={currentPath} />
                     </div>
-                    <div className='thesisprojectdetails_main_heading'>
+                    <div className='thesisprojectdetails-main-heading'>
                     <h4>BS/MS/PhD thesis/project details:</h4>
                     </div>
-                    <div className="thesisprojectdetails_multiInputFields">
-                        <div className="thesisprojectdetails_title-input">
+                    <div className="thesisprojectdetails-multiinputfields">
+                        <div className="thesisprojectdetails-title-input">
                             <label>Title:</label>
                             <input
                                 required
@@ -101,8 +101,8 @@ const ThesisProjectDetails = () => {
                         </div>
 
 
-                        <div className="thesisprojectdetails_multiInputFields">
-                            <div className="thesisprojectdetails_InputGroup">
+                        <div className="thesisprojectdetails-multiinputfields">
+                            <div className="thesisprojectdetails-inputgroup">
                                 <label>Student Name:</label>
                                 <input
                                     required
@@ -112,7 +112,7 @@ const ThesisProjectDetails = () => {
                                     onChange={handleChange}
                                 />
                             </div>
-                            <div className="thesisprojectdetails_InputGroup">
+                            <div className="thesisprojectdetails-inputgroup">
                                 <label>Principal and Co-Principal Investigator Details:</label>
                                 <input
                                     required
@@ -124,10 +124,10 @@ const ThesisProjectDetails = () => {
                             </div>
                         </div>
 
-                        <h4 className='thesisprojectdetails_heading2'>Research funding status:</h4>
+                        <h4 className='thesisprojectdetails-heading2'>Research funding status:</h4>
 
-                        <div className="thesisprojectdetails_four-inputs">
-                            <div className="thesisprojectdetails_InputGroup">
+                        <div className="thesisprojectdetails-four-inputs">
+                            <div className="thesisprojectdetails-inputgroup">
                                 <label>Funded or non-funded research:</label>
                                 <input 
                                     required
@@ -137,7 +137,7 @@ const ThesisProjectDetails = () => {
                                     onChange={handleChange}
                                 />
                             </div>
-                            <div className="thesisprojectdetails_InputGroup">
+                            <div className="thesisprojectdetails-inputgroup">
                                 <label>Amount if funded:</label>
                                 <input
                                     required
@@ -147,7 +147,7 @@ const ThesisProjectDetails = () => {
                                     onChange={handleChange}
                                 />
                             </div>
-                            <div className="thesisprojectdetails_InputGroup">
+                            <div className="thesisprojectdetails-inputgroup">
                                 <label>Source of funding:</label>
                                 <input
                                     required
@@ -157,7 +157,7 @@ const ThesisProjectDetails = () => {
                                     onChange={handleChange}
                                 />
                             </div>
-                            <div className="thesisprojectdetails_InputGroup">
+                            <div className="thesisprojectdetails-inputgroup">
                                 <label>Date of initiation and submission of final report to BASR:</label>
                                 <input
                                     required
@@ -168,12 +168,12 @@ const ThesisProjectDetails = () => {
                                 />
                             </div>
                         </div>
-                        <div className="AIP_save-btn">
-                            <button className="AIP_savebut">Save</button>
+                        <div className="aip-save-btn">
+                            <button className="aip-savebut">Save</button>
                         </div>
                     </div>
                 </div>
-                <div className="juw_copyright">
+                <div className="juw-copyright">
                     <p>© 2024, all rights reserved by Jinnah University for Women.</p>
                 </div>
             </div>

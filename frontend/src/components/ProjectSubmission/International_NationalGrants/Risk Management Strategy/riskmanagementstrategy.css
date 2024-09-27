@@ -14,7 +14,7 @@
     font-size: max(1vw, 10px);
   }
   
-  .riskmanagementstrategy_bred-crumb {
+  .riskmanagementstrategy-bred-crumb {
     margin: 0;
     width: 100%;
     background-color: #e9ecef;
@@ -32,8 +32,8 @@
     margin-top: 30px;
     padding: 20px;
     border-radius: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
-                0 6px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgb(0 0 0 / 10%),
+                0 6px 20px rgb(0 0 0 / 10%);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   
@@ -50,6 +50,7 @@
     height: 25vh;
     resize: none;
     padding: 10px;
+
     /* margin-top: 20px; */
     line-height: 1.5;
     border-radius: 5px;
@@ -74,26 +75,30 @@
   
   .riskmanagementstrategy-content p {
     font-size: 14px;
+
     /* margin: 0; */
+
     /* margin-bottom: 20px; */
     margin-top: 20px;
     color: #252422;
     margin-bottom: 1rem;
   }
   
-  .riskmanagementstrategy_btn {
+  .riskmanagementstrategy-btn {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 25px;
   }
   
-  .riskmanagementstrategy_button {
+  .riskmanagementstrategy-button {
     font-weight: 600;
     font-size: 12px;
+
     /* width: 6vw; */
     width: 6vw;
     border: none;
+
     /* height: 5vh; */
     height: 3vh;
     color: white;
@@ -107,8 +112,8 @@
   }
   
 
-  @media (max-width: 480px){
-    .riskmanagementstrategy_button{
+  @media (width <= 480px){
+    .riskmanagementstrategy-button{
       width: 15vw !important;
       height: 5vh !important;
       display: flex;
@@ -117,8 +122,8 @@
     }
   }
 
-  @media (max-width: 768px){
-    .riskmanagementstrategy_button{
+  @media (width <= 768px){
+    .riskmanagementstrategy-button{
       width: 10vw;
       height: 4vh;
       display: flex;
@@ -127,8 +132,8 @@
     }
   }
   
-  @media (max-width: 1024px){
-    .riskmanagementstrategy_button{
+  @media (width <= 1024px){
+    .riskmanagementstrategy-button{
       width: 10vw;
       height: 4vh;
       display: flex;

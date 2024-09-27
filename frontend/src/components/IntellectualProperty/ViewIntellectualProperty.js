@@ -258,7 +258,7 @@ const ViewIntellectualProperty = () => {
     <div className="intelproperty-container">
       <Sidebar />
       <div className="intelproperty">
-        <div className="viewintell_navbar-div">
+        <div className="viewintell-navbar-div">
           <h4>Submission | Intellectual Property</h4>
           <NavBar />
         </div>
@@ -469,7 +469,7 @@ const ViewIntellectualProperty = () => {
           </form>
         </Modal>
 
-        <div className="VIP_juw_copyright">
+        <div className="vip-juw-copyright">
           <p>© 2024, all rights reserved by Jinnah University for Women.</p>
         </div>
       </div>

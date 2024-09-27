@@ -81,7 +81,7 @@ const ListofReferences = ({onSave}) => {
         </div>
         <div className="listofreferences-card">
           <h3>International/National Grants | List of References</h3>
-          <div className="listofreferences_bred-crumb">
+          <div className="listofreferences-bred-crumb">
             <Breadcrumb items={breadCrumps} activePath={currentPath} />
           </div>
           <div className="listofreferences-content">
@@ -103,8 +103,8 @@ const ListofReferences = ({onSave}) => {
 
             <p>Proposals should follow accepted academic practice in citing references throughout the proposal. References should numbered sequentially, and listed separately as a required attachment to the proposal.  References should be reported in a standard form, and include: the names of all authors; the article and journal title; book title; volume and page numbers; and year of publication. If available, a Digital Object Identifier (DOI) may be provided.</p>
    
-            <div className="listofreferences_btn">
-              <button className="listofreferences_button" onClick={handleSave}>SAVE</button>
+            <div className="listofreferences-btn">
+              <button className="listofreferences-button" onClick={handleSave}>SAVE</button>
             </div>
           </div>
         </div>

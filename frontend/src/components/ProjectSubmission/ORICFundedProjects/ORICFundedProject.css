@@ -1,5 +1,5 @@
 /* responsive */
-.oricfundedproject_container {
+.oricfundedproject-container {
     display: flex;
     height: 100vh;
 }
@@ -8,7 +8,7 @@
     width: 20%;
     background: #0037a5;
     position: sticky;
-    color: #ffffff;
+    color: #fff;
     top: 0;
     height: 100vh;
     overflow-y: auto;
@@ -37,8 +37,8 @@
     padding: 25px;
     border-radius: 20px;
     flex-grow: 1;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
-    0 6px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgb(0 0 0 / 10%),
+    0 6px 20px rgb(0 0 0 / 10%);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
@@ -70,7 +70,7 @@
   .oricfundedproject-table-data h5 {
     font-weight: bold;
     font-size: 14px;
-    font-family: "Montserrat", "Helvetica Neue", "Arial", "sans-serif";
+    font-family: Montserrat, "Helvetica Neue", Arial, sans-serif;
   }
   
   .oricfundedproject-table-container {
@@ -96,7 +96,7 @@
   .oricfundedproject-list-table {
     display: flex;
     border-top: 1px solid #dee2e6;
-    padding: 12px 0px;
+    padding: 12px 0;
     flex-direction: column;
     margin-left: 0;
     margin-right: 0;
@@ -116,6 +116,7 @@
   .oricfundedproject-list-table-format b {
     font-weight: 450;
     font-size: 15px;
+
     /* width: 18%; */
     width: 30%;
     color: #333;
@@ -129,8 +130,10 @@
     border-top: 1px solid #dee2e6;
     padding: 10px 0;
     justify-content: space-between;
+
     /* border-right: 1px solid #dee2e6; */
     align-items: flex-start;
+
     /* text-align: left; */
   }
   
@@ -150,6 +153,14 @@
     flex-direction: column;
     margin-right: 10px;
   }
+
+  .juw-copyright p {
+    margin-top: 80px;
+    text-align: right;
+    font-size: 0.8571em;
+    line-height: 1.8;
+    color: #66615b;
+  }
   
   .oricfundedproject-list-table-format .value-details p {
     margin-left: 10px;
@@ -165,13 +176,6 @@
     margin-left: 40px;
   }
   
-  .juw_copyright p {
-    margin-top: 80px;
-    text-align: right;
-    font-size: 0.8571em;
-    line-height: 1.8;
-    color: #66615b;
-  }
 
 
   .diskstyle{
@@ -179,11 +183,12 @@
   }
 
 
-@media (max-width: 480px){
+@media (width <= 480px){
   .oricfundedproject-list-table-format {
     display: flex;
     flex-direction: column;
     border-top: 1px solid #dee2e6;
+
     /* justify-content: space-between; */
     padding: 10px 0;
   }
@@ -210,19 +215,17 @@
 
   .oricfundedproject-table-container {
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
+    flex-flow: column wrap;
     padding: 0;
   }
 
   .oricfundedproject-list-table-format span {
     display: flex;
-    flex-direction: row;
+    flex-flow: row wrap;
     width: 100%;
-    flex-wrap: wrap;
     font-size: 11px;
     flex: 1;
-    margin-left: 0px;
+    margin-left: 0;
   }
 
   .oricfundedproject-list-table-format b {

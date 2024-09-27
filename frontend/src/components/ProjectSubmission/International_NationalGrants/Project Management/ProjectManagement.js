@@ -87,7 +87,7 @@ const ProjectManagement = ({onSave}) => {
         </div>
         <div className="projectmanagement-card">
           <h3>International/National Grants | Project Management</h3>
-          <div className="projectmanagement_bred-crumb">
+          <div className="projectmanagement-bred-crumb">
             <Breadcrumb items={breadCrumps} activePath={currentPath} />
           </div>
           <div className="projectmanagement-content">
@@ -109,8 +109,8 @@ const ProjectManagement = ({onSave}) => {
 
             <p>As the leader of the host institution, the University Vice-Chancellor has a crucial role in the success of the proposed project.  What support will the university leadership provide to the proposed project?</p>    
             
-            <div className="projectmanagement_btn">
-              <button className="projectmanagement_button" onClick={handleSave}>SAVE</button>
+            <div className="projectmanagement-btn">
+              <button className="projectmanagement-button" onClick={handleSave}>SAVE</button>
             </div>
           </div>
         </div>

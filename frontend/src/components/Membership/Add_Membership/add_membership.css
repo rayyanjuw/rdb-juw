@@ -14,7 +14,7 @@
   font-size: max(1vw, 10px);
 }
 
-.e_membership_bred-crumb {
+.e-membership-bred-crumb {
   margin: 0 10px !important;
   width: calc(100% - 40px);
   background-color: #e9ecef;
@@ -27,17 +27,13 @@
   padding: 20px;
 }
 
-/* .navbar-div {
-  margin: 0 0 1.4rem 0;
-} */
-
 .add-membership-card {
   background-color: white;
   margin-top: 30px;
   padding: 20px;
   border-radius: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
-  0 6px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgb(0 0 0 / 10%),
+  0 6px 20px rgb(0 0 0 / 10%);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -83,13 +79,12 @@
   align-items: center;    
 }
 
-.am_button {
+.am-button {
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 600;
   font-size: 12px;
-  /* width: 6vw; */
   width: 5vw;
   height: 4vh;
   margin-top: 25px;
@@ -101,9 +96,3 @@
   border-width: 1px;
 }
 
-
-@media (max-width: ) {
-  .am_button{
-
-  }
-}

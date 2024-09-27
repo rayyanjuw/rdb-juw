@@ -14,10 +14,11 @@
     font-size: max(1vw, 10px);
   }
   
-  .executivesummary_bredcrumb {
+  .executivesummary-bredcrumb {
   /* .executivesummary_bred-crumb { */
     margin: 0;
     width: 100%;
+
     /* display: flex;
     flex-wrap: wrap; */
     background-color: #e9ecef;
@@ -35,8 +36,8 @@
     margin-top: 30px;
     padding: 20px;
     border-radius: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
-                0 6px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgb(0 0 0 / 10%),
+                0 6px 20px rgb(0 0 0 / 10%);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   
@@ -77,14 +78,14 @@
     margin-bottom: 1rem;
   }
   
-  .executivesummary_btn {
+  .executivesummary-btn {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 25px;
   }
   
-  .executivesummary_button {
+  .executivesummary-button {
     font-weight: 600;
     font-size: 12px;
     width: 6vw;
@@ -98,8 +99,8 @@
   }
   
   
-  @media (max-width: 480px){
-    .executivesummary_button{
+  @media (width <= 480px){
+    .executivesummary-button{
       width: 17vw !important;
       height: 4vh !important; 
       display: flex;
@@ -108,8 +109,7 @@
     }
   }
   
-  @media (max-width: 768px) {
-  
+  @media (width <= 768px) {
     .executivesummary-card {
       background-color: white;
       margin-top: 30px;
@@ -138,7 +138,7 @@
     }
   
   
-    .executivesummary_button {
+    .executivesummary-button {
       font-weight: 600;
       font-size: 12px;
       width: 15vw;
@@ -152,8 +152,8 @@
     }
   }
   
-  @media (max-width: 1024px){
-    .executivesummary_button {
+  @media (width <= 1024px){
+    .executivesummary-button {
       width: 9vw;
       height: 4vh;
     }

@@ -14,7 +14,7 @@
     font-size: max(1vw, 10px);
   }
   
-  .projectdescription_bred-crumb {
+  .projectdescription-bred-crumb {
     margin: 0;
     width: 100%;
     background-color: #e9ecef;
@@ -39,8 +39,9 @@
     margin-top: 30px;
     padding: 20px;
     border-radius: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
-                0 6px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgb(0 0 0 / 10%),
+                0 6px 20px rgb(0 0 0 / 10%);
+
     /* transform: perspective(1000px) translateZ(10px); */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
@@ -49,6 +50,7 @@
     /* padding: 10px; */
     margin: 10px;
     margin-left: 0;
+
     /* font-size: 1.57em; */
     font-size: 1.3em;
     font-weight: 400;
@@ -69,6 +71,7 @@
   
   .file-input-wrapper input[type="text"] {
     width: 100%; /* Make the input field 100% */
+
     /* padding: 10px; */
     padding: 5px;
     border: 1px solid #ccc;
@@ -87,10 +90,10 @@
     border-radius: 0 4px 4px 0;
     cursor: pointer;
     text-align: center;
-    border: 1px solid rgba(0, 0, 0, .125);
+    border: 1px solid rgb(0 0 0 / 12.5%);
   }
   
-  .projectsummary_upload p {
+  .projectsummary-upload p {
     margin-top: 20px;
     margin-bottom: 1rem;
   }
@@ -98,13 +101,14 @@
   .projectdescription-content p{
     color: #2c2c2c;
     font-size: 14px;
-    font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+    font-family: Montserrat, "Helvetica Neue", Arial, sans-serif;
   }
 
 
   .projectdescription-content h4 {
     font-weight: 400;
     margin-top: 20px;
+
     /* margin: 50px 0 15px 0; */
     color: #252422;
     margin-bottom: 20px;
@@ -112,22 +116,24 @@
     line-height: 1.45em;
   }
   
-  .projectdescription_btn {
+  .projectdescription-btn {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 25px;
   }
   
-  .projectdescription_button {
+  .projectdescription-button {
     font-weight: 600;
     font-size: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
+
     /* width: 6vw; */
     width: 5vw;
     border: none;
+
     /* height: 5vh; */
     height: 3vh;
     color: white;
@@ -138,8 +144,8 @@
   }
   
   
-  @media (max-width: 480px){
-    .projectdescription_button{
+  @media (width <= 480px){
+    .projectdescription-button{
       width: 15vw !important;
       height: 5vh !important;
       display: flex;
@@ -149,8 +155,8 @@
   }
   
 
-  @media (max-width: 768px){
-    .projectdescription_button {
+  @media (width <= 768px){
+    .projectdescription-button {
       width: 10vw;
       height: 4vh;
       display: flex;
@@ -159,8 +165,8 @@
     }
   }
 
-  @media (max-width: 1024px){
-    .projectdescription_button {
+  @media (width <= 1024px){
+    .projectdescription-button {
       width: 10vw;
       height: 4vh;
       display: flex;

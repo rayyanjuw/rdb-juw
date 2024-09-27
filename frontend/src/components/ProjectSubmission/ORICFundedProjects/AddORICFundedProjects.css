@@ -1,4 +1,4 @@
-.addoricfundedproject_container {
+.addoricfundedproject-container {
   display: flex;
   height: 100vh;
 }
@@ -7,7 +7,7 @@
   width: 20%;
   background: #0037a5;
   position: sticky;
-  color: #ffffff;
+  color: #fff;
   top: 0;
   height: 100vh;
   overflow-y: auto;
@@ -22,14 +22,14 @@
   padding: 20px;
 }
 
-.addoric_navbar-div {
+.addoric-navbar-div {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
 }
 
-.addoric_navbar-div h4 {
+.addoric-navbar-div h4 {
   font-weight: 400;
   font-size: 20px;
   margin-top: 10px;
@@ -37,12 +37,6 @@
   color: #66615b;
 }
 
-/* .add-oricfundedproject-bredcrumb {
-  background-color: #e9ecef;
-  display: flex;
-  flex-wrap: wrap;
-  height: 10%;
-} */
 
 .add-oricfundedproject-card {
   background-color: white;
@@ -54,8 +48,8 @@
   padding: 25px;
   border-radius: 20px;
   flex-grow: 1;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
-  0 6px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgb(0 0 0 / 10%),
+  0 6px 20px rgb(0 0 0 / 10%);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -78,23 +72,21 @@
   border-radius: 0.25rem;
 }
 
-.add-oricfundedproject_multiInputFields input {
-  /* width: calc(100% - 20px); */
+.add-oricfundedproject-multiinputfields input {
   width: 100%;
   margin: 10px 0;
   padding: 6px;
-  border: 1px solid #dddddd;
+  border: 1px solid #ddd;
   color: #66615b;
   border-radius: 4px;
-  /* font-size: 14px; */
   box-sizing: border-box;
 }
 
-.addoric_title-input {
+.addoric-title-input {
   margin-bottom: 15px;
 }
 
-.addoric_two-inputs {
+.addoric-two-inputs {
   display: flex;
   align-items: center;
   flex-direction: row;
@@ -102,21 +94,24 @@
   margin-bottom: 20px;
 }
 
-.addoric_two-inputs .addoric_InputGroup {
-  flex: 1;
-}
-
-.addoric_InputGroup {
+.addoric-inputgroup {
   margin-bottom: 15px;
 }
 
-.addoric_InputGroup label {
+
+
+.addoric-two-inputs .addoric-inputgroup {
+  flex: 1;
+}
+
+
+.addoric-inputgroup label {
   font-size: 0.8571em;
   margin-bottom: 5px;
   color: #9a9a9a;
 }
 
-.AO_juw_copyright p {
+.ao-juw-copyright p {
   margin-top: 80px;
   text-align: right;
   font-size: 0.8571em;
@@ -124,21 +119,20 @@
   color: #66615b;
 }
 
-.AOF_save-btn {
-  /* width: 100%; */
-  /* height: 100px; */
+.aof-save-btn {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.AOF_savebut {
+.aof-savebut {
   font-weight: 600;
   font-size: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 5vw;
+
   /* width: 10vw; */
   height: 4vh;
   margin-left: 15px;
@@ -151,16 +145,17 @@
 }
 
 /* actual */
+
 /* Media Queries */
-@media (max-width: 480px) {
-  .addoric_navbar-div h4 {
+@media (width <= 480px) {
+  .addoric-navbar-div h4 {
     font-weight: 400;
     font-size: 14px;
     margin-top: 5px;
     margin-left: 30px;
   }
 
-  .addoric_two-inputs {
+  .addoric-two-inputs {
     flex-direction: column;
   }
 
@@ -168,21 +163,21 @@
     font-size: 12px;
   }
 
-  .addoric_two-inputs .addoric_InputGroup {
+  .addoric-two-inputs .addoric-inputgroup {
     flex: 1;
   }
 
-  .add-oricfundedproject_multiInputFields input {
+  .add-oricfundedproject-multiinputfields input {
     width: 100%;
     margin: 0;
   }
 
-  .AOF_savebut {
+  .aof-savebut {
     width: 15vw;
     height: 4vh;
   }
 
-  .AO_juw_copyright p {
+  .ao-juw-copyright p {
     margin-top: 80px;
     text-align: center;
     font-size: 0.8571em;
@@ -191,8 +186,8 @@
   }
 }
 
-@media (min-width: 768px) {
-  .addoricfundedproject_container {
+@media (width >= 768px) {
+  .addoricfundedproject-container {
     flex-direction: row;
   }
 
@@ -204,7 +199,7 @@
     overflow-y: auto;
   }
 
-  .addoric_navbar-div h4 {
+  .addoric-navbar-div h4 {
     font-weight: 400;
     font-size: 20px;
     margin-top: 10px;
@@ -212,38 +207,33 @@
     color: #66615b;
   }
 
-  .addoric_navbar-div {
+  .addoric-navbar-div {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
   }
 
-  .addoric_two-inputs {
+  .addoric-two-inputs {
     flex-direction: row;
     gap: 20px;
   }
 
-  .addoric_two-inputs .addoric_InputGroup {
+  .addoric-two-inputs .addoric-inputgroup {
     flex: 1;
   }
 
-  .AOF_save-btn {
+  .aof-save-btn {
     height: auto;
   }
 
-  .AOF_savebut {
-    /* width: 7vw; */
+  .aof-savebut {
     width: 9vw;
     height: 4vh;
     margin-left: 15px;
   }
-
-  /* button.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-sizeMedium.css-w92lsb-MuiButtonBase-root-MuiIconButton-root {
-    margin-top: 10px !important;
-  } */
 }
 
-@media (min-width: 1024px) {
+@media (width >= 1024px) {
   .add-oricfundedproject-card {
     padding: 35px;
   }
@@ -252,11 +242,11 @@
     font-size: 22px;
   }
 
-  .addoric_navbar-div h4 {
+  .addoric-navbar-div h4 {
     font-size: 20px;
   }
 
-  .addoric_two-inputs .addoric_InputGroup {
+  .addoric-two-inputs .addoric-inputgroup {
     margin-bottom: 15px;
   }
 }

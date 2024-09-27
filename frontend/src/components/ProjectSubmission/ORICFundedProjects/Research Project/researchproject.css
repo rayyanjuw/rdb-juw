@@ -7,7 +7,7 @@
   width: 20%;
   background: #0037a5;
   position: sticky;
-  color: #ffffff;
+  color: #fff;
   top: 0;
   height: 100vh;
   overflow-y: auto;
@@ -32,8 +32,8 @@
   padding: 25px;
   border-radius: 20px;
   flex-grow: 1;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
-  0 6px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgb(0 0 0 / 10%),
+  0 6px 20px rgb(0 0 0 / 10%);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -61,22 +61,22 @@
   background-color: #e9ecef;
 }
 
-.researchproject_multiInputFields h4 {
+.researchproject-multiinputfields h4 {
   margin-top: 30px;
 }
-.researchproject_multiInputFields input {
+
+.researchproject-multiinputfields input {
   width: calc(100% - 20px);
   margin: 10px 0;
   padding: 6px;
-  border: 1px solid #dddddd;
+  border: 1px solid #ddd;
   color: #66615b;
   border-radius: 4px;
   font-size: 14px;
   box-sizing: border-box;
 }
 
-.researchproject_multiInputFields label {
-  /* width: calc(100% - 20px);  */
+.researchproject-multiinputfields label {
   font-size: 0.8571em;
   margin-bottom: 5px;
   color: #9a9a9a;
@@ -85,35 +85,34 @@
   line-height: 1.5;
 }
 
-.researchproject_title-input {
+.researchproject-title-input {
   margin-bottom: 15px;
   margin-top: 15px;
 }
 
 .two-inputs {
-  /* .researchproject_two-inputs { */
   display: flex;
   align-items: center;
   flex-direction: row;
   margin-bottom: 20px;
 }
 
-.two-inputs .InputGroup {
-  /* .researchproject_two-inputs .researchproject_InputGroup { */
+.inputgroup {
+  margin-bottom: 15px;
+}
+
+.two-inputs .inputgroup {
   flex: 1;
   margin-right: 10px;
 }
 
-.InputGroup {
-  /* .researchproject_InputGroup { */
-  margin-bottom: 15px;
-}
 
-.InputGroup input {
+
+.inputgroup input {
     width: calc(100% - 20px);
     margin: 10px 0;
     padding: 6px;
-    border: 1px solid #dddddd;
+    border: 1px solid #ddd;
     color: #66615b;
     border-radius: 4px;
     font-size: 1rem;
@@ -121,53 +120,53 @@
 }
 
 
-.InputGroup label {
+.inputgroup label {
   margin-bottom: 5px;
   color: #9a9a9a;
   font-size: 13px;
 }
 
-.multiCheckBoxes h6 {
+.multicheckboxes h6 {
   color: #6c757d;
   font-size: 14px;
   margin-top: 0;
   margin-bottom: 1rem;
 }
 
-.research_project_domain {
+.research-project-domain {
   margin-top: 10px;
 }
 
-.research_project_duration {
+.research-project-duration {
   margin-top: 10px;
 }
 
 
-.domain_research_checkbox {
+.domain-research-checkbox {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
 
 
-.domain_research_checkbox div {
+.domain-research-checkbox div {
   display: flex;
   align-items: center;
 }
 
-.domain_research_checkbox label {
+.domain-research-checkbox label {
   margin: 0;
-  display: inline-block;
   font-size: 0.7571em;
-  display: flex;
+
+  /* display: flex; */
   align-items: center;
 }
 
-.domain_research_checkbox input[type="checkbox"] {
+.domain-research-checkbox input[type="checkbox"] {
   margin-right: 8px;
 }
 
-.researchproject_textarea textarea {
+.researchproject-textarea textarea {
   width: 100%;
   height: 8vh;
   resize: none;
@@ -179,60 +178,59 @@
   outline: none;
 }
 
-.researchproject_textarea textarea:focus {
+.researchproject-textarea textarea:focus {
   border-color: #ccc;
 }
 
 
-.researchproject_textarea label {
+.researchproject-textarea label {
   font-size: 0.81em;
   margin-bottom: 5px;
   color: #9a9a9a;
 }
 
-.researchproject_subheading {
-  padding: 1rem 1rem 0.3rem 0rem;
+.researchproject-subheading {
+  padding: 1rem 1rem 0.3rem 0;
   font-size: 14px;
   color: #252422;
 }
 
-.researchproject_mainheading {
+.researchproject-mainheading {
   font-size: 1.414em;
   line-height: 1.45em;
   margin-top: 30px;
   margin-bottom: 15px;
 }
 
-.discipline_research_checkbox {
+.discipline-research-checkbox {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  /* gap: 10px;  */
 }
 
-.discipline_research_checkbox h6 {
+.discipline-research-checkbox h6 {
   grid-column: 1 / -1;
   margin-bottom: 10px;
 }
 
-.discipline_research_checkbox div {
+.discipline-research-checkbox div {
   display: flex;
   align-items: center;
   font-size: 0.8571em;
   color: #9a9a9a;
 }
 
-.discipline_research_checkbox input[type="checkbox"] {
+.discipline-research-checkbox input[type="checkbox"] {
   margin-right: 4px;
 }
 
-.researchproject_btn {
+.researchproject-btn {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 25px;
 }
 
-.researchproject_button {
+.researchproject-button {
   font-weight: 600;
   font-size: 12px;
   width: 5vw;
@@ -249,7 +247,7 @@
 }
 
 
-.researchproject_juw-copyright p {
+.researchproject-juw-copyright p {
   margin-top: 80px;
   text-align: end;
   font-size: 0.8571em;
@@ -258,8 +256,7 @@
 }
 
 
-@media (max-width: 576px) {
-
+@media (width <= 576px) {
   .researchproject {
     padding: 5px;
   }
@@ -270,13 +267,13 @@
   }
 
 
-  .domain_research_checkbox {
+  .domain-research-checkbox {
     display: flex;
     align-items: start;
     margin-bottom: 20px;
   }
 
-  .domain_research_checkbox label{
+  .domain-research-checkbox label{
     display: flex;
     flex-wrap: wrap;
     line-height: 0.5;

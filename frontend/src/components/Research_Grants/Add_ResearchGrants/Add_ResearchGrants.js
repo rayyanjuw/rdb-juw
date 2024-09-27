@@ -100,24 +100,22 @@ const Add_ResearchGrants = () => {
   ];
 
   return (
-    <div className="Add_ResearchGrants-container">
+    <div className="add-researchgrants-container">
       <Sidebar />
-      <div className="add_researchGrants">
+      <div className="add-researchgrants">
         <div className="navbar-div">
           <NavBar />
         </div>
-        <div className="add_researchGrants_card">
+        <div className="add-researchgrants-card">
           <h4>Research portfolio | Research Grants and Contracts</h4>
-          <div className="ARG_bred-crumb">
+          <div className="arg-bred-crumb">
             <Breadcrumb items={breadCrumps} activePath={currentPath} />
           </div>
-          {/* <div className="bred-crumb">
-            <Breadcrumb items={breadCrumps} activePath={currentPath} />
-          </div> */}
+
           <div className="h4-heading">
             <h4>Research Grants and Contracts</h4>
           </div>
-          <div className="completed_part">
+          <div className="completed-part">
             <h6>Completed</h6>
             {formData.completed.map((grant, index) => (
               <div className="heading11" key={index}>
@@ -140,7 +138,7 @@ const Add_ResearchGrants = () => {
               </div>
             ))}
           </div>
-          <div className="inreview_part">
+          <div className="inreview-part">
             <h6>Funded & In progress, In review</h6>
             {formData.inReview.map((review, index) => (
               <div className="heading11" key={index}>
@@ -163,11 +161,11 @@ const Add_ResearchGrants = () => {
               </div>
             ))}
           </div>
-          <button type="button" className="edit_button">
+          <button type="button" className="edit-button">
             SAVE
           </button>
         </div>
-        <div className="juw_copyright">
+        <div className="juw-copyright">
           <p>© 2024, all rights reserved by Jinnah University for Women.</p>
         </div>
       </div>

@@ -29,7 +29,7 @@
   margin-bottom: 20px;
 }
 
-.conference_navbar-div {
+.conference-navbar-div {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -52,8 +52,8 @@
   padding: 20px;
   margin-top: 65px;
   border-radius: 18px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
-  0 6px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgb(0 0 0 / 10%),
+  0 6px 20px rgb(0 0 0 / 10%);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -65,8 +65,8 @@
 }
 
 .conference-bredcrumb {
-  margin-top: 20px;
   margin: 0;
+  margin-top: 20px;
   width: 100%;
   background-color: #e9ecef;
 }
@@ -80,10 +80,9 @@
 }
 
 .conference-card-title h4 {
-  /* margin-bottom: 10px; */
   font-size: 15px;
-  margin-bottom: 20px;
   margin: 0;
+  margin-bottom: 20px;
   color: #333;
   margin-top: 0;
 }
@@ -114,7 +113,7 @@
   gap: 10px;
 }
 
-.conference_btn {
+.conference-btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -130,26 +129,23 @@
 }
 
 
-@media (max-width: 1100px) {
+@media (width <= 1100px) {
   .conference-card-item .conference-input-container {
     grid-template-columns: repeat(2, 1fr);
-    /* margin-top: 15px; */
     margin-top: 0;
   }
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .conference-card-item .conference-input-container {
     grid-template-columns: repeat(1, 1fr);
   }
 
-  .conference_btn {
+  .conference-btn {
     width: 80%;
   }
 
   .conference-content h4 {
-    /* font-size: 16px; */
-    /* font-size: 1.34em; */
     font-size: 1.4em;
     line-height: 1.45em;
     margin-top: 30px;
@@ -166,16 +162,16 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (width <= 480px) {
   .conference-card-item .conference-input-container {
     grid-template-columns: repeat(1, 1fr);
   }
 
-  .conference_btn {
+  .conference-btn {
     width: 100%;
   }
 
-  .conference--content h3 {
+  .conference-content h3 {
     font-size: 14px;
   }
 

@@ -7,7 +7,7 @@
   width: 20%;
   background: #0037a5;
   position: sticky;
-  color: #ffffff;
+  color: #fff;
   top: 0;
   height: 100vh;
   overflow-y: auto;
@@ -33,8 +33,8 @@
   padding: 25px;
   border-radius: 20px;
   flex-grow: 1;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
-  0 6px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgb(0 0 0 / 10%),
+  0 6px 20px rgb(0 0 0 / 10%);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -45,10 +45,10 @@
   line-height: 1.4em;
   font-weight: 400;
   color: #252422;
-  margin-bottom: 20p;
+  margin-bottom: 20px;
 }
 
-.Viewgrants_detail {
+.viewgrants-detail {
   display: flex;
   align-items: start;
   gap: 10px;
@@ -56,11 +56,11 @@
   flex-direction: row;
 }
 
-.Viewgrants_detail h5 {
+.viewgrants-detail h5 {
   margin: 0;
 }
 
-.Viewgrants_detail button {
+.viewgrants-detail button {
   width: 100px;
   align-items: center;
   justify-content: center;
@@ -78,23 +78,23 @@
 .viewgrants-table-data h5 {
   font-weight: bold;
   font-size: 14px;
-  font-family: "Montserrat", "Helvetica Neue", "Arial", "sans-serif";
+  font-family: Montserrat, "Helvetica Neue", Arial, sans-serif;
 }
 
 .viewgrants-table-container {
   display: flex;
   flex-direction: column;
-  padding: 0 0;
+  padding: 0;
 }
 
 .viewgrants-list-table {
   display: flex;
   border-top: 1px solid #dee2e6;
-  /* margin-top: 20px; */
   width: 100%;
-  padding: 12px 0px;
+  padding: 12px 0;
   flex-direction: column;
-  margin-left-right: 0;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .viewgrants-list-table-format {
@@ -119,7 +119,7 @@
   color: #555;
 }
 
-.juw_copyright p {
+.juw-copyright p {
   margin-top: 80px;
   text-align: right;
   font-size: 0.8571em;
@@ -128,14 +128,14 @@
 }
 
 
-@media (max-width: 480px){
-
+@media (width <= 480px){
   .viewgrants-card h5 {
     margin-top: 10px;
     font-size: 1.5em;
     line-height: 1.4em;
     font-weight: 400;
     color: #252422;
+
     /* margin-bottom: 20px; */
   }
 
@@ -151,15 +151,6 @@
     flex-grow: 1;
   }
 
-  /* .viewgrants-list-table {
-    display: flex;
-    border-top: 1px solid #dee2e6;
-    margin-top: 20px;
-    width: 100%;
-    padding: 12px 0px;
-    flex-direction: column;
-    margin-left-right: 0;
-  } */
 
   .viewgrants-list-table-format {
     flex-direction: column;
@@ -178,12 +169,12 @@
     font-size: 14px;
   }
 
-  .Viewgrants_detail h5 {
+  .viewgrants-detail h5 {
     font-size: 15px;
     font-weight: 600;
   }
 
-  .viewgrants_navbar-div {
+  .viewgrants-navbar-div {
     display: flex;
     align-items: center;
     justify-content: space-between;

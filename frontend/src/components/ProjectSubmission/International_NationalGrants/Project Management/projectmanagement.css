@@ -14,7 +14,7 @@
     font-size: max(1vw, 10px);
   }
   
-  .projectmanagement_bred-crumb {
+  .projectmanagement-bred-crumb {
     margin: 0;
     width: 100%;
     background-color: #e9ecef;
@@ -39,8 +39,9 @@
     margin-top: 30px;
     padding: 20px;
     border-radius: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
-                0 6px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgb(0 0 0 / 10%),
+                0 6px 20px rgb(0 0 0 / 10%);
+
     /* transform: perspective(1000px) translateZ(10px); */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
@@ -49,6 +50,7 @@
     /* padding: 10px; */
     margin: 10px;
     margin-left: 0;
+
     /* font-size: 1.57em; */
     font-size: 1.3em;
     font-weight: 400;
@@ -60,6 +62,7 @@
     height: 25vh;
     resize: none;
     padding: 10px;
+
     /* margin-top: 20px; */
     line-height: 1.5;
     border-radius: 5px;
@@ -84,25 +87,29 @@
   
   .projectmanagement-content p {
     font-size: 14px;
+
     /* margin: 0; */
+
     /* margin-bottom: 20px; */
     margin-top: 20px;
     margin-bottom: 1rem;
   }
   
-  .projectmanagement_btn {
+  .projectmanagement-btn {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 25px;
   }
   
-  .projectmanagement_button {
+  .projectmanagement-button {
     font-weight: 600;
     font-size: 12px;
+
     /* width: 6vw; */
     width: 6vw;
     border: none;
+
     /* height: 5vh; */
     height: 3vh;
     color: white;
@@ -115,8 +122,8 @@
     text-align: center; 
   }
   
-  @media (max-width: 480px){
-    .projectmanagement_button {
+  @media (width <= 480px){
+    .projectmanagement-button {
       width: 15vw !important;
       height: 5vh !important;
       display: flex;
@@ -125,8 +132,8 @@
     }
   }
   
-  @media (max-width: 768px){
-    .projectmanagement_button {
+  @media (width <= 768px){
+    .projectmanagement-button {
       width: 10vw;
       height: 5vh;
       display: flex;
@@ -135,8 +142,8 @@
     }
   }
 
-  @media (max-width: 1024px){
-    .projectmanagement_button {
+  @media (width <= 1024px){
+    .projectmanagement-button {
       width: 10vw;
       height: 4vh;
       display: flex;

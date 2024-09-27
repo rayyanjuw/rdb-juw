@@ -121,28 +121,28 @@ const HonorAndAwards = () => {
   };
 
   return (
-    <div className="honorAndAward-container">
+    <div className="honorandaward-container">
       <Sidebar />
       <div className="honor-and-awards">
         <div className="navbar-div">
           <NavBar />
         </div>
-        <div className="honorAndAward-card">
-          <h3 className="honorAndAward_heading">
+        <div className="honorandaward-card">
+          <h3 className="honorandaward-heading">
             Research portfolio | Honor and Awards, Scholarship
           </h3>
-          <div className="HA_bred-crumb">
+          <div className="ha-bred-crumb">
             <Breadcrumb items={breadCrumps} activePath={currentPath} />
           </div>
           <hr />
-          <div className="honorAndAward-table">
+          <div className="honorandaward-table">
             {loading ? (
               <p>Loading honors and awards...</p>
             ) : error ? (
               <p>{error}</p>
             ) : (
-              <div className="honorAndAward-section">
-                <div className="honorAndAward-table-head">
+              <div className="honorandaward-section">
+                <div className="honorandaward-table-head">
                   <h5>ACADEMIC AWARDS</h5>
                   <button type="button" onClick={() => {
                     setEditingSection("academic");
@@ -168,9 +168,8 @@ const HonorAndAwards = () => {
                 ) : (
                   <p>No academic awards found.</p>
                 )}
-
                 <hr />
-                <div className="honorAndAward-table-head">
+                <div className="honorandaward-table-head">
                   <h5>PROFESSIONAL AWARDS</h5>
                   <button type="button" onClick={() => {
                     setEditingSection("professional");
@@ -201,7 +200,7 @@ const HonorAndAwards = () => {
           </div>
           <button
             type="button"
-            className="edit_button"
+            className="edit-button"
             onClick={handleNavigate}
           >
             EDIT
@@ -212,8 +211,8 @@ const HonorAndAwards = () => {
           isOpen={isModalOpen}
           onRequestClose={closeModal}
           contentLabel="Edit Honors and Awards"
-          className="Modal"
-          overlayClassName="Overlay"
+          className="honor-modal"
+          overlayClassName="honor-overlay"
         >
           <h2>Edit Honors and Awards</h2>
           <form onSubmit={(e) => {

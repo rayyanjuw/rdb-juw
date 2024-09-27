@@ -198,8 +198,8 @@ const ResearchProject = ({ onSave }) => {
             {/* <Breadcrumb items={breadCrumps} activePath={currentPath} /> */}
             {/* </div> */}
 
-            <div className="researchproject_multiInputFields">
-              <div className="researchproject_title-input">
+            <div className="researchproject-multiinputfields">
+              <div className="researchproject-title-input">
                 <label>Project title:</label>
                 <input
                   type="text"
@@ -212,9 +212,9 @@ const ResearchProject = ({ onSave }) => {
                 />
               </div>
 
-              <div className="multiCheckBoxes">
+              <div className="multicheckboxes">
                 <h6>Nature of Proposed Research</h6>
-                <div className="domain_research_checkbox">
+                <div className="domain-research-checkbox">
                   {[
                     "Basic",
                     "Applied",
@@ -242,10 +242,10 @@ const ResearchProject = ({ onSave }) => {
                 </div>
               </div>
 
-              <h6 className="research_project_domain">
+              <h6 className="research-project-domain">
                 Domain of Proposed Research
               </h6>
-              <div className="domain_research_checkbox">
+              <div className="domain-research-checkbox">
                 {[
                   "Arts and Humanities",
                   "Economic & Social Research",
@@ -275,7 +275,7 @@ const ResearchProject = ({ onSave }) => {
               </div>
             </div>
 
-            <div className="researchproject_textarea">
+            <div className="researchproject-textarea">
               <label htmlFor="shortSummary">
                 Short summary of the project:
               </label>
@@ -292,9 +292,9 @@ const ResearchProject = ({ onSave }) => {
               />
             </div>
 
-            <h6 className="research_project_duration">Project duration:</h6>
+            <h6 className="research-project-duration">Project duration:</h6>
             <div className="two-inputs">
-              <div className="InputGroup">
+              <div className="inputgroup">
                 <label>Year:</label>
                 <input
                   type="text"
@@ -307,7 +307,7 @@ const ResearchProject = ({ onSave }) => {
                   // onChange={handleInputChange}
                 />
               </div>
-              <div className="InputGroup">
+              <div className="inputgroup">
                 <label>Total funds requested (Rs):</label>
                 <input
                   type="text"
@@ -320,7 +320,7 @@ const ResearchProject = ({ onSave }) => {
               </div>
             </div>
 
-            <div className="researchproject_textarea">
+            <div className="researchproject-textarea">
               <label htmlFor="summary">Summary / Abstract:</label>
               <textarea
                 id="summary"
@@ -334,7 +334,7 @@ const ResearchProject = ({ onSave }) => {
               />
             </div>
 
-            <div className="researchproject_textarea">
+            <div className="researchproject-textarea">
               <label htmlFor="background">
                 Background of The Problem to be Addressed:
               </label>
@@ -350,12 +350,12 @@ const ResearchProject = ({ onSave }) => {
               />
             </div>
 
-            <h4 className="researchproject_mainheading">
+            <h4 className="researchproject-mainheading">
               Objectives with Expected Outputs
             </h4>
             {ResearchProject.objectives.map((objective, index) => (
               <div key={index}>
-                <h6 className="researchproject_subheading">
+                <h6 className="researchproject-subheading">
                   {index + 1}. Objective
                 </h6>
                 <div className="title-input">
@@ -374,7 +374,7 @@ const ResearchProject = ({ onSave }) => {
                   />
                 </div>
                 <div className="two-inputs">
-                  <div className="InputGroup">
+                  <div className="inputgroup">
                     <label>Measurable Output / Expected Results:</label>
                     <input
                       type="text"
@@ -389,7 +389,7 @@ const ResearchProject = ({ onSave }) => {
                       required
                     />
                   </div>
-                  <div className="InputGroup">
+                  <div className="inputgroup">
                     <label>Benefits:</label>
                     <input
                       type="text"
@@ -403,10 +403,10 @@ const ResearchProject = ({ onSave }) => {
                 </div>
               </div>
             ))}
-            <h4 className="researchproject_mainheading">
+            <h4 className="researchproject-mainheading">
               Expected Socio-Economic Benefit
             </h4>
-            <div className="researchproject_textarea">
+            <div className="researchproject-textarea">
               <label htmlFor="socioEconomicBenefit">
                 Socio-Economic Benefit of The Proposed Research:
               </label>
@@ -423,8 +423,8 @@ const ResearchProject = ({ onSave }) => {
               />
             </div>
 
-            <h4 className="researchproject_mainheading">Methodology:</h4>
-            <div className="researchproject_textarea">
+            <h4 className="researchproject-mainheading">Methodology:</h4>
+            <div className="researchproject-textarea">
               <label htmlFor="methodology">Methodology:</label>
               <textarea
                 id="methodology"
@@ -437,7 +437,7 @@ const ResearchProject = ({ onSave }) => {
               />
             </div>
 
-            {/* <h4 className="researchproject_mainheading">Schedule/ Phasing</h4>
+            {/* <h4 className="researchproject-mainheading">Schedule/ Phasing</h4>
             {ResearchProject.schedulephasing && ResearchProject.schedulephasing.map((Schedule, index) => {
               const quarterLabel = `${
                 index + 1 === 1
@@ -453,7 +453,7 @@ const ResearchProject = ({ onSave }) => {
 
               return (
                 <div key={index}>
-                  <h6 className="researchproject_subheading">
+                  <h6 className="researchproject-subheading">
                     {index + 1}. Duration/ Time period {quarterLabel}
                   </h6>
                   <div className="title-input">
@@ -470,7 +470,7 @@ const ResearchProject = ({ onSave }) => {
               );
             })} */}
 
-            <h4 className="researchproject_mainheading">Schedule/ Phasing</h4>
+            <h4 className="researchproject-mainheading">Schedule/ Phasing</h4>
             {ResearchProject.schedulephasing &&
               ResearchProject.schedulephasing.map((Schedule, index) => {
                 const quarterLabel = `${
@@ -487,7 +487,7 @@ const ResearchProject = ({ onSave }) => {
 
                 return (
                   <div key={index}>
-                    <h6 className="researchproject_subheading">
+                    <h6 className="researchproject-subheading">
                       {index + 1}. Duration/ Time period {quarterLabel}
                     </h6>
                     <div className="title-input">
@@ -505,8 +505,8 @@ const ResearchProject = ({ onSave }) => {
                 );
               })}
 
-            <div className="researchproject_textarea">
-              <h4 className="researchproject_mainheading">
+            <div className="researchproject-textarea">
+              <h4 className="researchproject-mainheading">
                 Researcher’s Prior Experience in Relation to Current Project
               </h4>
               <label htmlFor="priorExperience">
@@ -524,13 +524,13 @@ const ResearchProject = ({ onSave }) => {
               />
             </div>
 
-            <div className="researchproject_btn">
-              <button className="researchproject_button" onClick={handleSave}>
+            <div className="researchproject-btn">
+              <button className="researchproject-button" onClick={handleSave}>
                 SAVE
               </button>
             </div>
           </div>
-          <div className="researchproject_juw-copyright">
+          <div className="researchproject-juw-copyright">
             <p>© 2024, all rights reserved by Jinnah University for Women.</p>
           </div>
         </div>

@@ -190,17 +190,15 @@ const AddGrants = ({ onSave  }) => {
         {/* <div className="navbar-div">
           <NavBar />
         </div> */}
-        <div className="addgrant_navbar-div">
+        <div className="addgrant-navbar-div">
           <NavBar />
         </div>
         <div className="addgrants-card">
           <h5>International/National Grants | Proposal Cover</h5>
-          <div className="addgrants_bredcrumb">
-            {/* <div className="addgrants_bred-crumb"> */}
-            {/* <div className="nav.bredcrumb"> */}
+          <div className="addgrants-bredcrumb">
             <Breadcrumb items={breadCrumps} activePath={currentPath} />
           </div>
-          <div className="addgrants_multiInputFields">
+          <div className="addgrants-multiinputfields">
             <div className="title-input">
               <label>*Proposal Reference No:</label>
               <input
@@ -212,7 +210,7 @@ const AddGrants = ({ onSave  }) => {
                 onChange={handleChange}
               />
             </div>
-            <div className="InputGroup">
+            <div className="inputgroup">
               <label>*Title of Project:</label>
               <input
                 type="text"
@@ -223,7 +221,7 @@ const AddGrants = ({ onSave  }) => {
                 onChange={handleChange}
               />
             </div>
-            <div className="InputGroup">
+            <div className="inputgroup">
               <label>Duration of Project:</label>
               <input
                 type="text"
@@ -234,7 +232,7 @@ const AddGrants = ({ onSave  }) => {
                 onChange={handleChange}
               />
             </div>
-            <div className="InputGroup">
+            <div className="inputgroup">
               <label>Total Budget Requested:</label>
               <input
                 type="text"
@@ -245,7 +243,7 @@ const AddGrants = ({ onSave  }) => {
                 onChange={handleChange}
               />
             </div>
-            <div className="multiCheckBoxes">
+            <div className="multicheckboxes">
               <h6>Theme of Proposed Research:</h6>
               {/* <div className="theme_research_checkbox">
                 <div>
@@ -279,7 +277,7 @@ const AddGrants = ({ onSave  }) => {
                   </label>
                 </div>
               </div> */}
-              <div className="theme_research_checkbox">
+              <div className="theme-research-checkbox">
                 {['Basic', 'Applied'].map((theme) => (
                   <div key={theme}>
                     <label>
@@ -297,7 +295,7 @@ const AddGrants = ({ onSave  }) => {
                 ))}
               </div>
 
-              <div className="discipline_research_checkbox">
+              <div className="discipline-research-checkbox">
                 <h6>Discipline of Proposed Research:</h6>
                 {[
                   "Agriculture Sciences",
@@ -328,10 +326,10 @@ const AddGrants = ({ onSave  }) => {
               </div>
             </div>
 
-            <div className="addgrants_multiInputFields">
+            <div className="addgrants-multiinputfields">
               <h4>Principal Investigator Details:</h4>
               {Object.keys(proposalCover.principalInvestigator).map((key) => (
-                <div className="InputGroup" key={key}>
+                <div className="inputgroup" key={key}>
                   <label>
                     {key
                       .replace(/([A-Z])/g, " $1")
@@ -349,10 +347,10 @@ const AddGrants = ({ onSave  }) => {
               ))}
             </div>
 
-            <div className="addgrants_multiInputFields">
+            <div className="addgrants-multiinputfields">
               <h4>Faculty Details:</h4>
               {Object.keys(proposalCover.facultyDetails).map((key) => (
-                <div className="InputGroup" key={key}>
+                <div className="inputgroup" key={key}>
                   <label>
                     {key
                       .replace(/([A-Z])/g, " $1")
@@ -371,15 +369,15 @@ const AddGrants = ({ onSave  }) => {
             </div>
 
             <div>
-              <div className="addgrant_save-btn">
-                <button className="addgrant_savebut" onClick={handleSave}>
+              <div className="addgrant-save-btn">
+                <button className="addgrant-savebut" onClick={handleSave}>
                   Save
                 </button>
               </div>
             </div>
           </div>
         </div>
-        <div className="juw_copyright">
+        <div className="juw-copyright">
           <p>© 2024, all rights reserved by Jinnah University for Women.</p>
         </div>
       </div>

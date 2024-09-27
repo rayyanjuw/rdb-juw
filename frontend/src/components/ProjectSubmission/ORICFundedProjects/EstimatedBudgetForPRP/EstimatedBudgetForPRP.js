@@ -173,30 +173,30 @@ const EstimatedBudgetForPRP = ({onSave}) => {
     <div className="estimatedbudget-container">
       <Sidebar />
       <div className="estimatedbudget">
-        <div className="estimatedbudget_navbar-div">
+        <div className="estimatedbudget-navbar-div">
           <NavBar />
         </div>
         <div className="estimatedbudget-card">
-          <h3 className="estimatedbudget_heading">
+          <h3 className="estimatedbudget-heading">
             ORIC Funded Project | Estimated Budget for Proposed Research Period
           </h3>
           {/* <p>Proposal Cover / Research Project / Facilities and Funding / Justification for The Requested Budget Items / Estimated Budget for Proposed Research Period</p> */}
-          <div className="estimatedbudget_bred-crumb">
+          <div className="estimatedbudget-bred-crumb">
             {/* <Breadcrumb items={breadCrumps} /> */}
               <p>Proposal Cover / Research Project / Facilities and Funding / Justification for The Requested Budget Items / Estimated Budget for Proposed Research Period</p>
             {/* <Breadcrumb items={breadCrumps} activePath={currentPath} /> */}
           </div>
-          <div className="estimatedbudget_main_heading">
+          <div className="estimatedbudget-main-heading">
             <h4>Estimated Budget for Proposed Research Period</h4>
           </div>
           <div className="estimatedbudget_multiInputFields">
-            <h4 className="estimatedbudget_heading2">
+            <h4 className="estimatedbudget-heading2">
               A. Permanent Equipment:
             </h4>
 
             <div>
               <div className="section-container">
-                <h6 className="estimatedbudget_subheading">Hot Plates</h6>
+                <h6 className="estimatedbudget-subheading">Hot Plates</h6>
                 <div className="input-row">
                   <div className="input-field">
                     <label>Qty</label>
@@ -230,7 +230,7 @@ const EstimatedBudgetForPRP = ({onSave}) => {
               </div>
 
               <div className="section-container">
-                <h6 className="estimatedbudget_subheading">Computer</h6>
+                <h6 className="estimatedbudget-subheading">Computer</h6>
                 <div className="input-row">
                   <div className="input-field">
                     <label>Qty</label>
@@ -263,7 +263,7 @@ const EstimatedBudgetForPRP = ({onSave}) => {
               </div>
 
               <div className="section-container">
-                <h6 className="estimatedbudget_subheading">Printer</h6>
+                <h6 className="estimatedbudget-subheading">Printer</h6>
                 <div className="input-row">
                   <div className="input-field">
                     <label>Qty</label>
@@ -299,7 +299,7 @@ const EstimatedBudgetForPRP = ({onSave}) => {
             </div>
 
             <div>
-              <h4 className="estimatedbudget_heading2">B. Paper Rim:</h4>
+              <h4 className="estimatedbudget-heading2">B. Paper Rim:</h4>
               <div className="input-field">
                 <label>Amount:</label>
                 <input 
@@ -314,7 +314,7 @@ const EstimatedBudgetForPRP = ({onSave}) => {
             </div>
 
             <div>
-              <h4 className="estimatedbudget_heading2">
+              <h4 className="estimatedbudget-heading2">
                 C. Literature, documentation, information, online literature
                 search, contingencies, postage:
               </h4>
@@ -332,7 +332,7 @@ const EstimatedBudgetForPRP = ({onSave}) => {
             </div>
 
             <div>
-              <h4 className="estimatedbudget_heading2">
+              <h4 className="estimatedbudget-heading2">
                 D. Local Travel (For project involving field work etc.):
               </h4>
 
@@ -350,7 +350,7 @@ const EstimatedBudgetForPRP = ({onSave}) => {
             </div>
 
             <div>
-              <h4 className="estimatedbudget_heading2">
+              <h4 className="estimatedbudget-heading2">
                 E. Other costs (specify):
               </h4>
               <div className="input-field">
@@ -366,12 +366,12 @@ const EstimatedBudgetForPRP = ({onSave}) => {
               </div>
             </div>
 
-            <div className="AIP_save-btn">
-              <button className="AIP_savebut" onClick={handleSave}>Save</button>
+            <div className="aip-save-btn">
+              <button className="aip-savebut" onClick={handleSave}>Save</button>
             </div>
           </div>
         </div>
-        <div className="juw_copyright">
+        <div className="juw-copyright">
           <p>© 2024, all rights reserved by Jinnah University for Women.</p>
         </div>
       </div>

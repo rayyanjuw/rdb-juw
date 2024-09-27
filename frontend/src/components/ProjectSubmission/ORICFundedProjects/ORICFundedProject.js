@@ -553,7 +553,7 @@ const downloadORICFundedProjectExcel = () => {
   };
 
   return (
-    <div className="oricfundedproject_container">
+    <div className="oricfundedproject-container">
       <Sidebar />
       <div className="oricfundedproject">
         <div className="oric_navbar-div">
@@ -783,7 +783,7 @@ const downloadORICFundedProjectExcel = () => {
             </div>
           </div>
         </div>
-        <div className="juw_copyright">
+        <div className="juw-copyright">
           <p>© 2024, all rights reserved by Jinnah University for Women.</p>
         </div>
       </div>

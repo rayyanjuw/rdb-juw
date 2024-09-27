@@ -177,8 +177,7 @@ const ResearchPublication = () => {
             <h3 className="research-portfolio">
               Research portfolio | Publications
             </h3>
-            <div className="RP_bred-crumb">
-              {/* <div className="bred-crumb"> */}
+            <div className="rp-bred-crumb">
               <Breadcrumb items={breadCrumps} activePath={currentPath} />
             </div>
             {publications.map((publication, index) => (
@@ -304,14 +303,12 @@ const ResearchPublication = () => {
                   <div className="">
                     <label>Pages:</label>
                     <input
-                      // type="Number"
                       type="text"
                       name="Pages"
                       placeholder="e.g: 100-200"
                       value={publication.Pages}
-                      // onChange={(e) => handleInput(e, index)}
                       onChange={(e) => handleInput(e, index)}
-                      pattern="\d{1,5}-\d{1,5}" // Regex pattern to validate page range format
+                      pattern="\d{1,5}-\d{1,5}" 
                     />
                   </div>
 
@@ -358,7 +355,6 @@ const ResearchPublication = () => {
                       // name="ImpactFactor"
                       placeholder="e.g: 0.01"
                       value={publication.impactfactor}
-                      // value={publication.ImpactFactor}
                       onChange={(e) => handleInput(e, index)}
                     />
                   </div>
@@ -369,9 +365,7 @@ const ResearchPublication = () => {
                       name="scopus"
                       id="Scopus"
                       placeholder="Scopus"
-                      // value={publication.Scopus}
-                      // value={publication.scopus ? "Yes" : "No"}
-                      value={publication.scopus || ""} // Use empty string for the default option
+                      value={publication.scopus || ""} 
                       onChange={(e) => handleInput(e, index)}
                     >
                       <option value="Selectoption">Select an option</option>
@@ -399,13 +393,13 @@ const ResearchPublication = () => {
             ))}
             <div className="save-button">
               <button
-                className="researchpublication_button"
+                className="researchpublication-button"
                 onClick={addMorePublications}
               >
                 ADD MORE
               </button>
               <button
-                className="researchpublication_button"
+                className="researchpublication-button"
                 onClick={handleSubmit}
               >
                 SAVE

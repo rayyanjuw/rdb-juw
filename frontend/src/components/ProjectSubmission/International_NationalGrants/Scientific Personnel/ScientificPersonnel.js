@@ -75,7 +75,7 @@ const ScientificPersonnel = ({onSave}) => {
         </div>
         <div className="scientificpersonnel-card">
           <h3>International/National Grants | Scientific Personnel</h3>
-          <div className="scientificpersonnel_bred-crumb">
+          <div className="scientificpersonnel-bred-crumb">
             <Breadcrumb items={breadCrumps} activePath={currentPath} />
           </div>
           <div className="scientificpersonnel-content">
@@ -93,8 +93,8 @@ const ScientificPersonnel = ({onSave}) => {
             <p>In this section please provide the details of available of scientific personnel and required scientific personnel. (Engagement of research students is encouraged)</p>
    
             
-            <div className="scientificpersonnel_btn">
-              <button className="scientificpersonnel_button" onClick={handleSave}>SAVE</button>
+            <div className="scientificpersonnel-btn">
+              <button className="scientificpersonnel-button" onClick={handleSave}>SAVE</button>
             </div>
           </div>
         </div>
