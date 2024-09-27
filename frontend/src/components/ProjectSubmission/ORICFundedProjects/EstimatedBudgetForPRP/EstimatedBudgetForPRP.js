@@ -4,6 +4,8 @@ import { useLocation } from "react-router-dom";
 import Sidebar from "../../../Sidebar/Sidebar";
 import NavBar from "../../../shared-components/navbar/NavBar";
 import Breadcrumb from "../../../shared-components/breadcrumps/BreadCrumps";
+import { toast } from "react-toastify";
+
 
 const EstimatedBudgetForPRP = ({onSave}) => {
   const location = useLocation();
@@ -61,7 +63,8 @@ const EstimatedBudgetForPRP = ({onSave}) => {
 
   const handleLocalChange = (e, equipmentType, field) => {
     const { value } = e.target;
-  
+    if (field === "qty" || field === "unitPrice" || field === "amount") {
+      const numericValue = value.replace(/[^0-9.]/g, '');
     setEstimatedBudget((prevState) => {
       if (equipmentType === "hotplates" || equipmentType === "computer" || equipmentType === "printer") {
         return {
@@ -70,7 +73,7 @@ const EstimatedBudgetForPRP = ({onSave}) => {
             ...prevState.permanentEquipment,
             [equipmentType]: {
               ...prevState.permanentEquipment[equipmentType],
-              [field]: value,
+              [field]: numericValue,
             },
           },
         };
@@ -84,9 +87,54 @@ const EstimatedBudgetForPRP = ({onSave}) => {
         };
       }
     });
+  } else {
+    setEstimatedBudget((prevState) => ({
+        ...prevState,
+        [equipmentType]: {
+            ...prevState[equipmentType],
+            [field]: value,
+        },
+    }));
   };
+}
 
   const handleSave = () => {
+      // Validation logic
+  const { permanentEquipment, paperrimAmount, literatureAndOtherAmount, localTravel, othercostAmount } = estimatedBudget;
+
+  // Check for permanent equipment fields
+  const equipmentKeys = ['hotplates', 'computer', 'printer'];
+  for (const key of equipmentKeys) {
+    if (!permanentEquipment[key]?.qty || !permanentEquipment[key]?.unitPrice || !permanentEquipment[key]?.amount) {
+      toast.error(`Please fill in all fields for ${key.charAt(0).toUpperCase() + key.slice(1)}.`);
+      return; // Stop the save operation if validation fails
+    }
+  }
+
+  // Check for paper rim amount
+  if (!paperrimAmount?.amount) {
+    toast.error('Please provide an amount for Paper Rim.');
+    return;
+  }
+
+  // Check for literature and other amount
+  if (!literatureAndOtherAmount?.amount) {
+    toast.error('Please provide an amount for Literature, Documentation, and Information.');
+    return;
+  }
+
+  // Check for local travel amount
+  if (!localTravel?.amount) {
+    toast.error('Please provide an amount for Local Travel.');
+    return;
+  }
+
+  // Check for other costs amount
+  if (!othercostAmount?.amount) {
+    toast.error('Please provide an amount for Other Costs.');
+    return;
+  }
+
     if (typeof onSave === 'function') {
         onSave(estimatedBudget); // This will trigger the parent's handleSaveAndNext
     } else {
@@ -157,6 +205,7 @@ const EstimatedBudgetForPRP = ({onSave}) => {
                       // value={estimatedBudget?.permanentEquipment?.hotplates?.qty}
                       value={estimatedBudget?.permanentEquipment?.hotplates?.qty}
                       onChange={(e) => handleLocalChange(e, "hotplates", "qty")}
+                      required
                     />
                   </div>
                   <div className="input-field">
@@ -165,6 +214,7 @@ const EstimatedBudgetForPRP = ({onSave}) => {
                       type="text"
                       value={estimatedBudget?.permanentEquipment?.hotplates?.unitPrice}
                       onChange={(e) => handleLocalChange(e, "hotplates", "unitPrice")}
+                      required
                     />
                   </div>
                   <div className="input-field">
@@ -173,6 +223,7 @@ const EstimatedBudgetForPRP = ({onSave}) => {
                       type="text"
                       value={estimatedBudget?.permanentEquipment?.hotplates?.amount}
                       onChange={(e) => handleLocalChange(e, "hotplates", "amount")}
+                      required
                     />
                   </div>
                 </div>
@@ -187,6 +238,7 @@ const EstimatedBudgetForPRP = ({onSave}) => {
                       type="text"
                       value={estimatedBudget?.permanentEquipment?.computer?.qty}
                       onChange={(e) => handleLocalChange(e, "computer", "qty")}
+                      required
                     />
                   </div>
                   <div className="input-field">
@@ -195,6 +247,7 @@ const EstimatedBudgetForPRP = ({onSave}) => {
                       type="text"
                       value={estimatedBudget?.permanentEquipment?.computer?.unitPrice}
                       onChange={(e) => handleLocalChange(e, "computer", "unitPrice")}
+                      required
                     />
                   </div>
                   <div className="input-field">
@@ -203,6 +256,7 @@ const EstimatedBudgetForPRP = ({onSave}) => {
                       type="text"
                       value={estimatedBudget?.permanentEquipment?.computer?.amount}
                       onChange={(e) => handleLocalChange(e, "computer", "amount")}
+                      required
                     />
                   </div>
                 </div>
@@ -217,6 +271,7 @@ const EstimatedBudgetForPRP = ({onSave}) => {
                       type="text"
                       value={estimatedBudget?.permanentEquipment?.printer?.qty}
                       onChange={(e) => handleLocalChange(e, "printer", "qty")}
+                      required
                     />
                   </div>
                   <div className="input-field">
@@ -225,6 +280,7 @@ const EstimatedBudgetForPRP = ({onSave}) => {
                       type="text"
                       value={estimatedBudget?.permanentEquipment?.printer?.unitPrice}
                       onChange={(e) => handleLocalChange(e, "printer", "unitPrice")}
+                      required
                     />
                   </div>
                   <div className="input-field">
@@ -235,6 +291,7 @@ const EstimatedBudgetForPRP = ({onSave}) => {
                       onChange={(e) =>
                         handleLocalChange(e, "printer", "amount")
                       }
+                      required
                     />
                   </div>
                 </div>
@@ -251,6 +308,7 @@ const EstimatedBudgetForPRP = ({onSave}) => {
                     onChange={(e) =>
                       handleLocalChange(e, "paperrimAmount", "amount")
                     }
+                    required
                 />
               </div>
             </div>
@@ -268,6 +326,7 @@ const EstimatedBudgetForPRP = ({onSave}) => {
                   onChange={(e) =>
                     handleLocalChange(e, "literatureAndOtherAmount", "amount")
                   }
+                  required
                 />
               </div>
             </div>
@@ -285,6 +344,7 @@ const EstimatedBudgetForPRP = ({onSave}) => {
                     onChange={(e) =>
                       handleLocalChange(e, "localTravel", "amount")
                     }
+                    required
                 />
               </div>
             </div>
@@ -301,6 +361,7 @@ const EstimatedBudgetForPRP = ({onSave}) => {
                     onChange={(e) =>
                       handleLocalChange(e, "othercostAmount", "amount")
                     }
+                    required
                 />
               </div>
             </div>

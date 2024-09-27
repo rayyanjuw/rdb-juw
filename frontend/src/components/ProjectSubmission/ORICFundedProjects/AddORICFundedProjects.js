@@ -240,6 +240,7 @@ import Sidebar from "../../Sidebar/Sidebar";
 import NavBar from "../../shared-components/navbar/NavBar";
 import { useLocation, useNavigate } from "react-router-dom";
 import Breadcrumb from "../../shared-components/breadcrumps/BreadCrumps";
+import { toast } from "react-toastify";
 // import { createOricFunded } from "../../../api/Api";
 
 const AddORICFundedProjects = ({ onSave }) => {
@@ -265,11 +266,15 @@ const AddORICFundedProjects = ({ onSave }) => {
 
 
     const handleSave = () => {
+      if (!proposalCover.title || !proposalCover.nameOfPI || !proposalCover.nameOfFaculty || !proposalCover.totalBudgetRequested) {
+        toast.error("All fields are required!");
+        return;
+      }
       onSave(proposalCover);
     }
 
 
-
+    
 
 
   const breadCrumps = [
@@ -322,6 +327,7 @@ const AddORICFundedProjects = ({ onSave }) => {
                 name="title"
                 // onChange={handleInputChange}
                 onChange={handleChange}
+                required
               />
             </div>
             <div className="addoric_InputGroup">
@@ -332,6 +338,7 @@ const AddORICFundedProjects = ({ onSave }) => {
                 name="nameOfPI"
                 onChange={handleChange}
                 // onChange={handleInputChange}
+                required
               />
             </div>
             <div className="addoric_two-inputs">
@@ -342,6 +349,7 @@ const AddORICFundedProjects = ({ onSave }) => {
                   value={proposalCover.nameOfFaculty}
                   name="nameOfFaculty"
                   onChange={handleChange}
+                  required
                   // onChange={handleInputChange}
                 />
               </div>
@@ -352,6 +360,7 @@ const AddORICFundedProjects = ({ onSave }) => {
                   value={proposalCover.totalBudgetRequested}
                   name="totalBudgetRequested"
                   onChange={handleChange}
+                  required
                   // onChange={handleInputChange}
                 />
               </div>

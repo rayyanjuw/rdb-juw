@@ -301,6 +301,8 @@
 
 // export default UserManagement;
 
+
+
 import React, { useState, useEffect } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import Modal from "react-modal";
@@ -316,6 +318,8 @@ import {
 } from "../../api/Api";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+
+
 
 const UserManagement = () => {
   const navigate = useNavigate();
@@ -336,6 +340,7 @@ const UserManagement = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [filteredDepartments, setFilteredDepartments] = useState([]);
   const [departments, setDepartments] = useState([]);
+
   // const departments = [
   //   "Department of Biochemistry",
   //   "Department of Biotechnology",
@@ -384,6 +389,14 @@ const UserManagement = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const validRoles = ["admin", "manager", "dean", "chairperson", "researcher"];
+    if (!validRoles.includes(data.role.toLowerCase())) {
+      toast.error("Role must be one of: admin, manager, dean, chairperson, researcher.");
+      return;
+    }
+    // } else {
+    //   toast.error("");
+    // }
 
     if (!validateEmail(data.email)) {
       toast.error("Invalid email address.");

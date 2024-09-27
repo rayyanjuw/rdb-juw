@@ -1,10 +1,10 @@
-
 import React, { useState } from "react";
 import "./researchproject.css";
 import Sidebar from "../../../Sidebar/Sidebar";
 import NavBar from "../../../shared-components/navbar/NavBar";
 import Breadcrumb from "../../../shared-components/breadcrumps/BreadCrumps";
 import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 // import { createOricFunded } from "../../../../api/Api";
 
@@ -24,13 +24,11 @@ const ResearchProject = ({ onSave }) => {
       summaryAbstract: "",
       backgroundoftheProblem: "",
     },
-    objectives: Array(3).fill(
-      {
-        description: "",
-        measurableOutput: "",
-        benefits: "",
-      },
-    ),
+    objectives: Array(3).fill({
+      description: "",
+      measurableOutput: "",
+      benefits: "",
+    }),
     expectedSocioBenefit: "",
     methodology: "",
     schedulephasing: Array(3).fill({
@@ -40,8 +38,19 @@ const ResearchProject = ({ onSave }) => {
   });
 
   const handleChange = (e) => {
-    const { name, value, dataset } = e.target;
+    // const { name, value, dataset } = e.target;
+    const { name, value: originalValue, dataset } = e.target;
     const section = dataset.section;
+
+    let value = originalValue;
+
+    if (
+      name === "year" ||
+      name === "totalFundsRequested"
+    ) {
+      value = value.replace(/[^0-9.]/g, ''); 
+    }
+
 
     if (section === "projectDuration") {
       setResearchProject((prevState) => ({
@@ -100,17 +109,49 @@ const ResearchProject = ({ onSave }) => {
       };
     });
   };
-  
-
-
 
   const handleSave = () => {
+    console.log("ResearchProject:", ResearchProject);
+
+    const isEmpty = (value) => value === "" || value === null || value === undefined;
+
+    if (
+      isEmpty(ResearchProject.projectTitle) ||
+      ResearchProject.natureOfProposedResearch.length === 0 ||
+      ResearchProject.domainOfProposedResearch.length === 0 ||
+      isEmpty(ResearchProject.shortSummary) ||
+      isEmpty(ResearchProject.projectDuration.year) ||
+      isEmpty(ResearchProject.projectDuration.totalFundsRequested) ||
+      isEmpty(ResearchProject.projectDuration.summaryAbstract) ||
+      isEmpty(ResearchProject.projectDuration.backgroundoftheProblem) ||
+      ResearchProject.objectives.some(
+        (objective) =>
+          isEmpty(objective.description) ||
+          isEmpty(objective.measurableOutput) ||
+          isEmpty(objective.benefits)
+      ) ||
+      isEmpty(ResearchProject.expectedSocioBenefit) ||
+      isEmpty(ResearchProject.methodology) ||
+      ResearchProject.schedulephasing.some((schedule) => isEmpty(schedule.activities)) ||
+      isEmpty(ResearchProject.priorExperience)
+    ) {
+      console.error("Please fill in all the required fields.");
+      toast.error("Please fill in all the required fields.");
+      return; 
+    }
+
+
     if (typeof onSave === "function") {
       onSave(ResearchProject); // This will trigger the parent's handleSaveAndNext
     } else {
       console.error("onSave is not a function");
     }
   };
+
+
+  
+
+
 
   const breadCrumps = [
     {
@@ -162,6 +203,7 @@ const ResearchProject = ({ onSave }) => {
                   value={ResearchProject.projectTitle}
                   // onChange={handleInputChange}
                   onChange={handleChange}
+                  required
                 />
               </div>
 
@@ -186,6 +228,7 @@ const ResearchProject = ({ onSave }) => {
                             item
                           )}
                           onChange={handleCheckboxChange}
+                          required
                         />
                         {item}
                       </label>
@@ -193,7 +236,6 @@ const ResearchProject = ({ onSave }) => {
                   ))}
                 </div>
               </div>
-
 
               <h6 className="research_project_domain">
                 Domain of Proposed Research
@@ -219,6 +261,7 @@ const ResearchProject = ({ onSave }) => {
                           domain
                         )}
                         onChange={handleCheckboxChange}
+                        required
                       />
                       {domain}
                     </label>
@@ -239,6 +282,7 @@ const ResearchProject = ({ onSave }) => {
                 // value={formData.shortSummary}
                 value={ResearchProject.shortSummary}
                 onChange={handleChange}
+                required
                 // onChange={handleInputChange}
               />
             </div>
@@ -250,10 +294,11 @@ const ResearchProject = ({ onSave }) => {
                 <input
                   type="text"
                   name="year"
-                   data-section="projectDuration"
-                  // value={formData.year}
+                  data-section="projectDuration"
+                  placeholder="e.g: 2017"
                   value={ResearchProject.projectDuration.year}
                   onChange={handleChange}
+                  required
                   // onChange={handleInputChange}
                 />
               </div>
@@ -262,9 +307,10 @@ const ResearchProject = ({ onSave }) => {
                 <input
                   type="text"
                   name="totalFundsRequested"
-                   data-section="projectDuration"
+                  data-section="projectDuration"
                   value={ResearchProject.projectDuration.totalFundsRequested}
                   onChange={handleChange}
+                  required
                 />
               </div>
             </div>
@@ -274,11 +320,12 @@ const ResearchProject = ({ onSave }) => {
               <textarea
                 id="summary"
                 name="summaryAbstract"
-                 data-section="projectDuration"
+                data-section="projectDuration"
                 rows="2"
                 cols="20"
                 value={ResearchProject.projectDuration.summaryAbstract}
                 onChange={handleChange}
+                required
               />
             </div>
 
@@ -289,11 +336,12 @@ const ResearchProject = ({ onSave }) => {
               <textarea
                 id="background"
                 name="backgroundoftheProblem"
-                 data-section="projectDuration"
+                data-section="projectDuration"
                 rows="2"
                 cols="20"
                 value={ResearchProject.projectDuration.backgroundoftheProblem}
                 onChange={handleChange}
+                required
               />
             </div>
 
@@ -317,6 +365,7 @@ const ResearchProject = ({ onSave }) => {
                         e.target.value
                       )
                     }
+                    required
                   />
                 </div>
                 <div className="two-inputs">
@@ -332,6 +381,7 @@ const ResearchProject = ({ onSave }) => {
                           e.target.value
                         )
                       }
+                      required
                     />
                   </div>
                   <div className="InputGroup">
@@ -342,6 +392,7 @@ const ResearchProject = ({ onSave }) => {
                       onChange={(e) =>
                         handleObjectiveChange(index, "benefits", e.target.value)
                       }
+                      required
                     />
                   </div>
                 </div>
@@ -356,11 +407,14 @@ const ResearchProject = ({ onSave }) => {
               </label>
               <textarea
                 id="socioEconomicBenefit"
-                name="socioEconomicBenefit"
+                // name="socioEconomicBenefit"
+                name="expectedSocioBenefit"
                 rows="2"
                 cols="20"
-                value={ResearchProject.socioEconomicBenefit}
+                value={ResearchProject.expectedSocioBenefit}
+                // value={ResearchProject.socioEconomicBenefit}
                 onChange={handleChange}
+                required
               />
             </div>
 
@@ -374,6 +428,7 @@ const ResearchProject = ({ onSave }) => {
                 cols="20"
                 value={ResearchProject.methodology}
                 onChange={handleChange}
+                required
               />
             </div>
 
@@ -438,6 +493,7 @@ const ResearchProject = ({ onSave }) => {
                         onChange={
                           (e) => handleDurationChange(index, e.target.value) // Pass the correct index and value
                         }
+                        required
                       />
                     </div>
                   </div>
@@ -459,6 +515,7 @@ const ResearchProject = ({ onSave }) => {
                 cols="20"
                 value={ResearchProject.priorExperience}
                 onChange={handleChange}
+                required
               />
             </div>
 
@@ -467,12 +524,10 @@ const ResearchProject = ({ onSave }) => {
                 SAVE
               </button>
             </div>
-          {/* </div> */}
-        </div>
-        <div className="researchproject_juw-copyright">
+          </div>
+          <div className="researchproject_juw-copyright">
             <p>© 2024, all rights reserved by Jinnah University for Women.</p>
           </div>
-      </div>
       </div>
     </>
   );

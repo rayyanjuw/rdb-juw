@@ -202,15 +202,15 @@
     margin-top: 20px;
   }
 
-  button.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-sizeMedium.css-w92lsb-MuiButtonBase-root-MuiIconButton-root {
+  /* button.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-sizeMedium.css-w92lsb-MuiButtonBase-root-MuiIconButton-root {
     margin-top: 22px !important;
-  }
+  } */
 }
 
-@media (width <= 480px){
-  button.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-sizeMedium.css-w92lsb-MuiButtonBase-root-MuiIconButton-root {
+@media (max-width: 480px){
+  /* button.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-sizeMedium.css-w92lsb-MuiButtonBase-root-MuiIconButton-root {
     margin-top: 22px !important;
-  }
+  } */
 }
 
 /* @media (max-width: 1200px){ */
@@ -234,9 +234,9 @@
     margin-bottom: 30px;
   }
 
-  button.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-sizeMedium.css-w92lsb-MuiButtonBase-root-MuiIconButton-root {
+  /* button.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-sizeMedium.css-w92lsb-MuiButtonBase-root-MuiIconButton-root {
     margin-top: 30px !important;
-  }
+  } */
 }
 
 @media (width <= 1200px) {
@@ -269,9 +269,9 @@
     margin-bottom: 30px;
   }
 
-  button.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-sizeMedium.css-w92lsb-MuiButtonBase-root-MuiIconButton-root {
+  /* button.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-sizeMedium.css-w92lsb-MuiButtonBase-root-MuiIconButton-root {
     margin-top: 35px !important;
-  }
+  } */
 }
 
 @media (width <= 480px) {

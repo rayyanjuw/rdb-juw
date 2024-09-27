@@ -1,6 +1,7 @@
 const UserProfile = require('../Models/userProfile');
 const User = require('../Models/userModels');
 
+
 const createOrUpdateProfile = async (req, res) => {
     try {
         const userId = req.user.id;
