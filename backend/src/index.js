@@ -18,6 +18,8 @@ const FacultyPublication = require('../routes/facultypublicationRoutes');
 const ORICFundedProject = require('../routes/oricfundedRoutes');
 const NationalInternationalGrant = require('../routes/nationalRouter');
 const DepartmentRoute = require("../routes/DepartmentRoute");
+const CompletedProjectRouter = require("../routes/completedprojectRoutes")
+const FundedProjectRouter = require("../routes/fundedprojectRoutes")
 const UPLOAD_DIR = process.env.UPLOAD_DIR || 'uploads';
 
 
@@ -44,6 +46,8 @@ app.use('/api/facultypublication', FacultyPublication );
 app.use('/api/oricfundedproject', ORICFundedProject);
 app.use('/api/nationalGrant', NationalInternationalGrant);
 app.use('/api/department', DepartmentRoute);
+app.use('/api/completedProjects', CompletedProjectRouter)
+app.use('/api/fundedProjects', FundedProjectRouter )
 app.use('/uploads', express.static('uploads'));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
