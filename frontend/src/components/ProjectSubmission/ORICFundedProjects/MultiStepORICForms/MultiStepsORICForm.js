@@ -82,6 +82,7 @@ const MultiStepForm = () => {
           },
         }
       );
+      setFormData("")
       console.log("Data being sent to API:", formData);
       console.log("Data submitted successfully:", response.data);
       toast.success("Data submitted successfully")

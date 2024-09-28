@@ -21,6 +21,9 @@ const AddIntellectualProperty = () => {
   const [addintellectualproperty, setIntellectualProperty] = useState(initialPropertyState);
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState(''); // For Field of Invention
+  const [backgroundErrorMessage, setBackgroundErrorMessage] = useState(''); // For Background of Invention
+  const [descriptionErrorMessage, setDescriptionErrorMessage] = useState('');
 
   console.log(addintellectualproperty)
 
@@ -32,6 +35,40 @@ const AddIntellectualProperty = () => {
       [name]: value,
     }));
   };
+
+
+    // Validation for Field of The Invention (max 50 words)
+    const validateWordCount = () => {
+      const wordCount = addintellectualproperty.fieldofinvention.trim().split(/\s+/).length;
+      if (wordCount > 50) {
+        setErrorMessage('Not more than 50 words are allowed.');
+      } else {
+        setErrorMessage('');
+      }
+    };
+  
+    // Validation for Background Of The Invention (max 800 words)
+    const validateBackgroundWordCount = () => {
+      const wordCount = addintellectualproperty.backgroundofinvention.trim().split(/\s+/).length;
+      if (wordCount > 800) {
+        setBackgroundErrorMessage('Not more than 800 words are allowed.');
+      } else {
+        setBackgroundErrorMessage('');
+      }
+    };
+
+      // Validation for Description Of Invention (max 250 words)
+  const validateDescriptionWordCount = () => {
+    const wordCount = addintellectualproperty.descriptionofinvention.trim().split(/\s+/).length;
+    if (wordCount > 250) {
+      setDescriptionErrorMessage('Not more than 250 words are allowed.');
+    } else {
+      setDescriptionErrorMessage('');
+    }
+  };
+
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -117,8 +154,10 @@ const AddIntellectualProperty = () => {
                   placeholder="(Not more than 50 words. Either it should describe your method of production or process or combination of both)"
                   name="fieldofinvention"
                   onChange={handleChange}
+                  onBlur={validateWordCount}
                   required
                 />
+                {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
               </div>
 
               <div className="inputgroup">
@@ -129,8 +168,10 @@ const AddIntellectualProperty = () => {
                   placeholder="Approximately 800 words: (showing how your research is different and more useful than past research)"
                   name="backgroundofinvention"
                   onChange={handleChange}
+                  onBlur={validateBackgroundWordCount}
                   required
                 />
+                {backgroundErrorMessage && <p style={{ color: 'red' }}>{backgroundErrorMessage}</p>}
               </div>
 
               <div className="inputgroup">
@@ -141,8 +182,10 @@ const AddIntellectualProperty = () => {
                   placeholder="Approximately 250 words"
                   name="descriptionofinvention"
                   onChange={handleChange}
+                  onBlur={validateDescriptionWordCount}
                   required
                 />
+                {descriptionErrorMessage && <p style={{ color: 'red' }}>{descriptionErrorMessage}</p>}
               </div>
 
               <div className="inputgroup">

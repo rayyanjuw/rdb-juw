@@ -194,7 +194,8 @@ const ResearchProject = ({ onSave }) => {
             {/* </div> */}
 
             <div className="researchproject-multiinputfields">
-              <div className="researchproject-title-input">
+              {/* <div className="researchproject-title-input"> */}
+              <div className="title-input">
                 <label>Project title:</label>
                 <input
                   type="text"
@@ -295,7 +296,7 @@ const ResearchProject = ({ onSave }) => {
                   type="text"
                   name="year"
                   data-section="projectDuration"
-                  placeholder="e.g: 2017"
+                  // placeholder="e.g: 2017"
                   value={ResearchProject.projectDuration.year}
                   onChange={handleChange}
                   required

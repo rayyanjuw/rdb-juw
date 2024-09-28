@@ -492,13 +492,13 @@ const downloadInternationalGrantsCSV = () => {
   };
   return (
     <>
-      <div className="internationalGrants_container">
+      <div className="internationalgrants-container">
         <Sidebar />
-        <div className="internationalGrants">
+        <div className="internationalgrants">
           <div className="oric_navbar-div">
             <NavBar />
           </div>
-          <div className="internationalGrants-card">
+          <div className="internationalgrants-card">
             <h5>International/National Grants</h5>
             <div className="download-btn" style={{ marginBottom: "20px" }}>
               <button
@@ -528,150 +528,150 @@ const downloadInternationalGrantsCSV = () => {
               <div className="internationalgrants-table-container">
                 <h2>Project Title: test</h2>
                 <div className="internationalgrants-list-table">
-                  <div className="project_detail">
+                  <div className="project-detail">
                     <h5>PROPOSAL COVER</h5>
                   </div>
-                  <div className="internationalGrants-list-table-format title">
+                  <div className="internationalgrants-list-table-format title">
                     <b>*Proposal Reference No:</b>
                     <span>
                       {proposalCover.proposalReferenceNo ||
                         "No proposal cover available"}
                     </span>
                   </div>
-                  <div className="internationalGrants-list-table-format">
+                  <div className="internationalgrants-list-table-format">
                     <b>*Title of Project:</b>
                     <span>{proposalCover.titleOfProject}</span>
                   </div>
-                  <div className="internationalGrants-list-table-format">
+                  <div className="internationalgrants-list-table-format">
                     <b>Duration of Project:</b>
                     <span>{proposalCover.durationOfProject}</span>
                   </div>
-                  <div className="internationalGrants-list-table-format">
+                  <div className="internationalgrants-list-table-format">
                     <b>Total Budget Requested:</b>
                     <span>{proposalCover.totalBudgetRequested}</span>
                   </div>
-                  <div className="internationalGrants-list-table-format">
+                  <div className="internationalgrants-list-table-format">
                     <b>Theme of Proposed Research:</b>
                     <span>{proposalCover.themeOfProposedResearch}</span>
                   </div>
-                  <div className="internationalGrants-list-table-format">
+                  <div className="internationalgrants-list-table-format">
                     <b>Discipline of Proposed Research:</b>
                     <span>{proposalCover.disciplineOfProposedResearch}</span>
                   </div>
 
-                  <div className="internationalGrants-list-table">
-                    <div className="project_detail">
+                  <div className="internationalgrants-list-table">
+                    <div className="project-detail">
                       <h5>Principal Investigator Details:</h5>
                     </div>
-                    <div className="internationalGrants-list-table-format title">
+                    <div className="internationalgrants-list-table-format title">
                       <b>Institution Name</b>
                       <span>
                         {proposalCover?.principalInvestigator?.institutionName}
                       </span>
                     </div>
-                    <div className="internationalGrants-list-table-format">
+                    <div className="internationalgrants-list-table-format">
                       <b>Street Address:</b>
                       <span>
                         {proposalCover?.principalInvestigator?.streetAddress}
                       </span>
                     </div>
-                    <div className="internationalGrants-list-table-format">
+                    <div className="internationalgrants-list-table-format">
                       <b>City:</b>
                       <span>{proposalCover?.principalInvestigator?.city}</span>
                     </div>
-                    <div className="internationalGrants-list-table-format">
+                    <div className="internationalgrants-list-table-format">
                       <b>Name:</b>
                       <span>{proposalCover?.principalInvestigator?.name}</span>
                     </div>
-                    <div className="internationalGrants-list-table-format">
+                    <div className="internationalgrants-list-table-format">
                       <b>Position/Title:</b>
                       <span>
                         {proposalCover?.principalInvestigator?.positionTitle}
                       </span>
                     </div>
-                    <div className="internationalGrants-list-table-format">
+                    <div className="internationalgrants-list-table-format">
                       <b>Department:</b>
                       <span>
                         {proposalCover?.principalInvestigator?.department}
                       </span>
                     </div>
-                    <div className="internationalGrants-list-table-format">
+                    <div className="internationalgrants-list-table-format">
                       <b>Tell No:</b>
                       <span>{proposalCover?.principalInvestigator?.tel}</span>
                     </div>
-                    <div className="internationalGrants-list-table-format">
+                    <div className="internationalgrants-list-table-format">
                       <b>Email:</b>
                       <span>{proposalCover?.principalInvestigator?.email}</span>
                     </div>
-                    <div className="internationalGrants-list-table-format">
+                    <div className="internationalgrants-list-table-format">
                       <b>CNIC/Passport No:</b>
                       <span>{proposalCover?.principalInvestigator?.cnic}</span>
                     </div>
                   </div>
 
-                  <div className="internationalGrants-list-table">
-                    <div className="project_detail">
+                  <div className="internationalgrants-list-table">
+                    <div className="project-detail">
                       <h5>Faculty Details:</h5>
                     </div>
-                    <div className="internationalGrants-list-table-format title">
+                    <div className="internationalgrants-list-table-format title">
                       <b>Institution Name</b>
                       <span>
                         {proposalCover?.facultyDetails?.institutionName ||
                           "N/A"}
                       </span>
                     </div>
-                    <div className="internationalGrants-list-table-format">
+                    <div className="internationalgrants-list-table-format">
                       <b>Street Address:</b>
                       <span>
                         {proposalCover?.facultyDetails?.streetAddress}
                       </span>
                     </div>
-                    <div className="internationalGrants-list-table-format">
+                    <div className="internationalgrants-list-table-format">
                       <b>City:</b>
                       <span>{proposalCover?.facultyDetails?.city}</span>
                     </div>
-                    <div className="internationalGrants-list-table-format">
+                    <div className="internationalgrants-list-table-format">
                       <b>Name:</b>
                       <span>{proposalCover?.facultyDetails?.name}</span>
                     </div>
-                    <div className="internationalGrants-list-table-format">
+                    <div className="internationalgrants-list-table-format">
                       <b>Position/Title:</b>
                       <span>
                         {proposalCover?.facultyDetails?.positionTitle}
                       </span>
                     </div>
-                    <div className="internationalGrants-list-table-format">
+                    <div className="internationalgrants-list-table-format">
                       <b>Department:</b>
                       <span>{proposalCover?.facultyDetails?.department}</span>
                     </div>
-                    <div className="internationalGrants-list-table-format">
+                    <div className="internationalgrants-list-table-format">
                       <b>Tell No:</b>
                       <span>{proposalCover?.facultyDetails?.tel}</span>
                     </div>
-                    <div className="internationalGrants-list-table-format">
+                    <div className="internationalgrants-list-table-format">
                       <b>Email:</b>
                       <span>{proposalCover?.facultyDetails?.email}</span>
                     </div>
-                    <div className="internationalGrants-list-table-format">
+                    <div className="internationalgrants-list-table-format">
                       <b>CNIC/Passport No:</b>
                       <span>{proposalCover?.facultyDetails?.cnic}</span>
                     </div>
                   </div>
 
-                  <div className="internationalGrants-list-table">
-                    <div className="project_detail">
+                  <div className="internationalgrants-list-table">
+                    <div className="project-detail">
                       <h5>Executive Summary</h5>
                     </div>
-                    <div className="internationalGrants-list-table-format title">
+                    <div className="internationalgrants-list-table-format title">
                       <b>Executive Summary:</b>
                       <span>{project?.executiveSummary}</span>
                     </div>
                   </div>
 
-                  <div className="internationalGrants-list-table">
+                  <div className="internationalgrants-list-table">
                     <h5>Academic/Sectoral Collaborators</h5>
 
-                    <div className="project_detail">
+                    <div className="project-detail">
                       <h5>1. ACADEMIC COLLABORATORS (IF ANY)</h5>
                     </div>
 
@@ -685,36 +685,36 @@ const downloadInternationalGrantsCSV = () => {
                     {academicCollaborators.length > 0 ? (
                       academicCollaborators.map((collaborator, index) => (
                         <div key={index}>
-                          <div className="project_detail internationalGrants-list-table-format title">
+                          <div className="project-detail internationalgrants-list-table-format title">
                             <h5>{index + 1}. Academic Collaborator Details:</h5>
                           </div>
-                          <div className="internationalGrants-list-table-format title">
+                          <div className="internationalgrants-list-table-format title">
                             <b>Name of Collaborator:</b>
                             <span>
                               {collaborator?.nameofcollaborator || "N/A"}
                             </span>
                           </div>
-                          <div className="internationalGrants-list-table-format">
+                          <div className="internationalgrants-list-table-format">
                             <b>Institution of Collaborator:</b>
                             <span>
                               {collaborator?.institutionofcollaborator || "N/A"}
                             </span>
                           </div>
-                          <div className="internationalGrants-list-table-format">
+                          <div className="internationalgrants-list-table-format">
                             <b>Location:</b>
                             <span>{collaborator?.location || "N/A"}</span>
                           </div>
-                          <div className="internationalGrants-list-table-format">
+                          <div className="internationalgrants-list-table-format">
                             <b>Focus of collaboration:</b>
                             <span>
                               {collaborator?.focusofcollaboration || "N/A"}
                             </span>
                           </div>
-                          <div className="internationalGrants-list-table-format">
+                          <div className="internationalgrants-list-table-format">
                             <b>Tel. #:</b>
                             <span>{collaborator?.tellno || "N/A"}</span>
                           </div>
-                          <div className="internationalGrants-list-table-format">
+                          <div className="internationalgrants-list-table-format">
                             <b>Email:</b>
                             <span>{collaborator?.email || "N/A"}</span>
                           </div>
@@ -724,8 +724,8 @@ const downloadInternationalGrantsCSV = () => {
                       <p>No academic collaborators available.</p>
                     )}
 
-                    <div className="internationalGrants-list-table-format">
-                      <div className="project_detail">
+                    <div className="internationalgrants-list-table-format">
+                      <div className="project-detail">
                         <h5>2. SECTORAL COLLABORATORS</h5>
                       </div>
                     </div>
@@ -733,44 +733,44 @@ const downloadInternationalGrantsCSV = () => {
                     {sectoralCollaborators.length > 0 ? (
                       sectoralCollaborators.map((collaborator, index) => (
                         <div key={index}>
-                          <div className="project_detail internationalGrants-list-table-format title">
+                          <div className="project-detail internationalgrants-list-table-format title">
                             <h5>{index + 1}. Sectoral Collaborator Details</h5>
                           </div>
-                          <div className="internationalGrants-list-table-format title">
+                          <div className="internationalgrants-list-table-format title">
                             <b>Company/Organization Name:</b>
                             <span>{collaborator?.companyname || "N/A"}</span>
                           </div>
 
-                          <div className="internationalGrants-list-table-format">
+                          <div className="internationalgrants-list-table-format">
                             <b>Location:</b>
                             <span>{collaborator?.location || "N/A"}</span>
                           </div>
-                          <div className="internationalGrants-list-table-format">
+                          <div className="internationalgrants-list-table-format">
                             <b>Name of Collaborator:</b>
                             <span>
                               {collaborator?.nameofcollaborator || "N/A"}
                             </span>
                           </div>
-                          <div className="internationalGrants-list-table-format">
+                          <div className="internationalgrants-list-table-format">
                             <b>Position/Title:</b>
                             <span>{collaborator?.position || "N/A"}</span>
                           </div>
-                          <div className="internationalGrants-list-table-format">
+                          <div className="internationalgrants-list-table-format">
                             <b>Tel. #:</b>
                             <span>{collaborator?.tellno || "N/A"}</span>
                           </div>
-                          <div className="internationalGrants-list-table-format">
+                          <div className="internationalgrants-list-table-format">
                             <b>Email:</b>
                             <span>{collaborator?.email || "N/A"}</span>
                           </div>
-                          <div className="internationalGrants-list-table-format">
+                          <div className="internationalgrants-list-table-format">
                             <b>Anticipated Contribution to Project Goals:</b>
                             <span>
                               {collaborator?.ProjectGoalsAnticipatedContribution ||
                                 "N/A"}
                             </span>
                           </div>
-                          <div className="internationalGrants-list-table-format">
+                          <div className="internationalgrants-list-table-format">
                             <b>Anticipated Annual Financial Contribution:</b>
                             <span>
                               {collaborator?.AnnualFinancialContribution ||
@@ -783,11 +783,11 @@ const downloadInternationalGrantsCSV = () => {
                       <p>No Sectoral collaborators available.</p>
                     )}
 
-                    <div className="internationalGrants-list-table">
-                      <div className="project_detail">
+                    <div className="internationalgrants-list-table">
+                      <div className="project-detail">
                         <h5>Project Description</h5>
                       </div>
-                      <div className="internationalGrants-list-table-format title">
+                      <div className="internationalgrants-list-table-format title">
                         <b>Project Description Details:</b>
                         <span>
                           {project?.projectDescription ? (
@@ -804,72 +804,72 @@ const downloadInternationalGrantsCSV = () => {
                         </span>
                       </div>
 
-                      <div className="project_detail internationalGrants-list-table-format title">
+                      <div className="project_detail internationalgrants-list-table-format title">
                         <h5>Project Management</h5>
                       </div>
-                      <div className="internationalGrants-list-table-format title">
+                      <div className="internationalgrants-list-table-format title">
                         <b>Project Management Details:</b>
                         <span>{project?.projectManagement}</span>
                       </div>
 
-                      <div className="internationalGrants-list-table">
-                        <div className="project_detail">
+                      <div className="internationalgrants-list-table">
+                        <div className="project-detail">
                           <h5>Implementation Timeline</h5>
                         </div>
-                        <div className="internationalGrants-list-table-format">
+                        <div className="internationalgrants-list-table-format">
                           <h5>Year One</h5>
                         </div>
                       </div>
 
-                      <div className="internationalGrants-list-table-format">
+                      <div className="internationalgrants-list-table-format">
                         <b>Major Tasks and Deliverables:</b>
                         <span>{implementationTimeline?.yearOneTasks}</span>
                       </div>
 
-                      <div className="internationalGrants-list-table-format">
+                      <div className="internationalgrants-list-table-format">
                         <h5>Year Two</h5>
                       </div>
 
-                      <div className="internationalGrants-list-table-format title">
+                      <div className="internationalgrants-list-table-format title">
                         <b>Major Tasks and Deliverables:</b>
                         <span>{implementationTimeline?.yearTwoTasks}</span>
                       </div>
 
-                      <div className="internationalGrants-list-table-format">
-                        <div className="project_detail">
+                      <div className="internationalgrants-list-table-format">
+                        <div className="project-detail">
                           <h5>Year Three</h5>
                         </div>
                       </div>
-                      <div className="internationalGrants-list-table-format title">
+                      <div className="internationalgrants-list-table-format title">
                         <b>Major Tasks and Deliverables:</b>
                         <span>{implementationTimeline?.yearThreeTasks}</span>
                       </div>
-                      <div className="internationalGrants-list-table">
-                        <div className="project_detail">
+                      <div className="internationalgrants-list-table">
+                        <div className="project-detail">
                           <h5>Physical Resources and Facilities</h5>
                         </div>
-                        <div className="internationalGrants-list-table-format title">
+                        <div className="internationalgrants-list-table-format title">
                           <b>Physical Resources and Facilities Details:</b>
                           <span>{project?.physicalResourcesAndFacilities}</span>
                         </div>
                       </div>
-                      <div className="internationalGrants-list-table">
-                        <div className="project_detail">
+                      <div className="internationalgrants-list-table">
+                        <div className="project-detail">
                           <h5>Scientific Personnel</h5>
                         </div>
-                        <div className="internationalGrants-list-table-format title">
+                        <div className="internationalgrants-list-table-format title">
                           <b>Scientific Personnel Details:</b>
                           <span>{project?.scientificPersonnel}</span>
                         </div>
                       </div>
-                      <div className="internationalGrants-list-table">
-                        <div className="project_detail">
+                      <div className="internationalgrants-list-table">
+                        <div className="project-detail">
                           <h5>
                             Principal Investigator’s availed research grant
                             details
                           </h5>
                         </div>
-                        <div className="internationalGrants-list-table-format title">
+                        <div className="internationalgrants-list-table-format title">
                           <b>Scientific Personnel Details:</b>
                           <span>
                             {principalInvestigator?.scientificPersonnelDetails}
@@ -879,29 +879,29 @@ const downloadInternationalGrantsCSV = () => {
                         {principalInvestigator?.projects?.map(
                           (project, index) => (
                             <div
-                              className="internationalGrants-list-table"
+                              className="internationalgrants-list-table"
                               key={index}
                             >
-                              <div className="project_detail">
+                              <div className="project-detail">
                                 <h5>{index + 1}. Project (If any)</h5>
                               </div>
-                              <div className="internationalGrants-list-table-format title">
+                              <div className="internationalgrants-list-table-format title">
                                 <b>Title of Project:</b>
                                 <span>{project.title}</span>
                               </div>
-                              <div className="internationalGrants-list-table-format">
+                              <div className="internationalgrants-list-table-format">
                                 <b>Initiation date:</b>
                                 <span>{project.initiationDate || "N/A"}</span>
                               </div>
-                              <div className="internationalGrants-list-table-format">
+                              <div className="internationalgrants-list-table-format">
                                 <b>Completion date:</b>
                                 <span>{project.completionDate || "N/A"}</span>
                               </div>
-                              <div className="internationalGrants-list-table-format">
+                              <div className="internationalgrants-list-table-format">
                                 <b>Amount(s) awarded:</b>
                                 <span>{project.amountAwarded}</span>
                               </div>
-                              <div className="internationalGrants-list-table-format">
+                              <div className="internationalgrants-list-table-format">
                                 <b>Funding source(s):</b>
                                 <span>{project.fundingSource}</span>
                               </div>
@@ -911,29 +911,29 @@ const downloadInternationalGrantsCSV = () => {
 
                       
                       </div>
-                      <div className="internationalGrants-list-table">
-                        <div className="project_detail">
+                      <div className="internationalgrants-list-table">
+                        <div className="project-detail">
                           <h5>Risk Management Strategy</h5>
                         </div>
-                        <div className="internationalGrants-list-table-format title">
+                        <div className="internationalgrants-list-table-format title">
                           <b>Risk Management Strategy Details:</b>
                           <span>{project?.riskManagementStrategy}</span>
                         </div>
                       </div>
-                      <div className="internationalGrants-list-table">
-                        <div className="project_detail">
+                      <div className="internationalgrants-list-table">
+                        <div className="project-detail">
                           <h5>List of References</h5>
                         </div>
-                        <div className="internationalGrants-list-table-format title">
+                        <div className="internationalgrants-list-table-format title">
                           <b>List of References:</b>
                           <span>{listOfReferences?.text}</span>
                         </div>
                       </div>
-                      <div className="internationalGrants-list-table">
-                        <div className="project_detail">
+                      <div className="internationalgrants-list-table">
+                        <div className="project-detail">
                           <h5>Proposed Project Budget</h5>
                         </div>
-                        <div className="internationalGrants-list-table-format title">
+                        <div className="internationalgrants-list-table-format title">
                           <b>Proposed Project Budget Details:</b>
                           <span>{project?.proposedProjectBudget}</span>
                         </div>
@@ -944,7 +944,7 @@ const downloadInternationalGrantsCSV = () => {
               </div>
             </div>
           </div>
-          <div className="juw_copyright">
+          <div className="juw-copyright">
             <p>© 2024, all rights reserved by Jinnah University for Women.</p>
           </div>
         </div>

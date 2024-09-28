@@ -28,9 +28,9 @@ const ORICFundedProject = () => {
     loadProject();
   }, [id]);
 
-  if (!project) {
-    toast.error("Not Found Found")
-  }
+  // if (!project) {
+  //   toast.error("Not Found Found")
+  // }
 
   const proposalCover = project?.proposalCover
     ? JSON.parse(project?.proposalCover)

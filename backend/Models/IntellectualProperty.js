@@ -17,11 +17,11 @@ const IntellectualProperty = sequelize.define('IntellectualProperty', {
         allowNull: false,
     },
     fieldofinvention: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false,
     },
     backgroundofinvention: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false,
     },
     descriptionofinvention: {

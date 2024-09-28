@@ -88,6 +88,9 @@
   .executivesummary-button {
     font-weight: 600;
     font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 6vw;
     border: none;
     height: 3vh;

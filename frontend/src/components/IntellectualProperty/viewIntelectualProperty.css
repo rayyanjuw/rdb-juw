@@ -150,6 +150,25 @@
 }
 
 
+.vip-modal {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  background: #f4f3ef;
+  padding: 20px;
+  border-radius: 4px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.vip-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgb(0 0 0 / 75%);
+}
+
+
 .vip-juw-copyright p {
   margin-top: 80px;
   text-align: end;
@@ -174,10 +193,18 @@
     color: #66615b;
   }
 
-
-  button.basic-button {
-    margin-top: 10px !important;
+  div.download-btn {
+    display: flex;
+    margin: 0;
   }
+
+  .edit-intelprop {
+    display: flex;
+    width: 50%;
+    /* gap: 10px;  */
+  }
+
+
 
 
   .intelproperty-list-table-format b {
@@ -210,6 +237,15 @@
     align-items: center;
     justify-content: center;
     height: 5vh;
+  }
+
+  .intelproperty button {
+    width: 25vw;
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
   }
 }
 

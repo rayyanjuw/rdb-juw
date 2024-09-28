@@ -55,7 +55,8 @@
 }
 
 .awards-heading {
-  padding: 0.5rem 1rem 0.7rem;
+  padding: 0.5rem 1rem 0.7rem 1rem;
+  /* padding: 0.5rem 1rem 0.7rem; */
   font-size: 17px;
   font-weight: bold;
 }
@@ -101,6 +102,9 @@ button {
   background: #51cbce;
   border-radius: 30px;
   font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 10px 20px;
   width: 90px;
   height: 40px;
@@ -167,10 +171,11 @@ button[type="submit"] {
   color: #fff;
 }
 
-button[type="button"] {
+
+/* button[type="button"] {
   color: black;
-  margin-top: 50px;
-}
+  margin-top: 20px;
+} */
 
 @media (width <= 768px) {
   .sidebar {

@@ -37,7 +37,6 @@
   background-color: #e9ecef;
 }
 
-
 .viewallpublications-heading {
   padding: 1.5rem 1rem 0.7rem;
   font-size: 22px;
@@ -53,12 +52,9 @@
   padding: 25px;
   border-radius: 20px;
   flex-grow: 1;
-  box-shadow: 0 4px 8px rgb(0 0 0 / 10%),
-  0 6px 20px rgb(0 0 0 / 10%);
+  box-shadow: 0 4px 8px rgb(0 0 0 / 10%), 0 6px 20px rgb(0 0 0 / 10%);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
-
 
 .publications-table {
   display: flex;
@@ -74,7 +70,6 @@
   display: flex;
   flex-direction: column;
 }
-
 
 .publication-header {
   display: flex;
@@ -142,7 +137,6 @@ table td {
   font-size: 0.8571em;
 }
 
-
 .vap-modal {
   background-color: #fff;
   border-radius: 8px;
@@ -161,95 +155,19 @@ table td {
   justify-content: center;
 }
 
-.create-publication {
-  display: flex;
-  flex-direction: column;
-}
-
-.create-publication-left {
-  display: flex;
-  flex-direction: column;
-}
-
-.create-publication-left .title {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-.multi-fields {
-  margin-bottom: 10px;
-}
-
-.multi-fields label,
-.multi-fields select,
-.multi-fields input {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.create-publication-left input[type="text"],
-.create-publication-left input[type="email"],
-.create-publication-left input[type="password"],
-.create-publication-left select {
-  width: 100%;
-}
-
-.create-publication button {
-  background: #51cbce;
-  color: white;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 110px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-.create-publication-btn {
-  margin: 10px 7px;
-}
-
-.create-publication button:hover {
-  background-color: #218838;
-}
-
-.submit-button {
-  color: #51cbce;
-  background: red;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-
 .edit-modal-submit-button {
   color: white;
   background-color: #51cbce;
-  display: flex;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
   border: none;
   width: 5vw;
   height: 4vh;
   gap: 10px;
   font-size: 14px;
   border-radius: 30px;
-  align-items: center;
-  justify-content: center;
 }
-
-.multi-fields label {
-  font-size: 0.8571em;
-  margin-bottom: 5px;
-  color: #9a9a9a;
-  border: none;
-}
-
-
-
 
 @media (width <= 768px) {
   .viewallpublications-whole-page {
@@ -288,9 +206,8 @@ table td {
     font-size: 16px;
     display: block;
     width: auto;
-    box-sizing: border-box; 
+    box-sizing: border-box;
   }
-
 
   .key-column,
   .value-column {
@@ -299,12 +216,11 @@ table td {
 
   .viewallpublications-card {
     width: 100%;
-    min-height: auto; 
+    min-height: auto;
     padding: 20px;
     margin-top: 10px;
   }
 }
-
 
 @media (width <= 480px) {
   .viewallpublications {
@@ -341,8 +257,8 @@ table td {
     margin-bottom: 8px;
     padding: 12px 7px;
     display: flex;
-    width: 100%; 
-    box-sizing: border-box; 
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .key-column,
@@ -351,10 +267,51 @@ table td {
     padding: 6px;
   }
 
+  div.download-btn {
+    display: flex;
+    margin: 0;
+  }
+
+
+  .oricfundedproject button {
+    width: 25vw;
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+  }
+
   .juw-copyright {
     font-size: 12px;
   }
+
+  .vip-modal {
+    align-items: center;
+    width: 80% !important;
+    justify-content: center;
+  }
+
+  .vap-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgb(0 0 0 / 70%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .edit-modal-submit-button {
+    color: white;
+    background-color: #51cbce;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    width: 20vw;
+    height: 5vh;
+    gap: 10px;
+    font-size: 14px;
+    border-radius: 30px;
+  }
 }
-
-
-
