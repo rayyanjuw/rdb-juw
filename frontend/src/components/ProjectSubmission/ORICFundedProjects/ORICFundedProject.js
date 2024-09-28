@@ -32,23 +32,23 @@ const ORICFundedProject = () => {
     toast.error("Not Found Found")
   }
 
-  const proposalCover = project.proposalCover
-    ? JSON.parse(project.proposalCover)
+  const proposalCover = project?.proposalCover
+    ? JSON.parse(project?.proposalCover)
     : {};
-  const researchProject = project.researchProject
-    ? JSON.parse(project.researchProject)
-    : {};
-
-  const facilitiesandFunding = project.facilitiesandFunding
-    ? JSON.parse(project.facilitiesandFunding)
+  const researchProject = project?.researchProject
+    ? JSON.parse(project?.researchProject)
     : {};
 
-  const justificationForBudgetItems = project.justificationForBudgetItems
-    ? JSON.parse(project.justificationForBudgetItems)
+  const facilitiesandFunding = project?.facilitiesandFunding
+    ? JSON.parse(project?.facilitiesandFunding)
     : {};
 
-  const estimatedBudget = project.estimatedBudget
-    ? JSON.parse(project.estimatedBudget)
+  const justificationForBudgetItems = project?.justificationForBudgetItems
+    ? JSON.parse(project?.justificationForBudgetItems)
+    : {};
+
+  const estimatedBudget = project?.estimatedBudget
+    ? JSON.parse(project?.estimatedBudget)
     : {};
 
   const proposal_coverState = {
@@ -66,10 +66,10 @@ const ORICFundedProject = () => {
     NatureofProposedResearch: researchProject.natureOfProposedResearch,
     DomainofProposedResearch: researchProject.domainOfProposedResearch,
     ShortSummaryoftheProject: researchProject.shortSummary,
-    ProjectDuration: researchProject.projectDuration.year,
-    TotalFundsRequested: researchProject.projectDuration.totalFundsRequested,
-    Summary_or_Abstract: researchProject.projectDuration.summaryAbstract,
-    ProblemtobeAddressed: researchProject.projectDuration.backgroundoftheProblem,
+    ProjectDuration: researchProject?.projectDuration?.year,
+    TotalFundsRequested: researchProject?.projectDuration?.totalFundsRequested,
+    Summary_or_Abstract: researchProject?.projectDuration?.summaryAbstract,
+    ProblemtobeAddressed: researchProject?.projectDuration?.backgroundoftheProblem,
    
   };
 
@@ -134,10 +134,7 @@ const ORICFundedProject = () => {
         title: "JUSTIFICATION FOR THE REQUESTED BUDGET ITEMS",
         data: justificationForBudgetItems,
       },
-      {
-        title: "ESTIMATED BUDGET FOR PROPOSED RESEARCH PERIOD",
-        data: estimatedBudgetdetail,
-      },
+      
     ];
 
     sections.forEach((section) => {
@@ -350,88 +347,253 @@ const ORICFundedProject = () => {
   };
 
 
-// Function to download ORIC Funded Project data as an Excel file
-const downloadORICFundedProjectExcel = () => {
-  // Create a new workbook
-  const workbook = XLSX.utils.book_new();
-  const sections = [
-    { title: "PROPOSAL COVER", data: proposalCover },
-    { title: "RESEARCH PROJECT", data: research_projectState },
-    {
-      title: "OBJECTIVES WITH EXPECTED OUTPUTS",
-      data: ObjectiveswithExpectedOutputs?.Objectives || [],
-    },
-    { title: "FACILITIES AND FUNDING", data: facilitiesandFunding },
-    {
-      title: "JUSTIFICATION FOR THE REQUESTED BUDGET ITEMS",
-      data: justificationForBudgetItems,
-    },
-    {
-      title: "ESTIMATED BUDGET FOR PROPOSED RESEARCH PERIOD",
-      data: estimatedBudgetdetail,
-    },
-  ];
-
-  sections.forEach((section) => {
-    // Create data for each section
-    let sheetData = [];
-
-    if (section.title === "OBJECTIVES WITH EXPECTED OUTPUTS") {
-      // Format objectives specifically
-      sheetData.push(["Objective", "Description", "Measurable Output", "Benefits"]);
-      if (Array.isArray(section.data)) {
-        section.data.forEach((objective) => {
-          sheetData.push([
-            `Objective ${objective.ObjectiveNumber}`,
-            objective.Description || "No Description",
-            objective.MeasurableOutput || "No Measurable Output",
-            objective.Benefits || "No Benefits",
-          ]);
-        });
+  const downloadORICFundedProjectExcel = () => {
+    // Create a new workbook
+    const workbook = XLSX.utils.book_new();
+    
+    const sections = [
+      { title: "PROPOSAL COVER", data: proposalCover },
+      { title: "RESEARCH PROJECT", data: research_projectState },
+      {
+        title: "OBJECTIVES WITH EXPECTED OUTPUTS",
+        data: ObjectiveswithExpectedOutputs?.Objectives || [],
+      },
+      { title: "FACILITIES AND FUNDING", data: facilitiesandFunding },
+      {
+        title: "JUSTIFICATION", // Shortened to fit Excel's sheet name limit
+        data: justificationForBudgetItems,
+      },
+     
+    ];
+  
+    sections.forEach((section) => {
+      let sheetData = [];
+  
+      if (section.title === "OBJECTIVES WITH EXPECTED OUTPUTS") {
+        sheetData.push(["Objective", "Description", "Measurable Output", "Benefits"]);
+        if (Array.isArray(section.data)) {
+          section.data.forEach((objective) => {
+            sheetData.push([
+              `Objective ${objective.ObjectiveNumber || "N/A"}`,
+              objective.Description || "No Description",
+              objective.MeasurableOutput || "No Measurable Output",
+              objective.Benefits || "No Benefits",
+            ]);
+          });
+        }
+      } else {
+        // For other sections, format as key-value pairs
+        sheetData.push(["Key", "Value"]);
+        if (section.data && typeof section.data === "object") {
+          Object.entries(section.data).forEach(([key, value]) => {
+            sheetData.push([key, value || "N/A"]); 
+          });
+        } else {
+          sheetData.push(["No data available", "N/A"]);
+        }
       }
-    } else {
-      // For other sections, format as key-value pairs
-      sheetData.push(["Key", "Value"]);
-      Object.entries(section.data || {}).forEach(([key, value]) => {
-        sheetData.push([key, value || "N/A"]); // Default to "N/A" if value is undefined
+  
+      // Create a worksheet from the sheet data
+      const worksheet = XLSX.utils.aoa_to_sheet(sheetData);
+  
+      // Apply styling to the headers
+      sheetData.forEach((row, rowIndex) => {
+        row.forEach((_, colIndex) => {
+          const cellAddress = XLSX.utils.encode_cell({ r: rowIndex, c: colIndex });
+          const cell = worksheet[cellAddress];
+  
+          if (rowIndex === 0) {
+            // Apply styling to the header row
+            cell.s = {
+              font: { bold: true, color: { rgb: "FFFFFF" } },
+              fill: { fgColor: { rgb: "4F81BD" } },
+              alignment: { horizontal: "center" },
+              border: {
+                top: { style: "thin", color: { rgb: "000000" } },
+                bottom: { style: "thin", color: { rgb: "000000" } },
+                left: { style: "thin", color: { rgb: "000000" } },
+                right: { style: "thin", color: { rgb: "000000" } },
+              },
+            };
+          } else {
+            // Apply styling to the rest of the cells
+            cell.s = {
+              border: {
+                top: { style: "thin", color: { rgb: "000000" } },
+                bottom: { style: "thin", color: { rgb: "000000" } },
+                left: { style: "thin", color: { rgb: "000000" } },
+                right: { style: "thin", color: { rgb: "000000" } },
+              },
+              alignment: { vertical: "top" },
+            };
+          }
+        });
       });
-    }
-
-    // Create a worksheet from the sheet data
-    const worksheet = XLSX.utils.aoa_to_sheet(sheetData);
-
-    // Add the worksheet to the workbook
-    XLSX.utils.book_append_sheet(workbook, worksheet, section.title);
-  });
-
-  // Handle estimatedBudget separately
-  if (estimatedBudget) {
-    let estimatedBudgetData = [["Item", "Details"]];
-    estimatedBudgetData.push(["Permanent Equipment", ""]);
-
-    Object.entries(estimatedBudget.permanentEquipment).forEach(([equipment, details]) => {
-      estimatedBudgetData.push([
-        equipment.charAt(0).toUpperCase() + equipment.slice(1),
-        `Qty: ${details.qty}, Unit Price: ${details.unitPrice}, Amount: ${details.amount}`,
-      ]);
+  
+      // Auto width for columns
+      const columnWidths = sheetData[0].map(() => ({ wch: 20 }));
+      worksheet["!cols"] = columnWidths;
+  
+      // Add the worksheet to the workbook
+      XLSX.utils.book_append_sheet(workbook, worksheet, section.title.substring(0, 31));
     });
+  
+    // Handle estimatedBudget separately
+    if (estimatedBudget) {
+      let estimatedBudgetData = [["Item", "Details"]];
+      estimatedBudgetData.push(["Permanent Equipment", ""]);
+  
+      Object.entries(estimatedBudget.permanentEquipment || {}).forEach(([equipment, details]) => {
+        estimatedBudgetData.push([
+          equipment.charAt(0).toUpperCase() + equipment.slice(1),
+          `Qty: ${details.qty}, Unit Price: ${details.unitPrice}, Amount: ${details.amount}`,
+        ]);
+      });
+  
+      estimatedBudgetData.push(["B. Paper Rim", estimatedBudget.paperrimAmount?.amount || "N/A"]);
+      estimatedBudgetData.push([
+        "C. Literature, documentation, online literature search, contingencies, postage",
+        estimatedBudget.literatureAndOtherAmount?.amount || "N/A",
+      ]);
+      estimatedBudgetData.push(["D. Local Travel", estimatedBudget.localTravel?.amount || "N/A"]);
+      estimatedBudgetData.push(["E. Other costs", estimatedBudget.othercostAmount?.amount || "N/A"]);
+  
+      // Create a worksheet for the estimated budget
+      const estimatedBudgetWorksheet = XLSX.utils.aoa_to_sheet(estimatedBudgetData);
+  
+      // Apply the same styling and auto width
+      estimatedBudgetData.forEach((row, rowIndex) => {
+        row.forEach((_, colIndex) => {
+          const cellAddress = XLSX.utils.encode_cell({ r: rowIndex, c: colIndex });
+          const cell = estimatedBudgetWorksheet[cellAddress];
+  
+          if (rowIndex === 0) {
+            cell.s = {
+              font: { bold: true, color: { rgb: "FFFFFF" } },
+              fill: { fgColor: { rgb: "4F81BD" } },
+              alignment: { horizontal: "center" },
+              border: {
+                top: { style: "thin", color: { rgb: "000000" } },
+                bottom: { style: "thin", color: { rgb: "000000" } },
+                left: { style: "thin", color: { rgb: "000000" } },
+                right: { style: "thin", color: { rgb: "000000" } },
+              },
+            };
+          } else {
+            cell.s = {
+              border: {
+                top: { style: "thin", color: { rgb: "000000" } },
+                bottom: { style: "thin", color: { rgb: "000000" } },
+                left: { style: "thin", color: { rgb: "000000" } },
+                right: { style: "thin", color: { rgb: "000000" } },
+              },
+            };
+          }
+        });
+      });
+  
+      // Auto width for columns
+      const estimatedBudgetColumnWidths = estimatedBudgetData[0].map(() => ({ wch: 30 }));
+      estimatedBudgetWorksheet["!cols"] = estimatedBudgetColumnWidths;
+  
+      XLSX.utils.book_append_sheet(workbook, estimatedBudgetWorksheet, "Estimated Budget");
+    }
+  
+    // Generate Excel file and trigger download
+    XLSX.writeFile(workbook, "ORICFundedProject.xlsx");
+  };
+  
 
-    estimatedBudgetData.push(["B. Paper Rim", estimatedBudget.paperrimAmount.amount]);
-    estimatedBudgetData.push([
-      "C. Literature, documentation, online literature search, contingencies, postage",
-      estimatedBudget.literatureAndOtherAmount.amount,
-    ]);
-    estimatedBudgetData.push(["D. Local Travel", estimatedBudget.localTravel.amount]);
-    estimatedBudgetData.push(["E. Other costs", estimatedBudget.othercostAmount.amount]);
+// const downloadORICFundedProjectExcel = () => {
+//   // Create a new workbook
+//   const workbook = XLSX.utils.book_new();
+  
+//   const sections = [
+//     { title: "PROPOSAL COVER", data: proposalCover },
+//     { title: "RESEARCH PROJECT", data: research_projectState },
+//     {
+//       title: "OBJECTIVES WITH EXPECTED OUTPUTS",
+//       data: ObjectiveswithExpectedOutputs?.Objectives || [],
+//     },
+//     { title: "FACILITIES AND FUNDING", data: facilitiesandFunding },
+//     {
+//       title: "JUSTIFICATION", // Shortened to fit Excel's sheet name limit
+//       data: justificationForBudgetItems,
+//     },
+//     {
+//       title: "ESTIMATED BUDGET",
+//       data: estimatedBudgetdetail,
+//     },
+//   ];
 
-    // Create a worksheet for the estimated budget
-    const estimatedBudgetWorksheet = XLSX.utils.aoa_to_sheet(estimatedBudgetData);
-    XLSX.utils.book_append_sheet(workbook, estimatedBudgetWorksheet, "Estimated Budget");
-  }
+//   sections.forEach((section) => {
+//     // Create data for each section
+//     let sheetData = [];
 
-  // Generate Excel file and trigger download
-  XLSX.writeFile(workbook, "ORICFundedProject.xlsx");
-};
+//     if (section.title === "OBJECTIVES WITH EXPECTED OUTPUTS") {
+//       // Format objectives specifically
+//       sheetData.push(["Objective", "Description", "Measurable Output", "Benefits"]);
+//       if (Array.isArray(section.data)) {
+//         section.data.forEach((objective) => {
+//           sheetData.push([
+//             `Objective ${objective.ObjectiveNumber || "N/A"}`,
+//             objective.Description || "No Description",
+//             objective.MeasurableOutput || "No Measurable Output",
+//             objective.Benefits || "No Benefits",
+//           ]);
+//         });
+//       }
+//     } else {
+//       // For other sections, format as key-value pairs
+//       sheetData.push(["Key", "Value"]);
+//       if (section.data && typeof section.data === "object") {
+//         Object.entries(section.data).forEach(([key, value]) => {
+//           sheetData.push([key, value || "N/A"]); // Default to "N/A" if value is undefined
+//         });
+//       } else {
+//         sheetData.push(["No data available", "N/A"]);
+//       }
+//     }
+
+//     // Create a worksheet from the sheet data
+//     const worksheet = XLSX.utils.aoa_to_sheet(sheetData);
+
+//     // Ensure worksheet name is <= 31 characters to prevent Excel errors
+//     const sheetName = section.title.substring(0, 31);
+
+//     // Add the worksheet to the workbook
+//     XLSX.utils.book_append_sheet(workbook, worksheet, sheetName);
+//   });
+
+//   // Handle estimatedBudget separately (checking if it exists)
+//   if (estimatedBudget) {
+//     let estimatedBudgetData = [["Item", "Details"]];
+//     estimatedBudgetData.push(["Permanent Equipment", ""]);
+
+//     Object.entries(estimatedBudget.permanentEquipment || {}).forEach(([equipment, details]) => {
+//       estimatedBudgetData.push([
+//         equipment.charAt(0).toUpperCase() + equipment.slice(1),
+//         `Qty: ${details.qty}, Unit Price: ${details.unitPrice}, Amount: ${details.amount}`,
+//       ]);
+//     });
+
+//     estimatedBudgetData.push(["B. Paper Rim", estimatedBudget.paperrimAmount?.amount || "N/A"]);
+//     estimatedBudgetData.push([
+//       "C. Literature, documentation, online literature search, contingencies, postage",
+//       estimatedBudget.literatureAndOtherAmount?.amount || "N/A",
+//     ]);
+//     estimatedBudgetData.push(["D. Local Travel", estimatedBudget.localTravel?.amount || "N/A"]);
+//     estimatedBudgetData.push(["E. Other costs", estimatedBudget.othercostAmount?.amount || "N/A"]);
+
+//     // Create a worksheet for the estimated budget
+//     const estimatedBudgetWorksheet = XLSX.utils.aoa_to_sheet(estimatedBudgetData);
+//     XLSX.utils.book_append_sheet(workbook, estimatedBudgetWorksheet, "Estimated Budget");
+//   }
+
+//   // Generate Excel file and trigger download
+//   XLSX.writeFile(workbook, "ORICFundedProject.xlsx");
+// };
+
 
 
   // const downloadORICFundedProjectExcel = () => {
@@ -516,34 +678,115 @@ const downloadORICFundedProjectExcel = () => {
   //   XLSX.writeFile(workbook, "ORICFundedProject.xlsx");
   // };
 
-  const downloadORICFundedProjectCSV = () => {
-    const csvContent = "data:text/csv;charset=utf-8,";
+  // const downloadORICFundedProjectCSV = () => {
+  //   const csvContent = "data:text/csv;charset=utf-8,";
 
+  //   const sections = [
+  //     { title: "PROPOSAL COVER", data: proposal_coverState },
+  //     { title: "RESEARCH PROJECT", data: research_projectState },
+  //     {
+  //       title: "OBJECTIVES WITH EXPECTED OUTPUTS",
+  //       data: ObjectiveswithExpectedOutputs,
+  //     },
+  //     { title: "FACILITIES AND FUNDING", data: facilitiesAndFundingState },
+  //     { title: "JUSTIFICATION", data: justification },
+  //     { title: "ESTIMATED BUDGET", data: estimatedBudget },
+  //   ];
+
+  //   let csvRows = [];
+
+  //   sections.forEach((section) => {
+  //     csvRows.push(section.title);
+  //     const keys = Object.keys(section.data);
+  //     const values = Object.values(section.data);
+  //     keys.forEach((key, idx) => {
+  //       csvRows.push(`${key},${values[idx]}`);
+  //     });
+  //     csvRows.push(""); // Add an empty row between sections
+  //   });
+
+  //   const encodedUri = encodeURI(csvContent + csvRows.join("\n"));
+  //   const link = document.createElement("a");
+  //   link.setAttribute("href", encodedUri);
+  //   link.setAttribute("download", "ORICFundedProject.csv");
+  //   document.body.appendChild(link);
+  //   link.click();
+  //   document.body.removeChild(link);
+  // };
+
+  const downloadORICFundedProjectCSV = () => {
+    // Initialize the CSV content
+    let csvContent = "data:text/csv;charset=utf-8,";
+  
     const sections = [
-      { title: "PROPOSAL COVER", data: proposal_coverState },
+      { title: "PROPOSAL COVER", data: proposalCover },
       { title: "RESEARCH PROJECT", data: research_projectState },
       {
         title: "OBJECTIVES WITH EXPECTED OUTPUTS",
-        data: ObjectiveswithExpectedOutputs,
+        data: ObjectiveswithExpectedOutputs?.Objectives || [],
       },
-      { title: "FACILITIES AND FUNDING", data: facilitiesAndFundingState },
-      { title: "JUSTIFICATION", data: justification },
-      { title: "ESTIMATED BUDGET", data: estimatedBudget },
+      { title: "FACILITIES AND FUNDING", data: facilitiesandFunding },
+      {
+        title: "JUSTIFICATION",
+        data: justificationForBudgetItems,
+      },
+      
     ];
-
+  
     let csvRows = [];
-
+  
+    // Add a table-like structure for each section
     sections.forEach((section) => {
-      csvRows.push(section.title);
-      const keys = Object.keys(section.data);
-      const values = Object.values(section.data);
-      keys.forEach((key, idx) => {
-        csvRows.push(`${key},${values[idx]}`);
-      });
-      csvRows.push(""); // Add an empty row between sections
+      csvRows.push(`\n==== ${section.title.toUpperCase()} ====\n`); // Add section title with clear separator
+  
+      if (section.title === "OBJECTIVES WITH EXPECTED OUTPUTS") {
+        // Format objectives as a table
+        csvRows.push("Objective,Description,Measurable Output,Benefits"); // Table header
+        if (Array.isArray(section.data)) {
+          section.data.forEach((objective) => {
+            csvRows.push([
+              `"Objective ${objective.ObjectiveNumber || "N/A"}"`,
+              `"${objective.Description || "No Description"}"`,
+              `"${objective.MeasurableOutput || "No Measurable Output"}"`,
+              `"${objective.Benefits || "No Benefits"}"`,
+            ].join(",")); // Join as a table row
+          });
+        }
+      } else {
+        // For other sections, format as a key-value table
+        csvRows.push("Key,Value"); // Table header for key-value pairs
+        Object.entries(section.data || {}).forEach(([key, value]) => {
+          csvRows.push([
+            `"${key}"`,
+            `"${value || "N/A"}"`, // Default to "N/A" if value is undefined
+          ].join(",")); // Join as a table row
+        });
+      }
     });
-
+  
+    // Handle Estimated Budget as a separate section with table-like formatting
+    if (estimatedBudget) {
+      csvRows.push("\n==== ESTIMATED BUDGET ====\n");
+      csvRows.push("Item,Details"); // Table header for estimated budget
+  
+      csvRows.push("Permanent Equipment,");
+      Object.entries(estimatedBudget.permanentEquipment || {}).forEach(([equipment, details]) => {
+        csvRows.push([
+          `"${equipment.charAt(0).toUpperCase() + equipment.slice(1)}"`,
+          `"Qty: ${details.qty}, Unit Price: ${details.unitPrice}, Amount: ${details.amount}"`,
+        ].join(",")); // Add rows for each equipment
+      });
+  
+      csvRows.push(`"B. Paper Rim","${estimatedBudget.paperrimAmount?.amount || "N/A"}"`);
+      csvRows.push(`"C. Literature, documentation, online literature search, contingencies, postage","${estimatedBudget.literatureAndOtherAmount?.amount || "N/A"}"`);
+      csvRows.push(`"D. Local Travel","${estimatedBudget.localTravel?.amount || "N/A"}"`);
+      csvRows.push(`"E. Other costs","${estimatedBudget.othercostAmount?.amount || "N/A"}"`);
+    }
+  
+    // Join the rows into a single CSV content string
     const encodedUri = encodeURI(csvContent + csvRows.join("\n"));
+  
+    // Create and trigger the download link
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
     link.setAttribute("download", "ORICFundedProject.csv");
@@ -551,7 +794,8 @@ const downloadORICFundedProjectExcel = () => {
     link.click();
     document.body.removeChild(link);
   };
-
+  
+  
   return (
     <div className="oricfundedproject-container">
       <Sidebar />
@@ -624,32 +868,32 @@ const downloadORICFundedProjectExcel = () => {
                 </div>
                 <div className="oricfundedproject-list-table-format">
                   <b>Domain of Proposed Research</b>
-                  <span>{researchProject.domainOfProposedResearch}</span>
+                  <span>{researchProject?.domainOfProposedResearch}</span>
                 </div>
                 <div className="oricfundedproject-list-table-format">
                   <b>Short Summary of the Project</b>
-                  <span>{researchProject.shortSummary}</span>
+                  <span>{researchProject?.shortSummary}</span>
                 </div>
                 <div className="oricfundedproject-list-table-format">
                   <b>Project Duration (Years)</b>
                   <span>
-                    {researchProject.projectDuration.year || "Loading..."}
+                    {researchProject?.projectDuration?.year || "Loading..."}
                   </span>
                 </div>
                 <div className="oricfundedproject-list-table-format">
                   <b>Total Funds Requested (Rs)</b>
                   <span>
-                    {researchProject.projectDuration.totalFundsRequested}
+                    {researchProject?.projectDuration?.totalFundsRequested}
                   </span>
                 </div>
                 <div className="oricfundedproject-list-table-format">
                   <b>Summary / Abstract</b>
-                  <span>{researchProject.projectDuration.summaryAbstract}</span>
+                  <span>{researchProject?.projectDuration?.summaryAbstract}</span>
                 </div>
                 <div className="oricfundedproject-list-table-format">
                   <b>Background of The Problem to be Addressed</b>
                   <span>
-                    {researchProject.projectDuration.backgroundoftheProblem}
+                    {researchProject?.projectDuration?.backgroundoftheProblem}
                   </span>
                 </div>
               </div>
@@ -742,17 +986,17 @@ const downloadORICFundedProjectExcel = () => {
                   <h5>ESTIMATED BUDGET FOR PROPOSED RESEARCH PERIOD</h5>
                 </div>
                 <div className="oricfundedproject-list-table-format title">
-                <h6>Permanent Equipment</h6>
+                <b>Permanent Equipment</b>
                 <span className="">
                     
                       <ul>
                         {Object.entries(
-                          estimatedBudget.permanentEquipment
-                        ).map(([equipment, details], index) => (
+                          estimatedBudget?.permanentEquipment || {}
+                        )?.map(([equipment, details], index) => (
                           <li key={index} className="diskstyle">
                             {equipment.charAt(0).toUpperCase() +
                               equipment.slice(1)}{" "}
-                            Qty: {details.qty}, Unit Price: {details.unitPrice},
+                            Qty: {details?.qty}, Unit Price: {details?.unitPrice},
                             Amount: {details?.amount}
                           </li>
                         ))}

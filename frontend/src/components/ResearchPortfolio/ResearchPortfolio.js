@@ -70,8 +70,8 @@ const ResearchPortfolio = () => {
         const data = await getProfile();
         setProfileData({
           personal_information: {
-            name: data.name || "Administrator",
-            email: data.email || "oricadmin@juw.edu.pk",
+            name: data.User.name || "Administrator",
+            email: data.User.email || "oricadmin@juw.edu.pk",
             address: data.address || "",
             cellPhone: data.cellPhone || ""
           },
@@ -86,6 +86,7 @@ const ResearchPortfolio = () => {
             to: formatDate(data.latestExperienceTo) 
           }
         });
+        console.log(data);
       } catch (error) {
         console.error("Error fetching profile:", error);
         // toast.error("Error fetching profile:", error);

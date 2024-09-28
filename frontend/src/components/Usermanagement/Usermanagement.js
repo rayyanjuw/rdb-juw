@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {jwtDecode} from "jwt-decode";
 import Sidebar from "../Sidebar/Sidebar";
 import Modal from "react-modal";
 import "./usermanagement.css";
@@ -27,6 +28,7 @@ const UserManagement = () => {
     role: "",
     departmentName: "",
   });
+  const [currentUserRole, setCurrentUserRole] = useState(""); 
   const [emailError, setEmailError] = useState("");
   const [users, setUsers] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -77,6 +79,7 @@ const UserManagement = () => {
     try {
       const fetchedUsers = await getAllUsers();
       setUsers(fetchedUsers);
+      console.log(fetchedUsers)
     } catch (error) {
       console.error("Error fetching users:", error);
     }
@@ -207,9 +210,21 @@ const UserManagement = () => {
   };
 
   useEffect(() => {
+    const token = localStorage.getItem("token"); // Assuming token is stored in localStorage
+    if (token) {
+      try {
+        const decodedToken = jwtDecode(token); // Decode the token
+        const role = decodedToken.role; // Extract the role from the token
+        setCurrentUserRole(role); // Set the role in the state
+      } catch (error) {
+        console.error("Failed to decode token:", error);
+      }
+    }
     fetchUsersFromServer();
     fetchDepartmentsFromServer(); 
   }, []);
+
+  // console.log(currentUserRole);
 
   return (
     <>
@@ -357,9 +372,9 @@ const UserManagement = () => {
                       <td>{user.name}</td>
                       <td>{user.username}</td>
                       <td>{user.role}</td>
-                      <td>{user.departmentName}</td>
+                      <td>{user?.department?.name}</td>
                       <td>{user.email}</td>
-                      <td>
+                      <td className="buttonz">
                         <button
                           // type="button"
                           className="edit_create-user-btn"
@@ -367,13 +382,17 @@ const UserManagement = () => {
                         >
                           EDIT
                         </button>
-                        <button
-                          // type="button"
-                          className="edit_create-user-btn"
-                          onClick={() => handleImpersonate(user.id)}
-                        >
-                          LOGIN AS
-                        </button>
+
+                       
+                           {/* Conditionally render "LOGIN AS" button based on current user role */}
+                           {(currentUserRole === "admin" || currentUserRole === "manager") && (
+                          <button
+                            className="edit-create-user-btn"
+                            onClick={() => handleImpersonate(user.id)}
+                          >
+                            LOGIN
+                          </button>
+                        )}
                       </td>
                     </tr>
                   ))}

@@ -1,0 +1,58 @@
+
+==== PROPOSAL COVER ====
+
+Key,Value
+"title","Ai Research "
+"nameOfPI","Tajamul"
+"nameOfFaculty","Computer Science"
+"totalBudgetRequested","50000"
+
+==== RESEARCH PROJECT ====
+
+Key,Value
+"ProjectTitle","this is our project tiltle"
+"NatureofProposedResearch","Basic"
+"DomainofProposedResearch","Arts and Humanities,Information and Communication Technology"
+"ShortSummaryoftheProject","This is short summary"
+"ProjectDuration","2"
+"TotalFundsRequested","50000"
+"Summary_or_Abstract","this is our summary abstract"
+"ProblemtobeAddressed","the background problem"
+
+==== OBJECTIVES WITH EXPECTED OUTPUTS ====
+
+Objective,Description,Measurable Output,Benefits
+"Objective 1","describe one","there is measurable outpu","no benefits"
+"Objective 2","describe one","there is measurable outpu","no benefits"
+"Objective 3","describe one","there is measurable outpu","no benefits"
+
+==== FACILITIES AND FUNDING ====
+
+Key,Value
+"facilitiesAvailable","Facilities available for the research project in the department:"
+"otherSourceOfFunding","N/A"
+
+==== JUSTIFICATION ====
+
+Key,Value
+"scientificEquipment","Justification for The Requested Budget Items
+Scientific Equipment (if any):"
+"travel","N/A"
+
+==== ESTIMATED BUDGET ====
+
+Key,Value
+"0","[object Object]"
+"1","[object Object]"
+
+==== ESTIMATED BUDGET ====
+
+Item,Details
+Permanent Equipment,
+"Hotplates","Qty: 2, Unit Price: 2, Amount: 2"
+"Computer","Qty: 3, Unit Price: 3, Amount: 3"
+"Printer","Qty: 3, Unit Price: 3, Amount: 3"
+"B. Paper Rim","3"
+"C. Literature, documentation, online literature search, contingencies, postage","4"
+"D. Local Travel","4"
+"E. Other costs","5"

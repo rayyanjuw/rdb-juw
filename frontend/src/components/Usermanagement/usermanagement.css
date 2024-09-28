@@ -120,6 +120,9 @@
   margin: 10px 7px;
 }
 
+/* .edit_create-user-btn {
+  margin: 10px 7px;
+} */
 
 
 .submit-button {
@@ -247,6 +250,20 @@
 }
 
 
+.buttonz {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+
+
+
+
+
+
 
 
 @media (width <= 1024px){
@@ -258,7 +275,9 @@
 }
 
 
-@media (width <= 768px) {
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
   .user-table th, .user-table td {
     font-size: 14px;
     padding: 8px;

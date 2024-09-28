@@ -82,6 +82,8 @@
   align-items: center;
   background-color: #cbdbf9;
   margin-top: 5px;
+
+  /* margin-bottom: 10px; */
 }
 
 .publication-heading {

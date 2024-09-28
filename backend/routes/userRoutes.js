@@ -30,7 +30,7 @@ router.delete('/delete/:id',authenticate, authorize(['admin', 'manager']), delet
 router.get('/me/:id',authenticate, authorize(['admin', 'manager', 'dean', 'chairperson', 'researcher']), getUser);
 
 router.get('/allUsers',authenticate,
-    isAdminorManager, authorize(['admin', 'manager', 'dean', 'chairperson', 'researcher']), getAllUsers )
+     authorize(['admin', 'manager', 'dean', 'chairperson', 'researcher']), getAllUsers )
 
 // Admin or Manager can get all users
 // router.get('/', authorize(['admin', 'manager']), userController.getAllUsers);

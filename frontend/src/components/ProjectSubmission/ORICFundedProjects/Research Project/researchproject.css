@@ -64,8 +64,7 @@
 .researchproject-multiinputfields h4 {
   margin-top: 30px;
 }
-
-.researchproject-multiinputfields input {
+.researchproject_multiInputFields input {
   width: calc(100% - 20px);
   margin: 10px 0;
   padding: 6px;
@@ -189,8 +188,8 @@
   color: #9a9a9a;
 }
 
-.researchproject-subheading {
-  padding: 1rem 1rem 0.3rem 0;
+.researchproject_subheading {
+  padding: 1rem 1rem 0.3rem 0rem;
   font-size: 14px;
   color: #252422;
 }

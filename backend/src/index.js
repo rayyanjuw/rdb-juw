@@ -2,6 +2,7 @@ const express = require('express');
 
 // const mysql = require('mysql2');
 const app = express();
+const path = require('path');
 const port = process.env.PORT || 5000;
 const cors = require('cors');
 const userRouter = require('../routes/userRoutes')
@@ -16,15 +17,14 @@ const Membership = require('../routes/membershipRoutes');
 const FacultyPublication = require('../routes/facultypublicationRoutes');
 const ORICFundedProject = require('../routes/oricfundedRoutes');
 const NationalInternationalGrant = require('../routes/nationalRouter');
-const DepartmentRoute = require("../routes/DepartmentRoute")
+const DepartmentRoute = require("../routes/DepartmentRoute");
+const UPLOAD_DIR = process.env.UPLOAD_DIR || 'uploads';
 
 
 
 app.use(express.json()); // Middleware to parse JSON bodies
-app.use(cors())
-
-app.use('/upload', express.static('upload'));
-
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 require('../Models/association')
 // Import the sequelize instance to ensure the connection is established
@@ -44,6 +44,8 @@ app.use('/api/facultypublication', FacultyPublication );
 app.use('/api/oricfundedproject', ORICFundedProject);
 app.use('/api/nationalGrant', NationalInternationalGrant);
 app.use('/api/department', DepartmentRoute);
+app.use('/uploads', express.static('uploads'));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
 // require('../routes')

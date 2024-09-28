@@ -1,3 +1,4 @@
+
 const multer = require('multer');
 const path = require('path');
 const { Op } = require("sequelize");
@@ -6,18 +7,31 @@ const NationalInternationalGrant = require("../Models/nationalGrantsModels");
 const dotenv = require('dotenv')
 dotenv.config();
 const BASE_URL = process.env.BASE_URL || `http://localhost:${process.env.PORT}`;
+const UPLOAD_DIR = process.env.UPLOAD_DIR || 'uploads/';
+
+
 
 // Set up multer storage configuration
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'uploads/');
+        cb(null, UPLOAD_DIR);
     },
        filename: (req, file, cb) => {
-        cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`);
+        cb(null, file.originalname);
     }
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({ storage: storage }).single('projectDescription');
+
+// Serve files
+const serveFile = (req, res) => {
+    const filePath = path.join(__dirname, '..', UPLOAD_DIR, req.params.filename);
+    res.sendFile(filePath, (err) => {
+        if (err) {
+            res.status(404).send('File not found');
+        }
+    });
+};
 
 const canCreateGrantFor = (creatorRole, createdBy) => {
     return allowedRoles[creatorRole]?.includes(createdBy);
@@ -36,8 +50,15 @@ const createNationalInternationalGrant = async (req, res) => {
 
        
 
+        if (!req.file) {
+          return res.status(400).json({ error: 'No file uploaded' });
+      }
+      
           // Handle file upload
-          const projectDescription = req.file.filename ? req.file.path : null;
+          const projectDescription = `${BASE_URL}/uploads/${req.file.filename}`; 
+
+
+
 
         //   console.log(req.file.path)
         // console.log({
@@ -48,17 +69,21 @@ const createNationalInternationalGrant = async (req, res) => {
         //     createdBy: creatorRole
         // });
 
+        console.log("Request File:", req.file);
+        // console.log("Request Body:", grantData);
+        console.log("Request Body:", req.body);
+
+
         const grant = await NationalInternationalGrant.create({
             ...grantData,
             userId: user.id,
             departmentId,
-            projectDescription  ,
+            projectDescription,
             createdBy: creatorRole
         });
 
-        console.log("User Role:", userRole);
-        console.log("Created By:", createdBy);
-        console.log("Department ID:", departmentId);
+      
+        
 
 
         res.status(201).json(grant);
@@ -96,6 +121,50 @@ const getAllNationalInternationalGrants = async (req, res) => {
     }
 };
 
+const getAllNationalInternationalGrantsById = async (req, res) => {
+    try {
+        const { user } = req;
+        const { role: userRole, departmentId, impersonatorRole, impersonating } = user;
+        const grantId = req.params.id;  // Assume the grant ID is passed as a URL parameter
+
+        // Determine the effective role and department ID
+        const effectiveRole = impersonating ? impersonatorRole : userRole;
+        const effectiveDepartmentId = impersonating ? user.departmentId : departmentId;
+
+        // Fetch the grant by ID
+        const grant = await NationalInternationalGrant.findOne({ where: { id: grantId } });
+
+        if (!grant) {
+            return res.status(404).json({ error: 'Grant not found' });
+        }
+
+        // Authorization check
+        if (['admin', 'manager'].includes(effectiveRole)) {
+            // Admin or Manager can access any grant
+            return res.status(200).json(grant);
+        } else if (['dean', 'chairperson'].includes(effectiveRole)) {
+            // Dean or Chairperson can access grants in their department
+            if (grant.departmentId === effectiveDepartmentId) {
+                return res.status(200).json(grant);
+            } else {
+                return res.status(403).json({ error: 'Access denied to this grant' });
+            }
+        } else if (effectiveRole === 'researcher') {
+            // Researchers can only access their own grants
+            if (grant.userId === user.id) {
+                return res.status(200).json(grant);
+            } else {
+                return res.status(403).json({ error: 'Access denied to this grant' });
+            }
+        } else {
+            return res.status(403).json({ error: 'Access denied' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to retrieve the grant', details: error.message });
+    }
+};
+
+
 const updateNationalInternationalGrant = async (req, res) => {
     try {
         const { user } = req;
@@ -112,8 +181,10 @@ const updateNationalInternationalGrant = async (req, res) => {
         const effectiveRole = impersonating ? impersonatorRole : userRole;
         const effectiveDepartmentId = impersonating ? user.departmentId : departmentId;
 
-        // Handle file upload
-        const projectDescription = req.file ? req.file.path : grant.projectDescription;
+         // Update projectDescription with the new file URL
+         const projectDescription = req.file 
+         ? `${BASE_URL}/uploads/${req.file.filename}`
+         : grant.projectDescription;
 
         console.log('Request Body:', req.body);
 console.log('Uploaded File Path:', req.file ? req.file.path : 'No file uploaded');
@@ -174,5 +245,7 @@ module.exports = {
     getAllNationalInternationalGrants, 
     updateNationalInternationalGrant, 
     deleteNationalInternationalGrant,
-    upload
+    getAllNationalInternationalGrantsById,
+    upload,
+    serveFile
 };

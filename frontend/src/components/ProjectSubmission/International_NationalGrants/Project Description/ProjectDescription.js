@@ -7,6 +7,7 @@ import NavBar from "../../../shared-components/navbar/NavBar";
 import axios from "axios";
 
 const ProjectDescription = ({onSave}) => {
+  console.log("project description:",onSave)
   const location = useLocation();
   const currentPath = location.pathname;
 
@@ -65,11 +66,16 @@ const ProjectDescription = ({onSave}) => {
   const [error, setError] = useState("");
 
 
-  const handleFileChange = (event) => {
-    const selectedFile = event.target.files[0];
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
     if (selectedFile) {
       setFile(selectedFile);
       setFileName(selectedFile.name);
+      setError(""); // Clear any previous error
+      onSave(selectedFile); // Pass the file to the parent component
+    } else {
+      setFile(null);
+      setFileName("");
     }
   };
 
@@ -83,29 +89,40 @@ const ProjectDescription = ({onSave}) => {
   };
 
   const handleSave = async () => {
-    if (validateForm()) {
-      const formData = new FormData();
-      formData.append('projectDescription', file); // Match the field name here
-  
-      try {
-        const token = localStorage.getItem('token');
-        const response = await axios.post('http://localhost:5000/api/nationalGrant/create', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-            Authorization: `Bearer ${token}`,
-          },
-        });
-  
-        console.log("File uploaded successfully:", response.data);
-        setFile(null);
-        setFileName("");
-        onSave(response.data); // Optional, call parent's onSave
-      } catch (error) {
-        console.error("Error uploading file:", error);
-        setError("Failed to upload the file. Please try again.");
-      }
-    }
+    if (!file) {
+      setError("Please upload a file.");
+      return;
+  }
+  console.log(file);
+  // onSave(file); // Pass the file to the parent component
+   
   };
+
+//   const handleSave = async () => {
+//     if (validateForm()) {
+//         const formData = new FormData();
+//         formData.append('projectDescription', file);
+
+//         try {
+//             const token = localStorage.getItem('token');
+//             const response = await axios.post('http://localhost:5000/api/nationalGrant/create', formData, {
+//                 headers: {
+//                     'Content-Type': 'multipart/form-data',
+//                     Authorization: `Bearer ${token}`,
+//                 },
+//             });
+
+//             console.log("File uploaded successfully:", response.data);
+//             setFile(null);
+//             setFileName("");
+//             onSave(response.data); // Notify parent
+//         } catch (error) {
+//             console.error("Error uploading file:", error);
+//             setError("Failed to upload the file. Please try again.");
+//         }
+//     }
+// };
+
   
 
   return (
@@ -131,7 +148,7 @@ const ProjectDescription = ({onSave}) => {
                 readOnly
               />
 
-              <input type="file" id="fileInput" className="hidden-file-input" onChange={handleFileChange} />
+              <input type="file" id="fileInput" name="projectDescription" className="hidden-file-input" onChange={handleFileChange} />
 
               <label htmlFor="fileInput" className="browse-button">
                 Browse

@@ -187,15 +187,10 @@ const ResearchProject = ({ onSave }) => {
           </div>
           <div className="researchproject-card">
             <h5>ORIC Funded Project | Research Project</h5>
-            <p>
-              Proposal Cover / Research Project / Facilities and Funding /
-              Justification for The Requested Budget Items / Estimated Budget
-              for Proposed Research Period
-            </p>
-
+            <p>Proposal Cover / Research Project / Facilities and Funding / Justification for The Requested Budget Items / Estimated Budget for Proposed Research Period</p>
             {/* <div className="researchproject-bredcrumb"> */}
-            {/* <Breadcrumb items={breadCrumps} /> */}
-            {/* <Breadcrumb items={breadCrumps} activePath={currentPath} /> */}
+              {/* <Breadcrumb items={breadCrumps} /> */}
+              {/* <Breadcrumb items={breadCrumps} activePath={currentPath} /> */}
             {/* </div> */}
 
             <div className="researchproject-multiinputfields">
@@ -533,7 +528,7 @@ const ResearchProject = ({ onSave }) => {
           <div className="researchproject-juw-copyright">
             <p>© 2024, all rights reserved by Jinnah University for Women.</p>
           </div>
-        </div>
+      </div>
       </div>
     </>
   );

@@ -180,8 +180,9 @@
 
 
 
-@media (width <= 480px){
-  .internationalgrants-card {
+@media (max-width: 480px){
+
+  .internationalGrants-card {
     display: flex;
     align-items: start;
   }
