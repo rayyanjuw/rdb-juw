@@ -1,4 +1,4 @@
-/* responsvie 2 : perfect */
+
 .downloadable-container {
   display: flex;
   background-color: #f7f7f7;
@@ -39,13 +39,13 @@
   color: #333;
 }
 
-.link_items {
+.link-items {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-.link_items > div {
+.link-items > div {
   padding: 15px;
   background-color: #eef2f7;
   border-left: 4px solid #51cbce;
@@ -54,26 +54,26 @@
   margin-right: 10px;
 }
 
-.link_items p {
+.link-items p {
   margin: 0;
   font-size: 16px;
   font-weight: 500;
   color: #333;
 }
 
-.link_items a {
+.link-items a {
   color: #51cbce;
   text-decoration: none;
   font-size: 14px;
   word-wrap: break-word;
 }
 
-.link_items a:hover {
+.link-items a:hover {
   text-decoration: underline;
 }
 
 
-.juw_copyright p {
+.juw-copyright p {
   margin-top: 80px;
   text-align: right;
   font-size: 0.8571em;
@@ -101,21 +101,21 @@
     margin-bottom: 15px;
   }
 
-  .link_items > div {
+  .link-items > div {
     padding: 12px;
     margin-left: 5px;
     margin-right: 5px;
   }
 
-  .link_items p {
+  .link-items p {
     font-size: 14px;
   }
 
-  .link_items a {
+  .link-items a {
     font-size: 13px;
   }
 
-  .juw_copyright p {
+  .juw-copyright p {
     margin-top: 40px;
     font-size: 0.8em;
   }
@@ -138,19 +138,19 @@
     margin-bottom: 10px;
   }
 
-  .link_items > div {
+  .link-items > div {
     padding: 10px;
   }
 
-  .link_items p {
+  .link-items p {
     font-size: 12px;
   }
 
-  .link_items a {
+  .link-items a {
     font-size: 12px;
   }
 
-  .juw_copyright p {
+  .juw-copyright p {
     margin-top: 20px;
     font-size: 0.75em;
   }
@@ -177,21 +177,21 @@
     margin-bottom: 25px;
   }
 
-  .link_items > div {
+  .link-items > div {
     padding: 20px;
     margin-left: 15px;
     margin-right: 15px;
   }
 
-  .link_items p {
+  .link-items p {
     font-size: 18px;
   }
 
-  .link_items a {
+  .link-items a {
     font-size: 16px;
   }
 
-  .juw_copyright p {
+  .juw-copyright p {
     margin-top: 100px;
     font-size: 1em;
   }

@@ -14,7 +14,7 @@
   font-size: max(1vw, 10px);
 }
 
-.e_membership_bred-crumb {
+.e-membership-bred-crumb {
   margin: 0 10px !important;
   width: calc(100% - 40px);
   background-color: #e9ecef;
@@ -26,10 +26,6 @@
   background-color: #f4f3ef !important;
   padding: 20px;
 }
-
-/* .navbar-div {
-  margin: 0 0 1.4rem 0;
-} */
 
 .add-membership-card {
   background-color: white;
@@ -83,14 +79,12 @@
   align-items: center;    
 }
 
-.am_button {
+.am-button {
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 600;
   font-size: 12px;
-
-  /* width: 6vw; */
   width: 5vw;
   height: 4vh;
   margin-top: 25px;
@@ -102,9 +96,3 @@
   border-width: 1px;
 }
 
-
-@media (max-width: ) {
-  .am_button{
-
-  }
-}

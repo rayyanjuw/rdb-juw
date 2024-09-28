@@ -69,12 +69,10 @@ const ViewORICFundedProjects = () => {
   // ];
 
   return (
-    <div className="vieworicfundedproject_container">
+    <div className="vieworicfundedproject-container">
       <Sidebar />
       <div className="vieworicfundedproject">
-        <div className="vieworic_navbar-div">
-         
-
+        <div className="vieworic-navbar-div">
           <h4>Submission | Intellectual Property</h4>
           <NavBar />
         </div>
@@ -94,7 +92,7 @@ const ViewORICFundedProjects = () => {
                 const proposalCover = JSON.parse(project.proposalCover || "{}");
                 return (
                 <div key={index} className="vieworicfundedproject-list-table">
-                  <div className="View_project_detail">
+                  <div className="view-project-detail">
                     <h5>Project Details #{index + 1}</h5>
                     <button type="button m-0" onClick={() => handleViewClick(project.id)}>
                       VIEW
@@ -121,7 +119,7 @@ const ViewORICFundedProjects = () => {
             </div>
           </div>
         </div>
-        <div className="VOF_juw_copyright">
+        <div className="vof-juw-copyright">
           <p>© 2024, all rights reserved by Jinnah University for Women.</p>
         </div>
       </div>

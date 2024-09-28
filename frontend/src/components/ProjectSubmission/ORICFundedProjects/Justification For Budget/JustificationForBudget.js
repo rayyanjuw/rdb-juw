@@ -89,22 +89,22 @@ const JustificationForBudget = ({onSave}) => {
 };
 
   return (
-    <div className="justificationForBudget-container">
+    <div className="justificationforbudget-container">
       <Sidebar />
-      <div className="justificationForBudget">
+      <div className="justificationforbudget">
         <div className="navbar-div">
           <NavBar />
         </div>
-        <div className="justificationForBudget-card">
+        <div className="justificationforbudget-card">
           <h3>ORIC Funded Project | Justification for The Requested Budget Items</h3>
           <p>Proposal Cover / Research Project / Facilities and Funding / Justification for The Requested Budget Items / Estimated Budget for Proposed Research Period</p>
-          {/* <div className="justificationForBudget_bred-crumb"> */}
+          {/* <div className="justificationforbudget-bred-crumb"> */}
             {/* <Breadcrumb items={breadCrumps}/> */}
             {/* <Breadcrumb items={breadCrumps} activePath={currentPath} /> */}
           {/* </div> */}
-          <div className="justificationForBudget-content">
+          <div className="justificationforbudget-content">
             <h3>Justification for The Requested Budget Items</h3>
-            <div className="justificationForBudget_textarea">
+            <div className="justificationforbudget-textarea">
               <label htmlFor="exampleTextarea">
               Scientific Equipment (if any):
               </label>
@@ -119,7 +119,7 @@ const JustificationForBudget = ({onSave}) => {
               />
             </div>
 
-            <div className="justificationForBudget_title-input">
+            <div className="justificationforbudget-title-input">
               <label>Travel (if required):</label>
               <input
                 type="text"
@@ -132,8 +132,8 @@ const JustificationForBudget = ({onSave}) => {
               />
             </div>
 
-            <div className="justificationForBudget_btn">
-              <button className="justificationForBudget_button" onClick={handleSave}>
+            <div className="justificationforbudget-btn">
+              <button className="justificationforbudget-button" onClick={handleSave}>
                 SAVE
               </button>
             </div>

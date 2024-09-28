@@ -67,7 +67,7 @@ const Add_membership = () => {
         </div>
         <div className="add-membership-card">
           <h3>Research portfolio | Membership</h3>
-          <div className="e_membership_bred-crumb">
+          <div className="e-membership-bred-crumb">
             <Breadcrumb items={breadCrumps} activePath={currentPath} />
           </div>
           <h5>Membership</h5>
@@ -87,7 +87,7 @@ const Add_membership = () => {
           </div>
           {error && <p className="error-message">{error}</p>}
           <div className="button-container">
-            <button className="am_button" onClick={handleSave} disabled={loading}>
+            <button className="am-button" onClick={handleSave} disabled={loading}>
               {loading ? "Saving..." : "SAVE"}
             </button>
           </div>

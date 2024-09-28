@@ -75,7 +75,7 @@ const ProposedProjectBudget = ({onSave}) => {
         </div>
         <div className="proposedprojectbudget-card">
           <h3>International/National Grants | Proposed Project Budget</h3>
-          <div className="proposedprojectbudget_bred-crumb">
+          <div className="proposedprojectbudget-bred-crumb">
             <Breadcrumb items={breadCrumps} activePath={currentPath} />
           </div>
           <div className="proposedprojectbudget-content">
@@ -106,8 +106,8 @@ const ProposedProjectBudget = ({onSave}) => {
 
             <p>In addition to the Budget Sheet, this section can include a narrative (maximum two pages) that provides further details on the proposed budget.</p>
             
-            <div className="proposedprojectbudget_btn">
-              <button className="proposedprojectbudget_button" onClick={handleSave}>SAVE</button>
+            <div className="proposedprojectbudget-btn">
+              <button className="proposedprojectbudget-button" onClick={handleSave}>SAVE</button>
             </div>
           </div>
         </div>

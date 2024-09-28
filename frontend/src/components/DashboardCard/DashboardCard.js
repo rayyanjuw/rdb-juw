@@ -76,11 +76,11 @@ const DashboardCard = () => {
   return (
     <>
       <div className="dashboard-card1">
-        <div className="departmental_navbar-div">
+        <div className="departmental-navbar-div">
           <NavBar />
         </div>
-        <div className="dashboardCard_card-items">
-          <div className="dashboardCard_card-content">
+        <div className="dashboardcard-card-items">
+          <div className="dashboardcard-card-content">
             <h3>Departmental Research Data | Publications of Faculty</h3>
             <div className="drd-bredcrumb">
               <Breadcrumb items={breadCrumps} activePath={currentPath} />
@@ -88,13 +88,13 @@ const DashboardCard = () => {
           </div>
           <p>Publications of Faculty:</p>
           {userInfos.map(({ state, setState }, index) => (
-            <div className="dashboardCard_card-item" key={index}>
+            <div className="dashboardcard-card-item" key={index}>
               <div className="card-title">
                 <h4>Publication Details {index + 1}.</h4>
               </div>
               <div className="input-container">
                 {Object.keys(state).map((key, i) => (
-                  <div key={i} className="dashboardCard_input-group">
+                  <div key={i} className="dashboardcard-input-group">
                     <label>{title[i]}</label>
                     <input
                       type="text"
@@ -107,7 +107,7 @@ const DashboardCard = () => {
               </div>
             </div>
           ))}
-          <button className="dashboardCard_btn">Save</button>
+          <button className="dashboardcard-btn">Save</button>
         </div>
         <div className="juw-copyright">
           <p>© 2024, all rights reserved by Jinnah University for Women.</p>

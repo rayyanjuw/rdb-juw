@@ -161,7 +161,7 @@ const AcademicSectoralCollaborators = ({onSave}) => {
           <h3>
             International/National Grants | Academic/Sectoral Collaborators
           </h3>
-          <div className="ascollaborators_bred-crumb">
+          <div className="ascollaborators-bred-crumb">
             <Breadcrumb items={breadCrumps} activePath={currentPath} />
           </div>
           <div className="ascollaborators-content">
@@ -213,10 +213,10 @@ const AcademicSectoralCollaborators = ({onSave}) => {
               {formData.academicCollaboratorsDetails.map(
                 (academicCollaboratorsDetail, index) => (
                   <div
-                    className="ascollaborators_multiInputFields"
+                    className="ascollaborators-multiinputfields"
                     key={index}
                   >
-                    <div className="ascollaborators_InputGroup">
+                    <div className="ascollaborators-inputgroup">
                       <p>{index + 1}. Academic Collaborator Details:</p>
                       <label>Name of Collaborator:</label>
                       <input
@@ -226,7 +226,7 @@ const AcademicSectoralCollaborators = ({onSave}) => {
                         onChange={(e) => handleChange(e, index, true)}
                       />
                     </div>
-                    <div className="ascollaborators_InputGroup">
+                    <div className="ascollaborators-inputgroup">
                       <label>Institution of Collaborator:</label>
                       <input
                         type="text"
@@ -238,8 +238,8 @@ const AcademicSectoralCollaborators = ({onSave}) => {
                       />
                     </div>
 
-                    <div className="ascollaborators_two-inputs">
-                      <div className="ascollaborators_InputGroup">
+                    <div className="ascollaborators-two-inputs">
+                      <div className="ascollaborators-inputgroup">
                         <label>Location:</label>
                         <input
                           type="text"
@@ -248,7 +248,7 @@ const AcademicSectoralCollaborators = ({onSave}) => {
                           onChange={(e) => handleChange(e, index, true)}
                         />
                       </div>
-                      <div className="ascollaborators_InputGroup">
+                      <div className="ascollaborators-inputgroup">
                         <label>
                           Focus of collaboration: education or research:
                         </label>
@@ -263,8 +263,8 @@ const AcademicSectoralCollaborators = ({onSave}) => {
                       </div>
                     </div>
 
-                    <div className="ascollaborators_two-inputs">
-                      <div className="ascollaborators_InputGroup">
+                    <div className="ascollaborators-two-inputs">
+                      <div className="ascollaborators-inputgroup">
                         <label>Tel. #:</label>
                         <input
                           type="tel"
@@ -273,7 +273,7 @@ const AcademicSectoralCollaborators = ({onSave}) => {
                           onChange={(e) => handleChange(e, index, true)}
                         />
                       </div>
-                      <div className="ascollaborators_InputGroup">
+                      <div className="ascollaborators-inputgroup">
                         <label>Email:</label>
                         <input
                           type="email"
@@ -299,10 +299,10 @@ const AcademicSectoralCollaborators = ({onSave}) => {
               {formData.sectoralCollaboratorsDetails.map(
                 (sectoralCollaboratorsDetail, index) => (
                   <div
-                    className="ascollaborators_multiInputFields"
+                    className="ascollaborators-multiinputfields"
                     key={index}
                   >
-                    <div className="ascollaborators_InputGroup">
+                    <div className="ascollaborators-inputgroup">
                       <p>{index + 1}. Sectoral Collaborator Details</p>
                       <label>Company/Organization Name:</label>
                       <input
@@ -312,7 +312,7 @@ const AcademicSectoralCollaborators = ({onSave}) => {
                         onChange={(e) => handleChange(e, index, false)}
                       />
                     </div>
-                    <div className="ascollaborators_InputGroup">
+                    <div className="ascollaborators-inputgroup">
                       <label>Location:</label>
                       <input
                         type="text"
@@ -322,8 +322,8 @@ const AcademicSectoralCollaborators = ({onSave}) => {
                       />
                     </div>
 
-                    <div className="ascollaborators_two-inputs">
-                      <div className="ascollaborators_InputGroup">
+                    <div className="ascollaborators-two-inputs">
+                      <div className="ascollaborators-inputgroup">
                         <label>Name of Collaborator:</label>
                         <input
                           type="text"
@@ -332,7 +332,7 @@ const AcademicSectoralCollaborators = ({onSave}) => {
                           onChange={(e) => handleChange(e, index, false)}
                         />
                       </div>
-                      <div className="ascollaborators_InputGroup">
+                      <div className="ascollaborators-inputgroup">
                         <label>Position/Title:</label>
                         <input
                           type="text"
@@ -343,8 +343,8 @@ const AcademicSectoralCollaborators = ({onSave}) => {
                       </div>
                     </div>
 
-                    <div className="ascollaborators_two-inputs">
-                      <div className="ascollaborators_InputGroup">
+                    <div className="ascollaborators-two-inputs">
+                      <div className="ascollaborators-inputgroup">
                         <label>Tel. #:</label>
                         <input
                           type="text"
@@ -353,7 +353,7 @@ const AcademicSectoralCollaborators = ({onSave}) => {
                           onChange={(e) => handleChange(e, index, false)}
                         />
                       </div>
-                      <div className="ascollaborators_InputGroup">
+                      <div className="ascollaborators-inputgroup">
                         <label>Email:</label>
                         <input
                           type="email"
@@ -363,7 +363,7 @@ const AcademicSectoralCollaborators = ({onSave}) => {
                         />
                       </div>
                     </div>
-                    <div className="ascollaborators_InputGroup">
+                    <div className="ascollaborators-inputgroup">
                         <label>Anticipated Contribution to Project Goals:</label>
                         <input
                           type="text"
@@ -372,7 +372,7 @@ const AcademicSectoralCollaborators = ({onSave}) => {
                           onChange={(e) => handleChange(e, index, false)}
                         />
                       </div>
-                      <div className="ascollaborators_InputGroup">
+                      <div className="ascollaborators-inputgroup">
                         <label>Anticipated Annual Financial Contribution:</label>
                         <input
                           type="text"
@@ -386,8 +386,8 @@ const AcademicSectoralCollaborators = ({onSave}) => {
               )}
             
 
-            <div className="ascollaborators_btn">
-              <button className="ascollaborators_button" onClick={handleSave}>SAVE</button>
+            <div className="ascollaborators-btn">
+              <button className="ascollaborators-button" onClick={handleSave}>SAVE</button>
             </div>
           </div>
         </div>

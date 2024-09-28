@@ -47,7 +47,7 @@ const CollaborativeWork = () => {
                 </div>
                 <div className="collaborativework-card">
                     <h3>Departmental Research Data | Collaborative Research/Academic work</h3>
-                    <div className="collaborativework_bred-crumb">
+                    <div className="collaborativework-bred-crumb">
                         <Breadcrumb items={breadCrumps} activePath={currentPath} />
                     </div>
                     <div className='collaborative-content'>
@@ -63,8 +63,8 @@ const CollaborativeWork = () => {
                                 cols="20"
                             />
                         </div>
-                        <div className='collaborative_btn'>
-                            <button className="collaborative_button">SAVE</button>
+                        <div className='collaborative-btn'>
+                            <button className="collaborative-button">SAVE</button>
                         </div>
                     </div>
                 </div>

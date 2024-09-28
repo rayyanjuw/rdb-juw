@@ -28,9 +28,9 @@ const ORICFundedProject = () => {
     loadProject();
   }, [id]);
 
-  if (!project) {
-    toast.error("Not Found Found")
-  }
+  // if (!project) {
+  //   toast.error("Not Found Found")
+  // }
 
   const proposalCover = project?.proposalCover
     ? JSON.parse(project?.proposalCover)
@@ -502,7 +502,7 @@ const ORICFundedProject = () => {
   
   
   return (
-    <div className="oricfundedproject_container">
+    <div className="oricfundedproject-container">
       <Sidebar />
       <div className="oricfundedproject">
         <div className="oric_navbar-div">
@@ -732,7 +732,7 @@ const ORICFundedProject = () => {
             </div>
           </div>
         </div>
-        <div className="juw_copyright">
+        <div className="juw-copyright">
           <p>© 2024, all rights reserved by Jinnah University for Women.</p>
         </div>
       </div>

@@ -1,140 +1,4 @@
-/* updated working code */
-
-/* .honorAndAward-container {
-    display: flex;
-    height: 100vh;
-    flex-direction: row; 
-}
-
-.sidebar {
-    width: 20%;
-    background: #0037a5;
-    position: sticky;
-    color: #FFFFFF;
-    top: 0;
-    height: 100vh;
-    overflow-y: auto;
-    padding-top: 10px;
-    font-size: 10px;
-    z-index: 1000; 
-    transition: all 0.3s ease; 
-}
-
-.honor-and-awards {
-    flex: 1;
-    overflow-y: auto;
-    background-color: #F4F3EF;
-    padding: 20px;
-    transition: margin-left 0.3s ease; 
-}
-
-
-.honorAndAward_heading {
-    padding: 1.5rem 1rem 0.7rem 1rem;
-    font-size: 22px;
-    font-weight: 400;
-  }
-
-
-.HA_bred-crumb {
-    margin: 0 10px !important;
-    width: calc(100% - 40px);
-    background-color: #e9ecef;
-}
-
-
-
-
-.honorAndAward-card {
-    width: 100%; 
-    margin: auto;
-    background-color: white;
-    border-radius: 18px;
-    animation: fadeIn 1s;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
-    0 6px 20px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease; 
-}
-
-.honorAndAward-card hr {
-    margin-top: 20px;
-    margin-bottom: 15px;
-}
-
-.awards_heading {
-    padding: 0.5rem 1rem 0.7rem 1rem;
-    font-size: 17px;
-    font-weight: bold; 
-} 
-
-.honorAndAward-table-head {
-    display: flex;
-    align-items: start;
-    gap: 10px;
-    justify-content: start;
-    flex-direction: row;
-}
-
-.honorAndAward-table-head h5 {
-    margin: 0;
-    margin-top: 5px;
-  }
-
-.honorAndAward-table-head button {
-    width: 100px;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 10px;
-    border-radius: 30px;
-    height: 30px;
-    color: white;
-    font-size: 0.8571em;
-    padding: 5px 7px;
-    background-color: #51cbce;
-    border: none;
-    cursor: pointer;
-}
-
-
-.edit_button {
-    color: white;
-    background: #51cbce;
-    border-radius: 30px;
-    font-size: 13px;
-    padding: 10px 20px;
-    width: 90px;
-    height: 40px;
-    border: none;
-    align-self: flex-end;
-    margin-top: 20px;
-    cursor: pointer;
-    margin-bottom: 20px;
-    display: block; 
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  table tr {
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .key-column {
-    background-color: #e2ecff;
-    padding: 10px;
-    font-weight: normal;
-    width: 30%;
-  } */
-
-
-
-
-
-  /* Modal to do */
-.honorAndAward-container {
+.honorandaward-container {
   display: flex;
   height: 100vh;
   flex-direction: row;
@@ -162,19 +26,19 @@ table {
   transition: margin-left 0.3s ease;
 }
 
-.honorAndAward_heading {
+.honorandaward-heading {
   padding: 1.5rem 1rem 0.7rem;
   font-size: 22px;
   font-weight: 400;
 }
 
-.HA_bred-crumb {
+.ha-bred-crumb {
   margin: 0 10px !important;
   width: calc(100% - 40px);
   background-color: #e9ecef;
 }
 
-.honorAndAward-card {
+.honorandaward-card {
   width: 100%;
   margin: auto;
   background-color: white;
@@ -185,18 +49,19 @@ table {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.honorAndAward-card hr {
+.honorandaward-card hr {
   margin-top: 20px;
   margin-bottom: 15px;
 }
 
-.awards_heading {
-  padding: 0.5rem 1rem 0.7rem;
+.awards-heading {
+  padding: 0.5rem 1rem 0.7rem 1rem;
+  /* padding: 0.5rem 1rem 0.7rem; */
   font-size: 17px;
   font-weight: bold;
 }
 
-.honorAndAward-table-head {
+.honorandaward-table-head {
   display: flex;
   align-items: start;
   gap: 10px;
@@ -204,12 +69,20 @@ table {
   flex-direction: row;
 }
 
-.honorAndAward-table-head h5 {
+.honorandaward-table-head h5 {
   margin: 0;
   margin-top: 5px;
 }
 
-.honorAndAward-table-head button {
+button {
+  margin: 5px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.honorandaward-table-head button {
   width: 100px;
   align-items: center;
   justify-content: center;
@@ -224,11 +97,14 @@ table {
   cursor: pointer;
 }
 
-.edit_button {
+.edit-button {
   color: white;
   background: #51cbce;
   border-radius: 30px;
   font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 10px 20px;
   width: 90px;
   height: 40px;
@@ -256,13 +132,6 @@ table tr {
   width: 30%;
 }
 
-
-
-
-
-
-/* Modal */
-
 /* .Modal {
     content: {
       padding: 20px;
@@ -271,123 +140,107 @@ table tr {
     }
   } */
 
-.Modal {
-   
-      padding: 20px;
-      border-radius: 10px;
-      background: #fff;
-   
+.honor-modal {
+  padding: 20px;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.honor-overlay {
+  background: rgb(0 0 0 / 50%);
+}
+
+.modal-field {
+  margin-bottom: 15px;
+}
+
+.modal-field label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.modal-field input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+button[type="submit"] {
+  background-color: #51cbce;
+  color: #fff;
+}
+
+
+/* button[type="button"] {
+  color: black;
+  margin-top: 20px;
+} */
+
+@media (width <= 768px) {
+  .sidebar {
+    width: 60%;
+    position: fixed;
+    left: -100%;
+    height: 100%;
+    z-index: 1000;
   }
-  
-  .Overlay {
-    background: rgb(0 0 0 / 50%);
+
+  .sidebar.open {
+    left: 0;
   }
-  
-  .modal-field {
-    margin-bottom: 15px;
-  }
-  
-  .modal-field label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .modal-field input {
-    width: 100%;
+
+  .honor-and-awards {
+    margin-left: 0;
     padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
   }
-  
-  button {
-    margin: 5px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  button[type="submit"] {
-    background-color: #51cbce;
-    color: #FFF;
-  }
-  
-  button[type="button"] {
-    /* background-color: #51cbce; */
-    /* color: #FFF; */
-    color: black;
-    margin-top: 50px;
-  }
-  
 
-
-
-  @media (width <= 768px) {
-    .sidebar {
-      width: 60%;
-      position: fixed;
-      left: -100%;
-      height: 100%;
-      z-index: 1000;
-    }
-  
-    .sidebar.open {
-      left: 0;
-    }
-  
-    .honor-and-awards {
-      margin-left: 0;
-      padding: 10px;
-    }
-  
-    .bred-crumb {
-      margin: 0 10px !important;
-      width: calc(100% - 20px);
-    }
-  
-    .honorAndAward-section {
-      padding: 15px;
-    }
+  .bred-crumb {
+    margin: 0 10px !important;
+    width: calc(100% - 20px);
   }
-  
-  @media (width <= 576px) {
-    .sidebar {
-      width: 70%;
-      position: fixed;
-      left: -100%;
-      height: 100%;
-      z-index: 1000;
-    }
-  
-    .sidebar.open {
-      left: 0;
-    }
-  
-    .honorAndAward-container {
-      flex-direction: column;
-    }
-  
-    .honor-and-awards {
-      padding: 10px;
-    }
-  
-    .bred-crumb {
-      margin: 0 5px !important;
-      width: calc(100% - 10px);
-    }
-  
-    .honorAndAward-section {
-      padding: 10px;
-    }
-  
-    .edit_button {
-      width: 20%;
-      padding: 10px;
-      margin: 10px 0;
 
-      /* display: flex;
-      align-items: center;
-      justify-content: center; */
-    }
+  .honorandaward-section {
+    padding: 15px;
   }
-  
+}
+
+@media (width <= 576px) {
+  .sidebar {
+    width: 70%;
+    position: fixed;
+    left: -100%;
+    height: 100%;
+    z-index: 1000;
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+
+  .honorandaward-container {
+    flex-direction: column;
+  }
+
+  .honor-and-awards {
+    padding: 10px;
+  }
+
+  .bred-crumb {
+    margin: 0 5px !important;
+    width: calc(100% - 10px);
+  }
+
+  .honorandaward-section {
+    padding: 10px;
+  }
+
+  .edit-button {
+    width: 20%;
+    padding: 10px;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

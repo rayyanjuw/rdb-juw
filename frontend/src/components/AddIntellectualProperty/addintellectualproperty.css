@@ -1,4 +1,4 @@
-/* responsive */
+
 .addintelproperty-container {
   display: flex;
   height: 100vh;
@@ -27,13 +27,6 @@
   transition: margin-left 0.3s ease;
 }
 
-/* .intelprop-navbar-div {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  } */
-
 .intelprop-navbar-div h4 {
   font-weight: 400;
   font-size: 20px;
@@ -42,7 +35,7 @@
   color: #66615b;
 }
 
-/* added */
+
 .intelprop-navbar-div {
   display: flex;
   align-items: center;
@@ -69,8 +62,8 @@
   font-weight: 400;
 }
 
-.addintelproperty-multiInputFields input,
-.addintelproperty-multiInputFields textarea {
+.addintelproperty-multiinputfields input,
+.addintelproperty-multiinputfields textarea {
   width: calc(100% - 20px);
   margin: 10px 0;
   padding: 6px;
@@ -81,7 +74,7 @@
   box-sizing: border-box;
 }
 
-.addintelproperty-multiInputFields textarea {
+.addintelproperty-multiinputfields textarea {
   resize: vertical;
   width: 100%;
 }
@@ -97,24 +90,26 @@
   margin-bottom: 20px;
 }
 
-.two-inputs .Input-Group {
+.inputgroup {
+  margin-bottom: 15px;
+}
+
+.two-inputs .inputgroup {
   flex: 1;
   margin-right: 10px;
 }
 
-.two-inputs .Input-Group:last-child {
+.two-inputs .inputgroup:last-child {
   margin-right: 0;
 }
 
-.Input-Group {
-  margin-bottom: 15px;
-}
 
-.Input-Group label {
+
+.inputgroup label {
   margin-bottom: 5px;
 }
 
-.AIP-save-btn {
+.aip-save-btn {
   width: 100%;
   height: 100px;
   display: flex;
@@ -122,17 +117,13 @@
   justify-content: center;
 }
 
-.AIP-savebut {
+.aip-savebut {
   font-weight: 600;
   font-size: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  /* width: 7vw; */
   width: 10vw;
-
-  /* height: 5vh; */
   height: 4vh;
   margin-left: 15px;
   color: white;
@@ -151,7 +142,7 @@
   color: #66615b;
 }
 
-/* Responsive Styles */
+
 @media (width <= 768px) {
   .addintelproperty-container {
     flex-direction: column;
@@ -179,8 +170,8 @@
     padding: 15px;
   }
 
-  .addintelproperty-multiInputFields input,
-  .addintelproperty-multiInputFields textarea {
+  .addintelproperty-multiinputfields input,
+  .addintelproperty-multiinputfields textarea {
     width: 100%;
     font-size: 12px;
   }
@@ -189,31 +180,19 @@
     flex-direction: column;
   }
 
-  .AIP-savebut {
+  .aip-savebut {
     width: 100%;
   }
 
-  svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.css-i4bv87-MuiSvgIcon-root {
-    margin-top: -7px;
-  }
 
   .juw-copyright p {
     font-size: 0.75em;
     margin-top: 20px;
   }
 
-  /* button.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-sizeMedium.css-w92lsb-MuiButtonBase-root-MuiIconButton-root {
-    margin-top: 22px !important;
-  } */
 }
 
-@media (max-width: 480px){
-  /* button.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-sizeMedium.css-w92lsb-MuiButtonBase-root-MuiIconButton-root {
-    margin-top: 22px !important;
-  } */
-}
 
-/* @media (max-width: 1200px){ */
 @media (width <= 1024px) {
   .intelprop-navbar-div h4 {
     font-weight: 400;
@@ -229,29 +208,13 @@
     flex-direction: row;
     margin-top: 20px;
     justify-content: space-between;
-
-    /* margin-bottom: 20px; */
     margin-bottom: 30px;
   }
-
-  /* button.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-sizeMedium.css-w92lsb-MuiButtonBase-root-MuiIconButton-root {
-    margin-top: 30px !important;
-  } */
 }
 
 @media (width <= 1200px) {
-  /* .two-inputs {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    gap: 0px;
-    margin-bottom: 20px;
-  } */
-
   .intelprop-navbar-div h4 {
     font-weight: 400;
-
-    /* font-size: 21px; */
     font-size: 20px;
     margin-top: 10px;
     margin-left: 40px;
@@ -264,22 +227,12 @@
     flex-direction: row;
     margin-top: 20px;
     justify-content: space-between;
-
     /* margin-bottom: 20px; */
     margin-bottom: 30px;
   }
-
-  /* button.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-sizeMedium.css-w92lsb-MuiButtonBase-root-MuiIconButton-root {
-    margin-top: 35px !important;
-  } */
 }
 
 @media (width <= 480px) {
-  /* .intelprop-navbar-div h4 {
-      font-size: 16px;
-      margin-top: 5px;
-    } */
-
   .intelprop-navbar-div {
     display: flex;
     align-items: center;
@@ -299,13 +252,13 @@
     font-size: 18px;
   }
 
-  .addintelproperty-multiInputFields input,
-  .addintelproperty-multiInputFields textarea {
+  .addintelproperty-multiinputfields input,
+  .addintelproperty-multiinputfields textarea {
     font-size: 10px;
     padding: 5px;
   }
 
-  .AIP-savebut {
+  .aip-savebut {
     font-size: 10px;
     height: 40px;
   }

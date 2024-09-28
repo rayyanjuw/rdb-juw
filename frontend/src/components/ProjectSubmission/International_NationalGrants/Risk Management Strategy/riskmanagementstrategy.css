@@ -14,7 +14,7 @@
     font-size: max(1vw, 10px);
   }
   
-  .riskmanagementstrategy_bred-crumb {
+  .riskmanagementstrategy-bred-crumb {
     margin: 0;
     width: 100%;
     background-color: #e9ecef;
@@ -84,14 +84,14 @@
     margin-bottom: 1rem;
   }
   
-  .riskmanagementstrategy_btn {
+  .riskmanagementstrategy-btn {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 25px;
   }
   
-  .riskmanagementstrategy_button {
+  .riskmanagementstrategy-button {
     font-weight: 600;
     font-size: 12px;
 
@@ -113,7 +113,7 @@
   
 
   @media (width <= 480px){
-    .riskmanagementstrategy_button{
+    .riskmanagementstrategy-button{
       width: 15vw !important;
       height: 5vh !important;
       display: flex;
@@ -123,7 +123,7 @@
   }
 
   @media (width <= 768px){
-    .riskmanagementstrategy_button{
+    .riskmanagementstrategy-button{
       width: 10vw;
       height: 4vh;
       display: flex;
@@ -133,7 +133,7 @@
   }
   
   @media (width <= 1024px){
-    .riskmanagementstrategy_button{
+    .riskmanagementstrategy-button{
       width: 10vw;
       height: 4vh;
       display: flex;

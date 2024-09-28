@@ -75,7 +75,7 @@ const ViewGrants = () => {
         {/* <div className="navbar-div">
           <NavBar />
         </div> */}
-        <div className="viewgrants_navbar-div">
+        <div className="viewgrants-navbar-div">
           <NavBar />
         </div>
         <div className="viewgrants-card">
@@ -93,7 +93,7 @@ const ViewGrants = () => {
             <div className="viewgrants-table-container">
               {filteredGrants.map((project, index) =>  (
                 <div key={index} className="viewgrants-list-table">
-                  <div className="Viewgrants_detail">
+                  <div className="viewgrants-detail">
                     <h5>Project Details #{index + 1}</h5>
                     <button type="button" className="m-0"  onClick={() => handleViewClick(project.id)}>
                       VIEW
@@ -120,7 +120,7 @@ const ViewGrants = () => {
             </div>
           </div>
         </div>
-        <div className="juw_copyright">
+        <div className="juw-copyright">
           <p>© 2024, all rights reserved by Jinnah University for Women.</p>
         </div>
       </div>

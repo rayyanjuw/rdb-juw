@@ -97,24 +97,21 @@ const ResearchGrants = () => {
 
 
   return (
-    <div className="ResearchGrants-container">
+    <div className="researchgrants-container">
       <Sidebar />
-      <div className="researchGrants">
+      <div className="researchgrants">
         <div className="navbar-div">
           <NavBar />
         </div>
-        <div className="researchGrants-card">
+        <div className="researchgrants-card">
           <h4>Research portfolio | Research Grants and Contracts</h4>
-          <div className="RG_bred-crumb">
+          <div className="rg-bred-crumb">
             <Breadcrumb items={breadCrumps} activePath={currentPath} />
           </div>
-          {/* <div className="bred-crumb">
-            <Breadcrumb items={breadCrumps} activePath={currentPath} />
-          </div> */}
           <div className="h4-heading">
             <h4>Completed Research Projects</h4>
           </div>
-          <div className="researchGrants-table1">
+          <div className="researchgrants-table1">
             <table>
               <thead>
                 <tr>
@@ -141,7 +138,7 @@ const ResearchGrants = () => {
           <div className="h4-heading">
             <h4>Funded & In Progress, In Review</h4>
           </div>
-          <div className="researchGrants-table2">
+          <div className="researchgrants-table2">
             <table>
               <thead>
                 <tr>
@@ -166,7 +163,7 @@ const ResearchGrants = () => {
           </div>
           <button
             type="button"
-            className="edit_button"
+            className="edit-button"
             onClick={handleEditClick}
           >
             EDIT

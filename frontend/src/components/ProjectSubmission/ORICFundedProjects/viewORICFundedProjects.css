@@ -1,4 +1,4 @@
-.vieworicfundedproject_container {
+.vieworicfundedproject-container {
   display: flex;
   height: 100vh;
 }
@@ -22,14 +22,14 @@
   padding: 20px;
 }
 
-.vieworic_navbar-div {
+.vieworic-navbar-div {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
 }
 
-.vieworic_navbar-div h4 {
+.vieworic-navbar-div h4 {
   font-weight: 400;
   font-size: 20px;
   margin-top: 10px;
@@ -65,7 +65,7 @@
   margin: 10px 7px;
 }
 
-.View_project_detail {
+.view-project-detail {
   display: flex;
   align-items: start;
   gap: 10px;
@@ -73,12 +73,12 @@
   flex-direction: row;
 }
 
-.View_project_detail h5 {
+.view-project-detail h5 {
   margin: 0;
   margin-top: 5px;
 }
 
-.View_project_detail button {
+.view-project-detail button {
   width: 100px;
   align-items: center;
   justify-content: center;
@@ -110,7 +110,8 @@
   border-top: 1px solid #dee2e6;
   padding: 12px 0;
   flex-direction: column;
-  margin-left-right: 0;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .vieworicfundedproject-list-table-format {
@@ -136,7 +137,7 @@
   margin-left: 40px;
 }
 
-.VOF_juw_copyright p {
+.vof-juw-copyright p {
   margin-top: 80px;
   text-align: right;
   font-size: 0.8571em;
@@ -150,12 +151,12 @@
 
 
 /* my media query */
-@media (max-width: 480px) {
+@media (width <= 480px) {
   /* button.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-sizeMedium.css-w92lsb-MuiButtonBase-root-MuiIconButton-root {
     margin-top: 40px !important;
   } */
 
-  .VOF_juw_copyright p{
+  .vof-juw-copyright p{
     margin-top: 80px;
     text-align: center;
     font-size: 0.8571em;
@@ -165,14 +166,14 @@
 }
 
 @media only screen and (width <= 600px) {
-  .vieworic_navbar-div {
+  .vieworic-navbar-div {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
   }
 
-  .vieworic_navbar-div h4 {
+  .vieworic-navbar-div h4 {
     font-weight: 400;
     font-size: 12px;
     margin-top: 10px;
@@ -180,7 +181,7 @@
     color: #66615b;
   }
 
-  .View_project_detail button {
+  .view-project-detail button {
     width: 25%;
     align-items: center;
     justify-content: center;
@@ -219,21 +220,21 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   /* button.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-sizeMedium.css-w92lsb-MuiButtonBase-root-MuiIconButton-root {
     margin-top: 20px !important;
   } */
 }
 
 @media (width <= 1024px) {
-  .vieworic_navbar-div {
+  .vieworic-navbar-div {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
   }
 
-  .vieworic_navbar-div h4 {
+  .vieworic-navbar-div h4 {
     font-weight: 400;
 
     /* font-size: 22px; */
@@ -245,7 +246,7 @@
     color: #66615b;
   }
 
-  .View_project_detail button {
+  .view-project-detail button {
     width: 15%;
     display: flex;
     align-items: center;

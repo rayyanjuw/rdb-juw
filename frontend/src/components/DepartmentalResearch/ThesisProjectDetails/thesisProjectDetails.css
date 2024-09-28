@@ -27,14 +27,14 @@
   transition: margin-left 0.3s ease;
 }
 
-.thesisprojectdetails_bred-crumb {
+.thesisprojectdetails-bred-crumb {
   margin: 0;
   width: 100%;
   margin-top: 25px;
   background-color: #e9ecef;
 }
 
-.thsisproject_navbar-div {
+.thsisproject-navbar-div {
   display: flex;
   align-items: center;
   flex-direction: row-reverse;
@@ -54,20 +54,20 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.thesisprojectdetails_heading {
+.thesisprojectdetails-heading {
   font-size: 1.4rem;
   margin-top: 10px;
   font-weight: 400;
 }
 
-.thesisprojectdetails_heading2 {
+.thesisprojectdetails-heading2 {
   font-size: 1rem;
   margin-top: 10px;
   font-weight: 400;
 }
 
-.thesisprojectdetails_multiInputFields input,
-.thesisprojectdetails_multiInputFields textarea {
+.thesisprojectdetails-multiinputfields input,
+.thesisprojectdetails-multiinputfields textarea {
   width: calc(100% - 20px);
   margin: 10px 0;
   padding: 6px;
@@ -78,35 +78,35 @@
   box-sizing: border-box;
 }
 
-.thesisprojectdetails_multiInputFields textarea {
+.thesisprojectdetails-multiinputfields textarea {
   resize: vertical;
 }
 
-.thesisprojectdetails_title-input {
+.thesisprojectdetails-title-input {
   margin-bottom: 15px;
   margin-top: 15px;
 }
 
-.thesisprojectdetails_title-input label {
+.thesisprojectdetails-title-input label {
   font-size: 1rem;
   margin-bottom: 5px;
   color: #9a9a9a;
 }
 
-.thesisprojectdetails_two-inputs {
+.thesisprojectdetails-two-inputs {
   display: flex;
   align-items: center;
   flex-direction: row;
   margin-bottom: 20px;
 }
 
-.thesisprojectdetails_two-inputs label {
+.thesisprojectdetails-two-inputs label {
   font-size: 1rem;
   margin-bottom: 5px;
   color: #9a9a9a;
 }
 
-.thesisprojectdetails_main_heading h4 {
+.thesisprojectdetails-main-heading h4 {
   font-size: 1.714em;
   line-height: 1.45em;
   margin-top: 30px;
@@ -114,39 +114,42 @@
   margin-bottom: 15px;
 }
 
-.thesisprojectdetails_four-inputs {
+.thesisprojectdetails-four-inputs {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 15px;
   margin-bottom: 20px;
 }
 
-.thesisprojectdetails_four-inputs label {
+.thesisprojectdetails-four-inputs label {
   font-size: 1rem;
   margin-bottom: 5px;
   color: #9a9a9a;
 }
 
-.thesisprojectdetails_two-inputs .thesisprojectdetails_Input-Group {
+.thesisprojectdetails-inputgroup {
+  margin-bottom: 15px;
+}
+
+
+.thesisprojectdetails-two-inputs .thesisprojectdetails-inputgroup {
   flex: 1;
   margin-right: 10px;
 }
 
-.thesisprojectdetails_two-inputs .thesisprojectdetails_Input-Group:last-child {
+.thesisprojectdetails-two-inputs .thesisprojectdetails-inputgroup:last-child {
   margin-right: 0;
 }
 
-.thesisprojectdetails_Input-Group {
-  margin-bottom: 15px;
-}
 
-.thesisprojectdetails_Input-Group label {
+
+.thesisprojectdetails-inputgroup label {
   font-size: 0.8571em;
   margin-bottom: 5px;
   color: #9A9A9A;
 }
 
-.AIP_save-btn {
+.aip-save-btn {
   width: 100%;
   height: 100px;
   display: flex;
@@ -154,7 +157,7 @@
   justify-content: center;
 }
 
-.AIP_savebut {
+.aip-savebut {
   font-weight: 600;
   font-size: 1rem;
   display: flex;
@@ -170,7 +173,7 @@
   border: none;
 }
 
-.juw_copyright p {
+.juw-copyright p {
   margin-top: 80px;
   text-align: right;
   font-size: 1rem;
@@ -187,19 +190,19 @@
     padding: 10px;
   }
 
-  .thesisprojectdetails_heading {
+  .thesisprojectdetails-heading {
     font-size: 1.2rem;
   }
 
-  .thesisprojectdetails_heading2 {
+  .thesisprojectdetails-heading2 {
     font-size: 1.1rem;
   }
 
-  .thesisprojectdetails_four-inputs {
+  .thesisprojectdetails-four-inputs {
     grid-template-columns: 1fr;
   }
 
-  .AIP_savebut {
+  .aip-savebut {
     width: 13vw;
     height: 4vh;
   }
@@ -210,35 +213,35 @@
     width: 30%;
   }
 
-  .thesisprojectdetails_heading {
+  .thesisprojectdetails-heading {
     font-size: 1.5rem;
   }
 
-  .thesisprojectdetails_heading2 {
+  .thesisprojectdetails-heading2 {
     font-size: 0.9rem;
   }
 
-  .thesisprojectdetails_two-inputs {
+  .thesisprojectdetails-two-inputs {
     flex-direction: column;
   }
 
-  .thesisprojectdetails_four-inputs {
+  .thesisprojectdetails-four-inputs {
     grid-template-columns: 1fr;
   }
 
-  .thesisprojectdetails_main_heading h4 {
+  .thesisprojectdetails-main-heading h4 {
     font-size: 1.414em;
     line-height: 1.45em;
     margin-top: 30px;
     margin-bottom: 15px;
   }
 
-  .AIP_savebut {
+  .aip-savebut {
     width: 12vw;
     height: 4vh;
   }
 
-  .juw_copyright p {
+  .juw-copyright p {
     font-size: 0.85rem;
   }
 }
@@ -254,42 +257,39 @@
     padding: 5px;
   }
 
-  .thsisproject_navbar-div {
+  .thsisproject-navbar-div {
     margin-top: 15px;
     align-items: flex-start;
   }
 
-  .thesisprojectdetails_Input-Group label {
-    /* margin-bottom: 5px;
-    font-size: 10px; */
+  .thesisprojectdetails-inputgroup label {
     font-size: 0.8571em;
     margin-bottom: 5px;
     color: #9A9A9A;
   }
 
-  .thesisprojectdetails_heading {
-    /* font-size: 0.9rem; */
+  .thesisprojectdetails-heading {
     font-size: 1.6rem;
     margin-bottom: 20px;
   }
 
-  .thesisprojectdetails_heading2 {
+  .thesisprojectdetails-heading2 {
     font-size: 0.8rem;
   }
 
-  .thesisprojectdetails_title-input,
-  .thesisprojectdetails_two-inputs,
-  .thesisprojectdetails_four-inputs {
+  .thesisprojectdetails-title-input,
+  .thesisprojectdetails-two-inputs,
+  .thesisprojectdetails-four-inputs {
     flex-direction: column;
     margin-bottom: 10px;
   }
 
-  .AIP_savebut {
+  .aip-savebut {
     width: 18vw;
     height: 4vh;
   }
 
-  .juw_copyright p {
+  .juw-copyright p {
     font-size: 0.75rem;
   }
 }

@@ -77,7 +77,7 @@ const PhysicalResources = ({onSave}) => {
         </div>
         <div className="physicalresources-card">
           <h3>International/National Grants | Physical Resources and Facilities</h3>
-          <div className="physicalresources_bred-crumb">
+          <div className="physicalresources-bred-crumb">
             <Breadcrumb items={breadCrumps} activePath={currentPath} />
           </div>
           <div className="physicalresources-content">
@@ -99,8 +99,8 @@ const PhysicalResources = ({onSave}) => {
 
             <p>In this Section, be sure to identify major anticipated equipment expenditures as part of the proposed project. Include preliminary cost estimates and a plan for maintenance costs both during the lifetime of the proposed project and after the project funding concludes</p>    
             
-            <div className="physicalresources_btn">
-              <button className="physicalresources_button" onClick={handleSave}>SAVE</button>
+            <div className="physicalresources-btn">
+              <button className="physicalresources-button" onClick={handleSave}>SAVE</button>
             </div>
           </div>
         </div>

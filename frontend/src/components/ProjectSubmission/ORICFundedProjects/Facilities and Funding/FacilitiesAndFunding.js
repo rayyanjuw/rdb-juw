@@ -64,21 +64,21 @@ const FacilitiesAndFunding = ({ onSave }) => {
 };
 
   return (
-    <div className="facilitiesAndfunding-container">
+    <div className="facilitiesandfunding-container">
       <Sidebar />
-      <div className="facilitiesAndfunding">
+      <div className="facilitiesandfunding">
         <div className="navbar-div">
           <NavBar />
         </div>
-        <div className="facilitiesAndfunding-card">
+        <div className="facilitiesandfunding-card">
           <h3>ORIC Funded Project | Facilities and Funding</h3>
           <p>Proposal Cover / Research Project / Facilities and Funding / Justification for The Requested Budget Items / Estimated Budget for Proposed Research Period</p>
-          {/* <div className="facilitiesAndfunding_bred-crumb"> */}
+          {/* <div className="facilitiesandfunding_bred-crumb"> */}
             {/* <Breadcrumb items={breadCrumps} /> */}
             {/* <Breadcrumb items={breadCrumps} activePath={currentPath} /> */}
           {/* </div> */}
-          <div className="facilitiesAndfunding-content">
-            <div className="facilitiesAndfunding_textarea">
+          <div className="facilitiesandfunding-content">
+            <div className="facilitiesandfunding-textarea">
               <label htmlFor="exampleTextarea">
                 Facilities available for the research project in the department:
               </label>
@@ -95,7 +95,7 @@ const FacilitiesAndFunding = ({ onSave }) => {
               />
             </div>
 
-            <div className="facilitiesAndfunding_title-input">
+            <div className="facilitiesandfunding-title-input">
               <label>Other source of funding (if any):</label>
               <input
                 type="text"
@@ -109,8 +109,8 @@ const FacilitiesAndFunding = ({ onSave }) => {
               />
             </div>
 
-            <div className="facilitiesAndfunding_btn">
-              <button className="facilitiesAndfunding_button" onClick={handleSave} >SAVE</button>
+            <div className="facilitiesandfunding-btn">
+              <button className="facilitiesandfunding-button" onClick={handleSave} >SAVE</button>
             </div>
           </div>
         </div>
