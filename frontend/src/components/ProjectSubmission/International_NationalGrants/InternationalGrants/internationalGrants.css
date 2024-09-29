@@ -1,5 +1,5 @@
 /* responsive */
-.internationalGrants_container {
+.internationalgrants-container {
     display: flex;
     height: 100vh;
 }
@@ -18,7 +18,7 @@
     transition: transform 0.3s ease-in-out; 
 }
   
-.internationalGrants {
+.internationalgrants {
     flex: 1;
     overflow-y: auto;
     background-color: #f4f3ef !important;
@@ -27,7 +27,7 @@
 }
 
 
-  .internationalGrants-card {
+  .internationalgrants-card {
     background-color: white;
     margin-top: 15px;
     width: 100%;
@@ -42,7 +42,7 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
-  .internationalGrants-card button {
+  .internationalgrants-card button {
     background-color: #51cbce;
     color: white;
     border: none;
@@ -53,11 +53,11 @@
     border-radius: 30px;
   }
   
-  .internationalGrants-card button:hover {
+  .internationalgrants-card button:hover {
     background-color: #51ccfc;
   }
 
-  .internationalGrants-card h5 {
+  .internationalgrants-card h5 {
     font-size: 20px;
     margin-bottom: 10px;
     margin-left: 10px;
@@ -67,19 +67,19 @@
   }
 
 
-  .internationalGrants-table-data h5 {
+  .internationalgrants-table-data h5 {
     font-weight: bold;
     font-size: 14px;
     font-family: Montserrat, "Helvetica Neue", Arial, sans-serif;
   }
   
-  .internationalGrants-table-container {
+  .internationalgrants-table-container {
     display: flex;
     flex-direction: column;
     padding: 0 20px;
   }
   
-  .internationalGrants-table-container h2 {
+  .internationalgrants-table-container h2 {
     font-size: 28px;
     font-weight: 500;
   }
@@ -93,7 +93,7 @@
   }
 
 
-  .internationalGrants-list-table {
+  .internationalgrants-list-table {
     display: flex;
     border-top: 1px solid #dee2e6;
     padding: 12px 0;
@@ -102,18 +102,18 @@
     margin-right: 0;
   }
   
-  .internationalGrants-list-table-format {
+  .internationalgrants-list-table-format {
     display: flex;
     border-top: 1px solid #dee2e6;
     justify-content: space-between;
     padding: 10px 0;
   }
   
-  .internationalGrants-list-table-format.title {
+  .internationalgrants-list-table-format.title {
     font-weight: normal;
   }
   
-  .internationalGrants-list-table-format b {
+  .internationalgrants-list-table-format b {
     font-weight: 450;
     font-size: 15px;
 
@@ -125,7 +125,7 @@
   }
 
 
-  .internationalGrants-list-table-format.title2 {
+  .internationalgrants-list-table-format.title2 {
     display: flex;
     border-top: 1px solid #dee2e6;
     padding: 10px 0;
@@ -135,7 +135,7 @@
     /* text-align: left; */
   }
   
-  .internationalGrants-list-table-format.title2 b {
+  .internationalgrants-list-table-format.title2 b {
     font-weight: 450;
     font-size: 15px;
     width: 30%;
@@ -144,21 +144,32 @@
     text-align: left;
     padding-right: 10px; 
   }
+
+
+
   
-  .internationalGrants-list-table-format .value-details {
+  .internationalgrants-list-table-format .value-details {
     width: 50%; 
     display: flex;
     flex-direction: column;
     margin-right: 10px;
   }
+
+  .juw-copyright p {
+    margin-top: 80px;
+    text-align: right;
+    font-size: 0.8571em;
+    line-height: 1.8;
+    color: #66615b;
+  }
   
-  .internationalGrants-list-table-format .value-details p {
+  .internationalgrants-list-table-format .value-details p {
     margin-left: 10px;
     font-size: 15px;
     color: #555;
   }
   
-  .internationalGrants-list-table-format span {
+  .internationalgrants-list-table-format span {
     width: 50%;
     color: #555;
     font-size: 15px;
@@ -166,17 +177,12 @@
     margin-left: 40px;
   }
   
-  .juw_copyright p {
-    margin-top: 80px;
-    text-align: right;
-    font-size: 0.8571em;
-    line-height: 1.8;
-    color: #66615b;
-  }
 
 
-@media (width <= 480px){
-  .internationalGrants-card {
+
+@media (max-width: 480px){
+
+  .internationalgrants-card {
     display: flex;
     align-items: start;
   }
@@ -187,7 +193,7 @@
   }
 
 
-  .internationalGrants-card button {
+  .internationalgrants-card button {
     width: 25vw;
     height: 5vh;
     display: flex;
@@ -197,13 +203,13 @@
   }
 
 
-  .internationalGrants-table-container {
+  .internationalgrants-table-container {
     display: flex;
     flex-flow: column wrap;
     padding: 0;
   }
 
-  .internationalGrants-list-table-format {
+  .internationalgrants-list-table-format {
     display: flex;
     flex-direction: column;
     border-top: 1px solid #dee2e6;
@@ -211,7 +217,7 @@
     padding: 10px 0;
   }
 
-  .internationalGrants-list-table-format span {
+  .internationalgrants-list-table-format span {
     display: flex;
     flex-flow: row wrap;
     width: 100%;
@@ -221,7 +227,7 @@
   }
 
 
-  .internationalGrants-list-table-format b {
+  .internationalgrants-list-table-format b {
     font-weight: bold;
     font-size: 13px;
     width: 100%;
@@ -229,14 +235,14 @@
   }
 
 
-  .internationalGrants-list-table-format .value-details {
+  .internationalgrants-list-table-format .value-details {
     width: 100%; 
     display: flex;
     flex-direction: column;
     margin-right: 10px;
   }
   
-  .internationalGrants-list-table-format .value-details p {
+  .internationalgrants-list-table-format .value-details p {
     margin: 0;
     margin-left: 6px;
     font-size: 9px;

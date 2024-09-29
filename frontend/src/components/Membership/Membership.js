@@ -52,7 +52,7 @@ const Membership = () => {
         </div>
         <div className="membership-card">
           <h3>Research portfolio | Membership</h3>
-          <div className="membership_bred-crumb">
+          <div className="membership-bred-crumb">
             <Breadcrumb items={breadCrumps} activePath={currentPath} />
           </div>
           <hr />
@@ -69,7 +69,7 @@ const Membership = () => {
               ))}
             </ul>
           )}
-          <button className="membership_button" onClick={handleEditClick}>
+          <button className="membership-button" onClick={handleEditClick}>
             EDIT
           </button>
         </div>

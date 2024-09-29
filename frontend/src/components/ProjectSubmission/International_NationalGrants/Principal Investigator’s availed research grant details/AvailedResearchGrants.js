@@ -98,7 +98,7 @@ const AvailedResearchGrants = ({ onSave}) => {
   };
 
   const handleSave = () => {
-    onSave(formData); // Call the parent's function with the form data
+    onSave(formData);
   };
 
 
@@ -115,7 +115,7 @@ const AvailedResearchGrants = ({ onSave}) => {
             International/National Grants | Principal Investigator’s availed
             research grant details
           </h3>
-          <div className="availedresearchgrants_bred-crumb">
+          <div className="availedresearchgrants-bred-crumb">
             <Breadcrumb items={breadCrumps} activePath={currentPath} />
           </div>
           <div className="availedresearchgrants-content">
@@ -142,10 +142,10 @@ const AvailedResearchGrants = ({ onSave}) => {
 
             {formData.projects.map((project, index) => (
               <div
-                className="availedresearchgrants_multiInputFields"
+                className="availedresearchgrants-multiinputfields"
                 key={index}
               >
-                <div className="availedresearchgrants_InputGroup">
+                <div className="availedresearchgrants-inputgroup">
                   <p>{index + 1}. Project (If any)</p>
                   <label>Title of Project:</label>
                   <input
@@ -156,8 +156,8 @@ const AvailedResearchGrants = ({ onSave}) => {
                   />
                 </div>
 
-                <div className="availedresearchgrants_two-inputs">
-                  <div className="availedresearchgrants_InputGroup">
+                <div className="availedresearchgrants-two-inputs">
+                  <div className="availedresearchgrants-inputgroup">
                     <label>Initiation date:</label>
                     <input
                       type="date"
@@ -166,7 +166,7 @@ const AvailedResearchGrants = ({ onSave}) => {
                       onChange={(e) => handleChange(e, index)}
                     />
                   </div>
-                  <div className="availedresearchgrants_InputGroup">
+                  <div className="availedresearchgrants-inputgroup">
                     <label>Completion date:</label>
                     <input
                       type="date"
@@ -177,8 +177,8 @@ const AvailedResearchGrants = ({ onSave}) => {
                   </div>
                 </div>
 
-                <div className="availedresearchgrants_two-inputs">
-                  <div className="availedresearchgrants_InputGroup">
+                <div className="availedresearchgrants-two-inputs">
+                  <div className="availedresearchgrants-inputgroup">
                     <label>Amount(s) awarded:</label>
                     <input
                       type="text"
@@ -187,7 +187,7 @@ const AvailedResearchGrants = ({ onSave}) => {
                       onChange={(e) => handleChange(e, index)}
                     />
                   </div>
-                  <div className="availedresearchgrants_InputGroup">
+                  <div className="availedresearchgrants-inputgroup">
                     <label>Funding source(s):</label>
                     <input
                       type="text"
@@ -200,8 +200,8 @@ const AvailedResearchGrants = ({ onSave}) => {
               </div>
             ))}
 
-            <div className="availedresearchgrants_btn">
-              <button className="availedresearchgrants_button" onClick={handleSave}>SAVE</button>
+            <div className="availedresearchgrants-btn">
+              <button className="availedresearchgrants-button" onClick={handleSave}>SAVE</button>
             </div>
 
           </div>

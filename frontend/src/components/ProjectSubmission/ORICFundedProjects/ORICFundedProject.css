@@ -1,5 +1,5 @@
 /* responsive */
-.oricfundedproject_container {
+.oricfundedproject-container {
     display: flex;
     height: 100vh;
 }
@@ -153,6 +153,14 @@
     flex-direction: column;
     margin-right: 10px;
   }
+
+  .juw-copyright p {
+    margin-top: 80px;
+    text-align: right;
+    font-size: 0.8571em;
+    line-height: 1.8;
+    color: #66615b;
+  }
   
   .oricfundedproject-list-table-format .value-details p {
     margin-left: 10px;
@@ -168,13 +176,6 @@
     margin-left: 40px;
   }
   
-  .juw_copyright p {
-    margin-top: 80px;
-    text-align: right;
-    font-size: 0.8571em;
-    line-height: 1.8;
-    color: #66615b;
-  }
 
 
   .diskstyle{

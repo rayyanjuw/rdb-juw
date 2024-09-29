@@ -110,24 +110,24 @@ const PersonalInfo2 = () => {
 
   return (
     <>
-      <div className="add_personal_info_container">
+      <div className="add-personal-info-container">
         <Sidebar />
-        <div className="add_personal_info">
+        <div className="add-personal-info">
           <div className="navbar-div">
             <NavBar />
           </div>
-          <div className="add-personalInfo_card">
-            <h3 className="add-personalInfo_heading">
+          <div className="add-personalinfo-card">
+            <h3 className="add-personalinfo-heading">
               Research portfolio | Personal Information
             </h3>
-            <div className="PI2_bred-crumb">
+            <div className="pi2-bred-crumb">
               <Breadcrumb items={breadCrumps} activePath={currentPath} />
             </div>
 
-            <div className="personal_info_data">
-              <h3 className="add-personalInfo_heading">Personal Information</h3>
-              <div className="multiInputFields">
-                <div className="InputGroup">
+            <div className="personal-info-data">
+              <h3 className="add-personalinfo-heading">Personal Information</h3>
+              <div className="multiinputfields">
+                <div className="inputgroup">
                   <label>Name</label>
                   <input
                     type="text"
@@ -137,7 +137,7 @@ const PersonalInfo2 = () => {
                     onChange={handlePersonalInfoChange}
                   />
                 </div>
-                <div className="InputGroup">
+                <div className="inputgroup">
                   <label>Email</label>
                   <input
                     type="text"
@@ -147,7 +147,7 @@ const PersonalInfo2 = () => {
                     disabled
                   />
                 </div>
-                <div className="InputGroup">
+                <div className="inputgroup">
                   <label>Address</label>
                   <input
                     type="text"
@@ -157,7 +157,7 @@ const PersonalInfo2 = () => {
                     onChange={handlePersonalInfoChange}
                   />
                 </div>
-                <div className="InputGroup">
+                <div className="inputgroup">
                   <label>Cell Phone</label>
                   <input
                     type="text"
@@ -168,9 +168,9 @@ const PersonalInfo2 = () => {
                 </div>
               </div>
 
-              <h3 className="add-personalInfo_heading">Education</h3>
-              <div className="multiInputFields">
-                <div className="InputGroup">
+              <h3 className="add-personalinfo-heading">Education</h3>
+              <div className="multiinputfields">
+                <div className="inputgroup">
                   <label>Degree</label>
                   <input
                     type="text"
@@ -180,7 +180,7 @@ const PersonalInfo2 = () => {
                     onChange={handleHighestDegreeChange}
                   />
                 </div>
-                <div className="InputGroup">
+                <div className="inputgroup">
                   <label>Year</label>
                   <input
                     type="text"
@@ -192,9 +192,9 @@ const PersonalInfo2 = () => {
                 </div>
               </div>
 
-              <h3 className="add-personalInfo_heading">Experience</h3>
-              <div className="multiInputFields">
-                <div className="InputGroup">
+              <h3 className="add-personalinfo-heading">Experience</h3>
+              <div className="multiinputfields">
+                <div className="inputgroup">
                   <label>Institution</label>
                   <input
                     type="text"
@@ -204,7 +204,7 @@ const PersonalInfo2 = () => {
                     onChange={handleLatestExperienceChange}
                   />
                 </div>
-                <div className="InputGroup">
+                <div className="inputgroup">
                   <label>Job Title</label>
                   <input
                     type="text"
@@ -214,7 +214,7 @@ const PersonalInfo2 = () => {
                     onChange={handleLatestExperienceChange}
                   />
                 </div>
-                <div className="InputGroup">
+                <div className="inputgroup">
                   <label>From Date</label>
                   <input
                     type="date"
@@ -223,7 +223,7 @@ const PersonalInfo2 = () => {
                     onChange={handleLatestExperienceChange}
                   />
                 </div>
-                <div className="InputGroup">
+                <div className="inputgroup">
                   <label>To Date</label>
                   <input
                     type="date"
@@ -235,15 +235,14 @@ const PersonalInfo2 = () => {
               </div>
               
 
-              <div className="EPI_save-btn-bg">
-                <button className="EPI_savebut" onClick={handleSubmit}>
+              <div className="epi-save-btn-bg">
+                <button className="epi-savebut" onClick={handleSubmit}>
                   Save
                 </button>
               </div>
             </div>
           </div>
-          <div className="juw_copyright">
-          {/* <div className="add-personalInfo_juw_copyright"> */}
+          <div className="juw-copyright">
             <p>© 2024, all rights reserved by Jinnah University for Women.</p>
           </div>
         </div>

@@ -14,7 +14,7 @@
   font-size: max(1vw, 10px);
 }
 
-.membership_bred-crumb {
+.membership-bred-crumb {
   margin: 0 10px !important;
   width: calc(100% - 40px);
   background-color: #e9ecef;
@@ -27,9 +27,6 @@
   padding: 20px;
 }
 
-/* .navbar-div {
-  margin: 0 0 1.4rem 0;
-} */
 
 .membership-card {
   background-color: white;
@@ -48,12 +45,11 @@
 }
 
 .membership-card h5 {
-  /* font-weight: 400; */
   font-size: 14px;
   font-weight: bold;
 }
 
-.membership_button {
+.membership-button {
   font-weight: 600;
   font-size: 12px;
   display: flex;
@@ -72,23 +68,17 @@
 }
 
 
-
-/* responsiveness */
-
-
-
-/* Responsive Styles */
 @media (width <= 1200px) {
   .sidebar {
     width: 25%;
-    font-size: 0.875rem; /* Adjust font size for medium screens */
+    font-size: 0.875rem; 
   }
 
-  .membership_bred-crumb {
+  .membership-bred-crumb {
     width: calc(100% - 20px);
   }
 
-  .membership_button {
+  .membership-button {
     font-size: 14px;
     display: flex;
     align-items: center;
@@ -109,11 +99,11 @@
   }
 
   .membership-card {
-    width: calc(100% - 30px); /* Adjust width for medium screens */
-    margin: 15px auto; /* Adjust margin for medium screens */
+    width: calc(100% - 30px);
+    margin: 15px auto; 
   }
 
-  .membership_button {
+  .membership-button {
     font-size: 14px;
     width: 8vw;
     display: flex;
@@ -131,7 +121,7 @@
   .sidebar {
     width: 100%;
     height: auto;
-    font-size: 0.75rem; /* Smaller font size for smaller screens */
+    font-size: 0.75rem;
   }
 
   .membership {
@@ -140,19 +130,19 @@
 
   .membership-card {
     width: 100%;
-    margin: 10px 0; /* Adjust margin for small screens */
-    height: auto; /* Allow card to adjust height */
+    margin: 10px 0; 
+    height: auto; 
   }
 
   .membership-card h3 {
-    font-size: 1.5rem; /* Adjust font size for smaller screens */
+    font-size: 1.5rem; 
   }
 
   .membership-card h5 {
     font-size: 1.2rem;
   }
 
-  .membership_button {
+  .membership-button {
     font-size: 12px;
     display: flex;
     align-items: center;
@@ -171,7 +161,7 @@
     font-size: 1rem;
   }
 
-  .membership_button {
+  .membership-button {
     font-size: 13px;
     width: 15vw;
     display: flex;

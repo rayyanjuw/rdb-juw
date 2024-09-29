@@ -74,7 +74,8 @@ const getProfile = async (req, res) => {
       const userId = req.user.id; // Get the current user's ID
   
       const userProfile = await UserProfile.findOne({
-        where: { userId }
+        where: { userId },
+        include: [{ model: User}]
       });
   
       if (!userProfile) {

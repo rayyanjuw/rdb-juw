@@ -75,7 +75,7 @@ const RiskManagementStrategy = ({onSave}) => {
         </div>
         <div className="riskmanagementstrategy-card">
           <h3>International/National Grants | Risk Management Strategy</h3>
-          <div className="riskmanagementstrategy_bred-crumb">
+          <div className="riskmanagementstrategy-bred-crumb">
             <Breadcrumb items={breadCrumps} activePath={currentPath} />
           </div>
           <div className="riskmanagementstrategy-content">
@@ -99,8 +99,8 @@ const RiskManagementStrategy = ({onSave}) => {
 
             <p>In both contexts, discuss how the Principal Investigator will work together with the institutional leadership to implement the strategy.</p>
             
-            <div className="riskmanagementstrategy_btn">
-              <button className="riskmanagementstrategy_button" onClick={handleSave}>SAVE</button>
+            <div className="riskmanagementstrategy-btn">
+              <button className="riskmanagementstrategy-button" onClick={handleSave}>SAVE</button>
             </div>
           </div>
         </div>

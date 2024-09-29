@@ -14,7 +14,7 @@
     font-size: max(1vw, 10px);
   }
   
-  .physicalresources_bred-crumb {
+  .physicalresources-bred-crumb {
     margin: 0;
     width: 100%;
     background-color: #e9ecef;
@@ -90,14 +90,14 @@
     margin-bottom: 1rem;
   }
   
-  .physicalresources_btn {
+  .physicalresources-btn {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 25px;
   }
   
-  .physicalresources_button {
+  .physicalresources-button {
     font-weight: 600;
     font-size: 12px;
 
@@ -118,7 +118,7 @@
   }
   
   @media (width <= 480px){
-    .physicalresources_button{
+    .physicalresources-button{
       width: 15vw !important;
       height: 5vh !important;
       display: flex;
@@ -129,7 +129,7 @@
   
 
   @media (width <= 768px){
-    .physicalresources_button{
+    .physicalresources-button{
       width: 10vw;
       height: 4vh;
       display: flex;
@@ -139,7 +139,7 @@
   }
   
   @media (width <= 1024px){
-    .physicalresources_button{
+    .physicalresources-button{
       width: 9vw;
       height: 4vh;
       display: flex;

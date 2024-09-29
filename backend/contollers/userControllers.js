@@ -16,6 +16,9 @@ const createUser = async (req, res) => {
     if (!departmentName)
       return res.status(400).json({ message: "Department name is required" });
 
+    if (userRole === 'admin' || userRole === 'manager'){
+      departmentId = null;
+    } 
     //Find the department
     const department = await Department.findOne({
       where: { name: departmentName },
@@ -108,6 +111,10 @@ const updateUser = async (req, res) => {
         return res.status(400).json({ message: "Username already exists" });
       }
     }
+
+    if (userRole === 'admin' || userRole === 'manager'){
+      departmentId = null;
+    } 
 
     let departmentId = user.departmentId;
     if (departmentName) {
@@ -264,6 +271,7 @@ const getAllUsers = async (req, res) => {
         include: [
           { model: Publication, as: "publications" },
           { model: IntellectualProperty, as: "intellectualProperties" },
+          { model: Department, as: "department" },
         ],
       }); // Fetch all users
     } else if (allowedRoles.length > 0) {
@@ -283,6 +291,7 @@ const getAllUsers = async (req, res) => {
         include: [
           { model: Publication, as: "publications" },
           { model: IntellectualProperty, as: "intellectualProperties" },
+          { model: Department, as: "department" }
         ],
       });
     } else {

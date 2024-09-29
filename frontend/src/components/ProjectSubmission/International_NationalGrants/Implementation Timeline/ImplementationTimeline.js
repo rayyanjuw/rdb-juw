@@ -99,7 +99,7 @@ const ImplementationTimeline = ({ onSave }) => {
         </div>
         <div className="implementation-timeline-card">
           <h3>International/National Grants | Implementation Timeline</h3>
-          <div className="implementation-timeline_bred-crumb">
+          <div className="implementation-timeline-bred-crumb">
             <Breadcrumb items={breadCrumps} activePath={currentPath} />
           </div>
           <div className="implementation-timeline-content">
@@ -167,8 +167,8 @@ const ImplementationTimeline = ({ onSave }) => {
                 <p className="error-text">{error.yearThree}</p>
               )}
             </div>
-            <div className="implementation-timeline_btn">
-              <button className="implementation-timeline_button"  onClick={handleSave}>SAVE</button>
+            <div className="implementation-timeline-btn">
+              <button className="implementation-timeline-button"  onClick={handleSave}>SAVE</button>
             </div>
           </div>
         </div>

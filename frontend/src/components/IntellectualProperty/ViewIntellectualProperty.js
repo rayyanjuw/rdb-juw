@@ -11,6 +11,11 @@ import {
   deleteIntellectualProperty,
   updateIntellectualProperty,
 } from "../../api/Api";
+import { toast } from "react-toastify";
+
+
+
+
 
 const ViewIntellectualProperty = () => {
   const [IntelProperties, setIntelProperties] = useState([
@@ -77,6 +82,7 @@ const ViewIntellectualProperty = () => {
           property.id === selectedProperty.id ? selectedProperty : property
         )
       );
+      toast.success("Success!")
       closeModal();
     } catch (error) {
       setError(error.message);
@@ -246,6 +252,7 @@ const ViewIntellectualProperty = () => {
       setIntelProperties((prevData) =>
         prevData.filter((property) => property.id !== id)
       );
+      toast.success("Deleted Successfully")
     } catch (error) {
       console.error("Error deleting publication:", error);
       alert("Failed to delete the publication.");
@@ -258,7 +265,7 @@ const ViewIntellectualProperty = () => {
     <div className="intelproperty-container">
       <Sidebar />
       <div className="intelproperty">
-        <div className="viewintell_navbar-div">
+        <div className="viewintell-navbar-div">
           <h4>Submission | Intellectual Property</h4>
           <NavBar />
         </div>
@@ -384,8 +391,8 @@ const ViewIntellectualProperty = () => {
               ? "Edit Intellectual Property Modal"
               : "Create Intellectual Property Modal"
           }
-          className="Modal"
-          overlayClassName="Overlay"
+          className="vip-modal"
+          overlayClassName="vip-overlay"
         >
           <h2>
             {editMode
@@ -469,7 +476,7 @@ const ViewIntellectualProperty = () => {
           </form>
         </Modal>
 
-        <div className="VIP_juw_copyright">
+        <div className="vip-juw-copyright">
           <p>© 2024, all rights reserved by Jinnah University for Women.</p>
         </div>
       </div>

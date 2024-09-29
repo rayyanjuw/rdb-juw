@@ -14,7 +14,7 @@
     font-size: max(1vw, 10px);
   }
   
-  .proposedprojectbudget_bred-crumb {
+  .proposedprojectbudget-bred-crumb {
     margin: 0;
     width: 100%;
     background-color: #e9ecef;
@@ -88,14 +88,14 @@
     font-size: 14px;
   }
   
-  .proposedprojectbudget_btn {
+  .proposedprojectbudget-btn {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 25px;
   }
   
-  .proposedprojectbudget_button {
+  .proposedprojectbudget-button {
     font-weight: 600;
     display: flex;
     justify-content: center;
@@ -116,7 +116,7 @@
   }
   
   @media (width <= 480px){
-    .proposedprojectbudget_button {
+    .proposedprojectbudget-button {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -126,7 +126,7 @@
   }
 
   @media (width <= 786px){
-    .proposedprojectbudget_button {
+    .proposedprojectbudget-button {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -136,7 +136,7 @@
   }
 
   @media (width <= 1024px){
-    .proposedprojectbudget_button {
+    .proposedprojectbudget-button {
       display: flex;
       justify-content: center;
       align-items: center;

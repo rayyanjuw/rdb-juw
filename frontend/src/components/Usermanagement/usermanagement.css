@@ -23,7 +23,7 @@
   padding: 20px;
 }
 
-.Modal {
+.usermanagement-modal {
   position: absolute;
   inset: 50% auto auto 50%;
   margin-right: -50%;
@@ -35,21 +35,13 @@
   width: 100%;
 }
 
-.Overlay {
+.usermanagement-overlay {
   position: fixed;
   inset: 0;
   background-color: rgb(0 0 0 / 75%);
 }
 
-.whole-page-container {
-  display: flex;
-}
 
-.user-management {
-  flex: 1;
-  padding: 20px;
-  background-color: #f8f9fa;
-}
 
 .user-management button {
   background-color: #51cbce;
@@ -61,26 +53,29 @@
   border-radius: 30px;
 }
 
-.user-management button:hover {
-  background-color: #51cbce;
-}
-
-.Modal {
-  background-color: #fff;
-  border-radius: 8px;
-  padding: 20px;
-  max-width: 35%;
-  margin: auto;
-  box-shadow: 0 5px 15px rgb(0 0 0 / 30%);
-}
-
-.Overlay {
-  position: fixed;
-  inset: 0;
-  background-color: rgb(0 0 0 / 70%);
+.create-user button {
+  background: #51cbce;
+  color: white;
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 10px 110px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.user-management-card button {
+  font-weight: bold;
+}
+
+.usermanagement-table-container button {
+  font-size: 14px;
+}
+
+.user-management button:hover {
+  background-color: #51cbce;
 }
 
 .create-user {
@@ -119,18 +114,7 @@
   width: 100%;
 }
 
-.create-user button {
-  background: #51cbce;
-  color: white;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 110px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 4px;
-}
+
 
 .create-user-btn {
   margin: 10px 7px;
@@ -165,13 +149,10 @@
   margin-bottom: 20px;
 }
 
-.user-management-card button {
-  font-weight: bold;
-}
 
 
 
-/* added */
+
 
 .usermanagement-table-container {
   width: 100%;
@@ -179,9 +160,7 @@
   margin-bottom: 20px;
 }
 
-.usermanagement-table-container button {
-  font-size: 14px;
-}
+
 
 
 .list {
@@ -208,12 +187,6 @@
   text-align: left;
 }
 
-/* .list-table-format p, .list-table-format b {
-  margin: 0;
-  padding: 8px;
-  font-size: 14px;
-  text-align: left;
-} */
 
 .password-container {
   position: relative;
@@ -241,18 +214,11 @@
 
 .user-table th,
 .user-table td {
-  /* padding: 10px; */
   padding: 8px;
   font-size: 13px;
   text-align: left;
 }
 
-/* .user-table th {
-  background-color: #f4f4f4;
-} */
-
-
-/* dropdown */
 
 .department-dropdown {
   border: 1px solid #ccc; 
@@ -280,9 +246,15 @@
 }
 
 .department-dropdown li:last-child {
-  border-bottom: none; /* Remove border from last item */
+  border-bottom: none;
 }
 
+
+.buttonz {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 
 
@@ -295,23 +267,23 @@
 
 
 @media (width <= 1024px){
-  .Modal {
+  .usermanagement-modal {
     max-width: 40%;
     align-items: center;
-    justfiy-content: center;
+    justify-content: center;
   }
 }
 
 
 
 /* Responsive adjustments */
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .user-table th, .user-table td {
     font-size: 14px;
     padding: 8px;
   }
 
-  .Modal {
+  .usermanagement-modal {
     max-width: 80%;
   }
 }

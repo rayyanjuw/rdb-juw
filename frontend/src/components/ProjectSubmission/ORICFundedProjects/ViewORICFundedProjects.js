@@ -4,10 +4,12 @@ import Sidebar from "../../Sidebar/Sidebar";
 import NavBar from "../../shared-components/navbar/NavBar";
 import { useNavigate } from "react-router-dom";
 import { fetchORICProjects } from "../../../api/Api";
+import { IoIosSearch } from "react-icons/io";
 
 const ViewORICFundedProjects = () => {
   const navigate = useNavigate();
   const [ORICProjects, setORICProjects] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const loadProjects = async () => {
@@ -27,6 +29,14 @@ const ViewORICFundedProjects = () => {
   const handleViewClick = (id) => {
     navigate(`/oric-funded-project/${id}`);
   };
+
+   // Filter projects based on search term (Name of PI)
+   const filteredProjects = ORICProjects.filter((project) => {
+    const proposalCover = JSON.parse(project.proposalCover || "{}");
+    return proposalCover.nameOfPI
+      ?.toLowerCase()
+      .includes(searchTerm.toLowerCase());
+  });
 
   // const ORICProjects = [
   //   {
@@ -59,25 +69,32 @@ const ViewORICFundedProjects = () => {
   // ];
 
   return (
-    <div className="vieworicfundedproject_container">
+    <div className="vieworicfundedproject-container">
       <Sidebar />
       <div className="vieworicfundedproject">
-        <div className="vieworic_navbar-div">
+        <div className="vieworic-navbar-div">
           <h4>Submission | Intellectual Property</h4>
           <NavBar />
         </div>
         <div className="vieworicfundedproject-card">
+        <div className="d-flex align-items-center justify-content-between">
+            
           <h5>ORIC Funded Project | Proposal Cover</h5>
-
+          <div className="searchbar m-2">
+                <input type="text" placeholder='Search by Name of PI'  value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)} className="search-input" />      
+                  <IoIosSearch />
+             </div>
+            </div>
           <div className="vieworicfundedproject-table-data">
             <div className="vieworicfundedproject-table-container">
-              {ORICProjects.map((project, index) => {
+              {filteredProjects.map((project, index) => {
                 const proposalCover = JSON.parse(project.proposalCover || "{}");
                 return (
                 <div key={index} className="vieworicfundedproject-list-table">
-                  <div className="View_project_detail">
+                  <div className="view-project-detail">
                     <h5>Project Details #{index + 1}</h5>
-                    <button type="button" onClick={() => handleViewClick(project.id)}>
+                    <button type="button m-0" onClick={() => handleViewClick(project.id)}>
                       VIEW
                     </button>
                   </div>
@@ -102,7 +119,7 @@ const ViewORICFundedProjects = () => {
             </div>
           </div>
         </div>
-        <div className="VOF_juw_copyright">
+        <div className="vof-juw-copyright">
           <p>© 2024, all rights reserved by Jinnah University for Women.</p>
         </div>
       </div>

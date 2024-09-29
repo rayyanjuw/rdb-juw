@@ -14,7 +14,7 @@
     font-size: max(1vw, 10px);
   }
   
-  .projectmanagement_bred-crumb {
+  .projectmanagement-bred-crumb {
     margin: 0;
     width: 100%;
     background-color: #e9ecef;
@@ -95,14 +95,14 @@
     margin-bottom: 1rem;
   }
   
-  .projectmanagement_btn {
+  .projectmanagement-btn {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 25px;
   }
   
-  .projectmanagement_button {
+  .projectmanagement-button {
     font-weight: 600;
     font-size: 12px;
 
@@ -123,7 +123,7 @@
   }
   
   @media (width <= 480px){
-    .projectmanagement_button {
+    .projectmanagement-button {
       width: 15vw !important;
       height: 5vh !important;
       display: flex;
@@ -133,7 +133,7 @@
   }
   
   @media (width <= 768px){
-    .projectmanagement_button {
+    .projectmanagement-button {
       width: 10vw;
       height: 5vh;
       display: flex;
@@ -143,7 +143,7 @@
   }
 
   @media (width <= 1024px){
-    .projectmanagement_button {
+    .projectmanagement-button {
       width: 10vw;
       height: 4vh;
       display: flex;

@@ -14,7 +14,7 @@
   font-size: max(1vw, 10px);
 }
 
-.ascollaborators_bred-crumb {
+.ascollaborators-bred-crumb {
   margin: 0;
   width: 100%;
   background-color: #e9ecef;
@@ -101,7 +101,7 @@ div.textarea {
 }
 
 /* input fields */
-.ascollaborators_multiInputFields input {
+.ascollaborators-multiinputfields input {
   width: 100%;
   margin: 10px 0;
   padding: 6px;
@@ -111,7 +111,7 @@ div.textarea {
   box-sizing: border-box;
 }
 
-.ascollaborators_two-inputs {
+.ascollaborators-two-inputs {
   display: flex;
   align-items: center;
   flex-direction: row;
@@ -119,33 +119,34 @@ div.textarea {
   margin-bottom: 20px;
 }
 
-.ascollaborators_two-inputs .ascollaborators_InputGroup {
-  flex: 1;
-}
-
-.ascollaborators_InputGroup {
+.ascollaborators-inputgroup {
   margin-bottom: 15px;
 }
 
-.ascollaborators_InputGroup label {
+.ascollaborators-two-inputs .ascollaborators-inputgroup {
+  flex: 1;
+}
+
+
+.ascollaborators-inputgroup label {
   font-size: 0.8571em;
   margin-bottom: 5px;
   color: #9a9a9a;
 }
 
-.ascollaborators_InputGroup p {
+.ascollaborators-inputgroup p {
   margin: 0;
   margin-bottom: 25px;
 }
 
-.ascollaborators_btn {
+.ascollaborators-btn {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 25px;
 }
 
-.ascollaborators_button {
+.ascollaborators-button {
   font-weight: 600;
   font-size: 12px;
   width: 6vw;
@@ -159,7 +160,7 @@ div.textarea {
 }
 
 @media (width <= 480px) {
-  .ascollaborators_button {
+  .ascollaborators-button {
     width: 15vw !important;
     height: 5vh !important;
     display: flex;
@@ -167,7 +168,7 @@ div.textarea {
     justify-content: center;
   }
 
-  .ascollaborators_two-inputs {
+  .ascollaborators-two-inputs {
     align-items: stretch;
     flex-direction: column;
     gap: 0;
@@ -178,14 +179,17 @@ div.textarea {
     width: 100%;
     box-sizing: border-box;
   }
+
+  .ascollaborators-inputgroup {
+    margin-bottom: 15px;
+  }
+
   
-  .ascollaborators_two-inputs .ascollaborators_InputGroup {
+  .ascollaborators-two-inputs .ascollaborators-inputgroup {
     width: 100%;
   }
   
-  .ascollaborators_InputGroup {
-    margin-bottom: 15px;
-  }
+
 
   .collaborators-heading h4 {
     font-size: 18px;
@@ -232,7 +236,7 @@ div.textarea {
     color: #9a9a9a;
   }
 
-  .ascollaborators_button {
+  .ascollaborators-button {
     font-weight: 600;
     font-size: 12px;
     width: 15vw;
@@ -250,7 +254,7 @@ div.textarea {
 }
 
 @media (width <= 1024px) {
-  .ascollaborators_button {
+  .ascollaborators-button {
     width: 9vw;
     height: 4vh;
     display: flex;

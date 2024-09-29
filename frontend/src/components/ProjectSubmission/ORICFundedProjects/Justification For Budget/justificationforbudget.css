@@ -1,4 +1,4 @@
-.justificationForBudget-container {
+.justificationforbudget-container {
     display: flex;
     height: 100vh;
   }
@@ -15,20 +15,20 @@
   }
   
 
-  .justificationForBudget_bred-crumb {
+  .justificationforbudget-bred-crumb {
     margin: 0;
     width: 100%;
     background-color: #e9ecef;
   }
   
-  .justificationForBudget {
+  .justificationforbudget {
     flex: 1;
     overflow-y: auto;
     background-color: #f4f3ef !important;
     padding: 20px;
   }
   
-  .justificationForBudget-card {
+  .justificationforbudget-card {
     background-color: white;
     margin-top: 30px;
     padding: 20px;
@@ -38,7 +38,7 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   
-  .justificationForBudget-card h3 {
+  .justificationforbudget-card h3 {
     /* padding: 10px; */
     margin: 10px;
     margin-left: 0;
@@ -49,7 +49,7 @@
     margin-bottom: 20px;
   }
 
-  .justificationForBudget-card p {
+  .justificationforbudget-card p {
     background-color: #e9ecef;
     display: flex;
     flex-wrap: wrap;
@@ -59,7 +59,7 @@
     border-radius: 0.25rem;
   }
   
-  .justificationForBudget_textarea textarea {
+  .justificationforbudget-textarea textarea {
     width: 100%;
     height: 10vh;
     resize: none;
@@ -71,42 +71,42 @@
     outline: none;
   }
   
-  .justificationForBudget_textarea textarea:focus {
+  .justificationforbudget-textarea textarea:focus {
     border-color: #ccc;
   }
   
-  .justificationForBudget_textarea label {
+  .justificationforbudget-textarea label {
     font-size: 0.8571em;
     margin-bottom: 5px;
     margin-top: 14px !important;
     color: #9a9a9a;
   }
   
-  .justificationForBudget-content h3 {
+  .justificationforbudget-content h3 {
     font-size: 14px;
     margin: 0;
     margin-bottom: 10px;
     margin-top: 20px;
   }
   
-  .justificationForBudget_title-input label {
+  .justificationforbudget-title-input label {
     margin-bottom: 15px;
     font-size: 14px;
     color: #9a9a9a;
   }
   
-  .justificationForBudget_title-input input {
+  .justificationforbudget-title-input input {
     height: 4vh;
   }
   
-  .justificationForBudget_btn {
+  .justificationforbudget-btn {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 25px;
   }
   
-  .justificationForBudget_button {
+  .justificationforbudget-button {
     font-weight: 600;
     font-size: 12px;
     display: flex;

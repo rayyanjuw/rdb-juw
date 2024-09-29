@@ -82,28 +82,28 @@ const Edit_HonorAndAward = () => {
   ];
 
   return (
-    <div className="edit_honorandaward_container">
+    <div className="edit-honorandaward-container">
       <Sidebar />
-      <div className="edit_honorandaward">
+      <div className="edit-honorandaward">
         <div className="navba-div">
           <NavBar />
         </div>
-        <div className="edit_honorandaward_card">
-          <h3 className="edit_honorandaward_heading">
+        <div className="edit-honorandaward-card">
+          <h3 className="edit-honorandaward-heading">
             Research portfolio | Honor and Awards, Scholarship
           </h3>
-          <div className="EHA_bred-crumb">
+          <div className="eha-bred-crumb">
             <Breadcrumb items={breadCrumps} activePath={currentPath} />
           </div>
 
-          <div className="edit_honorandaward_data">
-            <h3 className="edit_honorandaward_heading">
+          <div className="edit-honorandaward-data">
+            <h3 className="edit-honorandaward-heading">
               Honor and Awards, Scholarship
             </h3>
-            <h6 className="edit_honorandaward_subheading">Academically</h6>
-            <div className="EDIT_Honor_multiInputFields">
+            <h6 className="edit-honorandaward-subheading">Academically</h6>
+            <div className="edit-honor-multiinputfields">
               {formData.academicDetails.map((academicDetail, index) => (
-                <div key={index} className="InputGroup">
+                <div key={index} className="inputgroup">
                   <label>{index + 1}. Detail:</label>
                   <input
                     type="text"
@@ -121,10 +121,10 @@ const Edit_HonorAndAward = () => {
               ))}
             </div>
 
-            <h6 className="edit_honorandaward_subheading">Professionally</h6>
-            <div className="EDIT_Honor_multiInputFields">
+            <h6 className="edit-honorandaward-subheading">Professionally</h6>
+            <div className="edit-honor-multiinputfields">
               {formData.professionalDetails.map((professionalDetail, index) => (
-                <div key={index} className="InputGroup">
+                <div key={index} className="inputgroup">
                   <label>{index + 1}. Detail:</label>
                   <input
                     type="text"
@@ -142,14 +142,14 @@ const Edit_HonorAndAward = () => {
               ))}
             </div>
 
-            <div className="EHA_save-btn-bg">
-              <button className="EHA_savebut" onClick={handleSave}>
+            <div className="eha-save-btn-bg">
+              <button className="eha-savebut" onClick={handleSave}>
                 Save
               </button>
             </div>
           </div>
         </div>
-        <div className="juw_copyright">
+        <div className="juw-copyright">
           <p>© 2024, all rights reserved by Jinnah University for Women.</p>
         </div>
       </div>

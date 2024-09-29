@@ -1,4 +1,4 @@
-/* improvement */
+
 .dashboard-card1 {
   padding: 20px;
   background-color: #f4f3ef !important;
@@ -10,7 +10,7 @@
   box-sizing: border-box;
 }
 
-.dashboardCard_card-content {
+.dashboardcard-card-content {
   margin-bottom: 20px;
 }
 
@@ -20,7 +20,7 @@
   background-color: #e9ecef;
 }
 
-.departmental_navbar-div {
+.departmental-navbar-div {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -28,7 +28,7 @@
   margin-bottom: -40px;
 }
 
-.dashboardCard_card-content h3 {
+.dashboardcard-card-content h3 {
   margin-bottom: 20px;
   margin-top: 1px;
   font-size: 1.47em;
@@ -36,7 +36,7 @@
   color: #333;
 }
 
-.dashboardCard_card-items {
+.dashboardcard-card-items {
   display: flex;
   margin-top: 60px;
   flex-direction: column;
@@ -48,14 +48,14 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.dashboardCard_card-items p {
+.dashboardcard-card-items p {
   font-size: 1.314em;
   margin-top: 30px;
   font-weight: 400;
   margin-bottom: 5px;
 }
 
-.dashboardCard_card-item {
+.dashboardcard-card-item {
   background-color: #fff;
   margin-top: 20px;
   border-radius: 8px;
@@ -65,40 +65,40 @@
 
 .card-title h4 {
   font-size: 15px;
-  margin-bottom: 20px;
   margin: 0;
+  margin-bottom: 20px;
   color: #333;
   margin-top: 0;
 }
 
-/* .input-group { */
-.dashboardCard_input-group {
+
+.dashboardcard-input-group {
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
 }
 
-.dashboardCard_input-group label {
+.dashboardcard-input-group label {
   margin-bottom: 5px;
   font-size: 13px;
   color: #555;
 }
 
-.dashboardCard_input-group input {
+.dashboardcard-input-group input {
   padding: 8px;
   border: 1px solid #ddd;
   border-radius: 4px;
   box-sizing: border-box;
 }
 
-.dashboardCard_card-item .input-container {
+.dashboardcard-card-item .input-container {
   display: grid;
   margin-top: 15px;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
 
-.dashboardCard_btn {
+.dashboardcard-btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -113,17 +113,17 @@
 }
 
 @media (width <= 1200px) {
-  .dashboardCard_card-item .input-container {
+  .dashboardcard-card-item .input-container {
     grid-template-columns: repeat(2, 1fr);
     margin-top: 15px;
   }
 
-  .dashboardCard_btn {
+  .dashboardcard-btn {
     width: 20%;
   }
 
 
-  .dashboardCard_input-group label {
+  .dashboardcard-input-group label {
     margin-bottom: 5px;
     font-size: 11px;
     color: #555;
@@ -131,47 +131,43 @@
 }
 
 @media (width <= 768px) {
-  .dashboardCard_card-item .input-container {
+  .dashboardcard-card-item .input-container {
     grid-template-columns: repeat(1, 1fr);
   }
 
-  .dashboardCard_btn {
+  .dashboardcard-btn {
     width: 20%;
   }
 
-  .dashboardCard_card-content h3 {
+  .dashboardcard-card-content h3 {
     font-size: 16px;
   }
 
-  .dashboardCard_card-items p {
+  .dashboardcard-card-items p {
     font-size: 18px;
   }
 
-  .dashboardCard_input-group label {
+  .dashboardcard-input-group label {
     margin-bottom: 5px;
     font-size: 13px;
     color: #555;
   }
-
-  /* button.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-sizeMedium.css-w92lsb-MuiButtonBase-root-MuiIconButton-root {
-    margin-top: 14px !important;
-  } */
 }
 
 @media (width <= 480px) {
-  .dashboardCard_card-item .input-container {
+  .dashboardcard-card-item .input-container {
     grid-template-columns: repeat(1, 1fr);
   }
 
-  .dashboardCard_btn {
+  .dashboardcard-btn {
     width: 100%;
   }
 
-  .dashboardCard_card-content h3 {
+  .dashboardcard-card-content h3 {
     font-size: 20px;
   }
 
-  .dashboardCard_card-items p {
+  .dashboardcard-card-items p {
     font-size: 22px;
   }
 }

@@ -70,8 +70,8 @@ const ResearchPortfolio = () => {
         const data = await getProfile();
         setProfileData({
           personal_information: {
-            name: data.name || "Administrator",
-            email: data.email || "oricadmin@juw.edu.pk",
+            name: data.User.name || "Administrator",
+            email: data.User.email || "oricadmin@juw.edu.pk",
             address: data.address || "",
             cellPhone: data.cellPhone || ""
           },
@@ -86,6 +86,7 @@ const ResearchPortfolio = () => {
             to: formatDate(data.latestExperienceTo) 
           }
         });
+        console.log(data);
       } catch (error) {
         console.error("Error fetching profile:", error);
         // toast.error("Error fetching profile:", error);
@@ -118,13 +119,13 @@ const ResearchPortfolio = () => {
           <h3 className="research-portfolio">
             Research portfolio | Personal Information
           </h3>
-          <div className="PI_bredcrumb">
+          <div className="pi-bredcrumb">
             <Breadcrumb items={breadCrumps} activePath={currentPath} />
           </div>
           <hr />
           <div className="personal_information-table">
-            <div className="personal_information-section">
-              <h5 className="personal_info_heading">PERSONAL INFORMATION</h5>
+            <div className="personal-information-section">
+              <h5 className="personal-info-heading">PERSONAL INFORMATION</h5>
               <table>
                 <tbody>
                   {personalInformationTitle.map((title, index) => (
@@ -139,7 +140,7 @@ const ResearchPortfolio = () => {
               </table>
               <hr />
 
-              <h5 className="personal_info_heading">Highest Degree</h5>
+              <h5 className="personal-info-heading">Highest Degree</h5>
               <table>
                 <tbody>
                   {highestDegreeTitle.map((title, index) => (
@@ -154,7 +155,7 @@ const ResearchPortfolio = () => {
               </table>
               <hr />
 
-              <h5 className="personal_info_heading">Latest Experience</h5>
+              <h5 className="personal-info-heading">Latest Experience</h5>
               <table>
                 <tbody>
                   {latestExperienceTitle.map((title, index) => (
@@ -169,7 +170,7 @@ const ResearchPortfolio = () => {
               </table>
               <button
                 type="button"
-                className="edit_button"
+                className="edit-button"
                 onClick={handleEditClick}
               >
                 EDIT

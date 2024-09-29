@@ -292,13 +292,13 @@ const ViewAllPublications = () => {
     <>
       <div className="viewallpublications-whole-page">
         <Sidebar />
-        <div className="viewAllPublications">
+        <div className="viewallpublications">
           <div className="navbar-div">
             <NavBar />
           </div>
-          <div className="viewAllPublications-card">
+          <div className="viewallpublications-card">
             <h4>Research portfolio | Publications</h4>
-            <div className="VAP_bred-crumb">
+            <div className="vap-bred-crumb">
               <Breadcrumb items={breadCrumps} activePath={currentPath} />
             </div>
             <div className="h4-heading" style={{ marginTop: "20px" }}>
@@ -366,8 +366,8 @@ const ViewAllPublications = () => {
             isOpen={modalIsOpen}
             onRequestClose={closeModal}
             contentLabel={"Edit Publication Modal"}
-            className="Modal"
-            overlayClassName="Overlay"
+            className="vap-modal"
+            overlayClassName="vap-overlay"
           >
             <h2>"Edit Publication"</h2>
             <form className="create-publication" onSubmit={handleSubmit}>

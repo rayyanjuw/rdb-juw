@@ -14,7 +14,7 @@
   font-size: max(1vw, 10px);
 }
 
-.implementation-timeline_bred-crumb {
+.implementation-timeline-bred-crumb {
   margin: 0;
   width: 100%;
   background-color: #e9ecef;
@@ -97,14 +97,14 @@ div.textarea {
   margin-bottom: 1rem;
 }
 
-.implementation-timeline_btn {
+.implementation-timeline-btn {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 25px;
 }
 
-.implementation-timeline_button {
+.implementation-timeline-button {
   font-weight: 600;
   font-size: 12px;
   display: flex;
@@ -126,7 +126,7 @@ div.textarea {
 
 
 @media (width <= 480px){
-  .implementation-timeline_button{
+  .implementation-timeline-button{
     width: 15vw !important;
     height: 4vh !important;
     display: flex;
@@ -137,7 +137,7 @@ div.textarea {
 
 
 @media (width <= 768px){
-  .implementation-timeline_button{
+  .implementation-timeline-button{
     width: 10vw;
     height: 5vh;
     display: flex;
@@ -148,7 +148,7 @@ div.textarea {
 
 
 @media (width <= 1024px){
-  .implementation-timeline_button{
+  .implementation-timeline-button{
     width: 8vw;
     height: 4vh;
     display: flex;

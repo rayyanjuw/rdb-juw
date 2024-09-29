@@ -66,7 +66,7 @@ const Conference = () => {
       <div className='conference-main-container'>
         <Sidebar />
         <div className='conference-card'>
-          <div className="conference_navbar-div">
+          <div className="conference-navbar-div">
             <NavBar />
           </div>
         <div className="conference-card-items">
@@ -98,7 +98,7 @@ const Conference = () => {
                   </div>
                 </div>
               ))}
-              <button className="conference_btn">Save</button>
+              <button className="conference-btn">Save</button>
             </div>
           </div>
             <div className="juw-copyright">

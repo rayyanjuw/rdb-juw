@@ -134,10 +134,10 @@ const ProjectDescription = ({onSave}) => {
         </div>
         <div className="projectdescription-card">
           <h3>International/National Grants | Project Description</h3>
-          <div className="projectdescription_bred-crumb">
+          <div className="projectdescription-bred-crumb">
             <Breadcrumb items={breadCrumps} activePath={currentPath} />
           </div>
-          <div className="projectsummary_upload">
+          <div className="projectsummary-upload">
             <p>Upload Project Description file:</p>
             <div className="file-input-wrapper">
               <input
@@ -249,8 +249,8 @@ const ProjectDescription = ({onSave}) => {
               not be considered.
             </p>
 
-            <div className="projectdescription_btn">
-              <button className="projectdescription_button" onClick={handleSave} disabled={!file}>SAVE</button>
+            <div className="projectdescription-btn">
+              <button className="projectdescription-button" onClick={handleSave} disabled={!file}>SAVE</button>
             </div>
           </div>
         </div>

@@ -298,13 +298,13 @@ const AdminDashboard = () => {
                         {project?.status?.toLowerCase().trim() === "pending" && userRole === "admin" && (
                           <>
                             <button
-                              className="pending_create-user-btn"
+                              className="pending-create-user-btn"
                               onClick={() => handleReject(project.id)}
                             >
                               REJECT
                             </button>
                             <button
-                              className="approve_create-user-btn"
+                              className="approve-create-user-btn"
                               onClick={() => handleApprove(project.id)}
                             >
                               APPROVE

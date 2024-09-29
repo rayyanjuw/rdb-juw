@@ -14,7 +14,7 @@
     font-size: max(1vw, 10px);
   }
   
-  .executivesummary_bredcrumb {
+  .executivesummary-bredcrumb {
   /* .executivesummary_bred-crumb { */
     margin: 0;
     width: 100%;
@@ -78,16 +78,19 @@
     margin-bottom: 1rem;
   }
   
-  .executivesummary_btn {
+  .executivesummary-btn {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 25px;
   }
   
-  .executivesummary_button {
+  .executivesummary-button {
     font-weight: 600;
     font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 6vw;
     border: none;
     height: 3vh;
@@ -100,7 +103,7 @@
   
   
   @media (width <= 480px){
-    .executivesummary_button{
+    .executivesummary-button{
       width: 17vw !important;
       height: 4vh !important; 
       display: flex;
@@ -138,7 +141,7 @@
     }
   
   
-    .executivesummary_button {
+    .executivesummary-button {
       font-weight: 600;
       font-size: 12px;
       width: 15vw;
@@ -153,7 +156,7 @@
   }
   
   @media (width <= 1024px){
-    .executivesummary_button {
+    .executivesummary-button {
       width: 9vw;
       height: 4vh;
     }

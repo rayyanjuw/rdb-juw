@@ -14,7 +14,7 @@
     font-size: max(1vw, 10px);
   }
   
-  .projectdescription_bred-crumb {
+  .projectdescription-bred-crumb {
     margin: 0;
     width: 100%;
     background-color: #e9ecef;
@@ -93,7 +93,7 @@
     border: 1px solid rgb(0 0 0 / 12.5%);
   }
   
-  .projectsummary_upload p {
+  .projectsummary-upload p {
     margin-top: 20px;
     margin-bottom: 1rem;
   }
@@ -116,14 +116,14 @@
     line-height: 1.45em;
   }
   
-  .projectdescription_btn {
+  .projectdescription-btn {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 25px;
   }
   
-  .projectdescription_button {
+  .projectdescription-button {
     font-weight: 600;
     font-size: 12px;
     display: flex;
@@ -145,7 +145,7 @@
   
   
   @media (width <= 480px){
-    .projectdescription_button{
+    .projectdescription-button{
       width: 15vw !important;
       height: 5vh !important;
       display: flex;
@@ -156,7 +156,7 @@
   
 
   @media (width <= 768px){
-    .projectdescription_button {
+    .projectdescription-button {
       width: 10vw;
       height: 4vh;
       display: flex;
@@ -166,7 +166,7 @@
   }
 
   @media (width <= 1024px){
-    .projectdescription_button {
+    .projectdescription-button {
       width: 10vw;
       height: 4vh;
       display: flex;

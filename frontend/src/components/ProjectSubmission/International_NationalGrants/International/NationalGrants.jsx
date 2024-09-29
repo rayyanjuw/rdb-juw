@@ -13,9 +13,10 @@ import RiskManagementStrategy from '../Risk Management Strategy/RiskManagementSt
 import ListofReferences from '../List of References/ListofReferences';
 import ProposedProjectBudget from '../Proposed Project Budget/ProposedProjectBudget';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const NationalGrants = () => {
-    const [step, setStep] = useState(3);
+    const [step, setStep] = useState(1);
     const [grantData, setGrantData] = useState({
     proposalCover: {},
     executiveSummary: "",
@@ -97,11 +98,12 @@ const NationalGrants = () => {
                 Authorization: `Bearer ${token}`,
               }
             });
-            console.log("Data being sent to API:", grantData);
+            toast.success('Data submitted successfully')
             console.log('Data submitted successfully:', response.data);
             // Handle successful response (e.g., navigate to a success page)
         } catch (error) {
             console.error('Error submitting data:', error);
+            toast.error("Error of submitting International/National Grants ")
             // Handle error (e.g., show an error message)
         } finally {
           setIsSubmitting(false); // Reset flag after submission

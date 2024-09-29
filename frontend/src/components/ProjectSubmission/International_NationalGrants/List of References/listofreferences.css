@@ -14,7 +14,7 @@
     font-size: max(1vw, 10px);
   }
   
-  .listofreferences_bred-crumb {
+  .listofreferences-bred-crumb {
     margin: 0;
     width: 100%;
     background-color: #e9ecef;
@@ -91,14 +91,14 @@
     margin-bottom: 1rem;
   }
   
-  .listofreferences_btn {
+  .listofreferences-btn {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 25px;
   }
   
-  .listofreferences_button {
+  .listofreferences-button {
     font-weight: 600;
     display: flex;
     align-items: center;
@@ -119,7 +119,7 @@
   }
   
   @media (width <= 480px){
-    .listofreferences_button{
+    .listofreferences-button{
       display: flex;
       align-items: center;
       justify-content: center;
@@ -129,7 +129,7 @@
   }
 
   @media (width <= 768px){
-    .listofreferences_button{
+    .listofreferences-button{
       display: flex;
       align-items: center;
       justify-content: center;
@@ -139,7 +139,7 @@
   }
 
   @media (width <= 1024px){
-    .listofreferences_button{
+    .listofreferences-button{
       display: flex;
       align-items: center;
       justify-content: center;

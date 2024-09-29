@@ -81,7 +81,7 @@ const ExecutiveSummary = ({ onSave }) => {
                 </div>
                 <div className="executivesummary-card">
                     <h3>International/National Grants | Executive Summary</h3>
-                    <div className="executivesummary_bredcrumb">
+                    <div className="executivesummary-bredcrumb">
                     {/* <div className="executivesummary_bred-crumb"> */}
                         <Breadcrumb items={breadCrumps} activePath={currentPath} />
                     </div>
@@ -98,8 +98,8 @@ const ExecutiveSummary = ({ onSave }) => {
                                 cols="20"
                             />
                         </div>
-                        <div className='executivesummary_btn'>
-                            <button className="executivesummary_button" onClick={handleSave}>SAVE</button>
+                        <div className='executivesummary-btn'>
+                            <button className="executivesummary-button" onClick={handleSave}>SAVE</button>
                         </div>
                     </div>
                 </div>
