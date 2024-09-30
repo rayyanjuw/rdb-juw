@@ -62,11 +62,11 @@ exports.getProjectById = async (req, res) => {
 exports.createProject = async (req, res) => {
     try {
         const { user } = req; // Get the authenticated user
-        const { departmentId, id: userId, role: userRole } = user; // Extract user details
+        const { departmentId, role: userRole } = user; // Extract user details
 
         const newProject = await CompletedProject.create({
             ...req.body,
-            userId, // Associate project with the user
+            userId: user.id, // Associate project with the user
             departmentId, // Associate project with user's department
             createdBy: userRole // Record the role of the creator
         });

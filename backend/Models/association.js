@@ -8,6 +8,7 @@ const UserProfile = require('./userProfile');
 const Honor = require('./honorsAwardsModels');
 const Membership = require('./membershipModel');
 const PublicationofFaculty = require('./PublicationofFaculty');
+const CompletedProject = require('./CompleteProjectModel');
 
 
 // Define associations
@@ -71,12 +72,21 @@ Department.hasMany(Honor, {
     foreignKey: 'userId',
     as: 'facultypublication'
   });
-
+  
   PublicationofFaculty.belongsTo(User, {
+    foreignKey: 'userId',
+    as: 'user'
+  });
+  User.hasMany(CompletedProject, {
+    foreignKey: 'userId',
+    as: 'completeproject'
+  });
+
+  CompletedProject.belongsTo(User, {
     foreignKey: 'userId',
     as: 'user'
   });
 
   
 
-module.exports = { User, Publication, IntellectualProperty, Department, PublicationofFaculty };
+module.exports = { User, Publication, IntellectualProperty, Department, PublicationofFaculty, CompletedProject };
