@@ -695,3 +695,58 @@ export const fetchAllNationalGrantsbyId = async (id) => {
     throw error
   }
 }
+
+
+
+
+// view research grant
+export const getCompletedResearchProjects = async () => {
+  const response = await api.get('/completedProjects/getAll', {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    }
+  }); 
+  return response.data;
+};
+
+export const getFundedProjects = async () => {
+  const response = await api.get('/fundedProjects/', {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    }
+  }); 
+  return response.data;
+};
+
+
+// create research grant
+
+// Function to create a project in the Completed section
+export const createCompletedProject = async (projectData) => {
+  try {
+    const response = await api.post(`/completedProjects/create`, projectData, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      }
+    });
+    console.log("Response data", response.data)
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data.message || "Failed to create completed project");
+  }
+};
+
+
+export const createFundedProject = async (projectData) => {
+  try {
+    const response = await api.post(`/fundedProjects/`, projectData, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      }
+    });
+    console.log("Response data", response.data)
+    return response.data; 
+  } catch (error) {
+    throw new Error(error.response.data.message || "Failed to create funded project");
+  }
+};

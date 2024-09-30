@@ -46,29 +46,59 @@ const ResearchPublication = () => {
     return urlPattern.test(url);
   };
 
+  // orignal
+  // const handleInput = (e, index) => {
+  //   const { name, value } = e.target;
+  //   const updatedPublications = publications.map((publication, i) => {
+  //     if (i === index) {
+  //       // Convert "Yes" to true and "No" to false for boolean fields
+  //       const updatedValue =
+  //         name === "scopus" || name === "webofScience"
+  //           ? value === "Yes"
+  //           : value;
+  //       // const updatedValue = (name === "scopus" || name === "webofScience") ? value : value;
+  //       // Add URL validation
+  //       if (name === "urlOfPublication") {
+  //         if (validateURL(value)) {
+  //           setError("");
+  //         } else {
+  //           // toast.error("URL must start with http:// or https://");
+  //           setError("URL must start with http:// or https://");
+  //         }
+  //       }
+  //       return { ...publication, [name]: updatedValue };
+  //     }
+  //     return publication;
+  //   });
+  //   setPublications(updatedPublications);
+  // };
+
   const handleInput = (e, index) => {
     const { name, value } = e.target;
+
     const updatedPublications = publications.map((publication, i) => {
       if (i === index) {
-        // Convert "Yes" to true and "No" to false for boolean fields
-        const updatedValue =
-          name === "scopus" || name === "webofScience"
-            ? value === "Yes"
-            : value;
-        // const updatedValue = (name === "scopus" || name === "webofScience") ? value : value;
+        let updatedValue = value;
+
+        // Handle scopus and webofScience boolean fields
+        if (name === "scopus" || name === "webofScience") {
+          updatedValue = value === "Yes" ? true : value === "No" ? false : "";
+        }
+
         // Add URL validation
         if (name === "urlOfPublication") {
           if (validateURL(value)) {
             setError("");
           } else {
-            // toast.error("URL must start with http:// or https://");
             setError("URL must start with http:// or https://");
           }
         }
+
         return { ...publication, [name]: updatedValue };
       }
       return publication;
     });
+
     setPublications(updatedPublications);
   };
 
@@ -137,7 +167,6 @@ const ResearchPublication = () => {
       // alert("Error while adding publications");
     }
   };
-
 
   console.log(publications);
 
@@ -209,10 +238,8 @@ const ResearchPublication = () => {
                       required
                       type="text"
                       name="titleofmanuscript"
-                      // name="TitleofManuscript"
                       placeholder="Title of Manuscript:"
                       value={publication.titleofmanuscript}
-                      // value={publication.TitleofManuscript}
                       onChange={(e) => handleInput(e, index)}
                     />
                   </div>
@@ -222,10 +249,8 @@ const ResearchPublication = () => {
                       required
                       type="text"
                       name="journal"
-                      // name="Journal"
                       placeholder="Journal:"
                       value={publication.journal}
-                      // value={publication.Journal}
                       onChange={(e) => handleInput(e, index)}
                     />
                   </div>
@@ -233,7 +258,6 @@ const ResearchPublication = () => {
                   <div className="">
                     <label>ISSN:</label>
                     <input
-                      // type="Number"
                       type="text"
                       name="ISSN"
                       placeholder="Enter Journal ISSN:"
@@ -263,18 +287,6 @@ const ResearchPublication = () => {
                       onChange={(e) => handleInput(e, index)}
                     />
                   </div>
-
-                  {/* <div className="">
-                    <label>Year:</label>
-                    <input
-                      type="Date"
-                      name="Year"
-                      placeholder="Year:"
-                      value={publication.Year}
-                      onChange={(e) => handleInput(e, index)}
-                    />
-                  </div> */}
-
                   <div className="">
                     <label>Year:</label>
                     <input
@@ -282,8 +294,8 @@ const ResearchPublication = () => {
                       name="Year"
                       placeholder="Year:"
                       value={publication.Year}
-                      min="1900" // Minimum valid year
-                      max={new Date().getFullYear()} // Maximum valid year (current year)
+                      min="1900"
+                      max={new Date().getFullYear()} 
                       onChange={(e) => handleInput(e, index)}
                       required
                     />
@@ -308,7 +320,7 @@ const ResearchPublication = () => {
                       placeholder="e.g: 100-200"
                       value={publication.Pages}
                       onChange={(e) => handleInput(e, index)}
-                      pattern="\d{1,5}-\d{1,5}" 
+                      pattern="\d{1,5}-\d{1,5}"
                     />
                   </div>
 
@@ -316,9 +328,7 @@ const ResearchPublication = () => {
                     <label>HEC Category:</label>
                     <select
                       name="HECcategory"
-                      // name="HECCategory"
                       value={publication.HECcategory}
-                      // value={publication.HECCategory}
                       onChange={(e) => handleInput(e, index)}
                     >
                       <option value="Category">HEC Category</option>
@@ -333,14 +343,17 @@ const ResearchPublication = () => {
                     <label>Web of Science (Yes/No):</label>
                     <select
                       name="webofScience"
-                      // name="WebofScience"
                       id="WebofScience"
-                      placeholder="Web of Science (Yes/No):"
-                      // value={publication.webofScience ? "Yes" : "No"}
-                      value={publication.webofScience || ""}
+                      value={
+                        publication.webofScience === true
+                          ? "Yes"
+                          : publication.webofScience === false
+                          ? "No"
+                          : ""
+                      }
                       onChange={(e) => handleInput(e, index)}
                     >
-                      <option value="Selectoption">Select an option</option>
+                      <option value="">Select an option</option>{" "}
                       <option value="Yes">Yes</option>
                       <option value="No">No</option>
                     </select>
@@ -350,9 +363,7 @@ const ResearchPublication = () => {
                     <label>Impact Factor:</label>
                     <input
                       type="number"
-                      // step="0.01"
                       name="impactfactor"
-                      // name="ImpactFactor"
                       placeholder="e.g: 0.01"
                       value={publication.impactfactor}
                       onChange={(e) => handleInput(e, index)}
@@ -364,29 +375,30 @@ const ResearchPublication = () => {
                     <select
                       name="scopus"
                       id="Scopus"
-                      placeholder="Scopus"
-                      value={publication.scopus || ""} 
+                      value={
+                        publication.scopus === true
+                          ? "Yes"
+                          : publication.scopus === false
+                          ? "No"
+                          : ""
+                      }
                       onChange={(e) => handleInput(e, index)}
                     >
-                      <option value="Selectoption">Select an option</option>
+                      <option value="">Select an option</option>{" "}
                       <option value="Yes">Yes</option>
                       <option value="No">No</option>
                     </select>
                   </div>
-                  <div>
-                    {publications.map((publication, index) => (
-                      <div key={index} className="url-publication">
-                        <label>URL of Publication:</label>
-                        <input
-                          type="url"
-                          name="urlOfPublication"
-                          placeholder="URL of Publication"
-                          value={publication.urlOfPublication}
-                          onChange={(e) => handleInput(e, index)}
-                        />
-                        {error && <span style={{ color: "red" }}>{error}</span>}
-                      </div>
-                    ))}
+                  <div className="">
+                    <label>URL of Publication:</label>
+                    <input
+                      type="url"
+                      name="urlOfPublication"
+                      placeholder="URL of Publication"
+                      value={publication.urlOfPublication}
+                      onChange={(e) => handleInput(e, index)}
+                    />
+                    {error && <span style={{ color: "red" }}>{error}</span>}
                   </div>
                 </div>
               </div>
