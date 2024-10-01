@@ -56,7 +56,7 @@ const NavBar = () => {
                     anchorEl={anchorEl}
                     open={open}
                     // onClose={handleClose}
-                    onClose={handleLogout}
+                    // onClose={handleLogout}
                   >
                     <MenuItem className='logout-btn' onClick={handleLogout}>Logout</MenuItem>
                   </Menu>

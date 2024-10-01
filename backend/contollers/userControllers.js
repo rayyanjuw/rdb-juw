@@ -15,10 +15,13 @@ const createUser = async (req, res) => {
 
     if (!departmentName)
       return res.status(400).json({ message: "Department name is required" });
+    
+    let departmentId = null;
 
     if (userRole === 'admin' || userRole === 'manager'){
       departmentId = null;
     } 
+
     //Find the department
     const department = await Department.findOne({
       where: { name: departmentName },
@@ -26,11 +29,11 @@ const createUser = async (req, res) => {
     if (!department)
       return res.status(404).json({ message: "Department not found" });
 
-    const departmentId = department.id;
+     departmentId = department.id;
 
     // Check if the user has permission to create the role
     if (!allowedRoles[userRole].includes(role)) {
-      console.log("User does not have permission to create this role");
+      // console.log("User does not have permission to create this role");
       return res
         .status(403)
         .json({ message: "You do not have permission to create this role" });
@@ -111,17 +114,19 @@ const updateUser = async (req, res) => {
         return res.status(400).json({ message: "Username already exists" });
       }
     }
+    
+    let departmentId = user.departmentId;
 
     if (userRole === 'admin' || userRole === 'manager'){
       departmentId = null;
     } 
 
-    let departmentId = user.departmentId;
     if (departmentName) {
       const department = await Department.findOne({
         where: { name: departmentName },
       });
-      if (department) {
+
+    if (department) {
         departmentId = department.id;
         console.log("Found department ID:", departmentId);
       } else {
@@ -156,7 +161,7 @@ const updateUser = async (req, res) => {
 
     res.status(200).json({ message: "User updated successfully", user });
   } catch (error) {
-    console.error("Error updating user:", error);
+    // console.error("Error updating user:", error);
     res.status(500).json({ message: "Server error" });
   }
 };
