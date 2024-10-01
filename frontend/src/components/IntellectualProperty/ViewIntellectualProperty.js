@@ -470,7 +470,7 @@ const ViewIntellectualProperty = () => {
                 placeholder="Approximately 5-6 Bullet points"
               />
             </div>
-            <button className="edit-modal-submit-button" type="submit">
+            <button className="submit-button" type="submit">
               {editMode ? "UPDATE" : "Submit"}
             </button>
           </form>
