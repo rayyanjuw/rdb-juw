@@ -51,7 +51,7 @@ const DashboardCard = () => {
     { state: userInfo4, setState: setUserInfo4 },
     { state: userInfo5, setState: setUserInfo5 },
   ];
-  console.log(userInfos);
+
 
   const breadCrumps = [
     {

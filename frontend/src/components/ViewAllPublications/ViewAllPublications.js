@@ -36,7 +36,6 @@ const ViewAllPublications = () => {
       urlOfPublication: "",
     },
   ]);
-  console.log(data);
 
   const [emailError, setEmailError] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -54,7 +53,7 @@ const ViewAllPublications = () => {
       } catch (error) {
         setError(error.message);
         setLoading(false);
-        console.error("Error fetching publications:", error);
+        // console.error("Error fetching publications:", error);
       }
     };
 
@@ -222,7 +221,6 @@ const ViewAllPublications = () => {
     setSelectedPublication(publication);
     setEditMode(true);
     setModalIsOpen(true);
-    console.log(selectedPublication);
   };
 
   const handleDelete = async (id) => {
@@ -234,7 +232,7 @@ const ViewAllPublications = () => {
         prevData.filter((publication) => publication.id !== id)
       );
     } catch (error) {
-      console.error("Error deleting publication:", error);
+      // console.error("Error deleting publication:", error);
       toast.error("Failed to delete the publication.");
       // alert("Failed to delete the publication.");
     }
@@ -256,11 +254,10 @@ const ViewAllPublications = () => {
           // property.id === selectedProperty.id ? selectedProperty : property
         )
       );
-      console.log(setData);
       closeModal();
     } catch (error) {
       setError(error.message);
-      console.error("Error updating publication:", error);
+      // console.error("Error updating publication:", error);
     }
   };
 

@@ -111,7 +111,6 @@ const ResearchProject = ({ onSave }) => {
   };
 
   const handleSave = () => {
-    console.log("ResearchProject:", ResearchProject);
 
     const isEmpty = (value) => value === "" || value === null || value === undefined;
 
@@ -135,7 +134,6 @@ const ResearchProject = ({ onSave }) => {
       ResearchProject.schedulephasing.some((schedule) => isEmpty(schedule.activities)) ||
       isEmpty(ResearchProject.priorExperience)
     ) {
-      console.error("Please fill in all the required fields.");
       toast.error("Please fill in all the required fields.");
       return; 
     }
@@ -144,7 +142,7 @@ const ResearchProject = ({ onSave }) => {
     if (typeof onSave === "function") {
       onSave(ResearchProject); // This will trigger the parent's handleSaveAndNext
     } else {
-      console.error("onSave is not a function");
+      // console.error("onSave is not a function");
     }
   };
 

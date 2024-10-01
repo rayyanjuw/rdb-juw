@@ -35,9 +35,8 @@ const ViewGrants = () => {
             : {},
         }));
         setNationalGrants(parsedProjects);
-        console.log(parsedProjects);
       } catch (error) {
-        console.error("Error loading projects:", error);
+        throw error
       }
     };
 

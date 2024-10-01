@@ -16,9 +16,7 @@ const ViewORICFundedProjects = () => {
       try {
         const projects = await fetchORICProjects();
         setORICProjects(projects);
-        console.log(projects);
       } catch (error) {
-        console.error("Error loading projects:", error);
       }
     };
 

@@ -6,12 +6,10 @@ import { useLocation } from "react-router-dom";
 import Breadcrumb from "../../shared-components/breadcrumps/BreadCrumps";
 
 const defaultOnSave = (proposalCover) => {
-  console.log("Save function called with data:", proposalCover);
   // You can handle the save logic here
 };
 
 const AddGrants = ({ onSave  }) => {
-  console.log("onSave prop:", onSave);
   const location = useLocation();
   const currentPath = location.pathname;
   // const history = useHistory();
@@ -175,9 +173,9 @@ const AddGrants = ({ onSave  }) => {
   
   const handleSave = () => {
     if (typeof onSave === 'function') {
-        onSave(proposalCover); // This will trigger the parent's handleSaveAndNext
+        onSave(proposalCover);
     } else {
-        console.error('onSave is not a function');
+
     }
 };
 

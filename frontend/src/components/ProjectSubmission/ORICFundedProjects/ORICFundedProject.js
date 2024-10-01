@@ -21,7 +21,6 @@ const ORICFundedProject = () => {
         const fetchedProject = await fetchORICProjectsById(id);
         setProject(fetchedProject);
       } catch (error) {
-        console.error("Error fetchiong project details:", error);
       }
     };
 

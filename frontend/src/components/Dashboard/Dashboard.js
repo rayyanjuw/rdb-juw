@@ -16,6 +16,7 @@ import {
 } from "../../api/Api";
 
 
+
 const Dashboard = () => {
   // const [error, setError] = useState("");
   const [researchProjects, setResearchProjects] = useState([]);
@@ -41,7 +42,7 @@ const Dashboard = () => {
         setResearchProjects(projects);
         setLoading(false);
       } catch (error) {
-        console.error("Error loading projects:", error);
+        throw error
       }
     };
 
@@ -64,7 +65,6 @@ const Dashboard = () => {
         setLoading(false);
       } catch (error) {
         setLoading(false);
-        console.error("Error fetching publications:", error);
       }
     };
 
@@ -93,7 +93,7 @@ const Dashboard = () => {
         </div>
         <div className="dashboard-card">
           <h3 className="dashboard-portfolio">
-            Welcome to the member's area, admin!
+            Welcome to the member's area, {userRole}
           </h3>
           <div className="dashboard-subcards">
             <div className="dashboard-subcard">

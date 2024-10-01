@@ -104,7 +104,6 @@ const AcademicSectoralCollaborators = ({onSave}) => {
     ],
   });
 
-  console.log(formData);
 
   // const handleChange = (e, index) => {
   //   const { name, value } = e.target;
@@ -145,7 +144,7 @@ const AcademicSectoralCollaborators = ({onSave}) => {
     if (typeof onSave === 'function') {
         onSave(formData); // This will trigger the parent's handleSaveAndNext
     } else {
-        console.error('onSave is not a function');
+        // console.error('onSave is not a function');
     }
 };
 

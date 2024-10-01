@@ -71,7 +71,7 @@ const ResearchGrants = () => {
         setFundedProjects(fundedData);
         
       } catch (error) {
-        console.error("Error fetching projects:", error);
+        // console.error("Error fetching projects:", error);
       }
     };
 

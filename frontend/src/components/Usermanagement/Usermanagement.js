@@ -70,7 +70,7 @@ const UserManagement = () => {
       const fetchedDepartments = await getAllDepartmentNames();
       setDepartments(fetchedDepartments); // Set fetched departments
     } catch (error) {
-      console.error("Error fetching departments:", error);
+      // console.error("Error fetching departments:", error);
     }
   };
 
@@ -79,9 +79,8 @@ const UserManagement = () => {
     try {
       const fetchedUsers = await getAllUsers();
       setUsers(fetchedUsers);
-      console.log(fetchedUsers)
     } catch (error) {
-      console.error("Error fetching users:", error);
+      // console.error("Error fetching users:", error);
     }
   };
 
@@ -217,14 +216,13 @@ const UserManagement = () => {
         const role = decodedToken.role; // Extract the role from the token
         setCurrentUserRole(role); // Set the role in the state
       } catch (error) {
-        console.error("Failed to decode token:", error);
+        // console.error("Failed to decode token:", error);
       }
     }
     fetchUsersFromServer();
     fetchDepartmentsFromServer(); 
   }, []);
 
-  // console.log(currentUserRole);
 
   return (
     <>

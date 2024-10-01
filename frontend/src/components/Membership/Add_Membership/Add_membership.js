@@ -38,7 +38,6 @@ const Add_membership = () => {
       // Call the API
       const response = await createMembership(descriptionArray);
       toast.success("Success!")
-      console.log("Membership created successfully:", response);
       
       // Clear the input after successful save
       setDescription("");

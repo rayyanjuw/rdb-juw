@@ -59,7 +59,7 @@ const FacilitiesAndFunding = ({ onSave }) => {
     if (typeof onSave === 'function') {
         onSave(FacilitiesAndFunding); // This will trigger the parent's handleSaveAndNext
     } else {
-        console.error('onSave is not a function');
+        // console.error('onSave is not a function');
     }
 };
 

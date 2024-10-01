@@ -25,8 +25,6 @@ const AddIntellectualProperty = () => {
   const [backgroundErrorMessage, setBackgroundErrorMessage] = useState(''); // For Background of Invention
   const [descriptionErrorMessage, setDescriptionErrorMessage] = useState('');
 
-  console.log(addintellectualproperty)
-
 
   const handleChange = (e) => {
     const { name, value } = e.target;

@@ -54,22 +54,6 @@ const JustificationForBudget = ({onSave}) => {
     }));
   };
 
-  // const [formData, setFormData] = useState({
-  //   ScientificEquipment : "", 
-  //   Travel : "N/A",   
-  // });
-
-  // console.log(formData)
-
-
-
-  // const handleInputChange = (event) => {
-  //   const { name, value } = event.target;
-  //   setFormData((prevState) => ({
-  //     ...prevState,
-  //     [name]: value,
-  //   }));
-  // };
 
   const handleSave = () => {
 
@@ -84,7 +68,7 @@ const JustificationForBudget = ({onSave}) => {
     if (typeof onSave === 'function') {
         onSave(justification); // This will trigger the parent's handleSaveAndNext
     } else {
-        console.error('onSave is not a function');
+        // console.error('onSave is not a function');
     }
 };
 
@@ -98,10 +82,6 @@ const JustificationForBudget = ({onSave}) => {
         <div className="justificationforbudget-card">
           <h3>ORIC Funded Project | Justification for The Requested Budget Items</h3>
           <p>Proposal Cover / Research Project / Facilities and Funding / Justification for The Requested Budget Items / Estimated Budget for Proposed Research Period</p>
-          {/* <div className="justificationforbudget-bred-crumb"> */}
-            {/* <Breadcrumb items={breadCrumps}/> */}
-            {/* <Breadcrumb items={breadCrumps} activePath={currentPath} /> */}
-          {/* </div> */}
           <div className="justificationforbudget-content">
             <h3>Justification for The Requested Budget Items</h3>
             <div className="justificationforbudget-textarea">

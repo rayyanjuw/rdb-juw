@@ -47,7 +47,6 @@ const Edit_HonorAndAward = () => {
       const token = localStorage.getItem("token");
 
       const response = await createHonors(payload, token);
-      console.log("Honors saved successfully:", response);
       // Reset the form data state
       setFormData({
         academicDetails: [
@@ -65,7 +64,6 @@ const Edit_HonorAndAward = () => {
       });
       toast.success("Success!");
     } catch (error) {
-      // console.error("Failed to save honors:", error.message);
       toast.error("Failed to save honors:");
     }
   };

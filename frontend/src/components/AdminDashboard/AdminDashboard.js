@@ -220,7 +220,7 @@ const AdminDashboard = () => {
         setResearchProjects(projects);
         setLoading(false);
       } catch (error) {
-        console.error("Error loading projects:", error);
+        // console.error("Error loading projects:", error);
       }
     };
 

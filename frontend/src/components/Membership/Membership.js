@@ -22,7 +22,6 @@ const Membership = () => {
         const data = await getMemberships();
         setMemberships(data);
       } catch (error) {
-        console.error("Failed to fetch memberships", error);
       } finally {
         setLoading(false);
       }

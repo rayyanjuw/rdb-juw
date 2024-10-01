@@ -72,7 +72,6 @@ const NationalGrants = () => {
 
    // Function to handle saving and moving to the next step
    const handleSaveAndNext = (data) => {
-     console.log(data);
     handleSave(data);
     if (step === 12) {
         setIsSubmitting(true); // Set the flag to trigger form submission
@@ -99,10 +98,8 @@ const NationalGrants = () => {
               }
             });
             toast.success('Data submitted successfully')
-            console.log('Data submitted successfully:', response.data);
             // Handle successful response (e.g., navigate to a success page)
         } catch (error) {
-            console.error('Error submitting data:', error);
             toast.error("Error of submitting International/National Grants ")
             // Handle error (e.g., show an error message)
         } finally {

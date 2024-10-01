@@ -31,7 +31,6 @@ const ViewIntellectualProperty = () => {
     },
   ]);
 
-  console.log(IntelProperties);
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedProperty, setSelectedProperty] = useState(null);
@@ -254,7 +253,6 @@ const ViewIntellectualProperty = () => {
       );
       toast.success("Deleted Successfully")
     } catch (error) {
-      console.error("Error deleting publication:", error);
       alert("Failed to delete the publication.");
       setError(error.message);
     }
