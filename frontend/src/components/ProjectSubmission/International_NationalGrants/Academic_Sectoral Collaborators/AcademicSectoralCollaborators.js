@@ -104,21 +104,8 @@ const AcademicSectoralCollaborators = ({onSave}) => {
     ],
   });
 
-  console.log(formData);
 
-  // const handleChange = (e, index) => {
-  //   const { name, value } = e.target;
-  //   const updatedCollaborators = [...formData.academicCollaboratorsDetails];
-  //   const updatedSectoralContributors = [
-  //     ...formData.sectoralCollaboratorsDetails,
-  //   ];
-  //   updatedSectoralContributors[index][name] = value;
-  //   setFormData({
-  //     ...formData,
-  //     academicCollaboratorsDetails: updatedCollaborators,
-  //     sectoralCollaboratorsDetails: updatedSectoralContributors,
-  //   });
-  // };
+
 
   const handleChange = (e, index, isAcademic) => {
     const { name, value } = e.target;
@@ -145,7 +132,7 @@ const AcademicSectoralCollaborators = ({onSave}) => {
     if (typeof onSave === 'function') {
         onSave(formData); // This will trigger the parent's handleSaveAndNext
     } else {
-        console.error('onSave is not a function');
+        // console.error('onSave is not a function');
     }
 };
 

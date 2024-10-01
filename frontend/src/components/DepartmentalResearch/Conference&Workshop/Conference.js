@@ -59,7 +59,6 @@ const Conference = () => {
     { state: conference4, setState: setConference4 },
     { state: conference5, setState: setConference5 },
   ];
-  console.log(conferences);
 
   return (
     <>

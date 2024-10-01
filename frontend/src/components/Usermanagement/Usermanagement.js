@@ -38,39 +38,12 @@ const UserManagement = () => {
   const [filteredDepartments, setFilteredDepartments] = useState([]);
   const [departments, setDepartments] = useState([]);
 
-  // const departments = [
-  //   "Department of Biochemistry",
-  //   "Department of Biotechnology",
-  //   "Department of Botany",
-  //   "Department of Chemistry",
-  //   "Department of Computer Science & Software Engineering",
-  //   "Department of Food Science & Technology",
-  //   "Department of Mathematics",
-  //   "Department of Microbiology",
-  //   "Department of Zoology",
-  //   "Department of Pharmaceutical Chemistry",
-  //   "Department of Pharmacology",
-  //   "Department of Pharmacognosy",
-  //   "Department of Pharmacy Practice",
-  //   "Department of Pharmaceutics",
-  //   "Department of English",
-  //   "Department of International Relations",
-  //   "Department of Education and Teachers Education",
-  //   "Department of Islamic Learning",
-  //   "Department of Media Studies",
-  //   "Department of Visual Studies",
-  //   "Department of Psychology",
-  //   "Department of Business Administration",
-  //   "Department of Commerce",
-  //   "Department of Economics",
-  // ];
-
   const fetchDepartmentsFromServer = async () => {
     try {
       const fetchedDepartments = await getAllDepartmentNames();
       setDepartments(fetchedDepartments); // Set fetched departments
     } catch (error) {
-      console.error("Error fetching departments:", error);
+      // console.error("Error fetching departments:", error);
     }
   };
 
@@ -79,9 +52,8 @@ const UserManagement = () => {
     try {
       const fetchedUsers = await getAllUsers();
       setUsers(fetchedUsers);
-      console.log(fetchedUsers)
     } catch (error) {
-      console.error("Error fetching users:", error);
+      // console.error("Error fetching users:", error);
     }
   };
 
@@ -217,14 +189,13 @@ const UserManagement = () => {
         const role = decodedToken.role; // Extract the role from the token
         setCurrentUserRole(role); // Set the role in the state
       } catch (error) {
-        console.error("Failed to decode token:", error);
+        // console.error("Failed to decode token:", error);
       }
     }
     fetchUsersFromServer();
     fetchDepartmentsFromServer(); 
   }, []);
 
-  // console.log(currentUserRole);
 
   return (
     <>

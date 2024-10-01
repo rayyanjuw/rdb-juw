@@ -151,7 +151,6 @@ const Sidebar = () => {
                   component={Link}
                   to={item.path || '#'}
                   onClick={() => {
-                    console.log(`Navigating to ${item.path}`);
                     item.options && handleSubMenuClick(item.name);
                   }}
                   sx={{ color: 'white', backgroundColor: '#0037a5' }}

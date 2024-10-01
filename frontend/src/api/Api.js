@@ -221,10 +221,10 @@ export const getProfile = async () => {
     // toast.success("Successfully get user profile")
     return response.data;
   } catch (error) {
-    console.error(
-      "Error fetching profile data:",
-      error.response ? error.response.data : error.message
-    );
+    // console.error(
+    //   "Error fetching profile data:",
+    //   error.response ? error.response.data : error.message
+    // );
     throw new Error("Error fetching profile");
   }
 };
@@ -240,7 +240,7 @@ export const createOrUpdateProfile = async (profileData) => {
     });
     return response.data;
   } catch (error) {
-    console.error('Failed to create or update profile', error);
+    // console.error('Failed to create or update profile', error);
     throw error;
   }
 };
@@ -261,7 +261,7 @@ export const createMembership = async (description) => {
     );
     return response.data;
   } catch (error) {
-    console.error("Error creating membership:", error);
+    // console.error("Error creating membership:", error);
     throw error;
   }
 };
@@ -276,7 +276,7 @@ export const getMemberships = async () => {
     });
     return response.data;
   } catch (error) {
-    console.error("Error fetching memberships:", error);
+    // console.error("Error fetching memberships:", error);
     throw error;
   }
 };
@@ -373,13 +373,13 @@ export const createPublication = async (publicationData) => {
       },
     });
 
-    console.log("Publication created:", response.data);
+    // console.log("Publication created:", response.data);
     return response;
   } catch (error) {
-    console.error("Error creating publication:", error);
+    // console.error("Error creating publication:", error);
     if (error.response) {
-      console.error("Error status:", error.response.status);
-      console.error("Error details:", error.response.data);
+      // console.error("Error status:", error.response.status);
+      // console.error("Error details:", error.response.data);
     }
     throw new Error(
       error.response ? error.response.data.message : error.message
@@ -398,10 +398,10 @@ export const getAllPublications = async () => {
     // const response = await api.get("/publication/getAllPublications");
     return response.data;
   } catch (error) {
-    console.log(
-      "Error While Fetching Research Publications",
-      error.response ? error.response.data : error.message
-    );
+    // console.log(
+    //   "Error While Fetching Research Publications",
+    //   error.response ? error.response.data : error.message
+    // );
     throw new Error(
       error.response?.data?.message || "Error fetching publications"
     );
@@ -420,7 +420,7 @@ export const deletePublication = async (id) => {
     });
     return response.data;
   } catch (error) {
-    console.error("Error deleting publication:", error);
+    // console.error("Error deleting publication:", error);
     throw error;
   }
 };
@@ -471,12 +471,12 @@ export const updatePublication = async (id, updateData) => {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
-    console.log("Publication updated Successfully", response.data);
-    console.log("Publication id", id);
+    // console.log("Publication updated Successfully", response.data);
+    // console.log("Publication id", id);
 
     return response.data;
   } catch (error) {
-    console.error("Error updating publication:", error);
+    // console.error("Error updating publication:", error);
     throw error;
   }
 };
@@ -493,13 +493,13 @@ export const createIntellectualProperty = async (intellectualPropertyData) => {
         },
       }
     );
-    console.log("Intellectual Property Created Successfully", response.data);
+    // console.log("Intellectual Property Created Successfully", response.data);
     return response.data;
   } catch (error) {
-    console.log(
-      "Error in Creating Intellectual Property",
-      error.response ? error.response.data : error.message
-    );
+    // console.log(
+    //   "Error in Creating Intellectual Property",
+    //   error.response ? error.response.data : error.message
+    // );
     throw new Error(
       error.response
         ? error.response.data.error
@@ -516,13 +516,13 @@ export const getAllIntellectualProperty = async () => {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
-    console.log("Successfully fetched all intellectual properties");
+    // console.log("Successfully fetched all intellectual properties");
     return response.data;
   } catch (error) {
-    console.log(
-      "Error While Fetching Intellectual Properties",
-      error.response ? error.response.data : error.message
-    );
+    // console.log(
+    //   "Error While Fetching Intellectual Properties",
+    //   error.response ? error.response.data : error.message
+    // );
     throw new Error(
       error.response
         ? error.response.data.error
@@ -540,7 +540,7 @@ export const deleteIntellectualProperty = async (id) => {
       },
     });
 
-    console.log("Intellectual Property Deleted Successfully");
+    // console.log("Intellectual Property Deleted Successfully");
     return response.data;
   } catch (error) {
     throw new Error(
@@ -561,13 +561,13 @@ export const updateIntellectualProperty = async (id, updateData) => {
         },
       }
     );
-    console.log("Intellectual Property Successfully Updated", response.data);
-    console.log("Intel Prop Id", id);
+    // console.log("Intellectual Property Successfully Updated", response.data);
+    // console.log("Intel Prop Id", id);
   } catch (error) {
-    console.error(
-      "Error updating Intellectual Property:",
-      error.response ? error.response.data : error.message
-    );
+    // console.error(
+    //   "Error updating Intellectual Property:",
+    //   error.response ? error.response.data : error.message
+    // );
     throw error;
   }
 };
@@ -604,10 +604,10 @@ export const createOricFunded = async (proposalCoverData, researchProjectData, f
         },
       }
     );
-    console.log("Response Data", response);
+    // console.log("Response Data", response);
     return response.data;
   } catch (error) {
-    console.error("Error creating ORIC Funded Project:", error);
+    // console.error("Error creating ORIC Funded Project:", error);
     throw error;
   }
 };
@@ -620,13 +620,13 @@ export const fetchORICProjects = async () => {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
-    console.log("Successfully fetched all ORIC Funded Project");
+    // console.log("Successfully fetched all ORIC Funded Project");
     return response.data;
   } catch (error) {
-    console.log(
-      "Error While Fetching ORIC Funded Project",
-      error.response ? error.response.data : error.message
-    );
+    // console.log(
+    //   "Error While Fetching ORIC Funded Project",
+    //   error.response ? error.response.data : error.message
+    // );
     throw new Error(
       error.response
         ? error.response.data.error
@@ -644,10 +644,10 @@ export const fetchORICProjectsById = async (id) => {
       }
     });
     
-    console.log(response.data)
+    // console.log(response.data)
     return  response.data;
   } catch (error) {
-    console.error("Error fetching project by id", error);
+    // console.error("Error fetching project by id", error);
     throw error
   }
 }
@@ -663,13 +663,13 @@ export const fetchAllNationalGrants = async () => {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
-    console.log("Successfully fetched all International/National Grants");
+    // console.log("Successfully fetched all International/National Grants");
     return response.data;
   } catch (error) {
-    console.log(
-      "Error While Fetching International/National Grants ",
-      error.response ? error.response.data : error.message
-    );
+    // console.log(
+    //   "Error While Fetching International/National Grants ",
+    //   error.response ? error.response.data : error.message
+    // );
     throw new Error(
       error.response
         ? error.response.data.error
@@ -688,10 +688,10 @@ export const fetchAllNationalGrantsbyId = async (id) => {
       }
     });
     
-    console.log(response.data)
+    // console.log(response.data)
     return  response.data;
   } catch (error) {
-    console.error("Error fetching project by id", error);
+    // console.error("Error fetching project by id", error);
     throw error
   }
 }
@@ -729,7 +729,7 @@ export const createCompletedProject = async (projectData) => {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       }
     });
-    console.log("Response data", response.data)
+    // console.log("Response data", response.data)
     return response.data;
   } catch (error) {
     throw new Error(error.response.data.message || "Failed to create completed project");
@@ -744,7 +744,7 @@ export const createFundedProject = async (projectData) => {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       }
     });
-    console.log("Response data", response.data)
+    // console.log("Response data", response.data)
     return response.data; 
   } catch (error) {
     throw new Error(error.response.data.message || "Failed to create funded project");

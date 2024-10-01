@@ -86,9 +86,8 @@ const ResearchPortfolio = () => {
             to: formatDate(data.latestExperienceTo) 
           }
         });
-        console.log(data);
       } catch (error) {
-        console.error("Error fetching profile:", error);
+        // console.error("Error fetching profile:", error);
         // toast.error("Error fetching profile:", error);
       }
     };

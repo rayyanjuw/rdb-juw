@@ -11,11 +11,7 @@ const EstimatedBudgetForPRP = ({onSave}) => {
   const location = useLocation();
 
   const [estimatedBudget, setEstimatedBudget] = useState({
-    // permanentEquipment: formData?.estimatedBudget?.permanentEquipment || [
-    //   { item: "Hot Plates", qty: "", unitPrice: "", amount: "" },
-    //   { item: "Computer", qty: "", unitPrice: "", amount: "" },
-    //   { item: "Printer", qty: "", unitPrice: "", amount: "" },
-    // ],
+
     permanentEquipment: {
       hotplates: { qty: "", unitPrice: "", amount: "" },
       computer: { qty: "", unitPrice: "", amount: "" },
@@ -34,32 +30,6 @@ const EstimatedBudgetForPRP = ({onSave}) => {
       amount: ""
     },
   });
-
-
-
-
-  // const handleLocalChange = (e, equipmentType, field) => {
-  //   const { value } = e.target;
-
-  //   setEstimatedBudget((prevState) => ({
-  //     ...prevState,
-  //     permanentEquipment: {
-  //       ...prevState.permanentEquipment,
-  //       [equipmentType]: {
-  //         ...prevState.permanentEquipment[equipmentType],
-  //         [field]: value,
-  //       },
-  //     },
-  //   }));
-
-  //   if (handleInputChange) {
-  //     handleInputChange(e);
-  //   } else {
-  //     console.error("handleInputChange is not a function");
-  //   }
-  // };
-
-
 
   const handleLocalChange = (e, equipmentType, field) => {
     const { value } = e.target;
@@ -136,9 +106,9 @@ const EstimatedBudgetForPRP = ({onSave}) => {
   }
 
     if (typeof onSave === 'function') {
-        onSave(estimatedBudget); // This will trigger the parent's handleSaveAndNext
+        onSave(estimatedBudget);
     } else {
-        console.error('onSave is not a function');
+        // console.error('onSave is not a function');
     }
 };
 

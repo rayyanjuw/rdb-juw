@@ -76,12 +76,10 @@ const PersonalInfo2 = () => {
 
     try {
       const response = await createOrUpdateProfile(profileData);
-      console.log("Profile updated successfully:", response);
       toast.success("Profile updated successfully:");
       // You can add further actions here, like showing success messages or navigating
     } catch (error) {
       toast.error("Failed to update profile");
-      console.error("Failed to update profile:", error);
     }
   };
 

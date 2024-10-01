@@ -20,9 +20,8 @@ const InternationalGrants = () => {
       try {
         const fetchedProject = await fetchAllNationalGrantsbyId(id);
         setProject(fetchedProject);
-        console.log(fetchedProject);
       } catch (error) {
-        console.error("Error fetchiong project details:", error);
+        // console.error("Error fetchiong project details:", error);
       }
     };
 
@@ -58,7 +57,6 @@ const InternationalGrants = () => {
 
   const academicCollaborators =
     academicSectoralCollaborators?.academicCollaboratorsDetails || [];
-  console.log("Academic Collaborators:", academicCollaborators);
   const sectoralCollaborators =
     academicSectoralCollaborators?.sectoralCollaboratorsDetails || [];
 

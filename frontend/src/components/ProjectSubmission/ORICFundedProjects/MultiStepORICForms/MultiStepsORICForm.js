@@ -56,7 +56,6 @@ const MultiStepForm = () => {
   };
 
   const handleSaveAndNext = (data) => {
-    console.log(data);
     handleSave(data);
     if (step === 5) {
       setIsSubmitting(true); // Set the flag to trigger form submission
@@ -83,12 +82,9 @@ const MultiStepForm = () => {
         }
       );
       setFormData("")
-      console.log("Data being sent to API:", formData);
-      console.log("Data submitted successfully:", response.data);
       toast.success("Data submitted successfully")
       // Handle successful response (e.g., navigate to a success page)
     } catch (error) {
-      console.error("Error submitting data:", error);
       toast.error("Error submitting data")
       // Handle error (e.g., show an error message)
     } finally {

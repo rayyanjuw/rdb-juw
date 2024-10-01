@@ -33,8 +33,6 @@ const ThesisProjectDetails = () => {
     const [ThesisProject, setThesisProject] = useState(ThesisProjectDetail);
     const [ResearchFunding, setResearchFunding] = useState(ResearchFundingStatus);
 
-    console.log(ThesisProject)
-    console.log(ResearchFunding)
 
 
     const handleChange = (e) => {

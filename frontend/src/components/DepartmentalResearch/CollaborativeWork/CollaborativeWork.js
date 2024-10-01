@@ -36,7 +36,6 @@ const CollaborativeWork = () => {
         setText(event.target.value);
     };
 
-    console.log(text);
 
     return (
         <div className="collaborativework-container">

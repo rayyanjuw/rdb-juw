@@ -107,46 +107,6 @@ const ResearchPublication = () => {
     setPublications([...publications, data]);
   };
 
-  // const handleSubmit = async () => {
-  //   try {
-  //     const response = await createPublication({
-  //       publications,
-  //     });
-
-  //     // Check if the response status is 201 (Created)
-  //     if (response.status === 201) {
-  //       alert("Publications added successfully");
-  //       // Optionally, clear the form or redirect
-  //       setPublications([initialPublication]); // Reset to initial state
-  //     } else {
-  //       // Handle non-201 responses
-  //       const result = await response.json();
-  //       alert(result.message || "Error while adding publications");
-  //     }
-  //   } catch (error) {
-  //     // Handle errors
-  //     console.error("Error:", error);
-  //     alert("Error while adding publications");
-  //   }
-  // };
-
-  // code
-  // const handleSubmit = async () => {
-  //   try {
-  //     // Adjust the payload structure as needed
-  //     const response = await createPublication();
-
-  //     if (response.status === 201) {
-  //       alert("Publications added successfully");
-  //       // Optionally, you can clear the form or redirect here
-  //     } else {
-  //       alert("Error while adding publications");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error:", error);
-  //     alert("Error while adding publications");
-  //   }
-  // };
 
   const handleSubmit = async () => {
     try {
@@ -162,13 +122,12 @@ const ResearchPublication = () => {
       }
       setPublications([data]);
     } catch (error) {
-      console.error("Error:", error);
       toast.error("Error while adding publications");
       // alert("Error while adding publications");
     }
   };
 
-  console.log(publications);
+
 
   const breadCrumps = [
     {
