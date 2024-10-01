@@ -105,19 +105,7 @@ const AcademicSectoralCollaborators = ({onSave}) => {
   });
 
 
-  // const handleChange = (e, index) => {
-  //   const { name, value } = e.target;
-  //   const updatedCollaborators = [...formData.academicCollaboratorsDetails];
-  //   const updatedSectoralContributors = [
-  //     ...formData.sectoralCollaboratorsDetails,
-  //   ];
-  //   updatedSectoralContributors[index][name] = value;
-  //   setFormData({
-  //     ...formData,
-  //     academicCollaboratorsDetails: updatedCollaborators,
-  //     sectoralCollaboratorsDetails: updatedSectoralContributors,
-  //   });
-  // };
+
 
   const handleChange = (e, index, isAcademic) => {
     const { name, value } = e.target;

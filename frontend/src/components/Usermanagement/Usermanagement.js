@@ -38,33 +38,6 @@ const UserManagement = () => {
   const [filteredDepartments, setFilteredDepartments] = useState([]);
   const [departments, setDepartments] = useState([]);
 
-  // const departments = [
-  //   "Department of Biochemistry",
-  //   "Department of Biotechnology",
-  //   "Department of Botany",
-  //   "Department of Chemistry",
-  //   "Department of Computer Science & Software Engineering",
-  //   "Department of Food Science & Technology",
-  //   "Department of Mathematics",
-  //   "Department of Microbiology",
-  //   "Department of Zoology",
-  //   "Department of Pharmaceutical Chemistry",
-  //   "Department of Pharmacology",
-  //   "Department of Pharmacognosy",
-  //   "Department of Pharmacy Practice",
-  //   "Department of Pharmaceutics",
-  //   "Department of English",
-  //   "Department of International Relations",
-  //   "Department of Education and Teachers Education",
-  //   "Department of Islamic Learning",
-  //   "Department of Media Studies",
-  //   "Department of Visual Studies",
-  //   "Department of Psychology",
-  //   "Department of Business Administration",
-  //   "Department of Commerce",
-  //   "Department of Economics",
-  // ];
-
   const fetchDepartmentsFromServer = async () => {
     try {
       const fetchedDepartments = await getAllDepartmentNames();

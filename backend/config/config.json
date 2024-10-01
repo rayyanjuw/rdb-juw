@@ -1,22 +1,22 @@
 {
   "development": {
     "username": "root",
-    "password": "r6VwxgOhyJiOhB4C8taD",
+    "password": "rayyan@juw123",
     "database": "rdb_database",
     "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": "r6VwxgOhyJiOhB4C8taD",
-    "database": "rdbdatabase",
+    "password": "rayyan@juw123",
+    "database": "rdb_database",
     "host": "localhost",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
-    "password": "r6VwxgOhyJiOhB4C8taD",
-    "database": "rdbdatabase",
+    "password": "rayyan@juw123",
+    "database": "rdb_database",
     "host": "localhost",
     "dialect": "mysql"
   }

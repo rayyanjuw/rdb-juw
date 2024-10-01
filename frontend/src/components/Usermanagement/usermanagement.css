@@ -23,7 +23,8 @@
   padding: 20px;
 }
 
-.usermanagement-modal {
+/* original working code */
+/* .usermanagement-modal {
   position: absolute;
   inset: 50% auto auto 50%;
   margin-right: -50%;
@@ -33,13 +34,62 @@
   border-radius: 4px;
   max-width: 500px;
   width: 100%;
+} */
+
+.usermanagement-modal {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 500px;
+  width: 100%;
+  margin: auto;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  font-family: Arial, sans-serif;
 }
 
-.usermanagement-overlay {
+/* original */
+/* .usermanagement-overlay {
   position: fixed;
   inset: 0;
   background-color: rgb(0 0 0 / 75%);
+} */
+
+.usermanagement-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+
+.usermanagement-modal h2 {
+  margin-top: 0;
+  font-size: 1.5em;
+  text-align: center;
+  color: #333;
+}
+
+
+.multi-fields input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.95em;
+  transition: border-color 0.3s ease;
+}
+
+
+
+
+
+
 
 
 
