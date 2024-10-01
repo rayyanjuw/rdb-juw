@@ -155,7 +155,7 @@ table td {
   justify-content: center;
 }
 
-.edit-modal-submit-button {
+.submit-button {
   color: white;
   background-color: #51cbce;
   display: flex !important;

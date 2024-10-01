@@ -97,6 +97,7 @@
     border: 1px solid #ddd;
     color: #66615b;
     font-size: 12px;
+    line-height: 2;
     border-radius: 4px;
     box-sizing: border-box;
 }

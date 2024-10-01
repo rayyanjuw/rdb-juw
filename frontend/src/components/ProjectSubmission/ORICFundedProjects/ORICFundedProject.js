@@ -261,10 +261,166 @@ const ORICFundedProject = () => {
   };
 
 
-  const downloadORICFundedProjectExcel = () => {
-    // Create a new workbook
-    const workbook = XLSX.utils.book_new();
+  // const downloadORICFundedProjectExcel = () => {
+  //   // Create a new workbook
+  //   const workbook = XLSX.utils.book_new();
     
+  //   const sections = [
+  //     { title: "PROPOSAL COVER", data: proposalCover },
+  //     { title: "RESEARCH PROJECT", data: research_projectState },
+  //     {
+  //       title: "OBJECTIVES WITH EXPECTED OUTPUTS",
+  //       data: ObjectiveswithExpectedOutputs?.Objectives || [],
+  //     },
+  //     { title: "FACILITIES AND FUNDING", data: facilitiesandFunding },
+  //     {
+  //       title: "JUSTIFICATION", // Shortened to fit Excel's sheet name limit
+  //       data: justificationForBudgetItems,
+  //     },
+     
+  //   ];
+  
+  //   sections.forEach((section) => {
+  //     let sheetData = [];
+  
+  //     if (section.title === "OBJECTIVES WITH EXPECTED OUTPUTS") {
+  //       sheetData.push(["Objective", "Description", "Measurable Output", "Benefits"]);
+  //       if (Array.isArray(section.data)) {
+  //         section.data.forEach((objective) => {
+  //           sheetData.push([
+  //             `Objective ${objective.ObjectiveNumber || "N/A"}`,
+  //             objective.Description || "No Description",
+  //             objective.MeasurableOutput || "No Measurable Output",
+  //             objective.Benefits || "No Benefits",
+  //           ]);
+  //         });
+  //       }
+  //     } else {
+  //       // For other sections, format as key-value pairs
+  //       sheetData.push(["Key", "Value"]);
+  //       if (section.data && typeof section.data === "object") {
+  //         Object.entries(section.data).forEach(([key, value]) => {
+  //           sheetData.push([key, value || "N/A"]); 
+  //         });
+  //       } else {
+  //         sheetData.push(["No data available", "N/A"]);
+  //       }
+  //     }
+  
+  //     // Create a worksheet from the sheet data
+  //     const worksheet = XLSX.utils.aoa_to_sheet(sheetData);
+  
+  //     // Apply styling to the headers
+  //     sheetData.forEach((row, rowIndex) => {
+  //       row.forEach((_, colIndex) => {
+  //         const cellAddress = XLSX.utils.encode_cell({ r: rowIndex, c: colIndex });
+  //         const cell = worksheet[cellAddress];
+  
+  //         if (rowIndex === 0) {
+  //           // Apply styling to the header row
+  //           cell.s = {
+  //             font: { bold: true, color: { rgb: "FFFFFF" } },
+  //             fill: { fgColor: { rgb: "4F81BD" } },
+  //             alignment: { horizontal: "center" },
+  //             border: {
+  //               top: { style: "thin", color: { rgb: "000000" } },
+  //               bottom: { style: "thin", color: { rgb: "000000" } },
+  //               left: { style: "thin", color: { rgb: "000000" } },
+  //               right: { style: "thin", color: { rgb: "000000" } },
+  //             },
+  //           };
+  //         } else {
+  //           // Apply styling to the rest of the cells
+  //           cell.s = {
+  //             border: {
+  //               top: { style: "thin", color: { rgb: "000000" } },
+  //               bottom: { style: "thin", color: { rgb: "000000" } },
+  //               left: { style: "thin", color: { rgb: "000000" } },
+  //               right: { style: "thin", color: { rgb: "000000" } },
+  //             },
+  //             alignment: { vertical: "top" },
+  //           };
+  //         }
+  //       });
+  //     });
+  
+  //     // Auto width for columns
+  //     const columnWidths = sheetData[0].map(() => ({ wch: 20 }));
+  //     worksheet["!cols"] = columnWidths;
+  
+  //     // Add the worksheet to the workbook
+  //     XLSX.utils.book_append_sheet(workbook, worksheet, section.title.substring(0, 31));
+  //   });
+  
+  //   // Handle estimatedBudget separately
+  //   if (estimatedBudget) {
+  //     let estimatedBudgetData = [["Item", "Details"]];
+  //     estimatedBudgetData.push(["Permanent Equipment", ""]);
+  
+  //     Object.entries(estimatedBudget.permanentEquipment || {}).forEach(([equipment, details]) => {
+  //       estimatedBudgetData.push([
+  //         equipment.charAt(0).toUpperCase() + equipment.slice(1),
+  //         `Qty: ${details.qty}, Unit Price: ${details.unitPrice}, Amount: ${details.amount}`,
+  //       ]);
+  //     });
+  
+  //     estimatedBudgetData.push(["B. Paper Rim", estimatedBudget.paperrimAmount?.amount || "N/A"]);
+  //     estimatedBudgetData.push([
+  //       "C. Literature, documentation, online literature search, contingencies, postage",
+  //       estimatedBudget.literatureAndOtherAmount?.amount || "N/A",
+  //     ]);
+  //     estimatedBudgetData.push(["D. Local Travel", estimatedBudget.localTravel?.amount || "N/A"]);
+  //     estimatedBudgetData.push(["E. Other costs", estimatedBudget.othercostAmount?.amount || "N/A"]);
+  
+  //     // Create a worksheet for the estimated budget
+  //     const estimatedBudgetWorksheet = XLSX.utils.aoa_to_sheet(estimatedBudgetData);
+  
+  //     // Apply the same styling and auto width
+  //     estimatedBudgetData.forEach((row, rowIndex) => {
+  //       row.forEach((_, colIndex) => {
+  //         const cellAddress = XLSX.utils.encode_cell({ r: rowIndex, c: colIndex });
+  //         const cell = estimatedBudgetWorksheet[cellAddress];
+  
+  //         if (rowIndex === 0) {
+  //           cell.s = {
+  //             font: { bold: true, color: { rgb: "FFFFFF" } },
+  //             fill: { fgColor: { rgb: "4F81BD" } },
+  //             alignment: { horizontal: "center" },
+  //             border: {
+  //               top: { style: "thin", color: { rgb: "000000" } },
+  //               bottom: { style: "thin", color: { rgb: "000000" } },
+  //               left: { style: "thin", color: { rgb: "000000" } },
+  //               right: { style: "thin", color: { rgb: "000000" } },
+  //             },
+  //           };
+  //         } else {
+  //           cell.s = {
+  //             border: {
+  //               top: { style: "thin", color: { rgb: "000000" } },
+  //               bottom: { style: "thin", color: { rgb: "000000" } },
+  //               left: { style: "thin", color: { rgb: "000000" } },
+  //               right: { style: "thin", color: { rgb: "000000" } },
+  //             },
+  //           };
+  //         }
+  //       });
+  //     });
+  
+  //     // Auto width for columns
+  //     const estimatedBudgetColumnWidths = estimatedBudgetData[0].map(() => ({ wch: 30 }));
+  //     estimatedBudgetWorksheet["!cols"] = estimatedBudgetColumnWidths;
+  
+  //     XLSX.utils.book_append_sheet(workbook, estimatedBudgetWorksheet, "Estimated Budget");
+  //   }
+  
+  //   // Generate Excel file and trigger download
+  //   XLSX.writeFile(workbook, "ORICFundedProject.xlsx");
+  // };
+  
+  const downloadORICFundedProjectExcel = () => {
+    // Initialize the CSV content
+    let csvContent = "data:text/csv;charset=utf-8,";
+  
     const sections = [
       { title: "PROPOSAL COVER", data: proposalCover },
       { title: "RESEARCH PROJECT", data: research_projectState },
@@ -274,149 +430,73 @@ const ORICFundedProject = () => {
       },
       { title: "FACILITIES AND FUNDING", data: facilitiesandFunding },
       {
-        title: "JUSTIFICATION", // Shortened to fit Excel's sheet name limit
+        title: "JUSTIFICATION",
         data: justificationForBudgetItems,
       },
-     
+      
     ];
   
+    let csvRows = [];
+  
+    // Add a table-like structure for each section
     sections.forEach((section) => {
-      let sheetData = [];
+      csvRows.push(`\n==== ${section.title.toUpperCase()} ====\n`); // Add section title with clear separator
   
       if (section.title === "OBJECTIVES WITH EXPECTED OUTPUTS") {
-        sheetData.push(["Objective", "Description", "Measurable Output", "Benefits"]);
+        // Format objectives as a table
+        csvRows.push("Objective,Description,Measurable Output,Benefits"); // Table header
         if (Array.isArray(section.data)) {
           section.data.forEach((objective) => {
-            sheetData.push([
-              `Objective ${objective.ObjectiveNumber || "N/A"}`,
-              objective.Description || "No Description",
-              objective.MeasurableOutput || "No Measurable Output",
-              objective.Benefits || "No Benefits",
-            ]);
+            csvRows.push([
+              `"Objective ${objective.ObjectiveNumber || "N/A"}"`,
+              `"${objective.Description || "No Description"}"`,
+              `"${objective.MeasurableOutput || "No Measurable Output"}"`,
+              `"${objective.Benefits || "No Benefits"}"`,
+            ].join(",")); // Join as a table row
           });
         }
       } else {
-        // For other sections, format as key-value pairs
-        sheetData.push(["Key", "Value"]);
-        if (section.data && typeof section.data === "object") {
-          Object.entries(section.data).forEach(([key, value]) => {
-            sheetData.push([key, value || "N/A"]); 
-          });
-        } else {
-          sheetData.push(["No data available", "N/A"]);
-        }
-      }
-  
-      // Create a worksheet from the sheet data
-      const worksheet = XLSX.utils.aoa_to_sheet(sheetData);
-  
-      // Apply styling to the headers
-      sheetData.forEach((row, rowIndex) => {
-        row.forEach((_, colIndex) => {
-          const cellAddress = XLSX.utils.encode_cell({ r: rowIndex, c: colIndex });
-          const cell = worksheet[cellAddress];
-  
-          if (rowIndex === 0) {
-            // Apply styling to the header row
-            cell.s = {
-              font: { bold: true, color: { rgb: "FFFFFF" } },
-              fill: { fgColor: { rgb: "4F81BD" } },
-              alignment: { horizontal: "center" },
-              border: {
-                top: { style: "thin", color: { rgb: "000000" } },
-                bottom: { style: "thin", color: { rgb: "000000" } },
-                left: { style: "thin", color: { rgb: "000000" } },
-                right: { style: "thin", color: { rgb: "000000" } },
-              },
-            };
-          } else {
-            // Apply styling to the rest of the cells
-            cell.s = {
-              border: {
-                top: { style: "thin", color: { rgb: "000000" } },
-                bottom: { style: "thin", color: { rgb: "000000" } },
-                left: { style: "thin", color: { rgb: "000000" } },
-                right: { style: "thin", color: { rgb: "000000" } },
-              },
-              alignment: { vertical: "top" },
-            };
-          }
+        // For other sections, format as a key-value table
+        csvRows.push("Key,Value"); // Table header for key-value pairs
+        Object.entries(section.data || {}).forEach(([key, value]) => {
+          csvRows.push([
+            `"${key}"`,
+            `"${value || "N/A"}"`, // Default to "N/A" if value is undefined
+          ].join(",")); // Join as a table row
         });
-      });
-  
-      // Auto width for columns
-      const columnWidths = sheetData[0].map(() => ({ wch: 20 }));
-      worksheet["!cols"] = columnWidths;
-  
-      // Add the worksheet to the workbook
-      XLSX.utils.book_append_sheet(workbook, worksheet, section.title.substring(0, 31));
+      }
     });
   
-    // Handle estimatedBudget separately
+    // Handle Estimated Budget as a separate section with table-like formatting
     if (estimatedBudget) {
-      let estimatedBudgetData = [["Item", "Details"]];
-      estimatedBudgetData.push(["Permanent Equipment", ""]);
+      csvRows.push("\n==== ESTIMATED BUDGET ====\n");
+      csvRows.push("Item,Details"); // Table header for estimated budget
   
+      csvRows.push("Permanent Equipment,");
       Object.entries(estimatedBudget.permanentEquipment || {}).forEach(([equipment, details]) => {
-        estimatedBudgetData.push([
-          equipment.charAt(0).toUpperCase() + equipment.slice(1),
-          `Qty: ${details.qty}, Unit Price: ${details.unitPrice}, Amount: ${details.amount}`,
-        ]);
+        csvRows.push([
+          `"${equipment.charAt(0).toUpperCase() + equipment.slice(1)}"`,
+          `"Qty: ${details.qty}, Unit Price: ${details.unitPrice}, Amount: ${details.amount}"`,
+        ].join(",")); // Add rows for each equipment
       });
   
-      estimatedBudgetData.push(["B. Paper Rim", estimatedBudget.paperrimAmount?.amount || "N/A"]);
-      estimatedBudgetData.push([
-        "C. Literature, documentation, online literature search, contingencies, postage",
-        estimatedBudget.literatureAndOtherAmount?.amount || "N/A",
-      ]);
-      estimatedBudgetData.push(["D. Local Travel", estimatedBudget.localTravel?.amount || "N/A"]);
-      estimatedBudgetData.push(["E. Other costs", estimatedBudget.othercostAmount?.amount || "N/A"]);
-  
-      // Create a worksheet for the estimated budget
-      const estimatedBudgetWorksheet = XLSX.utils.aoa_to_sheet(estimatedBudgetData);
-  
-      // Apply the same styling and auto width
-      estimatedBudgetData.forEach((row, rowIndex) => {
-        row.forEach((_, colIndex) => {
-          const cellAddress = XLSX.utils.encode_cell({ r: rowIndex, c: colIndex });
-          const cell = estimatedBudgetWorksheet[cellAddress];
-  
-          if (rowIndex === 0) {
-            cell.s = {
-              font: { bold: true, color: { rgb: "FFFFFF" } },
-              fill: { fgColor: { rgb: "4F81BD" } },
-              alignment: { horizontal: "center" },
-              border: {
-                top: { style: "thin", color: { rgb: "000000" } },
-                bottom: { style: "thin", color: { rgb: "000000" } },
-                left: { style: "thin", color: { rgb: "000000" } },
-                right: { style: "thin", color: { rgb: "000000" } },
-              },
-            };
-          } else {
-            cell.s = {
-              border: {
-                top: { style: "thin", color: { rgb: "000000" } },
-                bottom: { style: "thin", color: { rgb: "000000" } },
-                left: { style: "thin", color: { rgb: "000000" } },
-                right: { style: "thin", color: { rgb: "000000" } },
-              },
-            };
-          }
-        });
-      });
-  
-      // Auto width for columns
-      const estimatedBudgetColumnWidths = estimatedBudgetData[0].map(() => ({ wch: 30 }));
-      estimatedBudgetWorksheet["!cols"] = estimatedBudgetColumnWidths;
-  
-      XLSX.utils.book_append_sheet(workbook, estimatedBudgetWorksheet, "Estimated Budget");
+      csvRows.push(`"B. Paper Rim","${estimatedBudget.paperrimAmount?.amount || "N/A"}"`);
+      csvRows.push(`"C. Literature, documentation, online literature search, contingencies, postage","${estimatedBudget.literatureAndOtherAmount?.amount || "N/A"}"`);
+      csvRows.push(`"D. Local Travel","${estimatedBudget.localTravel?.amount || "N/A"}"`);
+      csvRows.push(`"E. Other costs","${estimatedBudget.othercostAmount?.amount || "N/A"}"`);
     }
   
-    // Generate Excel file and trigger download
-    XLSX.writeFile(workbook, "ORICFundedProject.xlsx");
-  };
+    // Join the rows into a single CSV content string
+    const encodedUri = encodeURI(csvContent + csvRows.join("\n"));
   
+    // Create and trigger the download link
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "ORICFundedProject.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
 
   const downloadORICFundedProjectCSV = () => {

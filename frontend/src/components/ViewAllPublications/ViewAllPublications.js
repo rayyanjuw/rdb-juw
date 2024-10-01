@@ -15,7 +15,6 @@ import {
 } from "../../api/Api";
 import { toast } from "react-toastify";
 
-
 const ViewAllPublications = () => {
   const location = useLocation();
   const currentPath = location.pathname;
@@ -62,6 +61,7 @@ const ViewAllPublications = () => {
     fetchData();
   }, []);
 
+
   if (loading) {
     return <div>Loading Research Publications...</div>;
   }
@@ -72,32 +72,35 @@ const ViewAllPublications = () => {
 
   const downloadPDF = (data) => {
     const doc = new jsPDF();
-  
+
     // Set title font and add the title
     doc.setFontSize(16);
     doc.text("Publications", 14, 15);
-  
+
     let yOffset = 25; // Initial Y position
-  
+
     data.forEach((research, index) => {
       // Title for each publication
       doc.setFontSize(14);
       doc.text(`Publication #${index + 1}`, 14, yOffset);
       yOffset += 5; // Adjust position for the next element
-  
+
       // Prepare data for the table
-      const tableData = Object.entries(research).map(([key, value]) => [key, value]);
-  
+      const tableData = Object.entries(research).map(([key, value]) => [
+        key,
+        value,
+      ]);
+
       // Create a table for the publication
       doc.autoTable({
         startY: yOffset,
-        head: [['Key', 'Value']],
+        head: [["Key", "Value"]],
         body: tableData,
-        theme: 'grid',
+        theme: "grid",
         headStyles: {
           fillColor: [79, 129, 189], // Blue color for header background
           textColor: [255, 255, 255], // White color for header text
-          fontStyle: 'bold',
+          fontStyle: "bold",
         },
         bodyStyles: {
           fillColor: [226, 236, 255], // Light blue color for body background
@@ -116,26 +119,26 @@ const ViewAllPublications = () => {
           yOffset = data.cursor.y; // Update yOffset to the position after the table
         },
       });
-  
+
       yOffset += 10; // Space between tables
-  
+
       // If the content reaches the bottom of the page, add a new page
       if (yOffset > 270) {
         doc.addPage();
         yOffset = 20; // Reset Y position for new page
       }
     });
-  
+
     doc.save("publications.pdf");
   };
-  
-  
-  
+
   const downloadCSV = (data) => {
-    const csvContent = "data:text/csv;charset=utf-8,"
-      + Object?.keys(data[0]).join(",") + "\n" // Add headers
-      + data?.map(row => Object.values(row).join(",")).join("\n"); // Add rows
-  
+    const csvContent =
+      "data:text/csv;charset=utf-8," +
+      Object?.keys(data[0]).join(",") +
+      "\n" + // Add headers
+      data?.map((row) => Object.values(row).join(",")).join("\n"); // Add rows
+
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
@@ -144,40 +147,43 @@ const ViewAllPublications = () => {
     link.click();
     document.body.removeChild(link);
   };
-  
-  
+
   const downloadExcel = (data) => {
     // Create a new workbook and worksheet
     const workbook = XLSX.utils.book_new();
     const worksheet = XLSX.utils.aoa_to_sheet([]);
-  
+
     // Initialize row index
     let rowIndex = 0;
-  
+
     // Loop through each publication and create a styled table
     data.forEach((research, index) => {
       // Header for the publication
       const headerRow = [`Publication #${index + 1}`];
-      XLSX.utils.sheet_add_aoa(worksheet, [headerRow], { origin: `A${rowIndex + 1}` });
-  
+      XLSX.utils.sheet_add_aoa(worksheet, [headerRow], {
+        origin: `A${rowIndex + 1}`,
+      });
+
       // Extract keys and values
       const keys = Object.keys(research);
       const values = Object.values(research);
-  
+
       // Add keys and values as table rows
       const tableData = keys.map((key, idx) => [key, values[idx]]);
-      XLSX.utils.sheet_add_aoa(worksheet, tableData, { origin: `A${rowIndex + 2}` });
-  
+      XLSX.utils.sheet_add_aoa(worksheet, tableData, {
+        origin: `A${rowIndex + 2}`,
+      });
+
       // Apply styles to the header row
       const headerCell = XLSX.utils.encode_cell({ r: rowIndex, c: 0 });
       if (worksheet[headerCell]) {
         worksheet[headerCell].s = {
           font: { bold: true, color: { rgb: "FFFFFF" } },
           fill: { fgColor: { rgb: "4F81BD" } },
-          alignment: { horizontal: "center", vertical: "center" }
+          alignment: { horizontal: "center", vertical: "center" },
         };
       }
-  
+
       // Apply background color and border to each cell in the publication table
       for (let r = rowIndex + 1; r <= rowIndex + keys.length + 1; ++r) {
         for (let c = 0; c < 2; ++c) {
@@ -189,27 +195,27 @@ const ViewAllPublications = () => {
               top: { style: "thin", color: { rgb: "000000" } },
               bottom: { style: "thin", color: { rgb: "000000" } },
               left: { style: "thin", color: { rgb: "000000" } },
-              right: { style: "thin", color: { rgb: "000000" } }
-            }
+              right: { style: "thin", color: { rgb: "000000" } },
+            },
           };
         }
       }
-  
+
       // Adjust column widths
-      worksheet['!cols'] = [
+      worksheet["!cols"] = [
         { wch: 30 }, // Width for key column
-        { wch: 50 }  // Width for value column
+        { wch: 50 }, // Width for value column
       ];
-  
+
       // Increment rowIndex by the number of rows in the current table + 3 for spacing
       rowIndex += keys.length + 3;
     });
-  
+
     // Add the worksheet to the workbook
-    XLSX.utils.book_append_sheet(workbook, worksheet, 'Publications');
-  
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Publications");
+
     // Write the workbook to a file and trigger the download
-    XLSX.writeFile(workbook, 'publications.xlsx');
+    XLSX.writeFile(workbook, "publications.xlsx");
   };
 
   const openModal = (publication) => {
@@ -222,7 +228,7 @@ const ViewAllPublications = () => {
   const handleDelete = async (id) => {
     try {
       await deletePublication(id);
-      toast.success("Successfully Deleted!")
+      toast.success("Successfully Deleted!");
       // After deleting, fetch the updated list of publications
       setData((prevData) =>
         prevData.filter((publication) => publication.id !== id)
@@ -239,7 +245,7 @@ const ViewAllPublications = () => {
 
     try {
       await updatePublication(selectedPublication.id, selectedPublication);
-      toast.success("Success!")
+      toast.success("Success!");
       setData((prevData) =>
         prevData.map(
           (publication) =>
@@ -304,21 +310,29 @@ const ViewAllPublications = () => {
             <div className="h4-heading" style={{ marginTop: "20px" }}>
               <h4>Publications:</h4>
             </div>
-            <div className="download-btn" style={{marginBottom: "20px"}}>
-            <button
-              type="button"
-              className="create-user-btn"
-              onClick={() => downloadPDF(data)}
-            >
-              DOWNLOAD PDF
-            </button>
-            <button type="button" className="create-user-btn" onClick={()=> downloadExcel(data)}>
-              DOWNLOAD EXCEL
-            </button>
-            <button type="button" className="create-user-btn" onClick={()=> downloadCSV(data)}>
-              DOWNLOAD CSV
-            </button>
-          </div>
+            <div className="download-btn" style={{ marginBottom: "20px" }}>
+              <button
+                type="button"
+                className="create-user-btn"
+                onClick={() => downloadPDF(data)}
+              >
+                DOWNLOAD PDF
+              </button>
+              <button
+                type="button"
+                className="create-user-btn"
+                onClick={() => downloadExcel(data)}
+              >
+                DOWNLOAD EXCEL
+              </button>
+              <button
+                type="button"
+                className="create-user-btn"
+                onClick={() => downloadCSV(data)}
+              >
+                DOWNLOAD CSV
+              </button>
+            </div>
             <div className="publications-table">
               {data.length > 0 ? (
                 data?.map((research, index) => (
@@ -329,18 +343,18 @@ const ViewAllPublications = () => {
                           `Publication ${index + 1}`}
                       </h5>
                       <div className="publication-actions">
-                      <button
-                        className="edit-btn"
-                        onClick={() => openModal(research)}
-                      >
-                        Edit
-                      </button>
-                      <button
-                        className="delete-btn"
-                        onClick={() => handleDelete(research.id)}
-                      >
-                        Delete
-                      </button>
+                        <button
+                          className="edit-btn"
+                          onClick={() => openModal(research)}
+                        >
+                          Edit
+                        </button>
+                        <button
+                          className="delete-btn"
+                          onClick={() => handleDelete(research.id)}
+                        >
+                          Delete
+                        </button>
                       </div>
                     </div>
                     <table>
@@ -459,7 +473,6 @@ const ViewAllPublications = () => {
                     type="number"
                     placeholder="Impact Factor"
                   />
-
                   <input
                     name="scopus"
                     onChange={handleInputChange}
@@ -467,7 +480,6 @@ const ViewAllPublications = () => {
                     type="text"
                     placeholder="Scopus"
                   />
-
                   <input
                     name="urlOfPublication"
                     onChange={handleInputChange}
