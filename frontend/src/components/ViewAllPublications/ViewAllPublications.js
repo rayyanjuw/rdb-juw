@@ -44,11 +44,38 @@ const ViewAllPublications = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const data = await getAllPublications();
+  //       setData(data);
+  //       setLoading(false);
+  //     } catch (error) {
+  //       setError(error.message);
+  //       setLoading(false);
+  //       // console.error("Error fetching publications:", error);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getAllPublications();
-        setData(data);
+        const fetchedData = await getAllPublications();
+
+        // Format the fetched data
+        const formattedData = fetchedData.map((publication) => ({
+          ...publication,
+          DateofPublication: new Date(
+            publication.DateofPublication
+          ).toLocaleDateString("en-US"),
+          webofScience: publication.webofScience ? "Yes" : "No",
+          scopus: publication.scopus ? "Yes" : "No",
+        }));
+
+        setData(formattedData);
         setLoading(false);
       } catch (error) {
         setError(error.message);
@@ -59,7 +86,6 @@ const ViewAllPublications = () => {
 
     fetchData();
   }, []);
-
 
   if (loading) {
     return <div>Loading Research Publications...</div>;
@@ -278,16 +304,86 @@ const ViewAllPublications = () => {
     },
   ];
 
+  // const handleInputChange = (e) => {
+  //   const { name, value } = e.target;
+
+  //   setSelectedPublication((prevSelectedPublication) => ({
+  //     ...prevSelectedPublication,
+  //     [name]: value,
+  //   }));
+
+  //   if (name === "email" && emailError) {
+  //     setEmailError("");
+  //   }
+  // };
+
+  const validateURL = (url) => {
+    // Ensure the URL starts with http:// or https://
+    const urlPattern = new RegExp("^(https?:\\/\\/)", "i");
+    return urlPattern.test(url);
+  };
+
+  // const handleInputChange = (e) => {
+  //   const { name, value } = e.target;
+
+  //   // Update the value based on the field
+  //   if (name === "webofScience" || name === "scopus") {
+  //     // Update value to boolean
+  //     const updatedValue = value === "Yes" ? true : value === "No" ? false : "";
+  //     setSelectedPublication((prev) => ({
+  //       ...prev,
+  //       [name]: updatedValue,
+  //     }));
+  //   } else {
+  //     // For all other fields
+  //     setSelectedPublication((prev) => ({
+  //       ...prev,
+  //       [name]: value,
+  //     }));
+  //   }
+
+  //   // Add URL validation for urlOfPublication field
+  //   if (name === "urlOfPublication") {
+  //     if (!validateURL(value)) {
+  //       setError("URL must start with http:// or https://");
+  //     } else {
+  //       setError(""); // Clear error if valid
+  //     }
+  //   }
+  // };
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
-    setSelectedPublication((prevSelectedPublication) => ({
-      ...prevSelectedPublication,
-      [name]: value,
+    // Update the value based on the field
+    let updatedValue;
+
+    if (name === "webofScience" || name === "scopus") {
+      // Update value to boolean
+      updatedValue = value === "Yes" ? true : value === "No" ? false : "";
+    } else {
+      // For all other fields
+      updatedValue = value;
+    }
+
+    // Update the selected publication with the new value
+    setSelectedPublication((prev) => ({
+      ...prev,
+      [name]: updatedValue,
     }));
 
-    if (name === "email" && emailError) {
-      setEmailError("");
+    // Handle URL validation separately to ensure it doesn't conflict
+    if (name === "urlOfPublication") {
+      if (!validateURL(value)) {
+        setError("URL must start with http:// or https://");
+      } else {
+        setError(""); // Clear error if valid
+      }
+    } else {
+      // If the current field is not URL, make sure to clear the error
+      if (error) {
+        setError(""); // Clear error if another field is changed
+      }
     }
   };
 
@@ -354,7 +450,7 @@ const ViewAllPublications = () => {
                         </button>
                       </div>
                     </div>
-                    <table>
+                    {/* <table>
                       <tbody>
                         {Object.entries(research)
                           .slice(1, -5)
@@ -365,6 +461,28 @@ const ViewAllPublications = () => {
                             </tr>
                           ))}
                       </tbody>
+                    </table> */}
+                    <table>
+                      <tbody>
+                        {Object.entries(research)
+                          .slice(1, -5)
+                          .map(([key, value], subIndex) => {
+                            // Transform the values for webofScience and scopus
+                            const displayValue =
+                              key === "webofScience" || key === "scopus"
+                                ? value
+                                  ? "Yes"
+                                  : "No"
+                                : value;
+
+                            return (
+                              <tr key={subIndex}>
+                                <td className="key-column">{key}</td>
+                                <td className="value-column">{displayValue}</td>
+                              </tr>
+                            );
+                          })}
+                      </tbody>
                     </table>
                   </div>
                 ))
@@ -373,7 +491,8 @@ const ViewAllPublications = () => {
               )}
             </div>
           </div>
-          <Modal
+          {/* original */}
+          {/* <Modal
             isOpen={modalIsOpen}
             onRequestClose={closeModal}
             contentLabel={"Edit Publication Modal"}
@@ -384,6 +503,7 @@ const ViewAllPublications = () => {
             <form className="create-publication" onSubmit={handleSubmit}>
               <div className="create-publication-left">
                 <div className="multi-fields">
+                  <label htmlFor="articletype">Article Type</label>
                   <input
                     name="articletype"
                     onChange={handleInputChange}
@@ -487,6 +607,207 @@ const ViewAllPublications = () => {
                 </div>
               </div>
               <button className="submit-button" type="submit">
+                {editMode ? "UPDATE" : "Submit"}
+              </button>
+              {error && <p className="error">{error}</p>}
+            </form>
+          </Modal> */}
+
+          <Modal
+            isOpen={modalIsOpen}
+            onRequestClose={closeModal}
+            contentLabel={"Edit Publication Modal"}
+            className="vap-modal"
+            overlayClassName="vap-overlay"
+          >
+            <h2>Edit Publication</h2>
+            <form className="create-publication" onSubmit={handleSubmit}>
+              <div className="create-publication-left">
+                <div className="vap-multi-fields">
+                  <div className="vap-input-field">
+                    <label htmlFor="articletype">Article Type</label>
+                    <input
+                      name="articletype"
+                      onChange={handleInputChange}
+                      value={selectedPublication?.articletype || ""}
+                      type="text"
+                      placeholder="Article Type"
+                    />
+                  </div>
+
+                  <div className="vap-input-field">
+                    <label htmlFor="titleofmanuscript">
+                      Title of Manuscript
+                    </label>
+                    <input
+                      name="titleofmanuscript"
+                      onChange={handleInputChange}
+                      value={selectedPublication?.titleofmanuscript || ""}
+                      type="text"
+                      placeholder="Title of Manuscript"
+                    />
+                  </div>
+                  <div className="vap-input-field">
+                    <label htmlFor="journal">Journal</label>
+                    <input
+                      required
+                      name="journal"
+                      onChange={handleInputChange}
+                      value={selectedPublication?.journal || ""}
+                      type="text"
+                      placeholder="Journal"
+                    />
+                  </div>
+
+                  <div className="vap-input-field">
+                    <label htmlFor="ISSN">ISSN</label>
+                    <input
+                      required
+                      name="ISSN"
+                      onChange={handleInputChange}
+                      value={selectedPublication?.ISSN || ""}
+                      type="text"
+                      placeholder="ISSN"
+                    />
+                  </div>
+
+                  <div className="vap-input-field">
+                    <label htmlFor="Volume">Volume</label>
+                    <input
+                      required
+                      name="Volume"
+                      onChange={handleInputChange}
+                      value={selectedPublication?.Volume || ""}
+                      type="text"
+                      placeholder="Volume"
+                    />
+                  </div>
+
+                  <div className="vap-input-field">
+                    <label htmlFor="Issue">Issue</label>
+                    <input
+                      name="Issue"
+                      onChange={handleInputChange}
+                      value={selectedPublication?.Issue || ""}
+                      type="text"
+                      placeholder="Issue"
+                    />
+                  </div>
+
+                  <div className="vap-input-field">
+                    <label htmlFor="Year">Year</label>
+                    <input
+                      name="Year"
+                      onChange={handleInputChange}
+                      value={selectedPublication?.Year || ""}
+                      type="text"
+                      placeholder="Year"
+                    />
+                  </div>
+
+                  <div className="vap-input-field">
+                    <label htmlFor="DateofPublication">
+                      Date of Publication
+                    </label>
+                    <input
+                      name="DateofPublication"
+                      onChange={handleInputChange}
+                      // value={selectedPublication?.DateofPublication || ""}
+                      value={
+                        selectedPublication?.DateofPublication
+                          ? new Date(
+                              selectedPublication.DateofPublication
+                            ).toLocaleDateString("en-US")
+                          : ""
+                      }
+                      type="text"
+                      placeholder="Date of Publication"
+                    />
+                  </div>
+
+                  <div className="vap-input-field">
+                    <label htmlFor="HECcategory">HEC Category</label>
+                    <input
+                      name="HECcategory"
+                      onChange={handleInputChange}
+                      value={selectedPublication?.HECcategory || ""}
+                      type="text"
+                      placeholder="HEC Category"
+                    />
+                  </div>
+
+                  {/* <div className="vap-input-field">
+                    <label htmlFor="webofScience">Web of Science</label>
+                    <input
+                      name="webofScience"
+                      onChange={handleInputChange}
+                      // value={selectedPublication?.webofScience || ""}
+                      value={selectedPublication?.webofScience ? "Yes" : "No"}
+                      type="text"
+                      placeholder="Web of Science"
+                    />
+                  </div> */}
+
+                  <div className="vap-input-field">
+                    <label htmlFor="webofScience">Web of Science</label>
+                    <select
+                      name="webofScience"
+                      onChange={handleInputChange}
+                      value={selectedPublication?.webofScience ? "Yes" : "No"}
+                    >
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                  </div>
+
+                  <div className="vap-input-field">
+                    <label htmlFor="impactfactor">Impact Factor</label>
+                    <input
+                      name="impactfactor"
+                      onChange={handleInputChange}
+                      value={selectedPublication?.impactfactor || ""}
+                      type="number"
+                      placeholder="Impact Factor"
+                    />
+                  </div>
+
+                  {/* <div className="vap-input-field">
+                    <label htmlFor="scopus">Scopus</label>
+                    <input
+                      name="scopus"
+                      onChange={handleInputChange}
+                      // value={selectedPublication?.scopus || ""}
+                      value={selectedPublication?.scopus ? "Yes" : "No"}
+                      type="text"
+                      placeholder="Scopus"
+                    />
+                  </div> */}
+
+                  <div className="vap-input-field">
+                    <label htmlFor="scopus">Scopus</label>
+                    <select
+                      name="scopus"
+                      onChange={handleInputChange}
+                      value={selectedPublication?.scopus ? "Yes" : "No"}
+                    >
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                  </div>
+
+                  <div className="vap-input-field">
+                    <label htmlFor="urlOfPublication">URL of Publication</label>
+                    <input
+                      name="urlOfPublication"
+                      onChange={handleInputChange}
+                      value={selectedPublication?.urlOfPublication || ""}
+                      type="text"
+                      placeholder="URL of Publication"
+                    />
+                  </div>
+                </div>
+              </div>
+              <button className="vap-submit-button">
                 {editMode ? "UPDATE" : "Submit"}
               </button>
               {error && <p className="error">{error}</p>}

@@ -139,12 +139,22 @@ table td {
 
 .vap-modal {
   background-color: #fff;
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 20px;
-  max-width: 500px;
+  height: 60%;
+  overflow-y: scroll;
+  width: 30%;
   margin: auto;
   box-shadow: 0 5px 15px rgb(0 0 0 / 30%);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
+
+.vap-modal::-webkit-scrollbar {
+  display: none;
+}
+
+
 
 .vap-overlay {
   position: fixed;
@@ -155,12 +165,49 @@ table td {
   justify-content: center;
 }
 
-.submit-button {
+
+
+.vap-multi-fields {
+  margin-bottom: 15px;
+}
+
+.vap-multi-fields label {
+  display: block;
+  font-size: 0.8em;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.vap-multi-fields input {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 9px;
+  font-size: 0.95em;
+  transition: border-color 0.3s ease;
+}
+
+
+.vap-input-field select {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 9px;
+  font-size: 0.95em;
+  transition: border-color 0.3s ease;
+}
+
+
+.vap-input-field {
+  padding: 3px;
+}
+
+.vap-submit-button {
   color: white;
   background-color: #51cbce;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: none;
   width: 5vw;
   height: 4vh;
@@ -168,6 +215,69 @@ table td {
   font-size: 14px;
   border-radius: 30px;
 }
+
+
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative; /* You may also use fixed if needed */
+    z-index: 1; /* Ensure a lower z-index */
+  }
+
+  .viewallpublications {
+    padding: 10px;
+  }
+
+  .vap-modal {
+    width: 40%; 
+    height: auto; 
+    max-height: 70%; 
+    position: fixed; /* Change to fixed or absolute */
+    top: 50%; /* Center the modal */
+    left: 50%; /* Center the modal */
+    transform: translate(-50%, -50%); /* Center the modal */
+    z-index: 1000; /* Set a high z-index to ensure it's above other elements */
+    background-color: white; /* Ensure the modal has a visible background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional for better visibility */
+  }
+
+  .vap-submit-button {
+    color: white;
+    background-color: #51cbce;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    width: 10vw;
+    height: 4vh;
+    gap: 10px;
+    font-size: 14px;
+    border-radius: 30px;
+  }
+
+}
+
+
+
+
+/* @media (max-width: 1024px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+
+  .viewallpublications {
+    padding: 10px;
+  }
+
+  .vap-modal {
+    width: 50%; 
+    height: auto; 
+    max-height: 50%; 
+  }
+} */
 
 @media (width <= 768px) {
   .viewallpublications-whole-page {
@@ -219,6 +329,36 @@ table td {
     min-height: auto;
     padding: 20px;
     margin-top: 10px;
+  }
+
+  .vap-modal {
+    width: 75%;
+    padding: 10px;
+    height: 60%;
+    border-radius: 8px;
+  }
+
+  .vap-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgb(0 0 0 / 70%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .vap-submit-button {
+    color: white;
+    background-color: #51cbce;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    width: 20vw;
+    height: 4vh;
+    gap: 10px;
+    font-size: 14px;
+    border-radius: 30px;
   }
 }
 
@@ -272,7 +412,6 @@ table td {
     margin: 0;
   }
 
-
   .oricfundedproject button {
     width: 25vw;
     height: 5vh;
@@ -286,10 +425,12 @@ table td {
     font-size: 12px;
   }
 
-  .vip-modal {
-    align-items: center;
-    width: 80% !important;
-    justify-content: center;
+
+  .vap-modal {
+    width: 75%;
+    padding: 10px;
+    height: 60%;
+    border-radius: 8px;
   }
 
   .vap-overlay {
@@ -301,7 +442,7 @@ table td {
     justify-content: center;
   }
 
-  .edit-modal-submit-button {
+  .vap-submit-button {
     color: white;
     background-color: #51cbce;
     display: flex;
@@ -309,7 +450,7 @@ table td {
     justify-content: center;
     border: none;
     width: 20vw;
-    height: 5vh;
+    height: 4vh;
     gap: 10px;
     font-size: 14px;
     border-radius: 30px;

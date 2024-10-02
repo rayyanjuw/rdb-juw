@@ -70,7 +70,7 @@ const UserManagement = () => {
 
     if (!validateEmail(data.email)) {
       toast.error("Invalid email address.");
-      setEmailError("Invalid email address.");
+      // setEmailError("Invalid email address.");
       return;
     }
 
@@ -86,19 +86,24 @@ const UserManagement = () => {
       closeModal();
       fetchUsersFromServer();
     } catch (error) {
-      handleError(error);
+      // handleError(error);
     }
   };
 
   const validateEmail = (email) => {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailPattern.test(email);
+    // const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      // Updated regex to allow domains like .com, .edu.pk, .gov.uk, etc.
+      // const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(\.[a-zA-Z]{2,})?$/;
+      // return emailPattern.test(email);
+        // Updated regex to only allow valid domain extensions (2-6 lowercase letters)
+      const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,3}(\.[a-z]{2,3})?$/i;
+      return emailPattern.test(email);
   };
 
-  const handleError = (error) => {
-    toast.error("Server Error, Please try again later");
-    setError(error.message || "Server Error, Please try again later");
-  };
+  // const handleError = (error) => {
+  //   toast.error("Server Error, Please try again later");
+  //   setError(error.message || "Server Error, Please try again later");
+  // };
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -316,7 +321,7 @@ const UserManagement = () => {
                     </div>
                   </div>
                 </div>
-                <button className="submit-button" type="submit">
+                <button className="user-modal-submit-button" type="submit">
                   {editMode ? "UPDATE" : "Submit"}
                 </button>
                 {error && <p className="error">{error}</p>}
