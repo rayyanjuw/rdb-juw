@@ -25,7 +25,7 @@ sequelize.authenticate().then(() => {
 });
 
 
-sequelize.sync({ alter: true });
+// sequelize.sync({ alter: true });
 
 
 module.exports = sequelize

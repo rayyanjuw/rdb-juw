@@ -29,6 +29,10 @@ const NavBar = () => {
     window.location.href = '/';
   };
 
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
 
   return (
     <>
@@ -55,7 +59,7 @@ const NavBar = () => {
                     id="basic-menu"
                     anchorEl={anchorEl}
                     open={open}
-                    // onClose={handleClose}
+                    onClose={handleClose}
                     // onClose={handleLogout}
                   >
                     <MenuItem className='logout-btn' onClick={handleLogout}>Logout</MenuItem>
