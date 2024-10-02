@@ -44,28 +44,100 @@
 
 
 
+
+
+
 // chatgpt
 
+// import React, { createContext, useContext, useState, useEffect } from 'react';
+
+// const AuthContext = createContext();
+
+// export const AuthProvider = ({ children }) => {
+//   const [currentUser, setCurrentUser] = useState(() => {
+//     const token = localStorage.getItem('token');
+//     return token ? { token } : null; // Initialize state with token if exists
+//   });
+
+//   const login = (userData) => {
+//     setCurrentUser(userData);
+//   };
+
+//   const logout = () => {
+//     setCurrentUser(null);
+//     localStorage.removeItem('token'); // Remove token on logout
+//   };
+
+  
+//   return (
+//     <AuthContext.Provider value={{ currentUser, login, logout }}>
+//       {children}
+//     </AuthContext.Provider>
+//   );
+// };
+
+// export const useAuth = () => {
+//   return useContext(AuthContext);
+// };
+
+
+
+
 import React, { createContext, useContext, useState, useEffect } from 'react';
+
+// Utility function to check if token is expired
+const isTokenExpired = (token) => {
+  if (!token) return true;
+  const tokenPayload = JSON.parse(atob(token.split('.')[1])); // Decode JWT token
+  const expiryTime = tokenPayload.exp * 1000; // Convert to milliseconds
+  return Date.now() > expiryTime;
+};
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(() => {
     const token = localStorage.getItem('token');
-    return token ? { token } : null; // Initialize state with token if exists
+    
+    // Initialize state with token if exists and is not expired
+    if (token && !isTokenExpired(token)) {
+      return { token };
+    }
+    return null;
   });
 
+  useEffect(() => {
+    // Automatically logout if token expires
+    const token = currentUser?.token;
+    if (token && isTokenExpired(token)) {
+      logout();
+    }
+  }, [currentUser]);
+
   const login = (userData) => {
-    setCurrentUser(userData);
+    localStorage.setItem('token', userData.token); // Save token to localStorage
+    setCurrentUser(userData); // Set the current user
   };
 
   const logout = () => {
     setCurrentUser(null);
-    localStorage.removeItem('token'); // Remove token on logout
+    localStorage.removeItem('token'); // Remove token from localStorage
   };
 
-  // // Check localStorage for token on initial load
+  return (
+    <AuthContext.Provider value={{ currentUser, login, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+export const useAuth = () => {
+  return useContext(AuthContext);
+};
+
+
+
+// // Check localStorage for token on initial load
   // useEffect(() => {
   //   const token = localStorage.getItem('token');
   //   if (token) {
@@ -86,16 +158,6 @@ export const AuthProvider = ({ children }) => {
   //   setCurrentUser(null);
   // };
 
-  return (
-    <AuthContext.Provider value={{ currentUser, login, logout }}>
-      {children}
-    </AuthContext.Provider>
-  );
-};
-
-export const useAuth = () => {
-  return useContext(AuthContext);
-};
 
 
 
