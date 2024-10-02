@@ -2,7 +2,6 @@ import React, {useState} from 'react'
 import './navbar.css'
 
 //mui 
-import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
@@ -10,10 +9,11 @@ import MenuItem from '@mui/material/MenuItem';
 import { IoIosSearch } from "react-icons/io";
 import { CiSettings } from "react-icons/ci";
 import { GoTriangleDown,GoTriangleUp } from "react-icons/go";
-import { Navigate, useNavigate } from 'react-router-dom';
+
 
 
 const NavBar = () => {
+  // eslint-disable-next-line no-unused-vars
   const [token, setToken] = useState("")
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -21,7 +21,7 @@ const NavBar = () => {
     setAnchorEl(event.currentTarget);
   };
 
-  const navigate = useNavigate("")
+ 
 
   const handleLogout = async () => {
     localStorage.removeItem("token");
