@@ -16,50 +16,50 @@ const AddGrants = ({ onSave  }) => {
 
 
   const breadCrumps = [
-    { label: "Proposal Cover", path: "/add-international/national-grants" },
+    { label: "Proposal Cover" },
     {
       label: "Executive Summary",
-      path: "/add-international/national-grants-executive-summary",
+      
     },
     {
       label: "Academic/Sectoral Collaborators",
-      path: "/international/national-grants-academic/Sectoral-collaborators",
+     
     },
     {
       label: "Project Description",
-      path: "/international/national-grants-project-description",
+      
     },
     {
       label: "Project Management",
-      path: "/international/national-grants-project-management",
+     
     },
     {
       label: "Implementation Timeline",
-      path: "/international/national-grants-implementation-timeline",
+      
     },
     {
       label: "Physical Resources and Facilities",
-      path: "/international/national-grants-physical-resources-and-facilities",
+      
     },
     {
       label: "Scientific Personnel",
-      path: "/international/national-grants-scientific-personnel",
+      
     },
     {
       label: "Principal Investigators availed research grant details",
-      path: "/international/national-grants-principal-investigators-availed-research-grant-details",
+      
     },
     {
       label: "Risk Management Strategy",
-      path: "/international/national-grants-risk-management-strategy",
+     
     },
     {
       label: "List of References",
-      path: "/international/national-grants-list-of-references",
+     
     },
     {
       label: "Proposed Project Budget",
-      path: "/international/national-grants-proposed-project-budget",
+      
     },
   ];
 
@@ -275,26 +275,28 @@ const AddGrants = ({ onSave  }) => {
                   </label>
                 </div>
               </div> */}
-              <div className="theme-research-checkbox">
+              <div className="theme-research-checkbox d-flex align-items-center gap-4">
                 {['Basic', 'Applied'].map((theme) => (
-                  <div key={theme}>
-                    <label>
+                  <div className="checkbox-item d-flex align-items-center" key={theme}>
+                    
                       <input
                         type="checkbox"
                         name="themeOfProposedResearch"
                         value={theme}
+                        className="w-auto"
                         checked={proposalCover.themeOfProposedResearch.includes(theme)}
                         data-section="proposalCover"
                         onChange={handleCheckboxChange}
                       />
                       {theme}
-                    </label>
+                    
                   </div>
                 ))}
               </div>
 
-              <div className="discipline-research-checkbox">
+              <div className="discipline-research-checkboxs">
                 <h6>Discipline of Proposed Research:</h6>
+                <div className="domain-research-checkbox d-flex align-items-center col-gap-2 pb-4 flex-wrap">
                 {[
                   "Agriculture Sciences",
                   "Arts & Humanities",
@@ -305,12 +307,13 @@ const AddGrants = ({ onSave  }) => {
                   "Mathematical and Physical Sciences",
                   "Social, Behavioral and Economical Sciences",
                 ].map((discipline) => (
-                  <div key={discipline}>
-                    <label>
+                  <div className="checkbox-item d-flex align-items-center " key={discipline}>
+                    
                       <input
                         type="checkbox"
                         name="disciplineOfProposedResearch"
                         value={discipline}
+                         className="w-auto"
                         checked={proposalCover.disciplineOfProposedResearch.includes(
                           discipline
                         )}
@@ -318,9 +321,10 @@ const AddGrants = ({ onSave  }) => {
                         onChange={handleCheckboxChange}
                       />
                       {discipline}
-                    </label>
+                    
                   </div>
                 ))}
+                </div>
               </div>
             </div>
 

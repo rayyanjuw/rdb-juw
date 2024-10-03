@@ -65,6 +65,8 @@ const MultiStepForm = () => {
   };
 
   const handleFormSubmit = async (data) => {
+    
+
     if (userRole === 'admin') {
       toast.error("Admin does not create ORIC Funded Data");
       setIsSubmitting(false); // Reset flag if userRole is not admin
@@ -81,7 +83,14 @@ const MultiStepForm = () => {
           },
         }
       );
-      setFormData("")
+      setStep(1);
+      setFormData({
+        proposalCover: {},
+        researchProject: {},
+        facilitiesandFunding: {},
+        justificationForBudgetItems: {},
+        estimatedBudget: {},
+      });
       toast.success("Data submitted successfully")
       // Handle successful response (e.g., navigate to a success page)
     } catch (error) {
