@@ -12,19 +12,22 @@ const AddIntellectualProperty = () => {
     OwnerIp: "Jinnah University of Women",
     address: "Jinnah University for Women, 5-C Nazimabad, 74600, Karachi.",
     fieldofinvention: "",
-    backgroundofinvention: "", 
+    backgroundofinvention: "",
     descriptionofinvention: "",
     refrences: "",
     inventivesteps: "",
   };
 
-  const [addintellectualproperty, setIntellectualProperty] = useState(initialPropertyState);
+  const [addintellectualproperty, setIntellectualProperty] =
+    useState(initialPropertyState);
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-  const [errorMessage, setErrorMessage] = useState(''); // For Field of Invention
-  const [backgroundErrorMessage, setBackgroundErrorMessage] = useState(''); // For Background of Invention
-  const [descriptionErrorMessage, setDescriptionErrorMessage] = useState('');
-
+  const [errorMessage, setErrorMessage] = useState(""); // For Field of Invention
+  const [backgroundErrorMessage, setBackgroundErrorMessage] = useState(""); // For Background of Invention
+  const [descriptionErrorMessage, setDescriptionErrorMessage] = useState("");
+  const [inventiveStepsErrorMessage, setInventiveStepsErrorMessage] =
+    useState(""); // For Inventive Steps
+  const [referencesErrorMessage, setReferencesErrorMessage] = useState(""); // For References
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -34,44 +37,88 @@ const AddIntellectualProperty = () => {
     }));
   };
 
-
-    // Validation for Field of The Invention (max 50 words)
-    const validateWordCount = () => {
-      const wordCount = addintellectualproperty.fieldofinvention.trim().split(/\s+/).length;
-      if (wordCount > 50) {
-        setErrorMessage('Not more than 50 words are allowed.');
-      } else {
-        setErrorMessage('');
-      }
-    };
-  
-    // Validation for Background Of The Invention (max 800 words)
-    const validateBackgroundWordCount = () => {
-      const wordCount = addintellectualproperty.backgroundofinvention.trim().split(/\s+/).length;
-      if (wordCount > 800) {
-        setBackgroundErrorMessage('Not more than 800 words are allowed.');
-      } else {
-        setBackgroundErrorMessage('');
-      }
-    };
-
-      // Validation for Description Of Invention (max 250 words)
-  const validateDescriptionWordCount = () => {
-    const wordCount = addintellectualproperty.descriptionofinvention.trim().split(/\s+/).length;
-    if (wordCount > 250) {
-      setDescriptionErrorMessage('Not more than 250 words are allowed.');
+  // Validation for Field of The Invention (max 50 words)
+  const validateWordCount = () => {
+    const wordCount = addintellectualproperty?.fieldofinvention
+      .trim()
+      .split(/\s+/).length;
+    if (wordCount > 50) {
+      setErrorMessage("Not more than 50 words are allowed.");
     } else {
-      setDescriptionErrorMessage('');
+      setErrorMessage("");
     }
   };
 
+  // Validation for Background Of The Invention (max 800 words)
+  const validateBackgroundWordCount = () => {
+    const wordCount = addintellectualproperty?.backgroundofinvention
+      .trim()
+      .split(/\s+/).length;
+    if (wordCount > 800) {
+      setBackgroundErrorMessage("Not more than 800 words are allowed.");
+    } else {
+      setBackgroundErrorMessage("");
+    }
+  };
 
+  // Validation for Description Of Invention (max 250 words)
+  const validateDescriptionWordCount = () => {
+    const wordCount = addintellectualproperty?.descriptionofinvention
+      .trim()
+      .split(/\s+/).length;
+    if (wordCount > 250) {
+      setDescriptionErrorMessage("Not more than 250 words are allowed.");
+    } else {
+      setDescriptionErrorMessage("");
+    }
+  };
 
+  // Validation for Inventive Steps (max 6 bullet points)
+  const validateInventiveSteps = () => {
+    const bulletPoints = addintellectualproperty?.inventivesteps
+      .trim()
+      .split(/\n+/); // Split by line breaks
+    if (bulletPoints?.length > 6) {
+      setInventiveStepsErrorMessage(
+        "Not more than 6 bullet points are allowed."
+      );
+    } else {
+      setInventiveStepsErrorMessage("");
+    }
+  };
+
+  // Validation for References (max 10 references)
+  const validateReferences = () => {
+    const references = addintellectualproperty?.refrences?.trim().split(/\n+/); // Split by line breaks
+    if (references?.length > 10) {
+      setReferencesErrorMessage("Not more than 10 references are allowed.");
+    } else {
+      setReferencesErrorMessage("");
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     setSuccessMessage("");
+
+    // Run all validations
+    validateWordCount();
+    validateBackgroundWordCount();
+    validateDescriptionWordCount();
+    validateInventiveSteps();
+    validateReferences();
+
+    if (
+      errorMessage ||
+      backgroundErrorMessage ||
+      descriptionErrorMessage ||
+      inventiveStepsErrorMessage ||
+      referencesErrorMessage
+    ) {
+      toast.error("Please correct the errors before submitting.");
+      return; // Prevent submission if any errors exist
+    }
 
     try {
       const newProperty = {
@@ -84,14 +131,16 @@ const AddIntellectualProperty = () => {
         refrences: addintellectualproperty.refrences,
         inventivesteps: addintellectualproperty.inventivesteps,
       };
-
-      await createIntellectualProperty(newProperty);
+    
+      const response = await createIntellectualProperty(newProperty);
+      console.log(response); // Log the API response
       setSuccessMessage("Intellectual property created successfully.");
       setIntellectualProperty(initialPropertyState);
       toast.success("Intellectual property created successfully.");
     } catch (error) {
+      console.error("Error:", error); // Log the actual error
       setError(error.message || "An error occurred. Please try again.");
-      toast.error(error.message || "An error occurred. Please try again.")
+      toast.error(error.message || "An error occurred. Please try again.");
     }
   };
 
@@ -155,7 +204,7 @@ const AddIntellectualProperty = () => {
                   onBlur={validateWordCount}
                   required
                 />
-                {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+                {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
               </div>
 
               <div className="inputgroup">
@@ -169,7 +218,9 @@ const AddIntellectualProperty = () => {
                   onBlur={validateBackgroundWordCount}
                   required
                 />
-                {backgroundErrorMessage && <p style={{ color: 'red' }}>{backgroundErrorMessage}</p>}
+                {backgroundErrorMessage && (
+                  <p style={{ color: "red" }}>{backgroundErrorMessage}</p>
+                )}
               </div>
 
               <div className="inputgroup">
@@ -183,7 +234,9 @@ const AddIntellectualProperty = () => {
                   onBlur={validateDescriptionWordCount}
                   required
                 />
-                {descriptionErrorMessage && <p style={{ color: 'red' }}>{descriptionErrorMessage}</p>}
+                {descriptionErrorMessage && (
+                  <p style={{ color: "red" }}>{descriptionErrorMessage}</p>
+                )}
               </div>
 
               <div className="inputgroup">
@@ -194,8 +247,12 @@ const AddIntellectualProperty = () => {
                   name="refrences"
                   placeholder="Not more than 10"
                   onChange={handleChange}
+                  onBlur={validateReferences} // Trigger validation on blur
                   required
                 />
+                {referencesErrorMessage && (
+                  <p style={{ color: "red" }}>{referencesErrorMessage}</p>
+                )}
               </div>
 
               <div className="inputgroup">
@@ -206,15 +263,19 @@ const AddIntellectualProperty = () => {
                   placeholder="Approximately 5-6 Bullet points"
                   name="inventivesteps"
                   onChange={handleChange}
+                  onBlur={validateInventiveSteps} // Trigger validation on blur
                   required
                 />
+                {inventiveStepsErrorMessage && (
+                  <p style={{ color: "red" }}>{inventiveStepsErrorMessage}</p>
+                )}
               </div>
 
               <div className="aip-save-btn">
-                <button type="submit" className="aip-savebut">Save</button>
+                <button type="submit" className="aip-savebut">
+                  Save
+                </button>
               </div>
-
-              
             </div>
           </form>
         </div>

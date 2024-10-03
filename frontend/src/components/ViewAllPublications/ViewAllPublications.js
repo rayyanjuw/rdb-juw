@@ -620,7 +620,7 @@ const ViewAllPublications = () => {
             className="vap-modal"
             overlayClassName="vap-overlay"
           >
-            <h2>Edit Publication</h2>
+            <h4>Edit Publication</h4>
             <form className="create-publication" onSubmit={handleSubmit}>
               <div className="create-publication-left">
                 <div className="vap-multi-fields">

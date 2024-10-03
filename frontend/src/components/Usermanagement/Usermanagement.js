@@ -360,7 +360,6 @@ const UserManagement = () => {
                     {emailError && <p className="error">{emailError}</p>}
                     <div className="password-container">
                       <input
-                        required
                         name="password"
                         onChange={handleInputChange}
                         value={data.password}
