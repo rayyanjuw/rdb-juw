@@ -31,9 +31,15 @@ const ViewORICFundedProjects = () => {
    // Filter projects based on search term (Name of PI)
    const filteredProjects = ORICProjects.filter((project) => {
     const proposalCover = JSON.parse(project.proposalCover || "{}");
-    return proposalCover.nameOfPI
+    return (
+
+      proposalCover.nameOfPI
       ?.toLowerCase()
-      .includes(searchTerm.toLowerCase());
+      .includes(searchTerm.toLowerCase()) ||
+      proposalCover.title
+      ?.toLowerCase()
+      .includes(searchTerm.toLowerCase())
+    ) 
   });
 
   // const ORICProjects = [
@@ -72,7 +78,7 @@ const ViewORICFundedProjects = () => {
       <div className="vieworicfundedproject">
         <div className="vieworic-navbar-div">
           <h4>Submission | Intellectual Property</h4>
-          <NavBar />
+          <NavBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} searchplaceholder="Search ORIC Funded... " />
         </div>
         <div className="vieworicfundedproject-card">
         <div className="d-flex align-items-center justify-content-between">
@@ -86,7 +92,9 @@ const ViewORICFundedProjects = () => {
             </div>
           <div className="vieworicfundedproject-table-data">
             <div className="vieworicfundedproject-table-container">
-              {filteredProjects.map((project, index) => {
+
+              {filteredProjects.length > 0 ? (
+              filteredProjects.map((project, index) => {
                 const proposalCover = JSON.parse(project.proposalCover || "{}");
                 return (
                 <div key={index} className="vieworicfundedproject-list-table">
@@ -113,7 +121,14 @@ const ViewORICFundedProjects = () => {
                     <span>{proposalCover.totalBudgetRequested}</span>
                   </div>
                 </div>
-              )})}
+              )} )
+            ) : (
+              <div className="d-flex align-items-center text-12 border-top pb-2">
+                
+                    <h5 className="display-1 mt-5">Project Not Found</h5>
+                  </div>
+            
+            )}
             </div>
           </div>
         </div>

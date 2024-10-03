@@ -50,10 +50,11 @@
 
 .viewgrants-detail {
   display: flex;
-  align-items: start;
+  align-items: center;
   gap: 10px;
   justify-content: start;
   flex-direction: row;
+  padding-bottom: .5rem;
 }
 
 .viewgrants-detail h5 {

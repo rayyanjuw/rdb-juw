@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 const ResearchPublication = () => {
   const location = useLocation();
   const currentPath = location.pathname;
+  const [searchTerm, setSearchTerm] = useState(""); 
 
   const data = {
     articletype: "",
@@ -159,7 +160,7 @@ const ResearchPublication = () => {
         <Sidebar />
         <div className="research-publication">
           <div className="navbar-div">
-            <NavBar />
+          <NavBar />
           </div>
           <div className="research-publication-card">
             <h3 className="research-portfolio">

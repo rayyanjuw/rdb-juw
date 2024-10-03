@@ -18,6 +18,7 @@ import { toast } from "react-toastify";
 const ViewAllPublications = () => {
   const location = useLocation();
   const currentPath = location.pathname;
+  const [searchTerm, setSearchTerm] = useState(""); 
   const [data, setData] = useState([
     {
       articletype: "",
@@ -387,13 +388,37 @@ const ViewAllPublications = () => {
     }
   };
 
+
+   // Assuming `data` is already defined and populated
+   const filteredData = data.filter(research => {
+    const lowerCaseSearchTerm = searchTerm.toLowerCase();
+    return (
+      research.titleofmanuscript?.toLowerCase().includes(lowerCaseSearchTerm) ||
+      research.articletype?.toLowerCase().includes(lowerCaseSearchTerm) ||
+      research.journal?.toLowerCase().includes(lowerCaseSearchTerm) ||
+      research.ISSN?.toLowerCase().includes(lowerCaseSearchTerm) ||
+      research.Volume?.toLowerCase().includes(lowerCaseSearchTerm) ||
+      research.Issue?.toLowerCase().includes(lowerCaseSearchTerm) ||
+      research.Year?.toString().includes(lowerCaseSearchTerm) || // Convert year to string for comparison
+      research.DateofPublication?.toLowerCase().includes(lowerCaseSearchTerm) ||
+      research.HECcategory?.toLowerCase().includes(lowerCaseSearchTerm) ||
+      research.webofScience?.toLowerCase().includes(lowerCaseSearchTerm) ||
+      research.impactfactor?.toString().includes(lowerCaseSearchTerm) || // Convert impact factor to string
+      research.scopus?.toLowerCase().includes(lowerCaseSearchTerm) ||
+      research.urlOfPublication?.toLowerCase().includes(lowerCaseSearchTerm)
+    );
+  });
+
+
+
+
   return (
     <>
       <div className="viewallpublications-whole-page">
         <Sidebar />
         <div className="viewallpublications">
           <div className="navbar-div">
-            <NavBar />
+            <NavBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} searchplaceholder="Search Publications... " />
           </div>
           <div className="viewallpublications-card">
             <h4>Research portfolio | Publications</h4>
@@ -427,8 +452,10 @@ const ViewAllPublications = () => {
               </button>
             </div>
             <div className="publications-table">
-              {data.length > 0 ? (
-                data?.map((research, index) => (
+              
+              {
+              filteredData.length > 0 ? (
+                filteredData?.map((research, index) => (
                   <div key={index} className="publication-section">
                     <div className="publication-header">
                       <h5 className="publication-heading">
