@@ -208,7 +208,7 @@ const ResearchProject = ({ onSave }) => {
 
               <div className="multicheckboxes">
                 <h6>Nature of Proposed Research</h6>
-                <div className="domain-research-checkbox">
+                <div className="domain-research-checkbox d-flex align-items-center gap-4 ">
                   {[
                     "Basic",
                     "Applied",
@@ -216,12 +216,13 @@ const ResearchProject = ({ onSave }) => {
                     "Commercialized",
                     "Thematic Research",
                   ].map((item) => (
-                    <div className="checkbox-item" key={item}>
-                      <label>
+                    <div className="checkbox-item d-flex align-items-center  " key={item}>
+                      
                         <input
                           type="checkbox"
                           name="natureOfProposedResearch"
                           value={item}
+                          className="w-auto"
                           // checked={formData.natureOfResearch.includes(item)}
                           checked={ResearchProject.natureOfProposedResearch.includes(
                             item
@@ -229,17 +230,17 @@ const ResearchProject = ({ onSave }) => {
                           onChange={handleCheckboxChange}
                           required
                         />
+                      
                         {item}
-                      </label>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <h6 className="research-project-domain">
+              <h6 className="research-project-domain pt-4">
                 Domain of Proposed Research
               </h6>
-              <div className="domain-research-checkbox">
+              <div className="domain-research-checkbox d-flex align-items-center col-gap-2 pb-4">
                 {[
                   "Arts and Humanities",
                   "Economic & Social Research",
@@ -249,12 +250,13 @@ const ResearchProject = ({ onSave }) => {
                   "Natural & Environment sciences",
                   "Information and Communication Technology",
                 ].map((domain) => (
-                  <div key={domain}>
-                    <label>
+                  <div key={domain} className="checkbox-item d-flex align-items-center ">
+                   
                       <input
                         type="checkbox"
                         name="domainOfProposedResearch"
                         value={domain}
+                        className="w-auto"
                         // checked={formData.domainOfResearch.includes(domain)}
                         checked={ResearchProject.domainOfProposedResearch.includes(
                           domain
@@ -263,7 +265,7 @@ const ResearchProject = ({ onSave }) => {
                         required
                       />
                       {domain}
-                    </label>
+                   
                   </div>
                 ))}
               </div>
