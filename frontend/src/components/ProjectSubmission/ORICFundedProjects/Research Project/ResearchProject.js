@@ -487,7 +487,7 @@ const ResearchProject = ({ onSave }) => {
                       {index + 1}. Duration/ Time period {quarterLabel}
                     </h6>
                     <div className="title-input">
-                      <label>Activities:</label>
+                      <label className="activities">Activities:</label>
                       <input
                         type="text"
                         value={Schedule.activities} // Access activities from the Schedule item
