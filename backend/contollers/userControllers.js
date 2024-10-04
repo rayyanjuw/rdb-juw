@@ -66,6 +66,13 @@ const createUser = async (req, res) => {
       return res.status(400).json({ message: "User already exists" });
     }
 
+    // Check if the email already exists
+    const existingEmail = await User.findOne({ where: { email } });
+    if (existingEmail) {
+      console.log("User already exists with email:", email);
+      return res.status(400).json({ message: "Email already in use" });
+    }
+
     console.log("Creating new user...");
     // Create the new user
     await User.create({
@@ -84,7 +91,12 @@ const createUser = async (req, res) => {
       .json({ message: `${role} user created successfully`, role });
   } catch (error) {
     console.error("Error creating user:", error); // Log detailed error
-    res.status(500).json({ message: "Server error" });
+    if (error instanceof Sequelize.UniqueConstraintError) {
+      return res.status(400).json({ message: "Email must be unique." });
+    }
+
+    return res.status(500).json({ message: "Server error" });
+    // res.status(500).json({ message: "Server error" });
   }
 };
 

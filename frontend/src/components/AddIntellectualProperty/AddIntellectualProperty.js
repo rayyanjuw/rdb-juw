@@ -133,13 +133,13 @@ const AddIntellectualProperty = () => {
       };
     
       const response = await createIntellectualProperty(newProperty);
-      console.log(response); // Log the API response
+      // console.log(response); // Log the API response
       setSuccessMessage("Intellectual property created successfully.");
       setIntellectualProperty(initialPropertyState);
       toast.success("Intellectual property created successfully.");
     } catch (error) {
-      console.error("Error:", error); // Log the actual error
-      setError(error.message || "An error occurred. Please try again.");
+      // console.error("Error:", error); // Log the actual error
+      // setError(error.message || "An error occurred. Please try again.");
       toast.error(error.message || "An error occurred. Please try again.");
     }
   };

@@ -121,8 +121,12 @@ const UserManagement = () => {
       closeModal();
       fetchUsersFromServer();
     } catch (error) {
+      console.error("Error during user creation:", error); 
+      console.log("Error details:", error.response ? error.response.data : "No response");
+// Log the error for debugging
       // handleError(error);
-    }
+     
+  }
   };
 
   const validateEmail = (email) => {
@@ -282,10 +286,10 @@ const UserManagement = () => {
         await deleteUser(userId);
         // After successful deletion, update the state to remove the user from the list
         setUsers(users.filter((user) => user.id !== userId));
-        alert("User deleted successfully");
+        toast.success("User deleted successfully");
       } catch (error) {
         console.error("Error deleting user:", error.message);
-        alert("Failed to delete user.");
+        toast.error("Failed to delete user.");
       }
     }
   };

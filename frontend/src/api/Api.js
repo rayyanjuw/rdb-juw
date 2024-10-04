@@ -158,8 +158,16 @@ export const createUser = async (userData) => {
     // toast.success("User Created Successfully")
     return response.data;
   } catch (error) {
-    toast.error("Failed to create User")
-    throw error.response ? error.response.data : error;
+    if (error.response) {
+      // Extract message from error response
+      const { message } = error.response.data;
+      toast.error(message); // Show the specific error message from the backend
+      throw new Error(message); // Throw the specific error for further handling
+    } else {
+      // Handle network or unexpected errors
+      toast.error("Failed to create user. Please try again.");
+      throw error; // Re-throw the original error
+    }
   }
 };
 
@@ -188,7 +196,16 @@ export const updateUser = async (id, updatedData) => {
     });
     return response.data;
   } catch (error) {
-    throw new Error(error.response?.data?.message || "Failed to update user");
+    if (error.response) {
+      // Extract message from error response
+      const { message } = error.response.data;
+      toast.error(message); // Show the specific error message from the backend
+      throw new Error(message); // Throw the specific error for further handling
+    } else {
+      // Handle network or unexpected errors
+      toast.error("Failed to update user. Please try again.");
+      throw error; // Re-throw the original error
+    }
   }
 };
 
