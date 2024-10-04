@@ -119,8 +119,23 @@ div.textarea {
   margin-bottom: 20px;
 }
 
-.ascollaborators-inputgroup {
+/* .ascollaborators-inputgroup {
   margin-bottom: 15px;
+} */
+
+.ascollaborators-inputgroup {
+  position: relative;
+  margin-bottom: 1.5rem; /* Adjust based on your layout */
+}
+
+
+.error-message {
+  position: absolute;
+  top: 100%; /* Place the error message just below the input field */
+  left: 0;
+  color: red;
+  font-size: 0.875rem; /* Smaller font size for error message */
+  margin-top: 5px; /* Add some spacing between input and message */
 }
 
 .ascollaborators-two-inputs .ascollaborators-inputgroup {
