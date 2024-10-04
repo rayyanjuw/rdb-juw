@@ -394,12 +394,17 @@ const UserManagement = () => {
                       {emailError && <p className="error">{emailError}</p>}
                       <div className="password-container">
                         <input
-                          required
+                          
                           name="password"
                           onChange={handleInputChange}
                           value={data.password}
                           type={showPassword ? "text" : "password"}
-                          placeholder="Password"
+                          placeholder={
+                            editMode
+                              ? "Password (Leave blank to keep current)"
+                              : "Password"
+                          }
+                          required={!editMode}
                         />
                         <span
                           className="eye-icon"
