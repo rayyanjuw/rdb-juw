@@ -265,11 +265,12 @@ const UserManagement = () => {
   // Filter users based on search term
   const filteredUsers = users.filter((user) => {
     const searchLower = searchTerm.toLowerCase();
-    return (
-      user.email.toLowerCase().includes(searchLower) ||
-      user.username.toLowerCase().includes(searchLower) ||
-      user.role.toLowerCase().includes(searchLower)
-    );
+    const matches =
+    user.email.toLowerCase().includes(searchLower) ||
+    user.username.toLowerCase().includes(searchLower) ||
+    user.role.toLowerCase().includes(searchLower);
+  
+    return matches;
   });
 
   // Calculate sliced users for current page

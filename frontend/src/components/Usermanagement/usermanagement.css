@@ -101,6 +101,13 @@ button.pagination-button:hover {
   margin: 0px !important;
 }
 
+button.css-zylse7-MuiButtonBase-root-MuiIconButton-root {
+  background: #eaeaea !important;
+  color: #333 !important;
+  padding: 5px !important;
+  margin: 0px 4px !important;
+}
+
 button.pagination-button {
   background: transparent !important;
   color: #333 !important;
