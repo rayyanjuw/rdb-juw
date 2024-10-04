@@ -11,7 +11,8 @@ const NationalInternationalGrant = sequelize.define('NationalInternationalGrant'
         references: {
             model: User,
             key: 'id'
-        }
+        },
+         onDelete: 'CASCADE'
     },
     departmentId: {
         type: DataTypes.INTEGER,

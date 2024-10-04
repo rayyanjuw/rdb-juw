@@ -18,7 +18,7 @@ const NavBar = ({ searchTerm, setSearchTerm = () => {}, searchplaceholder }) => 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
-  console.log("NavBar props:", { searchTerm, setSearchTerm });
+
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);

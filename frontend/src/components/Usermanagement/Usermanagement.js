@@ -1,6 +1,7 @@
 // updated
 import React, { useState, useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
+import { deleteUser } from "../../api/Api";
 import Sidebar from "../Sidebar/Sidebar";
 import Modal from "react-modal";
 import "./usermanagement.css";
@@ -16,6 +17,19 @@ import {
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { IoIosSearch } from "react-icons/io";
+import { TfiAngleRight, TfiAngleLeft  } from "react-icons/tfi";
+import { LiaEdit } from "react-icons/lia";
+import { MdOutlineDelete } from "react-icons/md";
+
+//material Ui
+import Paper from "@mui/material/Paper";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TablePagination from "@mui/material/TablePagination";
+import TableRow from "@mui/material/TableRow";
 
 const UserManagement = () => {
   const navigate = useNavigate();
@@ -38,6 +52,19 @@ const UserManagement = () => {
   const [filteredDepartments, setFilteredDepartments] = useState([]);
   const [departments, setDepartments] = useState([]);
   const [searchTerm, setSearchTerm] = useState(""); // New search term state
+
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  // Function to handle rows per page change
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0); // reset to first page
+  };
 
   const fetchDepartmentsFromServer = async () => {
     try {
@@ -241,17 +268,44 @@ const UserManagement = () => {
     );
   });
 
+  // Calculate sliced users for current page
+  const paginatedUsers = filteredUsers.slice(
+    page * rowsPerPage,
+    page * rowsPerPage + rowsPerPage
+  );
+
+
+   // Function to handle delete
+   const handleDeleteUser = async (userId) => {
+    if (window.confirm("Are you sure you want to delete this user?")) {
+      try {
+        await deleteUser(userId);
+        // After successful deletion, update the state to remove the user from the list
+        setUsers(users.filter((user) => user.id !== userId));
+        alert("User deleted successfully");
+      } catch (error) {
+        console.error("Error deleting user:", error.message);
+        alert("Failed to delete user.");
+      }
+    }
+  };
+
   return (
     <>
       <div className="whole-page-container">
         <Sidebar />
         <div className="user-management">
           <div className="navbar-div">
-            <NavBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} searchplaceholder="Search users .." />
+            <NavBar
+              searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm}
+              searchplaceholder="Search users .."
+            />
           </div>
           <div className="user-management-card">
-            <h4>Users and Roles</h4>
-            <div className="d-flex align-items-center justify-content-between w-100">
+            <h4 className="h4 px-0 m-0">Users and Roles</h4>
+            <div className="d-flex align-items-center justify-content-between w-100 ">
+            {/* <h5 className="h3">Current Users</h5> */}
               <button className="create-user-btn" onClick={openModal}>
                 ADD NEW USER
               </button>
@@ -370,9 +424,9 @@ const UserManagement = () => {
                 </div>
               </div> */}
             </div>
-            <div className="usermanagement-table-container">
-              <h5>Current Users</h5>
-              <table className="user-table">
+            <div className="usermanagement-table-container mt-2">
+              {/* <h5 className="pb-4">Current Users</h5> */}
+              {/* <table className="user-table">
                 <thead>
                   <tr className="list-table-format title">
                     <th>Name</th>
@@ -384,47 +438,154 @@ const UserManagement = () => {
                   </tr>
                 </thead>
                 <tbody>
-                   {filteredUsers.length > 0 ? (
-                  filteredUsers.map((user, index) => (
-                    <tr key={index} className="list-table-format">
-                      <td>{user.name}</td>
-                      <td>{user.username}</td>
-                      <td>{user.role}</td>
-                      <td>{user?.department?.name}</td>
-                      <td>{user.email}</td>
-                      <td className="buttonz">
-                        <button
-                          // type="button"
-                          className="edit_create-user-btn"
-                          onClick={() => openEditModal(user)}
-                        >
-                          EDIT
-                        </button>
-
-                        {/* Conditionally render "LOGIN AS" button based on current user role */}
-                        {(currentUserRole === "admin" ||
-                          currentUserRole === "manager") && (
+                  {paginatedUsers.length > 0 ? (
+                    paginatedUsers.map((user, index) => (
+                      <tr key={index} className="list-table-format">
+                        <td>{user.name}</td>
+                        <td>{user.username}</td>
+                        <td>{user.role}</td>
+                        <td>{user?.department?.name || "Administrator"}</td>
+                        <td>{user.email}</td>
+                        <td className="buttonz">
                           <button
-                            className="edit-create-user-btn"
-                            onClick={() => handleImpersonate(user.id)}
+                            className="edit_create-user-btn"
+                            onClick={() => openEditModal(user)}
                           >
-                            LOGIN
+                            EDIT
                           </button>
-                        )}
+
+                          {(currentUserRole === "admin" ||
+                            currentUserRole === "manager") && (
+                            <button
+                              className="edit-create-user-btn"
+                              onClick={() => handleImpersonate(user.id)}
+                            >
+                              LOGIN
+                            </button>
+                          )}
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan="6" className="not-found-message">
+                        User Not Found
                       </td>
                     </tr>
-                  ))
-                ) :(
-                  <tr>
-                  <td colSpan="6" className="not-found-message">
-                      User Not Found
-                  </td>
-              </tr>
-                
-              )}
-
+                  )}
                 </tbody>
               </table>
+              <div className="pagination-controls d-flex align-items-center justify-content-end">
+              <select className="select" value={rowsPerPage} onChange={handleChangeRowsPerPage}>
+                  <option value={5}>5</option>
+                  <option value={10}>10</option>
+                  <option value={15}>15</option>
+                </select>
+                <button
+                className="pagination-button"
+                  onClick={() => handleChangePage(page - 1)}
+                  disabled={page === 0}
+                >
+                  <TfiAngleLeft />
+                </button>
+                
+                <button
+                className="pagination-button"
+                  onClick={() => handleChangePage(page + 1)}
+                  disabled={
+                    page >= Math.ceil(filteredUsers.length / rowsPerPage) - 1
+                  }
+                >
+                  <TfiAngleRight />
+                </button>
+                
+              </div> */}
+              <Paper sx={{ width: "100%", overflow: 'hidden' }}>
+                <TableContainer sx={{ maxHeight: 440, minHeight: 200 }}>
+                  <Table stickyHeader aria-label="sticky table">
+                    <TableHead>
+                      <TableRow className="my-2">
+                        <TableCell className="tablehead">Name</TableCell>
+                        <TableCell className="tablehead">Username</TableCell>
+                        <TableCell className="tablehead" style={{ minWidth: 25 }} >User Role</TableCell>
+                        <TableCell className="tablehead">Department</TableCell>
+                        <TableCell className="tablehead">Email</TableCell>
+                        <TableCell className="tablehead">Actions</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {filteredUsers.length > 0 ? (
+                        filteredUsers
+                          .slice(
+                            page * rowsPerPage,
+                            page * rowsPerPage + rowsPerPage
+                          )
+                          .map((user, index) => (
+                            <TableRow
+                              hover
+                              role="checkbox"
+                              tabIndex={-1}
+                              key={user.code || index}
+                            >
+                              <TableCell className="tabldata">{user.name}</TableCell>
+                              <TableCell className="tabldata">{user.username}</TableCell>
+                              <TableCell className="tabldata">{user.role}</TableCell>
+                              <TableCell className="tabldata">
+                                {user?.department?.name || "Administrator"}
+                              </TableCell>
+                              <TableCell className="tabldata">{user.email}</TableCell>
+                              <TableCell className="buttonz tabldata ">
+                                <button
+                                  className="edit_create-user-btn pagination-button"
+                                  onClick={() => openEditModal(user)}
+                                  
+                                >
+                                  <LiaEdit size={22}/>
+
+                                </button>
+
+                                <button
+                                  className="edit_create-user-btn pagination-button"
+                                  onClick={() => handleDeleteUser(user.id)}
+                                  
+                                >
+                                  <MdOutlineDelete color="#8B0000" size={22}/>
+
+                                </button>
+
+                                {(currentUserRole === "admin" ||
+                                  currentUserRole === "manager") && (
+                                  <button
+                                    className="edit-create-user-btn loginas"
+                                    onClick={() => handleImpersonate(user.id)}
+                                  >
+                                    LOGIN
+                                  </button>
+                                )}
+                              </TableCell>
+                            </TableRow>
+                          ))
+                      ) : (
+                        <TableRow>
+                          <TableCell colSpan={6} className="not-found-message">
+                            User Not Found
+                          </TableCell>
+                        </TableRow>
+                      )}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+                <TablePagination
+                  rowsPerPageOptions={[10, 25, 100]}
+                  component="div"
+                  count={filteredUsers.length}
+                  rowsPerPage={rowsPerPage}
+                  page={page}
+                  onPageChange={handleChangePage}
+                  onRowsPerPageChange={handleChangeRowsPerPage}
+                  
+                />
+              </Paper>
             </div>
           </div>
           <div className="juw-copyright">

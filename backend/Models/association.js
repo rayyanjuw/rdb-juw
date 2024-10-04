@@ -9,6 +9,8 @@ const Honor = require('./honorsAwardsModels');
 const Membership = require('./membershipModel');
 const PublicationofFaculty = require('./PublicationofFaculty');
 const CompletedProject = require('./CompleteProjectModel');
+const NationalInternationalGrant = require('./nationalGrantsModels');
+const ORICFundedProject = require("./ORICFundedProject")
 
 
 // Define associations
@@ -86,6 +88,30 @@ Department.hasMany(Honor, {
     foreignKey: 'userId',
     as: 'user'
   });
+
+
+  User.hasMany(NationalInternationalGrant, {
+    foreignKey: 'userId',
+    as: 'nationalgrants', // This will delete the related records when a user is deleted
+    onDelete: 'CASCADE' 
+  });
+  
+  NationalInternationalGrant.belongsTo(User, {
+    foreignKey: 'userId',
+    as: 'user'
+  });
+
+  User.hasMany(ORICFundedProject, {
+    foreignKey: 'userId',
+    as: 'oricFunded', // This will delete the related records when a user is deleted
+    onDelete: 'CASCADE' 
+  });
+  
+  ORICFundedProject.belongsTo(User, {
+    foreignKey: 'userId',
+    as: 'user'
+  });
+  
 
   
 
