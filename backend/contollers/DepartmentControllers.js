@@ -47,9 +47,24 @@ const createDepartment = async (req, res) => {
 
 
 const getAllDepartmentNames = async (req, res) => {
+        
+    
+    
     try {
+        
+        const { role, departmentId } = req.user;
+        
+        let whereClause = {};
+
+        // If the user is not an Admin or Manager, restrict departments based on departmentId
+        if (role !== 'admin' && role !== 'manager') {
+            whereClause = { id: departmentId }; // Only return the user's department
+        }
+
+        // Fetch departments based on the where clause
         const departments = await Department.findAll({
             attributes: ['name'],
+            where: whereClause,
         });
 
         if (!departments || departments.length === 0) {

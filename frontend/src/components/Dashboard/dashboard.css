@@ -30,7 +30,7 @@
 .dashboard-card {
   width: 100%;
   min-height: min-content;
-  margin-top: 20px;
+  margin-top: 0px;
   height: auto; 
   display: flex;
   flex-direction: column;
@@ -41,7 +41,7 @@
   animation: fadeIn 1s;
   box-shadow: 0 4px 20px rgb(0 0 0 / 10%);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  padding: 20px;
+  padding: 10px;
 }
 
 .dashboard-portfolio {
@@ -57,7 +57,7 @@
   display: grid;
   grid-template-columns: 2fr 2fr; /* Two columns on larger screens */
   gap: 30px;
-  width: 65%;
+  width: 80%;
   margin: 20px 0;
 }
 

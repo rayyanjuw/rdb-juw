@@ -10,7 +10,8 @@ const ORICFundedProject = sequelize.define('ORICFundedProject', {
         references: {
             model: User,
             key: 'id',
-        }
+        },
+         onDelete: 'CASCADE'
     },
     departmentId: {
         type: DataTypes.INTEGER,

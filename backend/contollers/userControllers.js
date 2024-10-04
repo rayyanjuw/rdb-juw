@@ -6,6 +6,7 @@ const Publication = require("../Models/Publication");
 const { User, Department } = require("../Models/association");
 const { allowedRoles, roleHierarchy } = require("./../config/roles");
 const bcrypt = require("bcryptjs");
+const NationalInternationalGrant = require('../Models/nationalGrantsModels')
 
 const createUser = async (req, res) => {
   console.log("Received request to create user:", req.body);
@@ -173,11 +174,13 @@ const deleteUser = async (req, res) => {
     const { role: userRole, departmentId: requesterDeptId } = req.user;
 
     // Check if the user has permission to delete
-    if (!allowedRoles[userRole].includes("admin")) {
+    if (userRole !== 'admin') {
       return res
         .status(403)
         .json({ message: "You do not have permission to delete users" });
     }
+
+    
 
     // Find and delete the user
     const user = await User.findByPk(id);
@@ -186,7 +189,7 @@ const deleteUser = async (req, res) => {
     }
 
     // Ensure admins can only delete users within their own department
-    if (userRole === "admin" && user.departmentId !== requesterDeptId) {
+    if (userRole !== "admin" && user.departmentId !== requesterDeptId) {
       return res
         .status(403)
         .json({

@@ -12,11 +12,14 @@ import { GoTriangleDown,GoTriangleUp } from "react-icons/go";
 
 
 
-const NavBar = () => {
+const NavBar = ({ searchTerm, setSearchTerm = () => {}, searchplaceholder }) => {
   // eslint-disable-next-line no-unused-vars
   const [token, setToken] = useState("")
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+
+
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -39,7 +42,12 @@ const NavBar = () => {
       <div className="navbar-main-container">
         <div className="d-flex gap-4 flex-row align-items-center">
             <div className="searchbar">
-                <input type="search" placeholder='Search' className="search-input" />      
+                <input type="search"
+                className="search-input" 
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder={searchplaceholder || 'Search '} 
+                />      
                   <IoIosSearch />
              </div>
               <div className="abc">

@@ -52,7 +52,11 @@ const ViewGrants = () => {
    // Filter projects based on search term (Name of PI)
    const filteredGrants = nationalGrants.filter((project) => {
     const piName = project.proposalCover?.principalInvestigator?.name || "";
-    return piName.toLowerCase().includes(searchTerm.toLowerCase());
+    const title = project?.proposalCover?.titleOfProject || "";
+    return (
+      piName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      title.toLowerCase().includes(searchTerm.toLowerCase()) 
+  );
   });
 
 
@@ -75,25 +79,26 @@ const ViewGrants = () => {
           <NavBar />
         </div> */}
         <div className="viewgrants-navbar-div">
-          <NavBar />
+        <NavBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} searchplaceholder="Search Grants " />
         </div>
         <div className="viewgrants-card">
           <div className="d-flex align-items-center justify-content-between">
             
           <h5>International/National Grants | Proposal Cover</h5>
           
-          <div className="searchbar m-2">
+          {/* <div className="searchbar m-2">
                 <input type="text" placeholder='Search by Name of PI'  value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)} className="search-input" />      
                   <IoIosSearch />
-             </div>
+             </div> */}
             </div>
           <div className="viewgrants-table-data">
             <div className="viewgrants-table-container">
-              {filteredGrants.map((project, index) =>  (
+            {filteredGrants.length > 0 ? (
+              filteredGrants.map((project, index) =>  (
                 <div key={index} className="viewgrants-list-table">
                   <div className="viewgrants-detail">
-                    <h5>Project Details #{index + 1}</h5>
+                    <h5  className="d-flex justify-content-center align-items-center">Project Details #{index + 1}</h5>
                     <button type="button" className="m-0"  onClick={() => handleViewClick(project.id)}>
                       VIEW
                     </button>
@@ -115,7 +120,13 @@ const ViewGrants = () => {
                     <span>{project?.proposalCover?.totalBudgetRequested}</span>
                   </div>
                 </div>
-              ))}
+              ))
+            ) : (
+              <div className="d-flex align-items-center text-12 border-top pb-2">
+                
+                    <h5 className="display-1 mt-5">Project Not Found</h5>
+                  </div>
+            )}
             </div>
           </div>
         </div>

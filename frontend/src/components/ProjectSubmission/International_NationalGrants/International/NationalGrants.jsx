@@ -97,6 +97,7 @@ const NationalGrants = () => {
                 Authorization: `Bearer ${token}`,
               }
             });
+            setStep(1);
             toast.success('Data submitted successfully')
             // Handle successful response (e.g., navigate to a success page)
         } catch (error) {

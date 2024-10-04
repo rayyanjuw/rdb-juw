@@ -20,36 +20,47 @@ const AddGrants = ({ onSave }) => {
     { label: "Proposal Cover" },
     {
       label: "Executive Summary",
+      
     },
     {
       label: "Academic/Sectoral Collaborators",
+     
     },
     {
       label: "Project Description",
+      
     },
     {
       label: "Project Management",
+     
     },
     {
       label: "Implementation Timeline",
+      
     },
     {
       label: "Physical Resources and Facilities",
+      
     },
     {
       label: "Scientific Personnel",
+      
     },
     {
       label: "Principal Investigators availed research grant details",
+      
     },
     {
       label: "Risk Management Strategy",
+     
     },
     {
       label: "List of References",
+     
     },
     {
       label: "Proposed Project Budget",
+      
     },
   ];
 
@@ -499,29 +510,29 @@ const AddGrants = ({ onSave }) => {
                   </label>
                 </div>
               </div> */}
-              <div className="theme-research-checkbox">
-                {["Basic", "Applied"].map((theme) => (
-                  <div key={theme}>
-                    <label>
+              <div className="theme-research-checkbox d-flex align-items-center gap-4">
+                {['Basic', 'Applied'].map((theme) => (
+                  <div className="checkbox-item d-flex align-items-center" key={theme}>
+                    
                       <input
                         type="checkbox"
                         name="themeOfProposedResearch"
                         value={theme}
-                        checked={proposalCover.themeOfProposedResearch.includes(
-                          theme
-                        )}
+                        className="w-auto"
+                        checked={proposalCover.themeOfProposedResearch.includes(theme)}
                         data-section="proposalCover"
                         onChange={handleCheckboxChange}
                       />
                       {theme}
-                    </label>
+                    
                   </div>
                 ))}
               </div>
               {checkboxError && <p style={{ color: "red" }}>{checkboxError}</p>}
 
-              <div className="discipline-research-checkbox">
+              <div className="discipline-research-checkboxs">
                 <h6>Discipline of Proposed Research:</h6>
+                <div className="domain-research-checkbox d-flex align-items-center col-gap-2 pb-4 flex-wrap">
                 {[
                   "Agriculture Sciences",
                   "Arts & Humanities",
@@ -532,12 +543,13 @@ const AddGrants = ({ onSave }) => {
                   "Mathematical and Physical Sciences",
                   "Social, Behavioral and Economical Sciences",
                 ].map((discipline) => (
-                  <div key={discipline}>
-                    <label>
+                  <div className="checkbox-item d-flex align-items-center " key={discipline}>
+                    
                       <input
                         type="checkbox"
                         name="disciplineOfProposedResearch"
                         value={discipline}
+                         className="w-auto"
                         checked={proposalCover.disciplineOfProposedResearch.includes(
                           discipline
                         )}
@@ -545,9 +557,10 @@ const AddGrants = ({ onSave }) => {
                         onChange={handleCheckboxChange}
                       />
                       {discipline}
-                    </label>
+                    
                   </div>
                 ))}
+                </div>
               </div>
             </div>
 

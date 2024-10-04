@@ -192,6 +192,19 @@ export const updateUser = async (id, updatedData) => {
   }
 };
 
+export const deleteUser = async (id) => {
+  try {
+    const response = await api.delete(`user/delete/${id}`,  {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`, // Assuming token is stored in localStorage
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data?.message || "Failed to update user");
+  }
+};
+
 // // Research Portfolio
 
 // Personal Information

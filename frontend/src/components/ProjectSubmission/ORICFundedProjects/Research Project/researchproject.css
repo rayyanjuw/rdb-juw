@@ -53,6 +53,8 @@
   color: #252422;
   padding: 0.75rem 1rem;
   border-radius: 0.25rem;
+  font-size: 13px;
+  column-gap: 1rem;
 }
 
 .researchproject-bredcrumb {
@@ -164,7 +166,7 @@
 }
 
 .domain-research-checkbox input[type="checkbox"] {
-  margin-right: 8px;
+  margin-right: 4px;
 }
 
 .researchproject-textarea textarea {
@@ -255,6 +257,19 @@
   font-size: 0.8571em;
   line-height: 1.8;
   color: #66615b;
+}
+
+.checkbox-item {
+  font-size: 12.8px;
+  color: #6e6e6e;
+}
+
+.col-gap-2 {
+  column-gap: 1.5rem !important;
+}
+
+.activities {
+  font-size: 13px;
 }
 
 
