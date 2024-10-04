@@ -20,47 +20,36 @@ const AddGrants = ({ onSave }) => {
     { label: "Proposal Cover" },
     {
       label: "Executive Summary",
-      
     },
     {
       label: "Academic/Sectoral Collaborators",
-     
     },
     {
       label: "Project Description",
-      
     },
     {
       label: "Project Management",
-     
     },
     {
       label: "Implementation Timeline",
-      
     },
     {
       label: "Physical Resources and Facilities",
-      
     },
     {
       label: "Scientific Personnel",
-      
     },
     {
       label: "Principal Investigators availed research grant details",
-      
     },
     {
       label: "Risk Management Strategy",
-     
     },
     {
       label: "List of References",
-     
     },
     {
       label: "Proposed Project Budget",
-      
     },
   ];
 
