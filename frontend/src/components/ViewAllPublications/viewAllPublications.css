@@ -154,7 +154,11 @@ table td {
   display: none;
 }
 
-
+.vap-modal h4 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .vap-overlay {
   position: fixed;

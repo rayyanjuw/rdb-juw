@@ -177,6 +177,13 @@
   border-width: 1px;
 }
 
+.error-message {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 5px;
+}
+
+
 
 @media (max-width: 1024px){
   .addgrant-save-btn {
