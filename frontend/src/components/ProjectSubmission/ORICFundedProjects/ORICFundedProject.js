@@ -626,15 +626,15 @@ const ORICFundedProject = () => {
                   <span>{proposalCover.title || "N/A"}</span>
                 </div>
                 <div className="oricfundedproject-list-table-format">
-                  <b>Owner of IP:</b>
+                  <b>Name of PI:</b>
                   <span>{proposalCover.nameOfPI || "N/A"}</span>
                 </div>
                 <div className="oricfundedproject-list-table-format">
-                  <b>Address:</b>
+                  <b>Name of Faculty</b>
                   <span>{proposalCover.nameOfFaculty || "N/A"}</span>
                 </div>
                 <div className="oricfundedproject-list-table-format">
-                  <b>Field of Invention:</b>
+                  <b>Total Budget Requested</b>
                   <span>{proposalCover.totalBudgetRequested || "N/A"}</span>
                 </div>
               </div>
