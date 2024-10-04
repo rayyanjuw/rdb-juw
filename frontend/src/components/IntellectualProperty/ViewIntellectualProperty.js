@@ -13,10 +13,6 @@ import {
 } from "../../api/Api";
 import { toast } from "react-toastify";
 
-
-
-
-
 const ViewIntellectualProperty = () => {
   const [IntelProperties, setIntelProperties] = useState([
     {
@@ -31,12 +27,18 @@ const ViewIntellectualProperty = () => {
     },
   ]);
 
-
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedProperty, setSelectedProperty] = useState(null);
   const [editMode, setEditMode] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  
+  const [errorMessage, setErrorMessage] = useState(""); // For Field of Invention
+  const [backgroundErrorMessage, setBackgroundErrorMessage] = useState(""); // For Background of Invention
+  const [descriptionErrorMessage, setDescriptionErrorMessage] = useState("");
+  const [inventiveStepsErrorMessage, setInventiveStepsErrorMessage] =
+    useState(""); // For Inventive Steps
+  const [referencesErrorMessage, setReferencesErrorMessage] = useState(""); // For References
 
   useEffect(() => {
     const fetchIntellectualProperties = async () => {
@@ -74,6 +76,25 @@ const ViewIntellectualProperty = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    // Run all validations
+    validateWordCount();
+    validateBackgroundWordCount();
+    validateDescriptionWordCount();
+    validateInventiveSteps();
+    validateReferences();
+
+    if (
+      errorMessage ||
+      backgroundErrorMessage ||
+      descriptionErrorMessage ||
+      inventiveStepsErrorMessage ||
+      referencesErrorMessage
+    ) {
+      toast.error("Please correct the errors before submitting.");
+      return; // Prevent submission if any errors exist
+    }
+
     try {
       await updateIntellectualProperty(selectedProperty.id, selectedProperty);
       setIntelProperties((prevProperties) =>
@@ -81,7 +102,7 @@ const ViewIntellectualProperty = () => {
           property.id === selectedProperty.id ? selectedProperty : property
         )
       );
-      toast.success("Success!")
+      toast.success("Success!");
       closeModal();
     } catch (error) {
       setError(error.message);
@@ -251,15 +272,67 @@ const ViewIntellectualProperty = () => {
       setIntelProperties((prevData) =>
         prevData.filter((property) => property.id !== id)
       );
-      toast.success("Deleted Successfully")
+      toast.success("Deleted Successfully");
     } catch (error) {
       alert("Failed to delete the publication.");
       setError(error.message);
     }
   };
 
-  return (
 
+  // Validation for Field of The Invention (max 50 words)
+const validateWordCount = () => {
+  const wordCount = selectedProperty?.fieldofinvention?.trim()?.split(/\s+/).length;
+  if (wordCount > 50) {
+    setErrorMessage("Field of Invention: Not more than 50 words are allowed.");
+  } else {
+    setErrorMessage("");
+  }
+};
+
+// Validation for Background Of The Invention (max 800 words)
+const validateBackgroundWordCount = () => {
+  const wordCount = selectedProperty?.backgroundofinvention?.trim()?.split(/\s+/).length;
+  if (wordCount > 800) {
+    setBackgroundErrorMessage("Background of Invention: Not more than 800 words are allowed.");
+  } else {
+    setBackgroundErrorMessage("");
+  }
+};
+
+// Validation for Description Of Invention (max 250 words)
+const validateDescriptionWordCount = () => {
+  const wordCount = selectedProperty?.descriptionofinvention?.trim()?.split(/\s+/).length;
+  if (wordCount > 250) {
+    setDescriptionErrorMessage("Description of Invention: Not more than 250 words are allowed.");
+  } else {
+    setDescriptionErrorMessage("");
+  }
+};
+
+// Validation for Inventive Steps (max 6 bullet points)
+const validateInventiveSteps = () => {
+  const bulletPoints = selectedProperty?.inventivesteps?.trim()?.split(/\n+/); // Split by line breaks
+  if (bulletPoints?.length > 6) {
+    setInventiveStepsErrorMessage("Inventive Steps: Not more than 6 bullet points are allowed.");
+  } else {
+    setInventiveStepsErrorMessage("");
+  }
+};
+
+// Validation for References (max 10 references)
+const validateReferences = () => {
+  const references = selectedProperty?.refrences?.trim()?.split(/\n+/); // Split by line breaks
+  if (references?.length > 10) {
+    setReferencesErrorMessage("References: Not more than 10 references are allowed.");
+  } else {
+    setReferencesErrorMessage("");
+  }
+};
+
+
+
+  return (
     <div className="intelproperty-container">
       <Sidebar />
       <div className="intelproperty">
@@ -392,83 +465,127 @@ const ViewIntellectualProperty = () => {
           className="vip-modal"
           overlayClassName="vip-overlay"
         >
-          <h2>
+          <h4>
             {editMode
               ? "Edit Intellectual Property Modal"
               : "Create Intellectual Property Modal"}
-          </h2>
+          </h4>
           <form className="create-property" onSubmit={handleSubmit}>
-            <div className="multi-fields">
-              <input
-                required
-                name="title"
-                onChange={handleInputChange}
-                value={selectedProperty?.title || ""}
-                type="text"
-                placeholder="Title"
-              />
+            <div className="vip-multi-fields">
+              <div className="vip-input-field">
+                <label htmlFor="title">Title:</label>
+                <input
+                  required
+                  name="title"
+                  onChange={handleInputChange}
+                  value={selectedProperty?.title || ""}
+                  type="text"
+                  placeholder="Title"
+                />
+              </div>
 
-              <input
-                name="OwnerIp"
-                onChange={handleInputChange}
-                value={selectedProperty?.OwnerIp || ""}
-                type="text"
-                placeholder="Owner of IP:"
-                disabled
-              />
+              <div className="vip-input-field">
+                <label htmlFor="OwnerIp">Owner of IP:</label>
+                <input
+                  name="OwnerIp"
+                  onChange={handleInputChange}
+                  value={selectedProperty?.OwnerIp || ""}
+                  type="text"
+                  placeholder="Owner of IP:"
+                  disabled
+                />
+              </div>
 
-              <input
-                name="address"
-                onChange={handleInputChange}
-                value={selectedProperty?.address || ""}
-                type="text"
-                placeholder="address"
-                disabled
-              />
+              <div className="vip-input-field">
+                <label htmlFor="address">Address:</label>
+                <input
+                  name="address"
+                  onChange={handleInputChange}
+                  value={selectedProperty?.address || ""}
+                  type="text"
+                  placeholder="address"
+                  disabled
+                />
+              </div>
 
-              <input
-                required
-                name="fieldofinvention"
-                onChange={handleInputChange}
-                value={selectedProperty?.fieldofinvention || ""}
-                type="text"
-                placeholder="(Not more than 50 words. Either it should describe your method of production or process or combination of both)"
-              />
+              <div className="vip-inputgroup">
+                <label>Field of The Invention:</label>
+                <textarea
+                  rows="2"
+                  value={selectedProperty?.fieldofinvention || ""}
+                  placeholder="(Not more than 50 words. Either it should describe your method of production or process or combination of both)"
+                  name="fieldofinvention"
+                  onChange={handleInputChange}
+                  onBlur={validateWordCount}
+                />
+                {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+              </div>
 
-              <input
-                required
-                name="backgroundofinvention"
-                onChange={handleInputChange}
-                value={selectedProperty?.backgroundofinvention || ""}
-                type="text"
-                placeholder="Approximately 800 words: (showing how your research is different and more useful than past research)"
-              />
+              <div className="vip-inputgroup">
+                <label>Background Of The Invention:</label>
+                <textarea
+                  rows="3"
+                  value={selectedProperty?.backgroundofinvention || ""}
+                  placeholder="Approximately 800 words: (showing how your research is different and more useful than past research)"
+                  name="backgroundofinvention"
+                  onChange={handleInputChange}
+                  onBlur={validateBackgroundWordCount}
+                />
+                {backgroundErrorMessage && (
+                  <p style={{ color: "red" }}>{backgroundErrorMessage}</p>
+                )}
+              </div>
 
-              <input
-                name="descriptionofinvention"
-                onChange={handleInputChange}
-                value={selectedProperty?.descriptionofinvention || ""}
-                type="text"
-                placeholder="Approximately 250 words"
-              />
 
-              <input
-                name="refrences"
-                onChange={handleInputChange}
-                value={selectedProperty?.refrences || ""}
-                type="text"
-                placeholder="Not More than 10"
-              />
+              <div className="vip-inputgroup">
+                <label>Description Of Invention:</label>
+                <textarea
+                  rows="3"
+                  value={selectedProperty?.descriptionofinvention || ""}
+                  placeholder="Approximately 250 words"
+                  name="descriptionofinvention"
+                  onChange={handleInputChange}
+                  onBlur={validateDescriptionWordCount}
+                />
+                {descriptionErrorMessage && (
+                  <p style={{ color: "red" }}>{descriptionErrorMessage}</p>
+                )}
+              </div>
 
-              <input
-                name="inventivesteps"
-                onChange={handleInputChange}
-                value={selectedProperty?.inventivesteps || ""}
-                type="text"
-                placeholder="Approximately 5-6 Bullet points"
-              />
+              
+              <div className="vip-inputgroup">
+                <label>References:</label>
+                <textarea
+                  rows="2"
+                  value={selectedProperty?.refrences || ""}
+                  name="refrences"
+                  placeholder="Not more than 10"
+                  onChange={handleInputChange}
+                  onBlur={validateReferences}
+                />
+                {referencesErrorMessage && (
+                  <p style={{ color: "red" }}>{referencesErrorMessage}</p>
+                )}
+              </div>
+
+              <div className="vip-inputgroup">
+                <label>Inventive Steps:</label>
+                <textarea
+                  rows="4"
+                  value={selectedProperty?.inventivesteps || ""}
+                  placeholder="Approximately 5-6 Bullet points"
+                  name="inventivesteps"
+                  onChange={handleInputChange}
+                  onBlur={validateInventiveSteps}
+                />
+                {inventiveStepsErrorMessage && (
+                  <p style={{ color: "red" }}>{inventiveStepsErrorMessage}</p>
+                )}
+              </div>
+
+
             </div>
-            <button className="submit-button" type="submit">
+            <button className="vip-submit-button" type="submit">
               {editMode ? "UPDATE" : "Submit"}
             </button>
           </form>
