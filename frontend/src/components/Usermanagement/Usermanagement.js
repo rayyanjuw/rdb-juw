@@ -553,15 +553,17 @@ const UserManagement = () => {
                                   <LiaEdit size={22}/>
 
                                 </button>
+                                {(currentUserRole === "admin" ) && (
 
-                                <button
+                                  <button
                                   className="edit_create-user-btn pagination-button"
                                   onClick={() => handleDeleteUser(user.id)}
                                   
-                                >
+                                  >
                                   <MdOutlineDelete color="#8B0000" size={22}/>
 
                                 </button>
+                                )}
 
                                 {(currentUserRole === "admin" ||
                                   currentUserRole === "manager") && (

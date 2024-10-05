@@ -55,13 +55,13 @@ const ViewIntellectualProperty = () => {
     fetchIntellectualProperties();
   }, []);
 
-  if (loading) {
-    return <div>Loading intellectual properties...</div>;
-  }
+  // if (loading) {
+  //   return <div>Loading intellectual properties...</div>;
+  // }
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
+  // if (error) {
+  //   return <div>Error: {error}</div>;
+  // }
 
   const openModal = (property) => {
     setSelectedProperty(property);
@@ -274,6 +274,7 @@ const ViewIntellectualProperty = () => {
       );
       toast.success("Deleted Successfully");
     } catch (error) {
+      console.error("Error Deleting:", error);
       alert("Failed to delete the publication.");
       setError(error.message);
     }

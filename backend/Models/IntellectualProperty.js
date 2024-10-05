@@ -29,11 +29,11 @@ const IntellectualProperty = sequelize.define('IntellectualProperty', {
         allowNull: false,
     },
     refrences: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false,
     },
     inventivesteps: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false,
     },
     userId: {

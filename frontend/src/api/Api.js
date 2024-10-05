@@ -570,12 +570,22 @@ export const deleteIntellectualProperty = async (id) => {
       },
     });
 
+    
     // console.log("Intellectual Property Deleted Successfully");
     return response.data;
   } catch (error) {
-    throw new Error(
-      error.response?.data?.error || "Failed to delete intellectual property"
-    );
+    
+    if (error.response) {
+      // Extract message from error response
+      const { message } = error.response.data;
+      toast.error(message); // Show the specific error message from the backend
+      throw new Error(message); // Throw the specific error for further handling
+    } else {
+      // Handle network or unexpected errors
+      toast.error("Failed to create user. Please try again.");
+      throw error; // Re-throw the original error
+    }
+    
   }
 };
 

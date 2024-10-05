@@ -270,21 +270,35 @@ const deleteIP = async (req, res) => {
     const isOwner = intellectualProperty.userId === user.id;
 
     // Allow the owner to delete their own IP regardless of role
-    if (!isOwner && effectiveRole !== 'admin' || !isOwner && effectiveRole !== 'manager') {
-      if (intellectualProperty.creator.departmentId !== effectiveDepartmentId) {
-        return res.status(403).json({ message: 'Cannot delete intellectual property from a different department' });
-      }
+   // Bypass department check for admins and managers
+   if (effectiveRole === 'admin' || effectiveRole === 'manager') {
+    // Admin or manager can delete regardless of department or ownership
+    await intellectualProperty.destroy();
+    return res.status(200).json({ message: "Intellectual property deleted successfully" });
+  }
 
-      if (!canCreateIPFor(effectiveRole, intellectualProperty.createdBy)) {
-        return res.status(403).json({ message: 'Access denied to delete intellectual property for this role' });
-      }
+  // Check ownership and department for non-admins
+  if (!isOwner) {
+    if (intellectualProperty.creator.departmentId !== effectiveDepartmentId) {
+      return res.status(403).json({ message: 'Cannot delete intellectual property from a different department' });
     }
+
+    if (!canCreateIPFor(effectiveRole, intellectualProperty.createdBy)) {
+      return res.status(403).json({ message: 'Access denied: insufficient role to delete intellectual property' });
+    }
+  }
+
+    console.log('User Role:', userRole);
+console.log('Effective Role:', effectiveRole);
+console.log('Is Owner:', isOwner);
+
 
     // Delete the intellectual property
     await intellectualProperty.destroy();
 
     res.status(200).json({ message: "Intellectual property deleted successfully" });
   } catch (error) {
+    console.log("error:", error)
     res.status(500).json({ message: "Failed to delete intellectual property", error: error.message });
   }
 };
